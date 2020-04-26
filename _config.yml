@@ -213,7 +213,6 @@ defaults:
       aside:
         toc: true
       show_tags: true
-      modify_date: true
       show_edit_on_github: true
       pageview: true
 
