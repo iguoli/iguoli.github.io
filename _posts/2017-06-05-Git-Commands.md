@@ -1,8 +1,9 @@
 ---
 title: Git 常用命令
 date: 2017-06-05
-last_modified_at: 2020-01-03
-categories: git
+modify_date: 2020-01-03
+tags: git
+key: 2017-06-05-Git-Commands
 ---
 
 ## 查看 Git 自带文档

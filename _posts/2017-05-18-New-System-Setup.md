@@ -1,8 +1,9 @@
 ---
 title: MacOS/Linux 新装系统环境配置
 date: 2017-05-18
-last_modified_at: 2020-04-23
-categories: linux
+modify_date: 2020-04-23
+tags: linux macos provision
+key: 2017-05-18-New-System-Setup
 ---
 
 ## 安装系统常用开发工具
@@ -57,9 +58,14 @@ git config --global core.editor vim
 ## 安装 [Connect](https://bitbucket.org/gotoh/connect/wiki/Home)
 
 ```zsh
+# Ubuntu
 sudo apt install connect-proxy
 
-which connect
+# MacOS
+brew install connect
+
+# Get the version
+connect -V
 ```
 
 在 `.ssh/config` 中配置 `github` 使用代理
@@ -80,7 +86,7 @@ Host github.com
 
 注意: `proxychains` 只会代理 `TCP` 连接，所以如果使用 `proxychains4 ping www.google.com` 则不会生效，因为 `ping` 命令使用 `ICMP` 协议。
 
-### Linux Distros
+### Linux distros
 
 ```zsh
 sudo apt install -y build-essential

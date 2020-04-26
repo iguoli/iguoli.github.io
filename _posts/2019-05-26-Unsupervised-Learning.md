@@ -1,7 +1,8 @@
 ---
 title: 无监督学习
 date: 2019-05-26
-categories: machine-learning svm
+tags: machine-learning svm
+key: 2019-05-26-Unsupervised-Learning
 ---
 
 ## K-means 优化目标

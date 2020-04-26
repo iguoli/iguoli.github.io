@@ -1,8 +1,9 @@
 ---
 title: Linux 文件系统
 date: 2017-08-19
-last_modified_at: 2019-08-15
-categories: linux filesystem
+modify_date: 2019-08-15
+tags: linux filesystem
+key: 2017-08-19-File-System
 ---
 
 ## EXT4

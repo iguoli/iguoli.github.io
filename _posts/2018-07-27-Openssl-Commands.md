@@ -1,8 +1,9 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-last_modified_at: 2019-12-16
-categories: encryption openssl
+modify_date: 2019-12-16
+tags: encryption openssl
+key: 2018-07-27-Openssl-Commands
 ---
 
 ## [OpenSSL][0] 简介
@@ -254,13 +255,13 @@ openssl pkcs7 -print_certs -in certificat.p7b -out certificate.cer
 
 |   DC   |       Information        |         Description          |           Sample           |
 | :----: | :----------------------: | :--------------------------: | :------------------------: |
-|  `CN`  |       Common Name        | 希望保证安全的域名 [FQDN][3]    |      *.wikipedia.org       |
-|  `O`   |    Organization Name     |        组织或公司名称          | Wikimedia Foundation, Inc. |
-|  `OU`  | Organizational Unit Name |           部门名称            |             IT             |
-|  `L`   |     Locality / City      |          城市或地区            |       San Francisco        |
-|  `ST`  |    State or Province     |            省/州              |         California         |
-|  `C`   |         Country          |       两字母的国家代码          |             US             |
-| `MAIL` |      Email address       |     公司或部门的联系邮箱        |    support@it.corp.com     |
+|  `CN`  |       Common Name        | 希望保证安全的域名 [FQDN][3] |      *.wikipedia.org       |
+|  `O`   |    Organization Name     |        组织或公司名称        | Wikimedia Foundation, Inc. |
+|  `OU`  | Organizational Unit Name |           部门名称           |             IT             |
+|  `L`   |     Locality / City      |          城市或地区          |       San Francisco        |
+|  `ST`  |    State or Province     |            省/州             |         California         |
+|  `C`   |         Country          |       两字母的国家代码       |             US             |
+| `MAIL` |      Email address       |     公司或部门的联系邮箱     |    support@it.corp.com     |
 
 `openssl req` 命令通常用来创建和处理 `PKCS#10` 格式的证书. 可以创建自签名的证书，例如根证书.
 

@@ -2,7 +2,8 @@
 title: Windows 下创建目录链接
 author: Guo Li
 date: 2017-12-04
-categories: os windows
+tags: os windows
+key: 2017-12-04-mklink-in-Windows
 ---
 
 在 Windows 下如果通过`右键菜单->创建快捷方式`生成的文件或文件夹，其实是生成了一个后辍为.lnk 的文件，在其它程序里面是不会引用到原文件或文件夹的，如果通过`mklink`命令来创建快捷方式（符号链接），则其它程序会认为这就是一个真正的文件或文件夹。

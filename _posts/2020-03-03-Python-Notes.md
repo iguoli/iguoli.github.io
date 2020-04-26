@@ -1,7 +1,8 @@
 ---
 title: Python 学习笔记
 date: 2020-03-03
-categories: python
+tags: python
+key: 2020-03-03-Python-Notes
 ---
 
 ## 模块 (Modules)

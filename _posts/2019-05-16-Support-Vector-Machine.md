@@ -1,7 +1,8 @@
 ---
 title: 支持向量机(Support Vector Machine)
 date: 2019-05-16
-categories: machine-learning svm
+tags: machine-learning svm
+key: 2019-05-16-Support-Vector-Machine
 ---
 
 ## SVM 的决策边界(_Decision Boundary_)

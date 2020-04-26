@@ -1,8 +1,9 @@
 ---
 title: Bash 重定向
 date: 2017-05-23
-last_modified_at: 2019-12-17
-categories: Bash
+modify_date: 2019-12-17
+tags: Bash
+key: 2017-05-23-Bash-redirections
 ---
 
 ## Bash 重定向

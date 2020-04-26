@@ -1,8 +1,9 @@
 ---
 title: 概率与统计总结
 date: 2020-04-09
-last_modified_at: 2020-04-09
-categories: math probability statistics
+modify_date: 2020-04-09
+tags: math probability statistics
+key: 2020-04-09-Probability-and-Statistics
 ---
 
 ### 计数法 (Counting Methods)

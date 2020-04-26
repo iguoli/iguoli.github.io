@@ -1,7 +1,8 @@
 ---
 title: 多元微积分
 date: 2019-05-05
-categories: math calculus multivariable
+tags: math calculus multivariable
+key: 2019-05-05-Multivariable-Calculus
 ---
 
 ## 复合函数的中间变量均为一元函数

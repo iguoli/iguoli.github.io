@@ -1,7 +1,8 @@
 ---
 title: 编写 Bash 的自动补全脚本
 date: 2019-12-04
-categories: bash autocompletion
+tags: bash autocompletion
+key: 2019-12-13-Bash-Completion
 ---
 
 ## SSH 服务器名称自动补全

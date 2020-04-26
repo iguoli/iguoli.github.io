@@ -1,8 +1,9 @@
 ---
 title: Linux 下常用命令汇总
 date: 2017-12-03
-last_modified_at: 2019-12-17
-categories: linux util
+modify_date: 2019-12-17
+tags: linux util
+key: 2017-12-03-Linux-Commands
 ---
 
 ## [Linux 在线手册][00]

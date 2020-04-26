@@ -1,7 +1,8 @@
 ---
 title: 关系型数据库笔记
 date: 2017-07-04
-categories: rdbms database
+tags: rdbms database
+key: 2017-07-04-RDBMS-Note
 ---
 
 ## 第三章 SQL

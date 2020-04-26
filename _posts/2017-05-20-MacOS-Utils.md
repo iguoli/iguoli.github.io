@@ -1,8 +1,9 @@
 ---
 title: MacOS 常用配置
 date: 2017-05-20
-last_modified_at: 2019-10-03
-categories: mac gnu
+modify_date: 2019-10-03
+tags: mac gnu
+key: 2017-05-20-MacOS-Utils
 ---
 
 ## 在 MacOS/OS X 上安装和使用 GNU 命令行工具

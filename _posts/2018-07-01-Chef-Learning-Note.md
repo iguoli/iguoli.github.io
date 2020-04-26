@@ -1,7 +1,8 @@
 ---
 title: Chef 学习笔记
 date: 2018-07-01 12:32:07
-categories: automation
+tags: automation
+key: 2018-07-01-Chef-Learning-Note
 ---
 
 # 登录 Chef Server 下载 Starter Kit

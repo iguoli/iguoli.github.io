@@ -1,8 +1,9 @@
 ---
 title: SSH 端口转发
 date: 2018-09-08
-last_modified_at: 2019-07-17
-categories: ssh
+modify_date: 2019-07-17
+tags: ssh
+key: 2018-09-08-SSH-Port-Forwarding
 ---
 
 以下端口转发命令都可以加上 `-f`、`-N` 和 `-T` 选项，`-f` 表示让 ssh 进入后台执行命令，`-N` 表示不执行远程命令，`-T` 表示不分配终端。

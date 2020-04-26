@@ -1,7 +1,8 @@
 ---
 title: Linux 下配置 Ruby 环境
 date: 2018-07-18
-categories: ruby
+tags: ruby
+key: 2018-07-18-Setup-Ruby-on-Linux
 ---
 
 ## [安装 rbenv](https://github.com/rbenv/rbenv#basic-github-checkout)

@@ -1,7 +1,8 @@
 ---
 title: Linux 上安装 Nodejs
 date: 2019-07-10
-categories: nodejs javascript js
+tags: nodejs javascript js
+key: 2019-07-10-Nodejs-Installation
 ---
 
 本文引用地址 [Nodejs help wiki](https://github.com/nodejs/help/wiki/Installation)

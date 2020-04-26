@@ -1,8 +1,9 @@
 ---
 title: 线性代数笔记
 date: 2019-05-10
-last_modified_at: 2019-10-09
-categories: math linear-algebra
+modify_date: 2019-10-09
+tags: math linear-algebra
+key: 2019-05-10-Linear-Algebra
 ---
 
 ## <span style="color:blue">一、线性方程组</span>
@@ -100,14 +101,14 @@ $$
 
 - 是**不相容**的，则它**无解**。
 
-| 相容 | 相容 | 不相容 |
-|-------------------------|-----------------------|---------------------------|
-| 惟一解 | 无穷解 | 无解 |
-| 没有自由变量<br>(线性无关) | 有自由变量<br>(线性相关) | |
-| 系数矩阵 $A$ 在每一行都有主元位置 |  | 增广矩阵最右列存在主元，即存在如下形式<br>$\mathbf{[0 \cdots 0 \; b] \; (b\ne0)}$ |
-|  |  | $\mathbf b$ 不属于 $\mathbf{Span}\\{\mathbf{a_1, a_2, \cdots, a_n\\}}$ |
-| 齐次方程 $Ax=0$ 仅有平凡解 | 齐次方程 $Ax=0$ 有非平凡解 | 方程 $Ax$ 无解 |
-| 映射 $T: \Bbb R^n \to \Bbb R^m$ 是单射(一对一) | 映射 $T: \Bbb R^n \to \Bbb R^m$ 是满射但不是单射 | 映射 $T$ 没有将 $\Bbb R^n$ 映射到 $\Bbb R^m$ 上的 |
+| 相容                                           | 相容                                             | 不相容                                                                            |
+| ---------------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------- |
+| 惟一解                                         | 无穷解                                           | 无解                                                                              |
+| 没有自由变量<br>(线性无关)                     | 有自由变量<br>(线性相关)                         |                                                                                   |
+| 系数矩阵 $A$ 在每一行都有主元位置              |                                                  | 增广矩阵最右列存在主元，即存在如下形式<br>$\mathbf{[0 \cdots 0 \; b] \; (b\ne0)}$ |
+|                                                |                                                  | $\mathbf b$ 不属于 $\mathbf{Span}\\{\mathbf{a_1, a_2, \cdots, a_n\\}}$            |
+| 齐次方程 $Ax=0$ 仅有平凡解                     | 齐次方程 $Ax=0$ 有非平凡解                       | 方程 $Ax$ 无解                                                                    |
+| 映射 $T: \Bbb R^n \to \Bbb R^m$ 是单射(一对一) | 映射 $T: \Bbb R^n \to \Bbb R^m$ 是满射但不是单射 | 映射 $T$ 没有将 $\Bbb R^n$ 映射到 $\Bbb R^m$ 上的                                 |
 
 自由变量，矩阵的列数量大于行数量
 
@@ -645,16 +646,16 @@ $$
 
 #### 对 $m \times n$ 矩阵 $A$，$\mathrm{Nul}A$ 与 $\mathrm{Col}A$ 的对比
 
-| $\mathrm{Nul}A$ | $\mathrm{Col}A$ |
-| :----- | :----- |
-| 1. $\mathrm{Nul}A$ 是 $\Bbb R^n$ 的一个子空间 | 1. $\mathrm{Col}A$ 是 $\Bbb R^m$ 的一个子空间 |
-| 2. $\mathrm{Nul}A$ 是隐式定义的，即只给出了一个 $\mathrm{Nul}A$ 中向量必须满足的条件( $A\mathbf{x}=\mathbf{0}$ ) | 2. $\mathrm{Col}A$ 是显示定义，即明确指出如何建立 $\mathrm{Col}A$ 中的向量 |
-| 3. 求 $\mathrm{Nul}A$ 中的向量需要时间，需要对 $[A \mathbf{0}]$ 做行变换 | 3. 容易求出 $\mathrm{Col}A$ 中的向量，$A$ 中的列就是 $\mathrm{Col}A$ 中的向量，其余的可由 $A$ 的列表示出来 |
-| 4. $\mathrm{Nul}A$ 与 $A$ 的数值之间没有明显关系 | 4. $\mathrm{Col}A$ 与 $A$ 的数值之间有明显的关系，因为 $A$ 的列就在 $\mathrm{Col}A$ 中 |
-| 5. $\mathrm{Nul}A$ 中的一个典型向量 $v$ 具有 $A\mathbf{v}=\mathbf{0}$ 的性质 | 5. $\mathrm{Col}A$ 中的一个典型向量 $v$ 具有方程 $A\mathbf{x}=\mathbf{v}$ 是相容的性质 |
-| 6. 给一个特定的向量 $\mathbf{v}$，容易判断 $\mathbf{v}$ 是否在 $\mathrm{Nul}A$ 中，只需要计算 $A\mathbf{v}$ | 6. 给定一个特定的向量 $\mathbf{v}$，弄清 $\mathbf{v}$ 是否在 $\mathrm{Col}A$ 中需要时间，需要对 $[A\;\mathbf{v}]$ 作行变换 |
-| 7. $\mathrm{Nul}A = \\{\mathbf{0}\\}$ 当且仅当方程 $A\mathbf{x}=\mathbf{0}$ 仅有平凡解 | 7. $\mathrm{Col}A = \Bbb R^m$ 当且仅当方程 $A\mathbf{x}=\mathbf{b}$ 对每个 $\mathbf{b} \in \Bbb R^m$ 有一个解 |
-| 8. $\mathrm{Nul}A=\\{0\\}$ 当且仅当线性变换 $\mathbf{x} \to A\mathbf{x}$ 是一对一的 | 8. $\mathrm{Col}A = \Bbb R^m$ 当且仅当线性变换 $\mathbf{x} \to A\mathbf{x}$ 将 $\Bbb R^n$ 映射到 $\Bbb R^m$ 上 |
+| $\mathrm{Nul}A$                                                                                                  | $\mathrm{Col}A$                                                                                                            |
+| :--------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| 1. $\mathrm{Nul}A$ 是 $\Bbb R^n$ 的一个子空间                                                                    | 1. $\mathrm{Col}A$ 是 $\Bbb R^m$ 的一个子空间                                                                              |
+| 2. $\mathrm{Nul}A$ 是隐式定义的，即只给出了一个 $\mathrm{Nul}A$ 中向量必须满足的条件( $A\mathbf{x}=\mathbf{0}$ ) | 2. $\mathrm{Col}A$ 是显示定义，即明确指出如何建立 $\mathrm{Col}A$ 中的向量                                                 |
+| 3. 求 $\mathrm{Nul}A$ 中的向量需要时间，需要对 $[A \mathbf{0}]$ 做行变换                                         | 3. 容易求出 $\mathrm{Col}A$ 中的向量，$A$ 中的列就是 $\mathrm{Col}A$ 中的向量，其余的可由 $A$ 的列表示出来                 |
+| 4. $\mathrm{Nul}A$ 与 $A$ 的数值之间没有明显关系                                                                 | 4. $\mathrm{Col}A$ 与 $A$ 的数值之间有明显的关系，因为 $A$ 的列就在 $\mathrm{Col}A$ 中                                     |
+| 5. $\mathrm{Nul}A$ 中的一个典型向量 $v$ 具有 $A\mathbf{v}=\mathbf{0}$ 的性质                                     | 5. $\mathrm{Col}A$ 中的一个典型向量 $v$ 具有方程 $A\mathbf{x}=\mathbf{v}$ 是相容的性质                                     |
+| 6. 给一个特定的向量 $\mathbf{v}$，容易判断 $\mathbf{v}$ 是否在 $\mathrm{Nul}A$ 中，只需要计算 $A\mathbf{v}$      | 6. 给定一个特定的向量 $\mathbf{v}$，弄清 $\mathbf{v}$ 是否在 $\mathrm{Col}A$ 中需要时间，需要对 $[A\;\mathbf{v}]$ 作行变换 |
+| 7. $\mathrm{Nul}A = \\{\mathbf{0}\\}$ 当且仅当方程 $A\mathbf{x}=\mathbf{0}$ 仅有平凡解                           | 7. $\mathrm{Col}A = \Bbb R^m$ 当且仅当方程 $A\mathbf{x}=\mathbf{b}$ 对每个 $\mathbf{b} \in \Bbb R^m$ 有一个解              |
+| 8. $\mathrm{Nul}A=\\{0\\}$ 当且仅当线性变换 $\mathbf{x} \to A\mathbf{x}$ 是一对一的                              | 8. $\mathrm{Col}A = \Bbb R^m$ 当且仅当线性变换 $\mathbf{x} \to A\mathbf{x}$ 将 $\Bbb R^n$ 映射到 $\Bbb R^m$ 上             |
 
 #### 线性变换的核与值域
 

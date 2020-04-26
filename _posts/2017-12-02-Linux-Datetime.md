@@ -1,8 +1,9 @@
 ---
 title: Linux 时间设置
 date: 2017-12-02
-last_modified_at: 2019-09-12
-categories: linux date
+modify_date: 2019-09-12
+tags: linux date
+key: 2017-12-02-Linux-Datetime
 ---
 
 ## 时区

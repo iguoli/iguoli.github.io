@@ -1,8 +1,9 @@
 ---
 title: PostgreSQL 客户端应用
 date: 2020-03-06
-last_modified_at: 2020-03-12
-categories: db postgresql psql
+modify_date: 2020-03-12
+tags: db postgresql psql
+key: 2020-03-06-Postgresql-psql
 ---
 
 ## [psql] - PostgreSQL 交互式终端

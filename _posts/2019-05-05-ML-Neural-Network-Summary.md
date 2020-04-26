@@ -1,7 +1,8 @@
 ---
 title: 机器学习 - 相关概念的总结
 date: 2019-05-05
-categories: machine-learning neural-network deep-learning backpropagation
+tags: machine-learning neural-network deep-learning backpropagation
+key: 2019-05-05-ML-Neural-Network-Summary
 ---
 
 ## 概念解释
@@ -111,8 +112,8 @@ $$
 
 ![precision vs recal base](/assets/images/machine-learning/precision_vs_recall_base.svg)
 
-| 真正例(True Positives): 8 | 假正例(False Positives): 2 |
-| :-----: | :-----: |
+|   真正例(True Positives): 8    |   假正例(False Positives): 2   |
+| :----------------------------: | :----------------------------: |
 | **假负例(False Negatives): 3** | **真负例(True Negatives): 13** |
 
 ![precision vs recal raise threshold](/assets/images/machine-learning/precision_vs_recall_raise_threshold.svg)

@@ -1,7 +1,8 @@
 ---
 title:  MacOS/Linux 下配置 Python 环境
 date: 2018-07-20
-categories: python
+tags: python
+key: 2018-07-20-Setup-Python-on-Linux
 ---
 
 ## 安装 [pyenv](https://github.com/pyenv/pyenv)

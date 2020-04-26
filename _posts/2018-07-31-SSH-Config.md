@@ -1,8 +1,9 @@
 ---
 title: SSH Config 配置说明
 date: 2018-07-31
-last_modified_at: 2019-12-10
-categories: ssh ssh_config
+modify_date: 2019-12-10
+tags: ssh ssh_config
+key: 2018-07-31-SSH-Config
 ---
 
 ## SSH_CONFIG 中的选项说明

@@ -1,7 +1,8 @@
 ---
 title: 查看系统监听端口
 date: 2019-01-05 14:43:14
-categories: linux macos
+tags: linux macos
+key: 2019-01-05-List-Listening-Ports
 ---
 
 ## MacOS

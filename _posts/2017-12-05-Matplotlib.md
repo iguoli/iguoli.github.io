@@ -1,7 +1,8 @@
 ---
 title: Matplotlib 基础用法
 date: 2017-12-05
-categories: python
+tags: python
+key: 2017-12-05-Matplotlib
 ---
 
 # ipython 使用交互式绘图功能
