@@ -209,7 +209,8 @@ defaults:
       layout: article
       sharing: true
       license: true
-      cover: assets/images/cover.jpg
+      cover: /assets/images/cover.jpg
+      excerpt_type: html
       aside:
         toc: true
       show_tags: true
