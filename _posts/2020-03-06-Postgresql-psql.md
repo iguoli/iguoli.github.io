@@ -2,7 +2,7 @@
 title: PostgreSQL 客户端应用
 date: 2020-03-06
 modify_date: 2020-03-12
-tags: db postgresql psql
+tags: Database
 key: 2020-03-06-Postgresql-psql
 ---
 

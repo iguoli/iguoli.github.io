@@ -1,7 +1,7 @@
 ---
 title:  MacOS/Linux 下配置 Python 环境
 date: 2018-07-20
-tags: python
+tags: Python
 key: 2018-07-20-Setup-Python-on-Linux
 ---
 

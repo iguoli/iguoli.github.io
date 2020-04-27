@@ -1,7 +1,7 @@
 ---
 title: 机器学习 - 各类函数的求导
 date: 2019-05-04
-tags: machine-learning neural-network deep-learning
+tags: Machine-Learning
 key: 2019-05-04-ML-Derivative
 ---
 

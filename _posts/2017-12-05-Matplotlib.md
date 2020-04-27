@@ -1,7 +1,7 @@
 ---
 title: Matplotlib 基础用法
 date: 2017-12-05
-tags: python
+tags: Python
 key: 2017-12-05-Matplotlib
 ---
 

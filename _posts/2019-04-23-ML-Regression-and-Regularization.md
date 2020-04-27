@@ -1,7 +1,7 @@
 ---
 title: 机器学习 - 线性回归、逻辑回归与正则化
 date: 2019-04-23
-tags: machine-learning neural-network deep-learning regression
+tags: Machine-Learning
 key: 2019-04-23-ML-Regression-and-Regularization
 ---
 

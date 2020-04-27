@@ -1,7 +1,7 @@
 ---
 title: Chef 学习笔记
 date: 2018-07-01 12:32:07
-tags: automation
+tags: Chef
 key: 2018-07-01-Chef-Learning-Note
 ---
 

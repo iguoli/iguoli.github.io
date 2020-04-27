@@ -1,7 +1,7 @@
 ---
 title: Linux 上安装 Nodejs
 date: 2019-07-10
-tags: nodejs javascript js
+tags: Javascript
 key: 2019-07-10-Nodejs-Installation
 ---
 

@@ -2,7 +2,7 @@
 title: SSH 端口转发
 date: 2018-09-08
 modify_date: 2019-07-17
-tags: ssh
+tags: SSH
 key: 2018-09-08-SSH-Port-Forwarding
 ---
 

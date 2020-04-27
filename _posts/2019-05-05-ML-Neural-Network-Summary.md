@@ -1,7 +1,7 @@
 ---
 title: 机器学习 - 相关概念的总结
 date: 2019-05-05
-tags: machine-learning neural-network deep-learning backpropagation
+tags: Machine-Learning
 key: 2019-05-05-ML-Neural-Network-Summary
 ---
 

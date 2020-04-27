@@ -2,7 +2,7 @@
 title: Linux 下常用命令汇总
 date: 2017-12-03
 modify_date: 2019-12-17
-tags: linux util
+tags: Linux Utils
 key: 2017-12-03-Linux-Commands
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 关系型数据库笔记
 date: 2017-07-04
-tags: rdbms database
+tags: Database RDBMS
 key: 2017-07-04-RDBMS-Note
 ---
 

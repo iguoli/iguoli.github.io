@@ -1,7 +1,7 @@
 ---
 title: 多元微积分
 date: 2019-05-05
-tags: math calculus multivariable
+tags: Math
 key: 2019-05-05-Multivariable-Calculus
 ---
 

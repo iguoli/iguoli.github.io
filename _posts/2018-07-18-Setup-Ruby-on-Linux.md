@@ -1,7 +1,7 @@
 ---
 title: Linux 下配置 Ruby 环境
 date: 2018-07-18
-tags: ruby
+tags: Ruby
 key: 2018-07-18-Setup-Ruby-on-Linux
 ---
 

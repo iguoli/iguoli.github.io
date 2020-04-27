@@ -2,7 +2,7 @@
 title: 线性代数笔记
 date: 2019-05-10
 modify_date: 2019-10-09
-tags: math linear-algebra
+tags: Math
 key: 2019-05-10-Linear-Algebra
 ---
 

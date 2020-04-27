@@ -1,7 +1,7 @@
 ---
 title: Python 学习笔记
 date: 2020-03-03
-tags: python
+tags: Python
 key: 2020-03-03-Python-Notes
 ---
 

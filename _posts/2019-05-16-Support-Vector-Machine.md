@@ -1,7 +1,7 @@
 ---
 title: 支持向量机(Support Vector Machine)
 date: 2019-05-16
-tags: machine-learning svm
+tags: Machine-Learning
 key: 2019-05-16-Support-Vector-Machine
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Linux 下不同进制的数值转换
 date: 2017-06-26
-tags: linux util
+tags: Linux Utils
 key: 2017-06-26-Binary-Conversion
 ---
 

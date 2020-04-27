@@ -2,7 +2,7 @@
 title: 概率与统计总结
 date: 2020-04-09
 modify_date: 2020-04-09
-tags: math probability statistics
+tags: Math
 key: 2020-04-09-Probability-and-Statistics
 ---
 

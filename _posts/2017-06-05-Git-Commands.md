@@ -2,7 +2,7 @@
 title: Git 常用命令
 date: 2017-06-05
 modify_date: 2020-01-03
-tags: git
+tags: Git
 key: 2017-06-05-Git-Commands
 ---
 

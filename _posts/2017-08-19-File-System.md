@@ -2,7 +2,7 @@
 title: Linux 文件系统
 date: 2017-08-19
 modify_date: 2019-08-15
-tags: linux filesystem
+tags: Linux Filesystem
 key: 2017-08-19-File-System
 ---
 

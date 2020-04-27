@@ -2,7 +2,7 @@
 title: MacOS 常用配置
 date: 2017-05-20
 modify_date: 2019-10-03
-tags: mac gnu
+tags: MacOS GNU Utils
 key: 2017-05-20-MacOS-Utils
 ---
 

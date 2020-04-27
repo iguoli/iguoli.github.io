@@ -1,7 +1,7 @@
 ---
 title: 机器学习 - 反向传播
 date: 2019-05-05
-tags: machine-learning neural-network deep-learning backpropagation
+tags: Machine-Learning
 key: 2019-05-05-ML-Backpropagation
 ---
 

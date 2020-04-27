@@ -1,7 +1,7 @@
 ---
 title: 无监督学习
 date: 2019-05-26
-tags: machine-learning svm
+tags: Machine-Learning
 key: 2019-05-26-Unsupervised-Learning
 ---
 

@@ -2,7 +2,7 @@
 title: Windows 下创建目录链接
 author: Guo Li
 date: 2017-12-04
-tags: os windows
+tags: Windows
 key: 2017-12-04-mklink-in-Windows
 ---
 

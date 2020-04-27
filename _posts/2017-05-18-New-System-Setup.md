@@ -2,7 +2,7 @@
 title: MacOS/Linux 新装系统环境配置
 date: 2017-05-18
 modify_date: 2020-04-23
-tags: linux macos provision
+tags: Linux MacOS Provision
 key: 2017-05-18-New-System-Setup
 ---
 

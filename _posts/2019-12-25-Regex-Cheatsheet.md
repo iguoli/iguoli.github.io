@@ -1,7 +1,7 @@
 ---
 title: 正则表达式比较(BREs, EREs, PCRE)
 date: 2019-12-25
-tags: regex
+tags: Regex
 key: 2019-12-25-Regex-Cheatsheet
 ---
 

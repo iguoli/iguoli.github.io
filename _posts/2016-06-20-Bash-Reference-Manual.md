@@ -8,6 +8,10 @@ key: 2016-06-20-Bash-Reference-Manual
 
 [Bash参考手册][Bash-Reference-Manual]
 
+Bash 常用语法及相关概念
+
+<!--more-->
+
 ## [3.2 Shell 命令][Shell-Commands]
 
 ### [3.2.4 复合命令][Compound-Commands]

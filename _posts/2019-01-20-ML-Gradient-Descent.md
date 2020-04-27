@@ -1,7 +1,7 @@
 ---
 title: 机器学习 - 梯度下降
 date: 2019-01-20 12:43:00
-tags: machine-learning neural-network deep-learning
+tags: Machine-Learning
 key: 2019-01-20-ML-Gradient-Descent
 ---
 
