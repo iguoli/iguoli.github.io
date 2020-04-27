@@ -3,7 +3,7 @@ title: SSH Config 配置说明
 date: 2018-07-31
 modify_date: 2019-12-10
 tags: SSH
-key: 2018-07-31-SSH-Config
+key: SSH-Config-2018-07-31
 ---
 
 ## SSH_CONFIG 中的选项说明

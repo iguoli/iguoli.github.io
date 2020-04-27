@@ -2,7 +2,7 @@
 title: Linux 下配置 Ruby 环境
 date: 2018-07-18
 tags: Ruby
-key: 2018-07-18-Setup-Ruby-on-Linux
+key: Setup-Ruby-on-Linux-2018-07-18
 ---
 
 使用 rbenv 管理系统中多个 Ruby 版本。

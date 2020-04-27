@@ -3,7 +3,7 @@ title: 概率与统计总结
 date: 2020-04-09
 modify_date: 2020-04-09
 tags: Math
-key: 2020-04-09-Probability-and-Statistics
+key: Probability-and-Statistics-2020-04-09
 ---
 
 总结内容主要参考 <概率导论> 一书。

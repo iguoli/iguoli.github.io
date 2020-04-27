@@ -2,7 +2,7 @@
 title: 机器学习 - 反向传播
 date: 2019-05-05
 tags: Machine-Learning
-key: 2019-05-05-ML-Backpropagation
+key: ML-Backpropagation-2019-05-05
 ---
 
 ## 反向传播(_Backpropagation_)

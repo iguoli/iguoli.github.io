@@ -3,7 +3,7 @@ title: PostgreSQL 客户端应用
 date: 2020-03-06
 modify_date: 2020-03-12
 tags: Database
-key: 2020-03-06-Postgresql-psql
+key: Postgresql-psql-2020-03-06
 ---
 
 PostgreSQL 交互式终端 `psql` 的使用，包括连接字符串，免密设置，元命令以及常见的 SQL 语句。

@@ -2,7 +2,7 @@
 title: 无监督学习
 date: 2019-05-26
 tags: Machine-Learning
-key: 2019-05-26-Unsupervised-Learning
+key: Unsupervised-Learning-2019-05-26
 ---
 
 几种无监督学习的简单介绍。

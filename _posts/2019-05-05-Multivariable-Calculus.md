@@ -2,7 +2,7 @@
 title: 多元微积分
 date: 2019-05-05
 tags: Math
-key: 2019-05-05-Multivariable-Calculus
+key: Multivariable-Calculus-2019-05-05
 ---
 
 多元微积分概念总结。

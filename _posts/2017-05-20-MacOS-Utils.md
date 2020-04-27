@@ -3,7 +3,7 @@ title: MacOS 常用配置
 date: 2017-05-20
 modify_date: 2019-10-03
 tags: MacOS GNU Utils
-key: 2017-05-20-MacOS-Utils
+key: MacOS-Utils-2017-05-20
 ---
 
 ## 在 MacOS/OS X 上安装和使用 GNU 命令行工具

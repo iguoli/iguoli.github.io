@@ -2,7 +2,7 @@
 title: 编写 Bash 的自动补全脚本
 date: 2019-12-04
 tags: Bash
-key: 2019-12-13-Bash-Completion
+key: Bash-Completion-2019-12-13
 ---
 
 为特定命令编写 Bash 下的自动补全函数。

@@ -3,7 +3,7 @@ title: Git 常用命令
 date: 2017-06-05
 modify_date: 2020-01-03
 tags: Git
-key: 2017-06-05-Git-Commands
+key: Git-Commands-2017-06-05
 ---
 
 ## 查看 Git 自带文档

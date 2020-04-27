@@ -3,7 +3,7 @@ title: 线性代数笔记
 date: 2019-05-10
 modify_date: 2019-10-09
 tags: Math
-key: 2019-05-10-Linear-Algebra
+key: Linear-Algebra-2019-05-10
 ---
 
 <线性代数及其应用> 第三版学习笔记。

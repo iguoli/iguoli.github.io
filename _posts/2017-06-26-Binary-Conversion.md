@@ -2,7 +2,7 @@
 title: Linux 下不同进制的数值转换
 date: 2017-06-26
 tags: Linux Utils
-key: 2017-06-26-Binary-Conversion
+key: Binary-Conversion-2017-06-26
 ---
 
 在 Linux 命令行中对不同进制进行转换。

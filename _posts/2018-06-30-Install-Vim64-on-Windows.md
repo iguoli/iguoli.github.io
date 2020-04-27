@@ -2,7 +2,7 @@
 title: 在 Windows 系统上安装64位 Vim 
 date: 2018-06-30
 tags: Vim
-key: 2018-06-30-Install-Vim64-on-Windows
+key: Install-Vim64-on-Windows-2018-06-30
 ---
 
 1. 下载 vim x64 的 zip 包

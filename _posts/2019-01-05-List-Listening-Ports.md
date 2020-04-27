@@ -2,7 +2,7 @@
 title: 查看系统监听端口
 date: 2019-01-05 14:43:14
 tags: Linux MacOS
-key: 2019-01-05-List-Listening-Ports
+key: List-Listening-Ports-2019-01-05
 ---
 
 MacOS/Linux 系统下查看系统监听端口的命令。

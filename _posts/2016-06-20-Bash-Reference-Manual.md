@@ -3,7 +3,7 @@ title: Bash参考手册索引
 date: 2016-06-20
 modify_date: 2020-01-05
 tags: Linux Bash
-key: 2016-06-20-Bash-Reference-Manual
+key: Bash-Reference-Manual-2016-06-20
 ---
 
 [Bash参考手册][Bash-Reference-Manual]

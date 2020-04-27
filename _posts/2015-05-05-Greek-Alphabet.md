@@ -2,7 +2,7 @@
 title: 希腊字母读音
 date: 2015-05-05
 tags: Math
-key: 2015-05-05-Greek-Alphabet
+key: Greek-Alphabet-2015-05-05
 ---
 
 常见的数学符号及读音。

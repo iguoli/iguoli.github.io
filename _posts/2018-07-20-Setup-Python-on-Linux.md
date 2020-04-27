@@ -2,7 +2,7 @@
 title:  MacOS/Linux 下配置 Python 环境
 date: 2018-07-20
 tags: Python
-key: 2018-07-20-Setup-Python-on-Linux
+key: Setup-Python-on-Linux-2018-07-20
 ---
 
 使用 pyenv 在多个版本的 Python 之间切换。

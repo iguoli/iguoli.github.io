@@ -3,7 +3,7 @@ title: Linux 时间设置
 date: 2017-12-02
 modify_date: 2019-09-12
 tags: Linux Date
-key: 2017-12-02-Linux-Datetime
+key: Linux-Datetime-2017-12-02
 ---
 
 ## 时区

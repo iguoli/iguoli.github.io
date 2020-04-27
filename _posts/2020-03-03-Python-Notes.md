@@ -2,7 +2,7 @@
 title: Python 学习笔记
 date: 2020-03-03
 tags: Python
-key: 2020-03-03-Python-Notes
+key: Python-Notes-2020-03-03
 ---
 
 Python 的语法概念总结。

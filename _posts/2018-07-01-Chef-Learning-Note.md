@@ -2,7 +2,7 @@
 title: Chef 学习笔记
 date: 2018-07-01 12:32:07
 tags: Chef
-key: 2018-07-01-Chef-Learning-Note
+key: Chef-Learning-Note-2018-07-01
 ---
 
 # 登录 Chef Server 下载 Starter Kit

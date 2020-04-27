@@ -2,7 +2,7 @@
 title: 机器学习 - 各类函数的求导
 date: 2019-05-04
 tags: Machine-Learning
-key: 2019-05-04-ML-Derivative
+key: ML-Derivative-2019-05-04
 ---
 
 ## 线性函数 $z$ 对参数 $\theta_j$ 求导
