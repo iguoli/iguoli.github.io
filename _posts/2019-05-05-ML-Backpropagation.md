@@ -9,9 +9,9 @@ key: ML-Backpropagation-2019-05-05
 
 反向传播是通过计算假设函数与真实值之间的误差值($error = h_\theta(x^{(i)}) - y^{(i)}$)，并反向传播这个误差值，最终用于计算参数 $\theta_{ij}$ 的偏导数。支撑这一理论的核心思想是多元复合函数的链式求导，下面通过一个简单的例子进行描述。
 
-![backpropagation](/assets/images/machine-learning/backpropagation.png)
-
 <!--more-->
+
+![backpropagation](/assets/images/machine-learning/backpropagation.png)
 
 例如，计算代价函数关于 $z^{(2)}_2$ 的偏导数，根据[这里](https://iguoli.github.io/2019-05-04/ML-Derivative)的求导结果，可知
 
