@@ -18,6 +18,8 @@ git help --help
 man git-help
 ```
 
+<!--more-->
+
 所有可用 Git 命令帮助
 
 ```zsh

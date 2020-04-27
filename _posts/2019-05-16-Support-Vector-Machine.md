@@ -9,6 +9,8 @@ key: 2019-05-16-Support-Vector-Machine
 
 其目标是找到一个线性函数 $\theta^Tx$，可以将样本集中的正类和负类分隔开，当 $\theta^Tx \ge 0$ 时表示正类，当 $\theta^Tx \lt 0$ 时表示负类，而 $\theta^Tx = 0$ 所代表的直线则是区分正负类的决策边界。
 
+<!--more-->
+
 $$
 \begin{aligned}
     \theta^Tx \ge 0 &\quad \text{if} \; y^{(i)} = 1 \\

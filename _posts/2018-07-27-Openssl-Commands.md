@@ -12,6 +12,8 @@ key: 2018-07-27-Openssl-Commands
 
 `openssl` 是在 shell 中使用 **OpenSSL** 加密库中各种加密函数的命令行工具.
 
+<!--more-->
+
 ```zsh
 openssl <command> [command_opts] [command_args]
 

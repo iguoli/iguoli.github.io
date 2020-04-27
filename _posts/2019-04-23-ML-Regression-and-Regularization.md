@@ -30,6 +30,8 @@ h_\theta(x)
 = X\theta \text{ (多个样本)}
 $$
 
+<!--more-->
+
 代价函数:
 
 $$

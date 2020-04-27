@@ -5,6 +5,10 @@ tags: Ruby
 key: 2018-07-18-Setup-Ruby-on-Linux
 ---
 
+使用 rbenv 管理系统中多个 Ruby 版本。
+
+<!--more-->
+
 ## [安装 rbenv](https://github.com/rbenv/rbenv#basic-github-checkout)
 
 ```zsh

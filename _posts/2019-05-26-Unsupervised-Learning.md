@@ -5,6 +5,10 @@ tags: Machine-Learning
 key: 2019-05-26-Unsupervised-Learning
 ---
 
+几种无监督学习的简单介绍。
+
+<!--more-->
+
 ## K-means 优化目标
 
 $c^{(i)} =$ 样本 $x^{(i)}$ 当前被赋与的簇索引 $(1,2,\dots,K)$

@@ -17,6 +17,8 @@ key: 2019-05-05-ML-Neural-Network-Summary
 
 - 优化算法(_Optimization Method_): 使用参数 $\theta$ 最小化代价函数 $J(\theta)$。
 
+<!--more-->
+
 ## 设计模型结构
 
 - 输入单元的数量 = 特征 $x^{(i)}$ 的维度。

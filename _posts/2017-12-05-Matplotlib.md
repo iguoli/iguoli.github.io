@@ -11,6 +11,8 @@ key: 2017-12-05-Matplotlib
 ipython --matplotlib
 ```
 
+<!--more-->
+
 # jupyter notebook 使用交互式绘图功能
 
 ```python

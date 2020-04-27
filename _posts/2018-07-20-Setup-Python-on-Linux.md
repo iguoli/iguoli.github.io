@@ -5,6 +5,10 @@ tags: Python
 key: 2018-07-20-Setup-Python-on-Linux
 ---
 
+使用 pyenv 在多个版本的 Python 之间切换。
+
+<!--more-->
+
 ## 安装 [pyenv](https://github.com/pyenv/pyenv)
 
 - 使用 Homebrew 安装

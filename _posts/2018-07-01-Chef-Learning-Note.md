@@ -11,6 +11,8 @@ key: 2018-07-01-Chef-Learning-Note
 2. 在 chef server 中创建新的组织
 3. 选择组织并下载并解压 Starter Kit
 
+<!--more-->
+
 # 检查是否可以正确连接到 Chef Server
 
 ```zsh

@@ -5,6 +5,10 @@ tags: Javascript
 key: 2019-07-10-Nodejs-Installation
 ---
 
+Nodejs 安装步骤。
+
+<!--more-->
+
 本文引用地址 [Nodejs help wiki](https://github.com/nodejs/help/wiki/Installation)
 
 ## 下载 Nodejs 安装包

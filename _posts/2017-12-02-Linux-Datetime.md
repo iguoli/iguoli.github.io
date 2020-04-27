@@ -16,6 +16,8 @@ key: 2017-12-02-Linux-Datetime
 - **GMT (Greenwich Mean Time)**  
   格林威治时间，是时区时间。
 
+<!--more-->
+
 Although GMT and UTC share the same current time in practice, there is a basic difference between the two:
 
 - **GMT is a time zone** officially used in some European and African countries. The time can be displayed using both the 24-hour format (0 - 24) or the 12-hour format (1 - 12 am/pm).

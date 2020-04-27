@@ -5,6 +5,10 @@ tags: Linux MacOS
 key: 2019-01-05-List-Listening-Ports
 ---
 
+MacOS/Linux 系统下查看系统监听端口的命令。
+
+<!--more-->
+
 ## MacOS
 
 ```zsh

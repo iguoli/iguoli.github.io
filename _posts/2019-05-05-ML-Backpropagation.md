@@ -11,6 +11,8 @@ key: 2019-05-05-ML-Backpropagation
 
 ![backpropagation](/assets/images/machine-learning/backpropagation.png)
 
+<!--more-->
+
 例如，计算代价函数关于 $z^{(2)}_2$ 的偏导数，根据[这里](https://iguoli.github.io/2019-05-04/ML-Derivative)的求导结果，可知
 
 $$

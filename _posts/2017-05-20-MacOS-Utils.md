@@ -8,11 +8,13 @@ key: 2017-05-20-MacOS-Utils
 
 ## 在 MacOS/OS X 上安装和使用 GNU 命令行工具
 
-MacOS/OS X 系统默认使用 BSD 版本的命令行工具，这与 Linux 系统的命令行工具不同，但这两个版本都符合 POSIX 标准。我们可以使用 Homebrew 安装 GNU 命令行工具。
+MacOS 系统默认使用 BSD 版本的命令行工具，这与 Linux 系统的命令行工具不同，但这两个版本都符合 POSIX 标准。我们可以使用 Homebrew 安装 GNU 命令行工具。
 
 ```zsh
 brew install coreutils
 ```
+
+<!--more-->
 
 GNU coreutils 包含许多基本的 Unix 命令，例如 `ls`，`cat` 等。还可以选择安装其它 GNU 工具
 

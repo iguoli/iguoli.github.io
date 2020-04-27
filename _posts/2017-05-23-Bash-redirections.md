@@ -16,6 +16,8 @@ key: 2017-05-23-Bash-redirections
 
 除非你将文件描述符关了，否则它总是指向某个文件。通常 Bash 启动的这三个文件描述符，`stdin`, `stdout` 和 `stderr` 会指向你的终端。从终端读取输入，也输出到终端。
 
+<!--more-->
+
 假设你的终端是 `/dev/tty0`，那么当 Bash 启动的时候，你的文件描述符表会像下面这样
 
 ![initial-fd-table](https://catonmat.net/images/bash-redirections/initial-fd-table.png)

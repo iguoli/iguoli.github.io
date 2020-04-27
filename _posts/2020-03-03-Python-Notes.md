@@ -5,6 +5,10 @@ tags: Python
 key: 2020-03-03-Python-Notes
 ---
 
+Python 的语法概念总结。
+
+<!--more-->
+
 ## 模块 (Modules)
 
 ### 创建模块 (Module Creation)

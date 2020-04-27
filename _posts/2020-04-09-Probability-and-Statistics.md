@@ -6,6 +6,10 @@ tags: Math
 key: 2020-04-09-Probability-and-Statistics
 ---
 
+总结内容主要参考 <概率导论> 一书。
+
+<!--more-->
+
 ### 计数法 (Counting Methods)
 
 计数法则基于<span style="color:red">分阶段</span>计数的原则。

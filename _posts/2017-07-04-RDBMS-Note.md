@@ -5,6 +5,7 @@ tags: Database RDBMS
 key: 2017-07-04-RDBMS-Note
 ---
 
+
 ## 第三章 SQL
 
 ## 3.3 SQL查询的基本结构
@@ -16,6 +17,8 @@ key: 2017-07-04-RDBMS-Note
 - `select`子句用于列出查询结果中所需要的属性
 - `from`子句是需要访问的关系列表
 - `where`子句是一个作用在`from`子句中关系的属性上的谓词
+
+<!--more-->
 
 ### 3.3.3 自然连接
 

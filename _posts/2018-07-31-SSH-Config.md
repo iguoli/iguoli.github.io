@@ -12,6 +12,8 @@ key: 2018-07-31-SSH-Config
 man 5 ssh_config
 ```
 
+<!--more-->
+
 ## SSH Client端个人配置文件
 
 ```zsh

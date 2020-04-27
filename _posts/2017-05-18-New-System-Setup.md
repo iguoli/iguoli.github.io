@@ -20,6 +20,8 @@ sudo apt install -y build-essential
 sudo yum groupinstall "Development Tools"
 ```
 
+<!--more-->
+
 ## 安装[Git](https://github.com/git/git)
 
 从 PPA 安装[ppa:git-core/ppa](https://launchpad.net/~git-core/+archive/ubuntu/ppa)

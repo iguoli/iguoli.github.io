@@ -1,11 +1,11 @@
 ---
 title: 希腊字母读音
 date: 2015-05-05
-tags: math greek
+tags: Math
 key: 2015-05-05-Greek-Alphabet
 ---
 
-常见的数学符号及读音
+常见的数学符号及读音。
 
 <!--more-->
 

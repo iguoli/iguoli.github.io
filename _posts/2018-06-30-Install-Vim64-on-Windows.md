@@ -12,6 +12,8 @@ key: 2018-06-30-Install-Vim64-on-Windows
 
 2. 创建文件夹`C:\Program Files\Vim\vimxx`(xx 为 vim 版本，如 8.1 版本就是 vim81)，将解压的文件复制到该文件夹
 
+<!--more-->
+
 3. 使用管理员运行 cmd 命令，进入该目录，执行 install.exe 命令。
 
 4. 如果鼠标右键没有"Edit with Vim"菜单，检查`C:\Program Files\Vim\vimxx`目录下是否有`GvimExt`文件夹，将其重命名为`GvimExt64`，然后重新执行第 3 步操作。

@@ -5,6 +5,10 @@ tags: Math
 key: 2019-05-05-Multivariable-Calculus
 ---
 
+多元微积分概念总结。
+
+<!--more-->
+
 ## 复合函数的中间变量均为一元函数
 
 设

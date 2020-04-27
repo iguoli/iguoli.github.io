@@ -6,6 +6,10 @@ tags: English
 key: 2016-07-21-English-Learning
 ---
 
+常用短语及单词。
+
+<!--more-->
+
 ### 十个常用口语
 
 1. Hey, How's it going? Pretty good.  

@@ -5,6 +5,10 @@ tags: Bash
 key: 2019-12-13-Bash-Completion
 ---
 
+为特定命令编写 Bash 下的自动补全函数。
+
+<!--more-->
+
 ## SSH 服务器名称自动补全
 
 ```zsh

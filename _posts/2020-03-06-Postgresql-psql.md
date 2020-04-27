@@ -6,6 +6,10 @@ tags: Database
 key: 2020-03-06-Postgresql-psql
 ---
 
+PostgreSQL 交互式终端 `psql` 的使用，包括连接字符串，免密设置，元命令以及常见的 SQL 语句。
+
+<!--more-->
+
 ## [psql] - PostgreSQL 交互式终端
 
 ### MacOS 上安装 [psql]

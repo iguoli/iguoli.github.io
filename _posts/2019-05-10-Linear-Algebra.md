@@ -6,6 +6,10 @@ tags: Math
 key: 2019-05-10-Linear-Algebra
 ---
 
+<线性代数及其应用> 第三版学习笔记。
+
+<!--more-->
+
 ## <span style="color:blue">一、线性方程组</span>
 
 ### 行初等变换

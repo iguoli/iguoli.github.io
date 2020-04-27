@@ -16,6 +16,8 @@ key: 2017-12-03-Linux-Commands
 - [7: Overviews, conventions, and miscellaneous.][07]
 - [8: Superuser and system administration commands][08]; man-pages includes a very few Section 8 pages that document programs supplied by the GNU C library.
 
+<!--more-->
+
 [Online man pages][09]
 
 [linux命令在线中文手册][10]

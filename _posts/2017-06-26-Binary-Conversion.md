@@ -5,6 +5,10 @@ tags: Linux Utils
 key: 2017-06-26-Binary-Conversion
 ---
 
+在 Linux 命令行中对不同进制进行转换。
+
+<!--more-->
+
 # 使用bc命令
 
 ## 十进制转任意进制
