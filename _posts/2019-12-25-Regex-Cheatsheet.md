@@ -5,11 +5,7 @@ tags: Regex
 key: Regex-Cheatsheet-2019-12-25
 ---
 
-常见的几个正则库的语法比较。
-
-<!--more-->
-j
-本文原链接: [Regex cheatsheet](https://remram44.github.io/regex-cheatsheet/regex.html)
+常见的几个正则库的语法比较。 原链接: [Regex cheatsheet](https://remram44.github.io/regex-cheatsheet/regex.html)
 
 ## Regex cheatsheet
 
@@ -20,6 +16,8 @@ You can probably expect most modern software and programming  languages to be us
 This cheatsheet lists the respective [syntax of each flavor](https://remram44.github.io/regex-cheatsheet/regex.html#syntax), and the [software that uses it](https://remram44.github.io/regex-cheatsheet/regex.html#programs).
 
 If you spot errors or missing data, or just want to make this prettier/more accurate, don't hesitate to open an [issue](https://github.com/remram44/regex-cheatsheet/issues/new) or a [pull request](https://github.com/remram44/regex-cheatsheet/compare/).
+
+<!--more-->
 
 ## Syntax
 
