@@ -6,17 +6,15 @@ tags: Math
 key: Linear-Algebra-2019-05-10
 ---
 
-<线性代数及其应用> 第三版学习笔记。
-
-<!--more-->
-
-## <span style="color:blue">一、线性方程组</span>
+## 一、线性方程组
 
 ### 行初等变换
 
 1. 倍加变换：把某一行的倍数加到另一行上。
 2. 对换变换：把两行对换。
 3. 倍乘变换：把某一行的所有元素乘以同一个非零数。
+
+<!--more-->
 
 线性方程组
 
@@ -173,7 +171,7 @@ $$
 
 术语<span style="color:red">线性变换</span>强调映射的<span style="color:red"><b>性质</b></span>，而<span style="color:red">矩阵变换</span>描述这样的映射如何<span style="color:red">实现</span>.
 
-## <span style="color:blue">二、矩阵代数</span>
+## 二、矩阵代数
 
 ### 2.1 矩阵运算
 
@@ -432,7 +430,7 @@ $$
 17. $\mathrm{Nul}A = {0}$
 18. $\dim\mathrm{Nul}A = 0$
 
-## <span style="color:blue">三、行列式</span>
+## 三、行列式
 
 ### 3.1 行列式介绍
 
@@ -584,7 +582,7 @@ $$
 
 定理 10 的结论对 $\Bbb R^2$ 中任意有限面积的区域或 $\Bbb R^3$ 中任意有限体积的区域均成立。
 
-## <span style="color:blue">四、向量空间</span>
+## 四、向量空间
 
 ### 4.1 向量空间与子空间
 
@@ -917,7 +915,7 @@ $$
 P_{\mathcal{B}}
 $$
 
-## <span style="color:blue">五、特征值与特征向量</span>
+## 五、特征值与特征向量
 
 ### 5.1 特征向量与特征值
 
@@ -1186,7 +1184,7 @@ $$
 \end{CD}
 $$
 
-## <span style="color:blue">六、正交性和最小二乘法</span>
+## 六、正交性和最小二乘法
 
 ### 6.1 内积、长度和正交性
 
