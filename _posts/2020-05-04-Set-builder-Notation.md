@@ -61,7 +61,7 @@ s = [ 2*x | x <- [0..], x^2 > 3 ]
 | 语言 | 例1 | 例2 |
 | --- | --- | --- |
 | Set-builder | $\\{\,l\,\vert\,l \in L\,\\}$ | $\\{\,(k,x)\,\vert\,k \in K,\,x \in X,\,P(x)\,\\}$ |
-| Python | `python {l for l in L}`{: .language-python} | `{(k,x) for k in K for x in X if P(x)}`{: .language-python} |
+| Python | `{l for l in L}`{: .language-python} | `{(k,x) for k in K for x in X if P(x)}`{: .language-python} |
 | Haskell | `[l | l <- ls]`{: .language-haskell} | `[(k,x) | k <- ks, x <- xs, p x]`{: .language-haskell} |
 | Scala | `for (l <- L) yield l`{: .language-scala} | `for (k <- K, x <- X, P(x)`{: .language-scala} |
 | SQL | `SELECT l FROM L_set`{: .language-sql} | `SELECT k, x FROM K_set, X_set WHERE P(x)`{: .language-sql} |
