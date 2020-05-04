@@ -45,7 +45,7 @@ $$
 - $\Bbb{N}$ 表示 input set，这里是一个自然数集合。
 - $x^2>3$ 是一个谓词表达式，对 input set 中的元素进行过滤。
 - 大括号 $\{\}$ 表示这是一个集合。
-- 竖线 $|$ 读作 "使得 (SUCH THAT, s.t.)"。
+- 竖线 $\vert$ 读作 "使得 (SUCH THAT, s.t.)"。
 - 逗号用于分隔谓词，可以读作 "AND"。
 
 List Comprehension 具有相同的语法结构，可以按顺序从输入列表或迭代器中生成新的列表。以 Haskell 语言为例:
@@ -60,8 +60,8 @@ s = [ 2*x | x <- [0..], x^2 > 3 ]
 
 | 语言 | 例1 | 例2 |
 | --- | --- | --- |
-| Set-builder | $\{\,l\,:\,l \in L\,\}$ | $\{\,(k,x)\,:\,k \in K,\,x \in X,\,P(x)\,\}$ |
-| Python | `python {l for l in L}`{:.python} | `{(k,x) for k in K for x in X if P(x)}`{:.python} |
-| Haskell | `[l | l <- ls]`{:.haskell} | `[(k,x) | k <- ks, x <- xs, p x]`{:.haskell} |
-| Scala | `for (l <- L) yield l`{:.scala} | `for (k <- K, x <- X, P(x)`{:.scala} |
-| SQL | `SELECT l FROM L_set`{:.sql} | `SELECT k, x FROM K_set, X_set WHERE P(x)`{:.sql} |
+| Set-builder | $\{\,l\,\vert\,l \in L\,\}$ | $\{\,(k,x)\,\vert\,k \in K,\,x \in X,\,P(x)\,\}$ |
+| Python | `python {l for l in L}`{: .language-python} | `{(k,x) for k in K for x in X if P(x)}`{: .language-python} |
+| Haskell | `[l | l <- ls]`{: .language-haskell} | `[(k,x) | k <- ks, x <- xs, p x]`{: .language-haskell} |
+| Scala | `for (l <- L) yield l`{: .language-scala} | `for (k <- K, x <- X, P(x)`{: .language-scala} |
+| SQL | `SELECT l FROM L_set`{: .language-sql} | `SELECT k, x FROM K_set, X_set WHERE P(x)`{: .language-sql} |
