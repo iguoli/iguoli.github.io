@@ -1,18 +1,16 @@
 ---
 title: 概率与统计总结
 date: 2020-04-09
-modify_date: 2020-04-09
+modify_date: 2020-05-07
 tags: Math
 key: Probability-and-Statistics-2020-04-09
 ---
 
-总结内容主要参考 <概率导论> 一书。
-
-<!--more-->
-
 ### 计数法 (Counting Methods)
 
 计数法则基于<span style="color:red">分阶段</span>计数的原则。
+
+<!--more-->
 
 #### 乘法法则 (Multiplication Rule)
 
