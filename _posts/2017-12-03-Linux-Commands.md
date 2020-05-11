@@ -57,7 +57,7 @@ autossh -M 12345 -o ServerAliveInterval=60 -o ServerAliveCountMax=10 -NT -L 0.0.
 
 ## SSH supported escape sequences
 
-```txt
+```text
  ~.   - terminate connection (and any multiplexed sessions)
  ~B   - send a BREAK to the remote system
  ~C   - open a command line
@@ -73,7 +73,7 @@ autossh -M 12345 -o ServerAliveInterval=60 -o ServerAliveCountMax=10 -NT -L 0.0.
 
 ## 使用 PSSH 并行访问多台远程主机
 
-```txt
+```text
 -h HOST_FILE, --hosts=HOST_FILE
                       hosts file (each line "[user@]host[:port]")
 -l USER, --user=USER  username (OPTIONAL)
@@ -190,7 +190,7 @@ diff -u f1 f2
 diff -U 2 f1 f2
 ```
 
-```txt
+```text
 --- f1 2012-08-29 16:45:41.000000000 +0800
 +++ f2 2012-08-29 16:45:51.000000000 +0800
 @@ -1,7 +1,7 @@
@@ -206,7 +206,7 @@ diff -U 2 f1 f2
 
 第一部分，是文件的基本信息。
 
-```txt
+```text
 --- f1 2012-08-29 16:45:41.000000000 +0800
 +++ f2 2012-08-29 16:45:51.000000000 +0800
 ```
@@ -215,7 +215,7 @@ diff -U 2 f1 f2
 
 第二部分，变动的位置用两个@作为起首和结束。
 
-```txt
+```text
 @@ -1,7 +1,7 @@
 ```
 
@@ -223,7 +223,7 @@ diff -U 2 f1 f2
 
 第三部分，是变动的具体内容。
 
-```txt
+```text
  a
  a
  a
@@ -276,7 +276,7 @@ dd if=/dev/zero of=test bs=1M count=100
 
 ### 语法
 
-```txt
+```text
 USERS HOSTS=(RUNAS) [NOPASSWD:]COMMANDS
 ```
 

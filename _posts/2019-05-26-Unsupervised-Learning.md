@@ -76,7 +76,7 @@ $$
 
 Compute "eigenvectors" of matrix $\Sigma$，in octave, the command is `[U,S,V] = svd(Sigma)`, svd is sigular vector decomposition.
 
-```octave
+```matlab
 Sigma = (1/m) * x' * x;
 [U,S,V] = svd(Sigma);
 U_reduce = U(:, 1:k);

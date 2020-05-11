@@ -101,7 +101,7 @@ Assets/Picture/*.gif
 
 为每个路径定义相关属性，`gitattributes` 文件中每行的格式为:
 
-```txt
+```text
 pattern attr1 attr2 [attribute list...]
 ```
 
@@ -149,7 +149,7 @@ pattern attr1 attr2 [attribute list...]
 
 例如，你可以在 `.gitattributes` 文件中对 `*.c` 文件设置 `indent` 过滤器
 
-```git
+```text
 *.c filter=indent
 ```
 
@@ -257,7 +257,7 @@ Git 对象的文件名是一个 SHA-1 值，不便于记忆，因此我们需要
 find .git/refs
 ```
 
-```output
+```text
 .git/refs
 .git/refs/remotes
 .git/refs/heads
@@ -502,7 +502,7 @@ git log -g
 
 图例说明
 
-```txt
+```text
    G   H   I   J
     \ /     \ /
      D   E   F

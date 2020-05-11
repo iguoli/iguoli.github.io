@@ -64,7 +64,7 @@ dircolors > ~/.dircolors
 
 ## 使用 `grc` 命令让其它命令彩色化输出
 
-``````zsh
+```zsh
 brew install grc
 
 grc diff -u file1 file2

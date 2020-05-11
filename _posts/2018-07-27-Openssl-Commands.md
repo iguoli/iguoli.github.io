@@ -45,10 +45,10 @@ openssl no-<command>
 
 ### 证书 (PEM 格式)  
 证书扩展名一般为 ".pem"，".crt" 或 ".cer"  
-以 "-----BEGIN CERTIFICATE-----" 作为开头  
-以 "-----END CERTIFICATE-----" 作为结尾
+以 `-----BEGIN CERTIFICATE-----`{:.info} 作为开头  
+以 `-----END CERTIFICATE-----`{:.info} 作为结尾
 
-```x509
+```text
 -----BEGIN CERTIFICATE-----
 MIICfDCCAWQCCQC1WdJznfCazDANBgkqhkiG9w0BAQsFADAAMB4XDTE5MTIxNjEz
 MDkzMFoXDTIwMTIxNTEzMDkzMFowADCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
@@ -72,7 +72,7 @@ TxvUXvdxO8/78KLVk6lwhaNXqZTdzZqK7Oi7Bd3YhwwaauA98Rm3RJdYNkycjyde
 以 "-----BEGIN RSA PRIVATE KEY-----" 作为开头  
 以 "-----END RSA PRIVATE KEY-----" 作为结尾
 
-```rsa
+```text
 -----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAmmP8qqBVwQIRgZrTlmvEvRl/sg/qCg/B/14+uswjDkn/kplU
 k3932dVH8w4f+ft44jefcysdwdG6jVXDDxk06Rc7/sUxLMUh5aTKDAzficjvBdhK
@@ -123,7 +123,7 @@ openssl x509 -inform DER -in certificate.der -out certificate.pem
 openssl x509 -in certificate.pem -text -noout
 ```
 
-```ASN.1
+```text
 Certificate:
     Data:
         Version: 3 (0x2)
@@ -198,7 +198,7 @@ openssl genrsa -out private.pem 2048
 openssl genrsa -aes256 -out private.pem 4096
 ```
 
-`openssl rsa` 命令处理 RSA 密钥. 可以转换不同格式的密钥并打印密钥组成内容
+`openssl text` 命令处理 RSA 密钥. 可以转换不同格式的密钥并打印密钥组成内容
 
 - ***-in \<keyfile\>***  
   从文件中读取密钥
@@ -220,19 +220,19 @@ openssl genrsa -aes256 -out private.pem 4096
 
 ```zsh
 # 打印密钥编码后版本
-openssl rsa -in private.pem
+openssl text -in private.pem
 
 # 打印密钥纯文本版本
-openssl rsa -in private.pem -text -noout
+openssl text -in private.pem -text -noout
 
 # 读取私钥，输出公钥
-openssl rsa -in private.pem -pubout -out public.pem
+openssl text -in private.pem -pubout -out public.pem
 
 # 删除私钥的保护密码
-openssl rsa -in private.pem -out new-private.pem
+openssl text -in private.pem -out new-private.pem
 
 # 将私钥从 PEM 格式转换成 DER 格式
-openssl rsa -in private.pem -outform DER -out private.der
+openssl text -in private.pem -outform DER -out private.der
 ```
 
 ```zsh
@@ -270,7 +270,7 @@ openssl pkcs7 -print_certs -in certificat.p7b -out certificate.cer
 - ***-days \<n\>***  
   指定证书有效期，默认是30天. 与 `-x509` 选项一起使用.
 
-- ***-newkey rsa:2048***  
+- ***-newkey text:2048***  
   生成一个 2048 位的 RSA 私钥
 
 - ***-keyout \<keyfile\>***  
@@ -302,7 +302,7 @@ openssl pkcs7 -print_certs -in certificat.p7b -out certificate.cer
 
 ```zsh
 # 生成一个 2048 位的无密码保护私钥和一个 CSR
-openssl req -newkey rsa:2048 -nodes -keyout domain.pem -out domain.csr
+openssl req -newkey text:2048 -nodes -keyout domain.pem -out domain.csr
 
 # 查看 CSR 证书
 openssl req -in domain.csr -text -noout

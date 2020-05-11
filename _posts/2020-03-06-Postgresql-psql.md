@@ -98,7 +98,7 @@ psql postgresql://localhost:5433/mydb?sslmode=require
 
 这种格式中，每个参数都以 `keyword = value` 的形式来设置，`=` 两边的空格是可选的。如果参数值为空，或参数值中含有空格，则用单引号把参数值括起来，例如：`keyword='a value'`。这里了解可识别的[参数关键字][Parameter Key Values]。
 
-```string
+```text
 host=localhost port=5432 dbname=mydb connect_timeout=10
 ```
 
@@ -106,13 +106,13 @@ host=localhost port=5432 dbname=mydb connect_timeout=10
 
 一般形式
 
-```uri
+```http
 postgresql://[user[:password]@][netloc][:port][,...][/dbname][?param1=value1&...]
 ```
 
 URI scheme指示符可以是 `postgresql://` 或 `postgres://`，每个URI部分都是可选的。以下示例说明了有效的URI语法用法：
 
-```uri
+```http
 postgresql://
 postgresql://localhost
 postgresql://localhost:5433
@@ -142,7 +142,7 @@ EOF
 
 `psql` 中以反斜杠开头的命令是 `psql` 元命令，该命令由 `psql` 本身处理。以下是常用命令:
 
-```psql
+```pgsql
 # 连接到 mydb 数据库
 \c mydb
 
@@ -182,14 +182,14 @@ Schema 是一个命名空间，可以包含表，视图，索引，数据类型�
 
 PostgreSQL 会为每个新建数据库创建一个名为 `public` 的 schema，你创建的任何对象，如果没有指定 schema，PostgreSQL会自动将它放入 `public` schema，所以下面两条语句作用相同。
 
-```sql
+```pgsql
 CREATE TABLE mytable(...);
 CREATE TABLE public.mytable(...);
 ```
 
 ## [SQL Commands]
 
-```sql
+```pgsql
 -- USER
 -- 创建用户 dbuser，该用户有创建数据库和用户的权限
 CREATE USER dbuser WITH CREATEDB CREATEROLE PASSWORD 'test';
@@ -272,7 +272,7 @@ GRANT ALL PRIVILEGES ON DATABASE mydb TO dbuser;
 
 ### 使用 [`Copy`][Copy] 语句在数据库与文件系统之间复制数据
 
-```sql
+```pgsql
 # copies a table to the client using the vertical bar (|) as the field delimite
 COPY country TO STDOUT (DELIMITER '|');
 

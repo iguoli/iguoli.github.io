@@ -33,7 +33,7 @@ key: ML-Neural-Network-Summary-2019-05-05
 
 1. 随机初始化权重(即参数 $\theta$)。
 
-    ```octave
+    ```matlab
     Theta = rand(10, 11) * (2*INIT_EPSILON) - INIT_EPSILON;
     ```
 

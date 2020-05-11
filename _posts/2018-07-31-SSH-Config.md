@@ -20,7 +20,7 @@ man 5 ssh_config
 vim ~/.ssh/config
 ```
 
-```txt
+```text
 # For all hosts
 # Keep the ssh connection alive
 ServerAliveInterval 30
@@ -39,7 +39,7 @@ Host github github.com
 
 从 OpenSSH 7.3 版本开始，最简单的方法是在配置文件里使用`ProxyJump`指令
 
-```txt
+```text
 Host server
     HostName 192.168.88.12
     User fred
@@ -54,7 +54,7 @@ ssh -J user@jumphost1.example.org:22 fred@192.168.5.38
 
 在 OpenSSH 7.2 及之前的版本，只能在配置文件或命令行使用`ProxyCommand`选项
 
-```txt
+```text
 Host server
     Hostname server.example.org
     ProxyCommand ssh -W %h:%p jumphost.example.org
@@ -68,7 +68,7 @@ ssh -o ProxyCommand="ssh -W %h:%p jumphost.example.org" server.example.org
 
 如果跳转机与目标机的用户名及密钥不一样，可以在配置文件中分别指定
 
-```txt
+```text
 Host server
     HostName server.example.org
     User fred
