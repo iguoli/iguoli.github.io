@@ -198,7 +198,7 @@ openssl genrsa -out private.pem 2048
 openssl genrsa -aes256 -out private.pem 4096
 ```
 
-`openssl text` 命令处理 RSA 密钥. 可以转换不同格式的密钥并打印密钥组成内容
+`openssl rsa` 命令处理 RSA 密钥. 可以转换不同格式的密钥并打印密钥组成内容
 
 - ***-in \<keyfile\>***  
   从文件中读取密钥
@@ -220,19 +220,19 @@ openssl genrsa -aes256 -out private.pem 4096
 
 ```zsh
 # 打印密钥编码后版本
-openssl text -in private.pem
+openssl rsa -in private.pem
 
 # 打印密钥纯文本版本
-openssl text -in private.pem -text -noout
+openssl rsa -in private.pem -text -noout
 
 # 读取私钥，输出公钥
-openssl text -in private.pem -pubout -out public.pem
+openssl rsa -in private.pem -pubout -out public.pem
 
 # 删除私钥的保护密码
-openssl text -in private.pem -out new-private.pem
+openssl rsa -in private.pem -out new-private.pem
 
 # 将私钥从 PEM 格式转换成 DER 格式
-openssl text -in private.pem -outform DER -out private.der
+openssl rsa -in private.pem -outform DER -out private.der
 ```
 
 ```zsh
