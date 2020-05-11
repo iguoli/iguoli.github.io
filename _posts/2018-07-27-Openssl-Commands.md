@@ -1,7 +1,7 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-modify_date: 2019-12-16
+modify_date: 2020-05-11
 tags: Encryption OpenSSL
 key: Openssl-Commands-2018-07-27
 ---
@@ -352,6 +352,70 @@ openssl pkcs12 -in certificate.p12 -nokeys -out certificate.pem
 
 # 将 p12/pfx 中的私钥转换为 pem 私钥
 openssl pkcs12 -in certificate.p12 -nocerts -out private.pem -nodes
+```
+
+## S_CLIENT
+
+> s_client 是一个以 SSL 协议连接远程服务器的客户端程序，该工具可以用于测试诊断。
+
+常用参数如下：
+
+- ***-connect host:port***  
+  指定远程服务器的地址和端口，如果没有该参数，默认值为 localhost:443
+
+- ***-cert filename***  
+  若服务器端需要验证客户端的身份，通过 -cert 指定客户端的证书文件。
+
+- ***-key filename***  
+  指定私钥文件。
+
+- ***-verify depth***  
+  打开服务器证书验证并定义证书验证过程中的最大深度。
+
+- ***-servername host***  
+  在与服务器的通信中包含 SNI (Server Name Indication) 信息来指明要通信的服务器。
+
+- ***-showcerts***  
+  显示服务器证书链，如果没有此选项，默认只显示服务器当前证书。
+
+- ***-CAfile filename***  
+  指定用于验证服务器证书的根证书。
+
+- ***-state***  
+  打印出 SSL 会话的状态。
+
+### With SNI (Server Name Indication)
+
+如果远程服务器使用的是 SNI（即在一个 IP 地址上共享多个 SSL 主机），则需要发送正确的主机名才能获得正确的证书。
+
+```zsh
+openssl s_client -showcerts -servername example.com -connect example.com:443 </dev/null
+```
+
+### Without SNI
+
+如果远程服务器未使用 SNI，则可以跳过 `-servername` 参数：
+
+```zsh
+openssl s_client -showcerts -connect example.com:443 </dev/null
+```
+
+显示服务器证书的详细信息
+
+```zsh
+echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -text
+# or
+openssl s_client -connect example.com:443 </dev/null 2>/dev/null | openssl x509 -text
+```
+
+只显示证书的 PEM 格式部分
+
+```zsh
+# 单证书
+echo | openssl s_client -connect example.com:443 | openssl x509
+
+# 证书链
+echo | openssl s_client -showcerts -connect example.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
 ```
 
 [0]: https://www.openssl.org/docs/manmaster
