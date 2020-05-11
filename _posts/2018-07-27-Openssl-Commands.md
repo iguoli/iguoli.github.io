@@ -69,8 +69,8 @@ TxvUXvdxO8/78KLVk6lwhaNXqZTdzZqK7Oi7Bd3YhwwaauA98Rm3RJdYNkycjyde
 
 ### 私钥(PEM 格式)  
 私钥扩展名一般为 ".pem" 或 ".key"  
-以 "-----BEGIN RSA PRIVATE KEY-----" 作为开头  
-以 "-----END RSA PRIVATE KEY-----" 作为结尾
+以 `-----BEGIN RSA PRIVATE KEY-----`{:.info} 作为开头  
+以 `-----END RSA PRIVATE KEY-----`{:.info} 作为结尾
 
 ```text
 -----BEGIN RSA PRIVATE KEY-----

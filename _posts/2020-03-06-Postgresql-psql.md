@@ -142,7 +142,7 @@ EOF
 
 `psql` 中以反斜杠开头的命令是 `psql` 元命令，该命令由 `psql` 本身处理。以下是常用命令:
 
-```pgsql
+```text
 # 连接到 mydb 数据库
 \c mydb
 
@@ -182,14 +182,14 @@ Schema 是一个命名空间，可以包含表，视图，索引，数据类型�
 
 PostgreSQL 会为每个新建数据库创建一个名为 `public` 的 schema，你创建的任何对象，如果没有指定 schema，PostgreSQL会自动将它放入 `public` schema，所以下面两条语句作用相同。
 
-```pgsql
+```sql
 CREATE TABLE mytable(...);
 CREATE TABLE public.mytable(...);
 ```
 
 ## [SQL Commands]
 
-```pgsql
+```sql
 -- USER
 -- 创建用户 dbuser，该用户有创建数据库和用户的权限
 CREATE USER dbuser WITH CREATEDB CREATEROLE PASSWORD 'test';
@@ -272,7 +272,7 @@ GRANT ALL PRIVILEGES ON DATABASE mydb TO dbuser;
 
 ### 使用 [`Copy`][Copy] 语句在数据库与文件系统之间复制数据
 
-```pgsql
+```sql
 # copies a table to the client using the vertical bar (|) as the field delimite
 COPY country TO STDOUT (DELIMITER '|');
 
