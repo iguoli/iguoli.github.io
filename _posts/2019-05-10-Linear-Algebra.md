@@ -110,7 +110,7 @@ $$
 | 系数矩阵 $A$ 在每一行都有主元位置              |                                                  | 增广矩阵最右列存在主元，即存在如下形式<br>$\mathbf{[0 \cdots 0 \; b] \; (b\ne0)}$ |
 |                                                |                                                  | $\mathbf b$ 不属于 $\mathbf{Span}\\{\mathbf{a_1, a_2, \cdots, a_n\\}}$            |
 | 齐次方程 $Ax=0$ 仅有平凡解                     | 齐次方程 $Ax=0$ 有非平凡解                       | 方程 $Ax$ 无解                                                                    |
-| 映射 $T: \Bbb R^n \to \Bbb R^m$ 是单射(一对一) | 映射 $T: \Bbb R^n \to \Bbb R^m$ 是满射但不是单射 | 映射 $T$ 没有将 $\Bbb R^n$ 映射到 $\Bbb R^m$ 上的                                 |
+| 映射 $T: \Bbb R^n \to \Bbb R^m$ 是单射(一对一) | 映射 $T: \Bbb R^n \to \Bbb R^m$ 是满射但不是单射 | 映射 $T$ 没有将 $\Bbb R^n$ 映射到 $\Bbb R^m$ 上                                 |
 
 自由变量，矩阵的列数量大于行数量
 
