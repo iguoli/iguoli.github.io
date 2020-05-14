@@ -3,7 +3,7 @@ title: Set-builder Notation 和 List Comprehension
 date: 2020-05-04
 modify_date: 2020-05-04
 tags: Math
-key: 2020-05-04-Set-builder-Notation
+key: Set-builder-Notation-2020-05-04
 ---
 
 ## Set-builder notation
@@ -31,7 +31,7 @@ $$
 \end{aligned}
 $$
 
-在这种形式中，集合构造符号包括四部分：`变量`，`域`，`冒号或竖线分隔符`以及`逻辑谓词`。冒号或竖线读作"使得" (such that, for which, with the property that)，域表示变量 $x$ 属于一个给定集合 $S$，谓词 $P$ 表示一个返回布尔值的函数 $P:S->\{true, false\}$。通过谓词定义的集合可以读作:  All values of $x$ that belongs to the given set $S$ for which the predicate is true.
+在这种形式中，集合构造符号包括四部分：`变量`，`域`，`冒号或竖线分隔符`以及`逻辑谓词`。冒号或竖线读作"使得" (such that, for which, with the property that)，域表示变量 $x$ 属于一个给定集合 $S$，谓词 $P$ 表示一个返回布尔值的函数 $P:S->\\{true, false\\}$。通过谓词定义的集合可以读作:  All values of $x$ that belongs to the given set $S$ for which the predicate is true.
 
 ## List Comprehension
 

@@ -30,7 +30,7 @@ $$
 
 ## 梯度的数学定义
 
-**方向导数** 是函数 $z=f(x,y)$ 在点 $P(x,y)$ 处沿向量方向 $\boldsymbol l=\{\cos\alpha, \sin\alpha\}$ 上的方向导数，描绘了该点附近沿着该向量方向变动时的瞬时变化率。
+**方向导数** 是函数 $z=f(x,y)$ 在点 $P(x,y)$ 处沿向量方向 $\boldsymbol l=\\{\cos\alpha, \sin\alpha\\}$ 上的方向导数，描绘了该点附近沿着该向量方向变动时的瞬时变化率。
 
 ![directional_derivative](/assets/images/machine-learning/directional_derivative.png)
 
