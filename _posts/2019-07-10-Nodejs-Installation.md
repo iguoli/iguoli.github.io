@@ -161,4 +161,11 @@ npm config get registry
 
 # use taobao mirror
 npm config set registry https://registry.npm.taobao.org
+
+# check the config in the .npmrc file
+cat ~/.npmrc
+```
+
+```text
+registry=https://registry.npm.taobao.org
 ```
