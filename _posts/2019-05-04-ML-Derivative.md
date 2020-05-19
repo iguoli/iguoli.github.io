@@ -1,6 +1,7 @@
 ---
 title: 机器学习 - 各类函数的求导
 date: 2019-05-04
+modify_date: 2020-05-19
 tags: Machine-Learning
 key: ML-Derivative-2019-05-04
 ---
@@ -44,13 +45,13 @@ $$
 
 其关于 $z$ 的导数:  
 
-令 $u = 1+e^{-z}$ 并且有 $\dfrac{d}{du}\left(\dfrac{1}{u}\right)=-\dfrac{1}{u^2}$
+令 $u = 1+e^{-z}$ 并且有 $\dfrac{\mathrm{d}}{\mathrm{d}u}\left(\dfrac{1}{u}\right)=-\dfrac{1}{u^2}$
 
 $$
 \begin{aligned}
-    \dfrac{d}{dz}\left(\dfrac{1}{1+e^{-z}}\right) &= \dfrac{d}{du}\left(\dfrac{1}{u}\right)\dfrac{du}{dz} \\
-    &= -\dfrac{1}{(1+e^{-z})^2} \dfrac{d}{dz}(1+e^{-z}) \\
-    &= -\dfrac{1}{(1+e^{-z})^2} \left(\dfrac{d}{dz}(1) + \dfrac{d}{dz}(e^{-z})\right) \\
+    \dfrac{\mathrm{d}}{\mathrm{d}z}\left(\dfrac{1}{1+e^{-z}}\right) &= \dfrac{\mathrm{d}}{\mathrm{d}u}\left(\dfrac{1}{u}\right)\dfrac{\mathrm{d}u}{\mathrm{d}z} \\
+    &= -\dfrac{1}{(1+e^{-z})^2} \dfrac{\mathrm{d}}{\mathrm{d}z}(1+e^{-z}) \\
+    &= -\dfrac{1}{(1+e^{-z})^2} \left(\dfrac{\mathrm{d}}{\mathrm{d}z}(1) + \dfrac{\mathrm{d}}{\mathrm{d}z}(e^{-z})\right) \\
     &= -\dfrac{1}{(1+e^{-z})^2} \left(0 + (-1)(e^{-z})\right) \\
     &= \dfrac{e^{-z}}{(1+e^{-z})^2} \\
     &= \dfrac{1}{1+e^{-z}} \dfrac{e^{-z}}{1+e^{-z}} \\
