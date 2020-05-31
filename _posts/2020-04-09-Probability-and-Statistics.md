@@ -6,13 +6,13 @@ tags: Math
 key: Probability-and-Statistics-2020-04-09
 ---
 
-### 计数法 (Counting Methods)
+## 计数法 (Counting Methods)
 
 计数法则基于<span style="color:red">分阶段</span>计数的原则。
 
 <!--more-->
 
-#### 乘法法则 (Multiplication Rule)
+### 乘法法则 (Multiplication Rule)
 
 假设一个试验有 $k$ 个部分 ($k \geq 2$):
 
@@ -21,7 +21,11 @@ key: Probability-and-Statistics-2020-04-09
 - 试验的样本空间 $S$ 将包含形式为 ($u_1,\dots,u_k$) 的所有向量，其中 $u_i$ 是第 $i$ 部分 ($i=1,\dots,k$) 的 $n_i$ 个可能结果之一。
 - 这些向量在 $S$ 中的总数等于 $n_1 n_2 \cdots n_k$ 的乘积。
 
-#### 排列 (Permutations)
+例：含有 $n$ 个元素的集合，子集的个数是多少？
+
+根据已知有限集构造一个子集，该子集对于每一个元素，要么包含要么不包含，根据乘法法则，这个子集共有 $\underbrace{2 \times 2 \times \cdots \times 2}_n$ 种构造方式，即有 $2^n$ 个子集。
+
+### 排列 (Permutations)
 
 $n$ 选 $k$ 排列
 
@@ -52,7 +56,7 @@ $$
 P_{n,k} = n(n-1)\cdots(n-k+1)\frac{(n-k)\cdots 2 \cdot 1}{(n-k)\cdots 2 \cdot 1} = \frac{n!}{(n-k)!}
 $$
 
-#### 组合 (Combinations)
+### 组合 (Combinations)
 
 考虑具有 $n$ 个元素的集合，从这个集合中取出含有 $k$ 个元素的每个子集，称为从 $n$ 中取 $k$ 的组合，记作: $C_{n,k}$。
 
@@ -62,6 +66,8 @@ $$
 C_{n,k} = \frac{P_{n,k}}{k!} = \frac{n!}{k!(n-k)!}
 $$
 
+## 随机变量与概率分布
+
 ### 样本空间和事件
 
 - 每个概率模型都关联着一个**试验**，这个试验将产生一个试验**结果**，该试验所有可能的结果形成**样本空间**，用 $\Omega$ 表示样本空间。
@@ -69,8 +75,18 @@ $$
 - 只含一个试验结果的集合称为**基本事件**，整个样本空间 $\Omega$ 称为**必然事件**，不包含任何试验结果的空集称为**不可能事件**。
 - 在确定样本空间的时候，不同的试验结果必须是**相互排斥**的。
 
+### 概率空间三要素 $(\Omega, \mathcal{F}, \Bbb{P})$
+
+[知乎 - 怎样理解概率空间这个概念和概率空间的三要素（Ω，F，P）？](https://www.zhihu.com/question/20642770)
+
+- $\Omega$ - Sample space 样本空间，试验中所有可能结果的集合。（注：每个结果需要互斥，所有可能结果必须被穷举）
+
+- $\mathcal{F}$ - Set of events 事件集合。是 $\Omega$ 的一些子集构成的集合。$\mathcal{F}$ 中的元素称为事件。
+
+- $\Bbb{P}$ - Probability measure 概率测度或概率。$\Bbb{P}$ 是一个定义在 $\mathcal{F}$ 的函数，是一个集合的函数，它的自变量是集合，称为概率。
+
 ### 随机变量
 
-一个随机试验的可能结果（称为基本事件）的全体组成一个基本空间 $\Omega$。随机变量 $X$ 是定义于 $\Omega$ 上的函数，即对 <span style="color:red">每一基本事件</span> $\omega \in \Omega$ ，有一数值 $X(\omega)$ 与之对应。
+一个随机试验的可能结果（称为基本事件）的全体组成一个基本空间 $\Omega$。随机变量 $X$ 是定义于 $\Omega$ 上的函数，即对 <span style="color:red">每一基本事件</span> $\omega \in \Omega$ ，有一数值 $X(\omega)$ 与之对应。即：$X: \omega \to \Bbb{R}$
 
 对于样本空间 $\Omega$ 中的样本 $\omega$，可以取各种不同的映射，得到不同的随机变量。
