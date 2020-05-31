@@ -87,6 +87,6 @@ $$
 
 ### 随机变量
 
-一个随机试验的可能结果（称为基本事件）的全体组成一个基本空间 $\Omega$。随机变量 $X$ 是定义于 $\Omega$ 上的函数，即对 <span style="color:red">每一基本事件</span> $\omega \in \Omega$ ，有一数值 $X(\omega)$ 与之对应。即：$X: \omega \to \Bbb{R}$
+一个随机试验的可能结果（称为基本事件）的全体组成一个基本空间 $\Omega$。随机变量 $X$ 是定义于 $\Omega$ 上的函数 $X: \Omega \to \Bbb{R}$，即对 <span style="color:red">每一基本事件</span> $\omega \in \Omega$ ，有一数值 $X(\omega)$ 与之对应。
 
 对于样本空间 $\Omega$ 中的样本 $\omega$，可以取各种不同的映射，得到不同的随机变量。
