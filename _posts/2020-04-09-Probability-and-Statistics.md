@@ -89,4 +89,55 @@ $$
 
 一个随机试验的可能结果（称为基本事件）的全体组成一个基本空间 $\Omega$。随机变量 $X$ 是定义于 $\Omega$ 上的函数 $X: \Omega \to \Bbb{R}$，即对 <span style="color:red">每一基本事件</span> $\omega \in \Omega$ ，有一数值 $X(\omega)$ 与之对应。
 
-对于样本空间 $\Omega$ 中的样本 $\omega$，可以取各种不同的映射，得到不同的随机变量。
+对于样本空间 $\Omega$ 中的样本 $\omega$，可以取各种不同的映射，得到不同的随机变量。
+
+### 随机变量 $X$ 的分布列计算
+
+对每一个随机变量 $X$ 的值 $x$：
+
+1. 找出与事件 $\\{\omega:X(\omega) = x\\}$ 相对应的所有试验结果；
+2. 将这些试验结果的概率相加得到 $P_X(x)$
+
+即： $P_X(x)=P(\\{X=x\\})$
+
+### 伯努利随机变量及其概率分布
+
+随机变量
+
+$$
+X(\omega) = \left\{
+    \begin{aligned}
+        1 & \quad \text{正面朝上}\\
+        0 & \quad \text{正面朝下}
+    \end{aligned}
+\right.
+$$
+
+概率分布
+
+$$
+P_X(k) = \left\{
+\begin{aligned}
+    & p & (k=0) \\
+    & 1-p & (k=1)
+\end{aligned}
+\right.
+$$
+
+### 二项随机变量及其概率分布
+
+$$
+P_X(k) = P(X=k) = \binom{n}{k}p^k(1-p)^{n-k} \quad (k=0,1,\dots,n)
+$$
+
+### 几何随机变量及其概率分布
+
+$$
+P_X(k)=(1-p)^{k-1}p \quad (k=1,2,\dots)
+$$
+
+### 泊松随机变量其及概率分布
+
+$$
+P_X(k)=e^{-\lambda}\frac{\lambda^k}{k!} \quad (k=0,1,2,\dots)
+$$
