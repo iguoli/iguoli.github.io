@@ -189,7 +189,7 @@ $$
 $$
 \begin{aligned}
     \mathrm{var}(X) &= \mathrm{E}\left[(X-\mathrm{E}[X])^2\right] \\[2ex]
-    \mathrm{var}(X) &= \sum_x(x-\mathrm{E}[X])^2 p_X(x) \\[3ex]
+    \mathrm{var}(X) &= \sum_x(x-\mathrm{E}[X])^2 p_X(x) \\[2ex]
     \mathrm{var}(X) &= \mathrm{E}[X^2] - (\mathrm{E}[X])^2
 \end{aligned}
 $$
