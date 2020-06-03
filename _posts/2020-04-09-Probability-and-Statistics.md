@@ -1,7 +1,7 @@
 ---
 title: 概率与统计总结 (Probability and Statistics)
 date: 2020-04-09
-modify_date: 2020-05-07
+modify_date: 2020-06-03
 tags: Math
 key: Probability-and-Statistics-2020-04-09
 ---
@@ -153,7 +153,7 @@ Y = g(X) = \left\{
 \right.
 $$
 
-随机变量的函数 $\\{Y=y\\}$ 的概率是所有取值为 $y$ 的随机变量 $\\{X=x\\}$ 的概率之和，即 $\\{x \vert g(x)=y\\}$。
+随机变量的函数 $\\{Y=y\\}$ 的概率是所有函数取值为 $y$ 的随机变量 $\\{x \vert g(x)=y\\}$ 的概率之和。
 
 $$
 P_Y(y) = \sum_{\{x|g(x)=y\}} p_X(x)

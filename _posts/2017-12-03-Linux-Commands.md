@@ -1,5 +1,5 @@
 ---
-title: Linux 下常用命令汇总
+title: Linux commands summary
 date: 2017-12-03
 modify_date: 2019-12-17
 tags: Linux Utils
