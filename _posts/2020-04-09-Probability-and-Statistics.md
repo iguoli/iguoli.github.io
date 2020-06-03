@@ -1,5 +1,5 @@
 ---
-title: 概率与统计总结
+title: 概率与统计总结 (Probability and Statistics)
 date: 2020-04-09
 modify_date: 2020-05-07
 tags: Math
@@ -66,7 +66,7 @@ $$
 C_{n,k} = \frac{P_{n,k}}{k!} = \frac{n!}{k!(n-k)!}
 $$
 
-## 随机变量与概率分布
+## 随机变量与概率分布 (Random variable and Probability distribution)
 
 ### 样本空间和事件
 
@@ -85,7 +85,7 @@ $$
 
 - $\Bbb{P}$ - Probability measure 概率测度或概率。$\Bbb{P}$ 是一个定义在 $\mathcal{F}$ 的函数，是一个集合的函数，它的自变量是集合，称为概率。
 
-### 随机变量
+### 随机变量 (Random variable)
 
 一个随机试验的可能结果（称为基本事件）的全体组成一个基本空间 $\Omega$。随机变量 $X$ 是定义于 $\Omega$ 上的函数 $X: \Omega \to \Bbb{R}$，即对 <span style="color:red">每一基本事件</span> $\omega \in \Omega$ ，有一数值 $X(\omega)$ 与之对应。
 
@@ -96,11 +96,11 @@ $$
 对每一个随机变量 $X$ 的值 $x$：
 
 1. 找出与事件 $\\{X=x\\}$ 相对应的所有试验结果 $\\{\omega:X(\omega) = x\\}$；
-2. 将这些试验结果的概率相加得到 $P_X(x)$
+2. 将这些试验结果的概率相加得到 $p_X(x)$
 
-即： $P_X(x)=P(\\{X=x\\})=P(\\{\omega:X(\omega)=x\\})$
+即： $p_X(x)=P(\\{X=x\\})=P(\\{\omega:X(\omega)=x\\})$
 
-### 伯努利随机变量及其概率分布
+#### 伯努利随机变量及其概率分布
 
 随机变量
 
@@ -116,7 +116,7 @@ $$
 概率分布
 
 $$
-P_X(k) = \left\{
+p_X(k) = \left\{
 \begin{aligned}
     & p & (k=0) \\
     & 1-p & (k=1)
@@ -124,20 +124,94 @@ P_X(k) = \left\{
 \right.
 $$
 
-### 二项随机变量及其概率分布
+#### 二项随机变量及其概率分布
 
 $$
-P_X(k) = P(X=k) = \binom{n}{k}p^k(1-p)^{n-k} \quad (k=0,1,\dots,n)
+p_X(k) = P(X=k) = \binom{n}{k}p^k(1-p)^{n-k} \quad (k=0,1,\dots,n)
 $$
 
-### 几何随机变量及其概率分布
+#### 几何随机变量及其概率分布
 
 $$
-P_X(k)=(1-p)^{k-1}p \quad (k=1,2,\dots)
+p_X(k)=(1-p)^{k-1}p \quad (k=1,2,\dots)
 $$
 
-### 泊松随机变量其及概率分布
+#### 泊松随机变量其及概率分布
 
 $$
-P_X(k)=e^{-\lambda}\frac{\lambda^k}{k!} \quad (k=0,1,2,\dots)
+p_X(k)=e^{-\lambda}\frac{\lambda^k}{k!} \quad (k=0,1,2,\dots)
+$$
+
+### 随机变量的函数
+
+$$
+Y = g(X) = \left\{
+\begin{aligned}
+    aX + b & \quad \text{(线性函数)} \\
+    \log(X) & \quad \text{(非线性函数)}
+\end{aligned}
+\right.
+$$
+
+随机变量的函数 $\\{Y=y\\}$ 的概率是所有取值为 $y$ 的随机变量 $\\{X=x\\}$ 的概率之和，即 $\\{x|g(x)=y\\}$。
+
+$$
+P_Y(y) = \sum_{\{x|g(x)=y\}} p_X(x)
+$$
+
+### 随机变量的期望 (Expected value)
+
+随机变量 $X$ 的期望 $\mathrm{E}[X]$（也可以称为均值，用符号 $\mu$ 表示）
+
+$$
+\mathrm{E}[X] = \sum_x xp_X(x)
+$$
+
+随机变量的函数的期望
+
+$$
+\mathrm{E}[g(X)] = \sum_x g(x)p_X(x)
+$$
+
+随机变量 $X$ 的 **$n$ 阶矩**
+
+$$
+\mathrm{E}[X^n] = \sum_x x^n p_X(x)
+$$
+
+### 随机变量的方差和标准差 (Variance and Standard deviation)
+
+方差和标准差提供了随机变量 $X$ 在其期望周围分散程度的一个测度。
+{:.info}
+
+随机变量 $X$ 的方差
+
+$$
+\begin{aligned}
+    \mathrm{var}(X) &= \mathrm{E}\left[(X-\mathrm{E}[X])^2\right] \\[2ex]
+    \mathrm{var}(X) &= \sum_x(x-\mathrm{E}[X])^2 p_X(x) \\[3ex]
+    \mathrm{var}(X) &= \mathrm{E}[X^2] - (\mathrm{E}[X])^2
+\end{aligned}
+$$
+
+随机变量 $X$ 的标准差
+
+$$
+\sigma_X = \sqrt{\mathrm{var}(X)}
+$$
+
+标准差的量纲与 $X$ 相同，因此具有可比性。
+
+#### 随机变量线性函数的均值和方差
+
+设 $X$ 为随机变量，令
+
+$$
+Y = aX+b
+$$
+
+其中 $a$ 和 $b$ 为给定常数，则
+
+$$
+\mathrm{E}[Y]=a\mathrm{E}[X]+b, \quad \mathrm{var}(Y)=a^2\mathrm{var}(X)
 $$
