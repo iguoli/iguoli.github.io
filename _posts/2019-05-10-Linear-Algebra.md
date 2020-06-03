@@ -1,5 +1,5 @@
 ---
-title: 线性代数笔记
+title: 线性代数 (Linear Algebra)
 date: 2019-05-10
 modify_date: 2019-10-09
 tags: Math
