@@ -100,7 +100,9 @@ $$
 
 即： $p_X(x)=P(\\{X=x\\})=P(\\{\omega:X(\omega)=x\\})$
 
-#### 伯努利随机变量及其概率分布
+### 常见随机变量概率分布
+
+#### 伯努利随机变量概率分布 (Bernoulli distribution)
 
 随机变量
 
@@ -117,26 +119,37 @@ $$
 
 $$
 p_X(k) = \left\{
-\begin{aligned}
-    & p & (k=0) \\
-    & 1-p & (k=1)
-\end{aligned}
+    \begin{aligned}
+        & p & (k=0) \\
+        & 1-p & (k=1)
+    \end{aligned}
 \right.
 $$
 
-#### 二项随机变量及其概率分布
+#### 离散均匀随机变量概率分布 (Uniform distribution)
+
+$$
+p_X(k) = \left\{
+    \begin{aligned}
+        & \frac{1}{b-a+1} &\quad &(k=a,a+1,\cdots,b) \\
+        & 0 &\quad &\text{其它}
+    \end{aligned}
+\right.
+$$
+
+#### 二项随机变量概率分布 (Binomial distribution)
 
 $$
 p_X(k) = P(X=k) = \binom{n}{k}p^k(1-p)^{n-k} \quad (k=0,1,\dots,n)
 $$
 
-#### 几何随机变量及其概率分布
+#### 几何随机变量概率分布 (Geometric distribution)
 
 $$
 p_X(k)=(1-p)^{k-1}p \quad (k=1,2,\dots)
 $$
 
-#### 泊松随机变量其及概率分布
+#### 泊松随机变量概率分布 (Poisson distribution)
 
 $$
 p_X(k)=e^{-\lambda}\frac{\lambda^k}{k!} \quad (k=0,1,2,\dots)
@@ -214,4 +227,25 @@ $$
 
 $$
 \mathrm{E}[Y]=a\mathrm{E}[X]+b, \quad \mathrm{var}(Y)=a^2\mathrm{var}(X)
+$$
+
+### 常见随机变量的均值与方差
+
+#### 伯努利随机变量的均值与方差
+
+$$
+\begin{aligned}
+    \mathrm{E}[X] &= 1\cdot p + 0\cdot(1-p) = p \\
+    \mathrm{E}[X^2] &= 1^2\cdot p + 0^2\cdot(1-p) = p \\
+    \mathrm{var}(x) &= \mathrm{E}[X^2] - (\mathrm{E}[X])^2 = p - p^2 = p(1-p)
+\end{aligned}
+$$
+
+#### 离散均匀随机变量的均值与方差
+
+$$
+\begin{aligned}
+    \mathrm{E}[X] &= \frac{a+b}{2} \\
+    \mathrm{var}(X) &= \frac{(b-a)(b-a+2)}{12}
+\end{aligned}
 $$
