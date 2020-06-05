@@ -136,7 +136,7 @@ Host machine3
         ProxyCommand ssh -W %h:%p machine2
 ```
 
-如果 `ProxyJump` 选项可用，可以使用命令 `ssh -J user1@host1,user2@host2 user3@host3` 在命令行指定多主机跳转，外个跳转主机用逗号分隔。
+如果 `ProxyJump` 选项可用，可以使用命令 `ssh -J user1@host1,user2@host2 user3@host3` 在命令行指定多主机跳转，多个跳转主机之间用逗号分隔。
 
 ## 多主机跳转端口转发
 
