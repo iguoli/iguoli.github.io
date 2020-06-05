@@ -37,14 +37,27 @@ Host github github.com
     # Use socks5 proxy
     ProxyCommand connect -S 127.0.0.1:7891 %h %p
 
-# Access the remote host using jump host
-Host remote-host
-    HostName remote-host
-    User username
-    # OpenSSH version 7.2 and earlier
-    ProxyCommand ssh -W %h:%p jump-host
+# Access the remote host using a straightforward chain
+# e.g. access the host3 through host1 and host2
+# Usage: ssh host3
+Host host1
+    HostName host1
+    User username1
+    IdentityFile ~/.ssh/host1_key
+
+Host host2
+    HostName host2
+    User username2
+    IdentityFile ~/.ssh/host2_key
     # OpenSSH version 7.3 and later
-    ProxyJump jump-host
+    ProxyJump host1
+
+Host host3
+    HostName host3
+    User username3
+    IdentityFile ~/.ssh/host3_key
+    # OpenSSH version 7.2 and earlier
+    ProxyCommand ssh -W %h:%p host2
 
 # Local port forwarding
 # e.g. ssh -N -f -L :5432:db-server:5432 username@jump-host
