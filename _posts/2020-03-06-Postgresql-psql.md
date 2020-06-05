@@ -6,11 +6,11 @@ tags: Database
 key: Postgresql-psql-2020-03-06
 ---
 
+## [psql] - PostgreSQL 交互式终端
+
 PostgreSQL 交互式终端 `psql` 的使用，包括连接字符串，免密设置，元命令以及常见的 SQL 语句。
 
 <!--more-->
-
-## [psql] - PostgreSQL 交互式终端
 
 ### MacOS 上安装 [psql]
 
@@ -289,6 +289,40 @@ COPY country TO PROGRAM 'gzip > /usr1/proj/bray/sql/country_data.gz';
 COPY country TO '/tmp/table.csv' (FORMAT csv DELIMITER ',' HEADER)
 ```
 
+## [pg_dump]
+
+数据库导出工具。
+
+```text
+Usage:
+  pg_dump [OPTION]... [DBNAME]
+
+General options:
+  -f, --file=FILENAME          output file or directory name
+  -F, --format=c|d|t|p         output file format (custom, directory, tar, plain text (default))
+  -v, --verbose                verbose mode
+  -V, --version                output version information, then exit
+```
+
+示例：
+
+```zsh
+# To dump a database called mydb into a SQL-script file
+pg_dump -h localhost -p 5432 -U postgres mydb > db.sql
+
+# To reload such a script into a (freshly created) database named newdb
+psql -h localhost -p 5432 -U postgres -d newdb -f db.sql
+
+# To dump a database into a custom-format archive file
+pg_dump -Fc mydb > db.dump
+
+# To reload an archive file into a (freshly created) database named newdb
+pg_restore -d newdb db.dump
+
+# To dump a single table named mytab
+pg_dump -t mytab mydb > db.sql
+```
+
 ## 参考文档
 
 - [PostgreSQL 官方文档](https://www.postgresql.org/docs/current/index.html)
@@ -301,3 +335,5 @@ COPY country TO '/tmp/table.csv' (FORMAT csv DELIMITER ',' HEADER)
 [Schemas]: https://www.postgresql.org/docs/current/ddl-schemas.html
 [SQL Commands]: https://www.postgresql.org/docs/current/sql-commands.html
 [Copy]: https://www.postgresql.org/docs/current/sql-copy.html
+
+[pg_dump]: https://www.postgresql.org/docs/current/app-pgdump.html
