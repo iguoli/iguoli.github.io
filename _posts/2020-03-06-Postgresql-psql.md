@@ -289,11 +289,13 @@ COPY country TO PROGRAM 'gzip > /usr1/proj/bray/sql/country_data.gz';
 COPY country TO '/tmp/table.csv' (FORMAT csv DELIMITER ',' HEADER)
 ```
 
-## [pg_dump]
+## [pg_dump] 和 [pg_restore]
 
-数据库导出工具。
+数据库导出/导入工具。
 
 ```text
+pg_dump dumps a database as a text file or to other formats.
+
 Usage:
   pg_dump [OPTION]... [DBNAME]
 
@@ -302,25 +304,64 @@ General options:
   -F, --format=c|d|t|p         output file format (custom, directory, tar, plain text (default))
   -v, --verbose                verbose mode
   -V, --version                output version information, then exit
+
+Options controlling the output content:
+  -t, --table=PATTERN          dump the specified table(s) only
 ```
 
-示例：
+```text
+pg_restore restores a PostgreSQL database from an archive created by pg_dump.
+
+Usage:
+  pg_restore [OPTION]... [FILE]
+
+General options:
+  -d, --dbname=NAME        connect to database name
+
+Options controlling the restore:
+  -a, --data-only              restore only the data, no schema
+  -c, --clean                  clean (drop) database objects before recreating
+  -C, --create                 create the target database
+  -n, --schema=NAME            restore only objects in this schema
+  -O, --no-owner               skip restoration of object ownership
+  -s, --schema-only            restore only the schema, no data
+  -t, --table=NAME             restore named relation (table, view, etc.)
+```
+
+### 示例
+
+将数据库导出为 SQL-script 文件
 
 ```zsh
-# To dump a database called mydb into a SQL-script file
+# 将数据库 mydb 导出到 SQL-script 文件
 pg_dump -h localhost -p 5432 -U postgres mydb > db.sql
 
-# To reload such a script into a (freshly created) database named newdb
-psql -h localhost -p 5432 -U postgres -d newdb -f db.sql
+# 将所有数据恢复到新建的 newdb 数据库
+psql -c 'CREATE DATABASE newdb;'
+psql -d newdb -f db.sql
+```
 
-# To dump a database into a custom-format archive file
+将数据库导出为 `custom-format` 格式的归档文件
+
+```text
+# 使用 custom-format 格式导出 mydb 数据库到归档文件
 pg_dump -Fc mydb > db.dump
 
-# To reload an archive file into a (freshly created) database named newdb
+# 将所有数据恢复到新创建的 newdb 数据库
+psql -c 'CREATE DATABASE newdb;'
 pg_restore -d newdb db.dump
 
-# To dump a single table named mytab
+# 自动创建存档文件所使用的同名数据库，并将所有数据恢复到该数据库
+# 使用 -C 选项时，-d 指定的数据库仅用于连接并执行DROP DATABASE和CREATE DATABASE命令。
+pg_restore -d postgres -C db.dump
+```
+
+导出单个数据库表到 SQL-script 文件
+
+```text
 pg_dump -t mytab mydb > db.sql
+
+psql -d mydb -f db.sql
 ```
 
 ## 参考文档
@@ -337,3 +378,4 @@ pg_dump -t mytab mydb > db.sql
 [Copy]: https://www.postgresql.org/docs/current/sql-copy.html
 
 [pg_dump]: https://www.postgresql.org/docs/current/app-pgdump.html
+[pg_restore]: https://www.postgresql.org/docs/current/app-pgrestore.html
