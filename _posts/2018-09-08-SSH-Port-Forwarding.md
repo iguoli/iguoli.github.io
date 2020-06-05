@@ -1,7 +1,7 @@
 ---
-title: SSH 端口转发
+title: SSH Port Forwarding
 date: 2018-09-08
-modify_date: 2019-07-17
+modify_date: 2020-06-05
 tags: SSH
 key: SSH-Port-Forwarding-2018-09-08
 ---
@@ -73,6 +73,22 @@ ssh -R 8080:localhost:80 remote.server
 ssh -R proxy.server:8080:http.server:80 remote.server
 ```
 
+### [多主机端口转发]
+
+如果 `ProxyJump` 选项可用，下面的命令可以创建一个通过 `jumphost` 从 `localhost:8080` 到 `machine2:80` 的隧道。
+
+```zsh
+ssh -L 8080:localhost:80 -J jumphost machine2
+```
+
+`ProxyJump` 选项也可以将多台跳转主机通过逗号分隔，组成转发链。
+
+```zsh
+ssh -L 8080:localhost:80 -J jumphost1,jumphost2 machine2
+```
+
 ## 参考文档
 
 [OpenSSH Tunneling](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Tunnels)
+
+[多主机端口转发]: https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Proxies_and_Jump_Hosts#Port_Forwarding_Through_One_or_More_Intermediate_Hosts
