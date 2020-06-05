@@ -1,7 +1,7 @@
 ---
-title: SSH Config 配置说明
+title: SSH Config
 date: 2018-07-31
-modify_date: 2019-12-10
+modify_date: 2020-06-05
 tags: SSH
 key: SSH-Config-2018-07-31
 ---
@@ -21,18 +21,39 @@ vim ~/.ssh/config
 ```
 
 ```text
-# For all hosts
+# The settings for all hosts
 # Keep the ssh connection alive
 ServerAliveInterval 30
 ServerAliveCountMax 10
 
-# For individual host
+# Access the remote host using proxy
 Host github github.com
     HostName github.com
     Port 22
     User git
-    IdentityFile ~/.ssh/li_rsa
-    ProxyJump user@jumphost.example.org:22
+    IdentityFile ~/.ssh/id_rsa
+    # Use http proxy
+    ProxyCommand connect -H 127.0.0.1:7890 %h %p
+    # Use socks5 proxy
+    ProxyCommand connect -S 127.0.0.1:7891 %h %p
+
+# Access the remote host using jump host
+Host remote-host
+    HostName remote-host
+    User username
+    # OpenSSH version 7.2 and earlier
+    ProxyCommand ssh -W %h:%p jump-host
+    # OpenSSH version 7.3 and later
+    ProxyJump jump-host
+
+# Local port forwarding
+# e.g. ssh -N -f -L :5432:db-server:5432 username@jump-host
+# Usage: ssh -N -f jump-host
+Host jump-host
+    Hostname jump-host
+    User username
+    IdentityFile ~/.ssh/id_rsa
+    LocalForward 5432 db-server:5342
 ```
 
 ## 主机跳转

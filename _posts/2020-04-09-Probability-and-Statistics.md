@@ -237,7 +237,7 @@ $$
 \begin{aligned}
     \mathrm{E}[X] &= 1\cdot p + 0\cdot(1-p) = p \\
     \mathrm{E}[X^2] &= 1^2\cdot p + 0^2\cdot(1-p) = p \\
-    \mathrm{var}(x) &= \mathrm{E}[X^2] - (\mathrm{E}[X])^2 = p - p^2 = p(1-p)
+    \mathrm{var}(X) &= \mathrm{E}[X^2] - (\mathrm{E}[X])^2 = p - p^2 = p(1-p)
 \end{aligned}
 $$
 
