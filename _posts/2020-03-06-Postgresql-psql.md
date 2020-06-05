@@ -333,7 +333,7 @@ Options controlling the restore:
 将数据库导出为 SQL-script 文件
 
 ```zsh
-# 将数据库 mydb 导出到 SQL-script 文件
+# 导出 mydb 数据库到 SQL-script 文件
 pg_dump -h localhost -p 5432 -U postgres mydb > db.sql
 
 # 将所有数据恢复到新建的 newdb 数据库
@@ -344,7 +344,7 @@ psql -d newdb -f db.sql
 将数据库导出为 `custom-format` 格式的归档文件
 
 ```text
-# 使用 custom-format 格式导出 mydb 数据库到归档文件
+# 使用 custom-format 格式将数据库 mydb 导出到归档文件
 pg_dump -Fc mydb > db.dump
 
 # 将所有数据恢复到新创建的 newdb 数据库
