@@ -59,18 +59,30 @@ git -c core.pager= log -1
 
 ## gitignore 文件
 
-`gitignore` 文件可以让 Git 忽略某些文件，其中每一行代表一个匹配模式。`Git` 按照下面从高到低的优先级顺序检查不同 `gitignore` 文件的匹配模式.
+`gitignore` 文件指定哪些文件需要被 Git 忽略，`gitignore` 文件中的一行代表一个匹配模式。`Git` 会从多个来源读取 `gitignore` 模式，并按照下面从高到低的优先级顺序匹配.
 
-- 从支持此功能的命令行选项.
+- 从命令行读取的 `gitignore` 模式。
 
-- `.gitignore` (网络范围)  
-  进行版本管理并通过 `git clone` 命令扩散到其它仓库 (例如所有开发人员都希望忽略的文件).
+- 从仓库工作目录树的各层目录下的 `.gitignore` 文件中读取的模式。父目录的 `gitignore` 模式会被子目录中的 `gitignore` 模式覆盖。
 
-- `$GIT_DIR/info/exclude` (仓库范围)  
-  只对特定仓库有效，不影响其它仓库 (例如在某个用户的工作中产生的备份文件等) 的匹配模式，应该写入 .
+  `.gitignore` 文件会被提交到仓库中，应该在此处添加项目中所有人都需要忽略的那些 `gitignore` 模式。
+  {:.warning}
 
-- `core.excludesfile` (全局范围)  
-  影响特定用户的所有仓库 (例如忽略用户的编辑器产生的临时文件)，这个变量的默认值是 `$XDG_CONFIG_HOME/git/ignore`，如果 `$XDG_CONFIG_HOME` 没有设置或为空，则使用 `$HOME/.config/git/ignore` 文件.
+- 从仓库的 `$GIT_DIR/info/exclude` 文件中读取的模式。
+
+  该文件不会被提交到仓库中，应该在此处添加不需要与其他人共享的 `gitignore` 模式。
+  {:.warning}
+
+- 从配置变量 `core.excludesfile` 所指定的文件中读取模式。
+
+  对系统中的所有仓库都会生效，这个变量的默认值是 `$XDG_CONFIG_HOME/git/ignore`。
+  {:.warning}
+
+  ```zsh
+  git config --global core.excludesfile ~/.config/git/ignore
+  ```
+
+可以访问 [gitignore.io](https://www.gitignore.io/) 来自动创建各类常见的 `gitignore` 模式。
 
 ### 匹配模式的格式
 
