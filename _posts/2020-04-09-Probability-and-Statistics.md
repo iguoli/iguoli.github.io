@@ -66,6 +66,37 @@ $$
 C_{n,k} = \frac{P_{n,k}}{k!} = \frac{n!}{k!(n-k)!}
 $$
 
+## 全概率公式
+
+![law of total probability](/assets/images/prob-stat/total_probability.png)
+
+设 $B_1,B_2,\cdots,B_n$ 是一组互不相容事件，形成样本空间的一个分割（每个试验结果必定使得其中一个事件发生）。又假定对每一个 $i, \mathrm{P}(B)>0$，则对于任意事件 $A$，下列公式成立
+
+$$
+\begin{aligned}
+    \mathrm{P}(A) &= \sum_{i=1}^n \mathrm{P}(A\cap B_i) \\[2ex]
+    &= \mathrm{P}(A\cap B_1) + \cdots + \mathrm{P}(A\cap B_n)
+\end{aligned}
+$$
+
+又因为条件概率
+
+$$
+\mathrm{P}(A\cap B_i) = \mathrm{P}(B_i)\mathrm{P}(A\cap B_i)
+$$
+
+全概率公式又可写作
+
+$$
+\begin{aligned}
+    \mathrm{P}(A) &= \sum_{i=1}^n \mathrm{P}(B_i) \mathrm{P}(A\vert B_i) \\[2ex]
+    &= \mathrm{P}(B_1)\mathrm{P}(A\vert B_1) + \cdots + \mathrm{P}(B_n)\mathrm{P}(A\vert B_n)
+\end{aligned}
+$$
+
+全概率公式将对一复杂事件 $A$ 的概率求解，转化为了在不同原因 $B_i$ 下发生的简单事件的概率求和问题。
+{:.info}
+
 ## 随机变量与概率分布 (Random variable and Probability distribution)
 
 ### 样本空间和事件
@@ -90,6 +121,9 @@ $$
 一个随机试验的可能结果（称为基本事件）的全体组成一个基本空间 $\Omega$。随机变量 $X$ 是定义于 $\Omega$ 上的函数 $X: \Omega \to \Bbb{R}$，即对 <span style="color:red">每一基本事件</span> $\omega \in \Omega$ ，有一数值 $X(\omega)$ 与之对应。
 
 对于样本空间 $\Omega$ 中的样本 $\omega$，可以取各种不同的映射，得到不同的随机变量。
+
+事件 $\\{X=x\\}$ 表示试验结果 $\\{\omega : X(\omega)=x\\}$ 的集合。
+{:.info}
 
 ### 随机变量 $X$ 的概率分布计算
 

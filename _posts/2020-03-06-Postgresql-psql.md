@@ -234,6 +234,8 @@ DROP SCHEMA myschema CASCADE;
 
 ## [SQL Commands]
 
+### DDL
+
 ```sql
 -- USER
 -- 创建用户 dbuser，该用户有创建数据库和用户的权限
@@ -285,6 +287,27 @@ CREATE TABLE distributors (
 -- DROP TABLE
 DROP TABLE films, distributors;
 
+-- GRANT
+-- 授权 dbuser 可以对 myschema 中的所有表执行 SELECT INSERT 和 UPDATE 操作
+GRANT SELECT INSERT UPDATE ON myschema TO dbuser;
+
+-- 授权所有用户对 catalog 表有 SELECT 权限
+GRANT SELECT ON catalog TO PUBLIC;
+
+GRANT ALL PRIVILEGES ON DATABASE mydb TO dbuser;
+```
+
+### DML
+
+CRUD
+
+```sql
+-- SELECT by order and display top 5 record
+SELECT * FROM films ORDER BY date_prod DESC LIMIT 5;
+
+-- 获取近10年出品的电影
+SELECT * FROM films where date_prod > (now() - interval '10 years');
+
 -- INSERT
 INSERT INTO films VALUES
     ('UA502', 'Bananas', 105, '1971-07-13', 'Comedy', '82 minutes');
@@ -301,14 +324,30 @@ INSERT INTO films (code, title, did, date_prod, kind) VALUES
 -- UPDATE
 UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
 
--- GRANT
--- 授权 dbuser 可以对 myschema 中的所有表执行 SELECT INSERT 和 UPDATE 操作
-GRANT SELECT INSERT UPDATE ON myschema TO dbuser;
+-- DELETE
+DELETE FROM films where title='Yojimbo';
+```
 
--- 授权所有用户对 catalog 表有 SELECT 权限
-GRANT SELECT ON catalog TO PUBLIC;
+[日期函数]
 
-GRANT ALL PRIVILEGES ON DATABASE mydb TO dbuser;
+```sql
+-- 获取当前完整时间，下面两条命令等效
+select now();
+select current_timestamp;
+
+-- 获取当前日期
+select current_date;
+
+-- 获取当前时间
+select current_time;
+
+-- 时间计算，years, months, weeks, days, hours, minutes, seconds
+-- 两天后的时间
+select now() + interval '2 days';
+
+-- 截取部分时间
+select extract(year from now());
+select date_part(day, now());
 ```
 
 ### 使用 [`Copy`][Copy] 语句在数据库与文件系统之间复制数据
@@ -327,8 +366,11 @@ COPY (SELECT * FROM country WHERE country_name LIKE 'A%') TO '/usr1/proj/bray/sq
 COPY country TO PROGRAM 'gzip > /usr1/proj/bray/sql/country_data.gz';
 
 # copy into a csv file with header
-COPY country TO '/tmp/table.csv' (FORMAT csv DELIMITER ',' HEADER)
+COPY country TO '/tmp/table.csv' (FORMAT csv, HEADER)
 ```
+
+注意，输入文件路径可以是绝对路径或相对路径，输出文件路径必须是绝对路径
+{:.warning}
 
 ## [pg_dump] 和 [pg_restore]
 
@@ -416,7 +458,9 @@ psql -U postgres -d mydb -f db.sql
 [Parameter Key Values]: https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS
 [Schemas]: https://www.postgresql.org/docs/current/ddl-schemas.html
 [The System Catalog Schema]: https://www.postgresql.org/docs/current/ddl-schemas.html#DDL-SCHEMAS-CATALOG
+
 [SQL Commands]: https://www.postgresql.org/docs/current/sql-commands.html
+[日期函数]: https://www.postgresql.org/docs/current/functions-datetime.html
 [Copy]: https://www.postgresql.org/docs/current/sql-copy.html
 
 [pg_dump]: https://www.postgresql.org/docs/current/app-pgdump.html
