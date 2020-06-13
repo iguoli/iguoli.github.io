@@ -323,3 +323,12 @@ $$
 
 假设事件 $A=\\{X=x\\}$，事件 $B=\\{Y=y\\}$，那么 $\mathrm{P}(A\cap B) = p_{X,Y}(x,y)$
 {:.info}
+
+可以利用 $X$ 和 $Y$ 联合分布来计算 $X$ 或 $Y$ 的边缘分布
+
+$$
+\begin{aligned}
+    p_X(x) &= \sum_y p_{X,Y}(x,y) \\
+    p_Y(y) &= \sum_x p_{X,Y}(x,y)
+\end{aligned}
+$$
