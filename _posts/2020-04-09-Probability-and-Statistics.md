@@ -66,6 +66,25 @@ $$
 C_{n,k} = \frac{P_{n,k}}{k!} = \frac{n!}{k!(n-k)!}
 $$
 
+## 条件概率
+
+设事件 $B$ 满足 $\mathrm{P}(B) \gt 0$，则给定 $B$ 之下，事件 $A$ 的条件概率为
+
+$$
+\mathrm{P}(A) = \frac{\mathrm{P}(A\cap B)}{\mathrm{P}(B)}
+$$
+
+### 乘法规则
+
+假定所有涉及的条件概率都是正的，那么事件 $A_1\cap A_2\cap \cdots \cap A_n$ 的概率为
+
+$$
+\begin{aligned}
+    \mathrm{P}(\cap_{i=1}^nA_i) &= \mathrm{P}(A_1\cap A_2\cap \cdots \cap A_n) \\
+    &= \mathrm{P}(A_1)\cdot\mathrm{P}(A_2\vert A_1)\cdot\mathrm{P}(A_3\vert A_1\cap A_2)\cdot\;\cdots\;\cdot\mathrm{P}(A_n\vert A_1\cap A_2\cap\cdots\cap A_{n-1})
+\end{aligned}
+$$
+
 ## 全概率公式
 
 ![law of total probability](/assets/images/prob-stat/total_probability.png)
@@ -125,6 +144,9 @@ $$
 事件 $\\{X=x\\}$ 表示试验结果 $\\{\omega : X(\omega)=x\\}$ 的集合。
 {:.info}
 
+随机变量 $X$ 的每一个取值，对应着一个不同的事件，如：事件$A=\\{X=1\\}$，事件$B=\\{X=0\\}$ 等。
+{:.warning}
+
 ### 随机变量 $X$ 的概率分布计算
 
 对每一个随机变量 $X$ 的值 $x$：
@@ -132,7 +154,11 @@ $$
 1. 找出与事件 $\\{X=x\\}$ 相对应的所有试验结果 $\\{\omega:X(\omega) = x\\}$；
 2. 将这些试验结果的概率相加得到 $p_X(x)$
 
-即： $p_X(x)=P(\\{X=x\\})=P(\\{\omega:X(\omega)=x\\})$
+因此，事件 $\\{X=x\\}$ 的概率为
+
+$$
+p_X(x)=P(\{X=x\})=P(\{\omega:X(\omega)=x\})
+$$
 
 ### 常见随机变量概率分布
 
@@ -283,3 +309,17 @@ $$
     \mathrm{var}(X) &= \frac{(b-a)(b-a+2)}{12}
 \end{aligned}
 $$
+
+## 多随机变量的联合分布 (Joint probability distribution)
+
+在同一个试验中有两个随机变量 $X$ 和 $Y$，它们的取值概率由 **联合分布** 来描述，并且用 $p_{X,Y}$ 表示。
+
+$$
+\begin{aligned}
+    p_{X,Y}(x,y) &= \mathrm{P}(\{X=x\}\cap \{Y=y\}) \\
+    &= \mathrm{P}(X=x,Y=y)
+\end{aligned}
+$$
+
+假设事件 $A=\\{X=x\\}$，事件 $B=\\{Y=y\\}$，那么 $\mathrm{P}(A\cap B) = p_{X,Y}(x,y)$
+{:.info}
