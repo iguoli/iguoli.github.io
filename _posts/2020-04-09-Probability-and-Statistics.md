@@ -66,7 +66,7 @@ $$
 C_{n,k} = \frac{P_{n,k}}{k!} = \frac{n!}{k!(n-k)!}
 $$
 
-## 条件概率
+## 条件概率 ([Conditional probability])
 
 设事件 $B$ 满足 $\mathrm{P}(B) \gt 0$，则给定 $B$ 之下，事件 $A$ 的条件概率为
 
@@ -144,7 +144,7 @@ $$
 事件 $\\{X=x\\}$ 表示试验结果 $\\{\omega : X(\omega)=x\\}$ 的集合。
 {:.info}
 
-随机变量 $X$ 的每一个取值，对应着一个不同的事件，如：事件$A=\\{X=1\\}$，事件$B=\\{X=0\\}$ 等。
+随机变量 $X$ 的每一个取值，对应着一个不同的事件，如：$\\{X=1\\}$ 对应事件 $A$，$\\{X=0\\}$  对应事件 $B$ 等。
 {:.warning}
 
 ### 随机变量 $X$ 的概率分布计算
@@ -321,7 +321,7 @@ $$
 \end{aligned}
 $$
 
-假设事件 $A=\\{X=x\\}$，事件 $B=\\{Y=y\\}$，那么 $\mathrm{P}(A\cap B) = p_{X,Y}(x,y)$
+假设事件 $A=\\{X=x\\}$，事件 $B=\\{Y=y\\}$，那么 $\mathrm{P}(A\cap B)$ 相当于 $p_{X,Y}(x,y)$
 {:.info}
 
 可以利用 $X$ 和 $Y$ 联合分布来计算 $X$ 或 $Y$ 的边缘分布
@@ -332,3 +332,5 @@ $$
     p_Y(y) &= \sum_x p_{X,Y}(x,y)
 \end{aligned}
 $$
+
+[Conditional probability]: https://en.wikipedia.org/wiki/Conditional_probability

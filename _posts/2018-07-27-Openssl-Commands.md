@@ -270,7 +270,7 @@ openssl pkcs7 -print_certs -in certificat.p7b -out certificate.cer
 - ***-days \<n\>***  
   指定证书有效期，默认是30天. 与 `-x509` 选项一起使用.
 
-- ***-newkey text:2048***  
+- ***-newkey rsa:2048***  
   生成一个 2048 位的 RSA 私钥
 
 - ***-keyout \<keyfile\>***  
@@ -302,7 +302,7 @@ openssl pkcs7 -print_certs -in certificat.p7b -out certificate.cer
 
 ```zsh
 # 生成一个 2048 位的无密码保护私钥和一个 CSR
-openssl req -newkey text:2048 -nodes -keyout domain.pem -out domain.csr
+openssl req -newkey rsa:2048 -nodes -keyout domain.pem -out domain.csr
 
 # 查看 CSR 证书
 openssl req -in domain.csr -text -noout
