@@ -35,6 +35,10 @@ openssl no-<command>
 
 ## 证书及私钥说明
 
+使用 HTTPS 方式访问 Web 服务，需要客户端信任由服务端使用的证书。
+
+![https connection](/assets/images/openssl/https_connection.png)
+
 ### 编码格式
 
 同样的证书或私钥，可能有不同的编码格式，目前有以下两种编码格式.
