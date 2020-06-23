@@ -321,6 +321,15 @@ openssl req -new -x509 -days 365 -private ca-private -sha256 -subj '/' -out ca.p
 
 `openssl pkcs12` 命令用来解析或者创建 `PKCS#12` 格式的证书
 
+- ***-cacerts***  
+  Only output CA certificates (not client certificates).
+
+- ***-clcerts***  
+  Only output client certificates (not CA certificates).
+
+- ***-chain***  
+  Include the entire certificate chain of the user certificate.  The standard CA store is used for this search.  If the search fails, it is considered a fatal error.
+
 - ***-export***  
   Create a PKCS#12 file (rather than parsing one).
 
@@ -330,12 +339,12 @@ openssl req -new -x509 -days 365 -private ca-private -sha256 -subj '/' -out ca.p
 - ***-inkey \<file\>***   
   File to read a private key from. If not present, a private key must be present in the input file.
 
+- ***-info***  
+  Output additional information about the PKCS#12 file structure, algorithms used, and iteration counts.
+
 - ***-name \<name\>***  
   Specify the "friendly name" for the certificate and private key.  This name is typically displayed in list
   boxes by software importing the file.
-
-- ***-out \<file\>***  
-  The output file to write to, or standard output if not specified.
 
 - ***-nocerts***  
   Do not output certificates.
@@ -345,6 +354,9 @@ openssl req -new -x509 -days 365 -private ca-private -sha256 -subj '/' -out ca.p
 
 - ***-nokeys***  
   Do not output private keys.
+
+- ***-out \<file\>***  
+  The output file to write to, or standard output if not specified.
 
 ```zsh
 # 使用 pem 格式的证书和私钥生成 p12/pfx 证书
@@ -356,6 +368,21 @@ openssl pkcs12 -in certificate.p12 -nokeys -out certificate.pem
 
 # 将 p12/pfx 中的私钥转换为 pem 私钥
 openssl pkcs12 -in certificate.p12 -nocerts -out private.pem -nodes
+
+# 查看证书与私钥
+openssl pkcs12 -in certificate.p12
+
+# 查看客户端证书
+openssl pkcs12 -in certificate.p12 -nokeys -cacerts
+
+# 查看上级 CA 证书
+openssl pkcs12 -in certificate.p12 -nokeys -clcerts
+
+# 查看整个证书链和私钥
+openssl pkcs12 -in certificate.p12 -chain
+
+# 查看证书链和私钥额外信息
+openssl pkcs12 -in certificate.p12 -info
 ```
 
 ## S_CLIENT
