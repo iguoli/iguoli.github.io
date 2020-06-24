@@ -116,7 +116,7 @@ $$
 全概率公式将对一复杂事件 $A$ 的概率求解，转化为了在不同原因 $B_i$ 下发生的简单事件的概率求和问题。
 {:.info}
 
-## 随机变量与概率分布 (Random variable and Probability distribution)
+## 随机变量 (Random variable)
 
 ### 样本空间和事件
 
@@ -146,6 +146,8 @@ $$
 
 随机变量 $X$ 的每一个取值，对应着一个不同的事件，如：$\\{X=1\\}$ 对应事件 $A$，$\\{X=0\\}$  对应事件 $B$ 等。
 {:.warning}
+
+## 概率分布 (Probability distribution)
 
 ### 随机变量 $X$ 的概率分布计算
 
@@ -232,24 +234,39 @@ $$
 P_Y(y) = \sum_{\{x|g(x)=y\}} p_X(x)
 $$
 
-### 随机变量的期望 (Expected value)
+## 随机变量的期望 (Expected value)
 
 随机变量 $X$ 的期望 $\mathrm{E}[X]$（也可以称为均值，用符号 $\mu$ 表示）
 
 $$
-\mathrm{E}[X] = \sum_x xp_X(x)
+\mathrm{E}[X] = \left\{
+\begin{aligned}
+    & \sum_x xp_X(x) &\; (离散随机变量) \\[2ex]
+    & \int_{-\infty}^{\infty}xf_X(x)\mathrm{d}x &\; (连续随机变量)
+\end{aligned}
+\right.
 $$
 
 随机变量的函数的期望
 
 $$
-\mathrm{E}[g(X)] = \sum_x g(x)p_X(x)
+\mathrm{E}[g(X)] = \left\{
+\begin{aligned}
+    & \sum_x g(x)p_X(x) &\; (离散随机变量) \\[2ex]
+    & \int_{-\infty}^{\infty}g(x)f_X(x)\mathrm{d}x &\; (连续随机变量)
+\end{aligned}
+\right.
 $$
 
 随机变量 $X$ 的 **$n$ 阶矩**
 
 $$
-\mathrm{E}[X^n] = \sum_x x^n p_X(x)
+\mathrm{E}[X^n] = \left\{
+\begin{aligned}
+    & \sum_x x^np_X(x) &\; (离散随机变量) \\[2ex]
+    & \int_{-\infty}^{\infty}x^nf_X(x)\mathrm{d}x &\; (连续随机变量)
+\end{aligned}
+\right.
 $$
 
 ### 随机变量的方差和标准差 (Variance and Standard deviation)
@@ -262,7 +279,13 @@ $$
 $$
 \begin{aligned}
     \mathrm{var}(X) &= \mathrm{E}\left[(X-\mathrm{E}[X])^2\right] \\[2ex]
-    \mathrm{var}(X) &= \sum_x(x-\mathrm{E}[X])^2 p_X(x) \\[2ex]
+    \mathrm{var}(X) &= \left\{
+        \begin{aligned}
+            & \sum_x(x-\mathrm{E}[X])^2 p_X(x) &\; (离散随机变量) \\[2ex]
+            & \int_{-\infty}^{\infty}(x-\mathrm{E}[X])^2f_X(x)\mathrm{d}x &\; (连续随机变量)
+
+        \end{aligned}
+    \right. \\
     \mathrm{var}(X) &= \mathrm{E}[X^2] - (\mathrm{E}[X])^2
 \end{aligned}
 $$
