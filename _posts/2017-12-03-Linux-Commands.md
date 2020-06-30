@@ -35,6 +35,18 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+## SSH known host update
+
+```zsh
+TARGET_HOST=[hostname or IP]
+
+# Remove the old key(s) from known_hosts
+ssh-keygen -R $TARGET_HOST
+
+# Add the new key(s) to known_hosts (and also hash the hostname/address)
+ssh-keyscan -H $TARGET_HOST >> ~/.ssh/known_hosts
+```
+
 ## Autossh
 
 语法
