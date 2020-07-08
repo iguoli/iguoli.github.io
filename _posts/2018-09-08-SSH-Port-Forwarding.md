@@ -19,6 +19,8 @@ key: SSH-Port-Forwarding-2018-09-08
 
 <!--more-->
 
+`-C` 选项可以对所有转发数据进行压缩，如果转发数据大部分是文本数据，会提高转发效率，如果是二进制数据，则会降低转发效率。
+
 ## [常规隧道][Tunneling]（本地端口转发）
 
 在常规端口转发中，连接到本地端口将会被转发到远程主机端口。这可以保护那些非安全的连接协议，或使远程服务看起来像本机服务。
@@ -33,10 +35,10 @@ ssh -L [bind-address]:<local-port>:<remotehost>:<remote-port> <jumphost>
 ssh -L 8080:localhost:80 remotehost
 ```
 
-也可以通过中间主机 `jumphost` 跳转，将本地 80 端口通过中间主机转发到远程主机的 80 端口
+也可以通过中间主机 `jumphost` 跳转，将本地端口通过中间主机转发到远程主机
 
 ```zsh
-ssh -L 80:remotehost:80 jumphost
+ssh -L 8080:remotehost:80 jumphost
 ```
 
 默认情况下，任何应用（甚至在不同主机上的应用）都可以连接到客户端的转发端口上，但是可以通过指定一个 **bind address** 来限制只有指定地址的主机才能连接到转发端口，下面的命令指定只有本机才能连接到转发端口
@@ -59,7 +61,7 @@ ssh -R [bind-address]:<remote-port>:<server-address>:<server-port> remotehost
 ssh -R 8080:localhost:80 remotehost
 ```
 
-在 **中间主机** 上创建一个从 **远程主机** (`remotehost`) 到 **远程主机** (`http.server`) 的端口转发
+在**中间主机**上创建一个从**远程主机** (`remotehost`) 到**远程主机** (`http.server`) 的端口转发
 
 ```zsh
 ssh -R 8080:http.server:80 remotehost
