@@ -47,6 +47,8 @@ ssh -L 8080:remotehost:80 jumphost
 ssh -L 127.0.0.1:80:remotehost:80 jumphost
 ```
 
+![Local Port Forwarding](/assets/images/ssh/SSH_Local_Port_Forwarding.png)
+
 ## [反向隧道][Reverse Tunneling]（远程端口转发）
 
 反向隧道与常规隧道的方向相反，在反向隧道中，远程主机端口被转发到本地主机端口，一旦连接建立，其行为与常规隧道一致，连接到本地主机的目标端口同样会被转发到远程主机上的端口。
@@ -72,6 +74,8 @@ ssh -R 8080:http.server:80 remotehost
 ```zsh
 ssh -R proxy.server:8080:http.server:80 remotehost
 ```
+
+![Remote Port Forwarding](/assets/images/ssh/SSH_Remote_Port_Forwarding.png)
 
 ## [SOCKS 代理][SOCKS Proxy]
 
