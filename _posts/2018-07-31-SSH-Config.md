@@ -16,31 +16,29 @@ man 5 ssh_config
 
 ### 配置文件段
 
-客户端配置文件可以划分成段。每个段包含一个或一组主机的设置。
+客户端配置文件可以划分成段，每个段包含一个或一组主机的设置。OpenSSH 以 `Host` 关键字开始一个新段，后面跟的字符串称为**主机规范 (Host Specification)**。主机规范可以是以下几种类型：
 
 <!--more-->
 
-OpenSSH 以 `Host` 关键字开始一个新段，后面跟的字符串称为**主机规范 (Host Specification)**。主机规范可以是以下几种类型：
-
-主机名
+#### 主机名
 
 ```text
 Host server.example.com
 ```
 
-IP 地址
+#### IP 地址
 
 ```text
 Host 10.10.10.10
 ```
 
-主机别名
+#### 主机别名
 
 ```text
 Host nickname
 ```
 
-glob_expression 模式
+#### glob_expression 模式
 
 ```text
 Host *.example.com
@@ -78,6 +76,13 @@ Host *
 
 该段如果放在文件第一段，会强制所有主机应用配置，比如禁用某些非安全选项。如果放在文件最后一段，那么可以做为所有主机缺省配置，当主机没有相应设置时，默认开启某些特性。
 
+oh-my-zsh 对 ssh 主机名的自动补全有时候会不正常，可以执行以下命令来解决
+{:.warning}
+
+```zsh
+zstyle ':completion:*:ssh:*' hosts off
+```
+
 ## SSH Client端个人配置文件
 
 ```zsh
@@ -91,10 +96,9 @@ ServerAliveInterval 30
 ServerAliveCountMax 10
 
 # Access the remote host using proxy
-Host github
-    HostName github.com
-    Port 22
+Host github.com
     User git
+    Port 22
     IdentityFile ~/.ssh/id_rsa
     # Use http proxy
     ProxyCommand connect -H 127.0.0.1:7890 %h %p
