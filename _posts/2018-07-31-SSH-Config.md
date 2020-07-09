@@ -6,13 +6,77 @@ tags: SSH
 key: SSH-Config-2018-07-31
 ---
 
-## SSH_CONFIG 中的选项说明
+## 客户端配置文件 SSH_CONFIG
+
+参考手册页了解详细内容
 
 ```zsh
 man 5 ssh_config
 ```
 
+### 配置文件段
+
+客户端配置文件可以划分成段。每个段包含一个或一组主机的设置。
+
 <!--more-->
+
+OpenSSH 以 `Host` 关键字开始一个新段，后面跟的字符串称为**主机规范 (Host Specification)**。主机规范可以是以下几种类型：
+
+主机名
+
+```text
+Host server.example.com
+```
+
+IP 地址
+
+```text
+Host 10.10.10.10
+```
+
+主机别名
+
+```text
+Host nickname
+```
+
+glob_expression 模式
+
+```text
+Host *.example.com
+Host 10.10.10.*
+Host *
+```
+
+### 多次匹配
+
+因为主机规范中可以使用模式，因此一个主机名可以和配置文件中一或多个段匹配。多个段中的关键字可以同时生效，如果同一个关键字在多个段中出现，OpenSSH 将使用第一个出现的值。例如：
+
+```text
+Host *.example.com
+    Compression yes
+    ForwardAgent yes
+
+Host *.com
+    Compression no
+    PasswordPromptLogin no
+```
+
+如果执行 `ssh server.example.com`，使用的配置会是
+
+```text
+Compression yes
+ForwardAgent yes
+PasswordPromptLogin no
+```
+
+如果某些关键字可以应用于所有主机，可以使用下面的段来配置
+
+```text
+Host *
+```
+
+该段如果放在文件第一段，会强制所有主机应用配置，比如禁用某些非安全选项。如果放在文件最后一段，那么可以做为所有主机缺省配置，当主机没有相应设置时，默认开启某些特性。
 
 ## SSH Client端个人配置文件
 
@@ -27,7 +91,7 @@ ServerAliveInterval 30
 ServerAliveCountMax 10
 
 # Access the remote host using proxy
-Host github github.com
+Host github
     HostName github.com
     Port 22
     User git
@@ -60,13 +124,14 @@ Host host3
     ProxyCommand ssh -W %h:%p host2
 
 # Local port forwarding
-# e.g. ssh -N -f -L 5432:dbserver:5432 username@jumphost
-# Usage: ssh -N -f jumphost
-Host jumphost
-    Hostname jumphost
-    User username
+# e.g. ssh -N -f -J user@jumphost -L 5432:localhost:5432 dba@dbserver
+# Usage: ssh -N -f forward-5432
+Host forward-5432
+    Hostname dbserver
+    User dba
     IdentityFile ~/.ssh/id_rsa
-    LocalForward 5432 dbserver:5342
+    ProxyJump user@jumphost
+    LocalForward 5432 localhost:5342
 ```
 
 ## [主机跳转]
@@ -77,37 +142,35 @@ Host jumphost
 Host server
     HostName 192.168.88.12
     User fred
-    ProxyJump user@jumphost.example.org:22
+    ProxyJump user@jumphost:22
 ```
 
 对应的命令行方式是`-J`参数
 
 ```zsh
-ssh -J user@jumphost1.example.org:22 fred@192.168.5.38
+ssh -J user@jumphost1:22 fred@192.168.5.38
 ```
 
 在 OpenSSH 7.2 及之前的版本，只能在配置文件或命令行使用`ProxyCommand`选项
 
 ```text
 Host server
-    Hostname server.example.org
-    ProxyCommand ssh -W %h:%p jumphost.example.org
+    ProxyCommand ssh -W %h:%p jumphost
 ```
 
 对应的命令行方式是`-o ProxyCommand`参数
 
 ```zsh
-ssh -o ProxyCommand="ssh -W %h:%p jumphost.example.org" server.example.org
+ssh -o ProxyCommand="ssh -W %h:%p jumphost" server
 ```
 
 如果跳转机与目标机的用户名及密钥不一样，可以在配置文件中分别指定
 
 ```text
 Host server
-    HostName server.example.org
     User fred
     IdentityFile /home/fred/.ssh/fred_key
-    ProxyCommand ssh -l user -i /home/fred/.ssh/user_key jumphost.example.org -W %h:%p
+    ProxyCommand ssh -l user -i /home/fred/.ssh/user_key jumphost -W %h:%p
 ```
 
 ### [多主机跳转]
@@ -116,24 +179,21 @@ Host server
 
 ```text
 Host machine1
-        Hostname server.example.org
         User fred
         IdentityFile /home/fred/.ssh/machine1_e25519
         Port 2222
 
 Host machine2
-        Hostname 192.168.15.21
         User fred
         IdentityFile /home/fred/.ssh/machine2_e25519
         Port 2222
-        ProxyCommand ssh -W %h:%p machine1
+        ProxyJump machine1
 
 Host machine3
-        Hostname 10.42.0.144
         User fred
         IdentityFile /home/fred/.ssh/machine3_e25519
         Port 2222
-        ProxyCommand ssh -W %h:%p machine2
+        ProxyJump machine2
 ```
 
 如果 `ProxyJump` 选项可用，可以使用命令 `ssh -J user1@host1,user2@host2 user3@host3` 在命令行指定多主机跳转，多个跳转主机之间用逗号分隔。
@@ -145,7 +205,7 @@ Host machine3
 也可以使用 `LocalForward` 选项将本地端口转发的配置写到 `~/.ssh/config` 文件中。
 
 ```text
-Host port-5432
+Host forward-5432
     Hostname dbserver
     User dba
     IdentityFile ~/.ssh/id_rsa
@@ -153,7 +213,7 @@ Host port-5432
     LocalForward 5432 localhost:5342
 ```
 
-通过上面配置，可以使用命令 `ssh -N port-5432` 建立本地 `5342` 到 `dbserver:5432` 的端口转发（经过多次跳转）。
+通过上面配置，可以使用命令 `ssh -N forward-5432` 建立本地 `5342` 到 `dbserver:5432` 的端口转发（经过多次跳转）。
 
 ## 参考文档
 
