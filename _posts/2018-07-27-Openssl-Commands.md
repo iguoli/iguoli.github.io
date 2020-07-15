@@ -199,13 +199,50 @@ openssl pkcs7 -print_certs -in certificate.p7b -out certificate.pem
 |  `C`   |         Country          |       两字母的国家代码       |             US             |
 | `MAIL` |      Email address       |     公司或部门的联系邮箱     |    support@it.corp.com     |
 
-`openssl req` 命令通常用来创建和处理 `PKCS#10` 格式的证书. 可以创建自签名的证书，例如根证书.
+这些信息可以在自定义的配置文件中提前配置，例如创建一个 `openssl.cnf` 的配置文件，内容如下:
+
+```conf
+[ req ]
+distinguished_name = req_distinguished_name
+req_extensions     = req_ext
+
+[ req_distinguished_name ]
+countryName                     = Country Name (2 letter code)
+countryName_default             = CN
+stateOrProvinceName             = State or Province Name (full name)
+stateOrProvinceName_default     = Bejing
+localityName                    = Locality Name (eg, city)
+localityName_default            = Chaoyang
+organizationName                = Organization Name (eg, company)
+organizationName_default        = Galaxy, LTD
+organizationalUnitName          = Organizational Unit Name (eg, section)
+organizationalUnitName_default  = Sales
+commonName                      = Common Name (e.g. server FQDN or YOUR name)
+commonName_max                  = 64
+commonName_default              = localhost
+emailAddress                    = Email Address
+emailAddress_max                = 64
+emailAddress_default            = sales@galaxy.com
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1   = www.galaxy.com
+DNS.2   = galaxy.com
+DNS.3   = *.galaxy.com
+IP.1    = 10.10.10.10
+```
+
+其中 `[ req_ext ]` 中配置了 **Subject Alternative Name (SAN)**，可以在随后生成 CSR 或自签名证书时使用。
+
+`openssl req` 命令通常用来创建和处理 `PKCS#10` 格式的证书，也可以创建自签名证书。
 
 - ***-days \<n\>***  
-  指定证书有效期，默认是30天. 与 `-x509` 选项一起使用.
+  指定证书有效期，默认是30天，与 `-x509` 选项一起使用
 
 - ***-newkey rsa:2048***  
-  生成一个 2048 位的 RSA 私钥
+  生成一个新的 CSR，同时生成一个 2048 位的 RSA 私钥
 
 - ***-keyout \<keyfile\>***  
   新私钥要写入的文件
@@ -213,7 +250,7 @@ openssl pkcs7 -print_certs -in certificate.p7b -out certificate.pem
 - ***-nodes***  
   不对新私钥加密
 
-- ***-private \<keyfile\>***  
+- ***-key \<keyfile\>***  
   读取指定的私钥文件.
 
 - ***-text***  
@@ -223,7 +260,7 @@ openssl pkcs7 -print_certs -in certificate.p7b -out certificate.pem
   不打印编码后版本 (BASE64编码)
 
 - ***-new***  
-  生成一个新的证书请求，会提示用户输入相关字段的值，如果没有 ***-private*** 选项，则会生成一个新的 RSA 私钥.
+  生成一个新的证书请求，会提示用户输入相关字段的值，如果没有 ***-key*** 选项，会使用指定配置文件中的信息生成一个新的 RSA 私钥.
 
 - ***-x509***  
   输出自签名的证书，而不是请求一个证书. 通常用于生成测试证书或自签名的根证书.
@@ -235,17 +272,18 @@ openssl pkcs7 -print_certs -in certificate.p7b -out certificate.pem
   指定签署请求时使用的信息摘要算法，如 `-md5`，`-sha1`，`-sha256`
 
 ```zsh
-# 生成一个 2048 位的无密码保护私钥和一个 CSR
-openssl req -newkey rsa:2048 -nodes -keyout private.key -out domain.csr
+# 生成一个 2048 位的无密码保护私钥和一个新的 CSR，使用 openssl.cnf 中的配置信息
+openssl req -newkey rsa:2048 -nodes -keyout private.key -out domain.csr -config openssl.cnf
 
 # 使用已有的私钥生成一个新的 CSR
-openssl req -key private.key -new -out domain.csr
+openssl req -new -key private.key -out domain.csr
 
 # 查看 CSR 证书
 openssl req -in domain.csr -text -noout
 
-# 生成一个自签名信息
-openssl req -new -x509 -days 365 -private ca-private.key -sha256 -subj '/' -out ca.pem
+# 生成一个新的自签名证书，并且使用 openssl.cnf 中的 [ req_ext ] 扩展来设置 Subject Alternative Name (SAN)
+# 使用 openssl x509 也可以生成自签名证书，见后面 x509 部分
+openssl req -new -x509 -days 365 -key private.key -sha256 -extensions req_ext -config openssl.cnf -out self-signed.crt
 ```
 
 ### PKCS#12 - 个人消息交换标准（Personal Information Exchange Syntax Standard）
@@ -335,7 +373,29 @@ openssl x509 -inform DER -in certificate.der -out certificate.pem
 
 # 查看 PEM 格式证书
 openssl x509 -in certificate.pem -text -noout
+
+# 为 CSR 生成自签名证书
+openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out domain.crt -extensions req_ext -extfile openssl.cnf
 ```
+
+### 部分 x509 命令参数
+
+> -days arg
+> The number of days to make a certificate valid for.  The default is 30 days.
+>
+> -extensions section
+> The section to add certificate extensions from.  If this option is not specified, the extensions
+> should either be contained in the unnamed (default) section or the default section should contain
+> a variable called "extensions" which contains the section to use.
+>
+> -extfile file
+> File containing certificate extensions to use.  If not specified, no extensions are added to the certificate.
+>
+> -req
+> Expect a certificate request on input instead of a certificate.
+>
+> -signkey file
+> Self-sign file using the supplied private key.
 
 ### 检查证书与私钥是否匹配
 
@@ -356,7 +416,7 @@ openssl x509 -noout -modulus -in certificate.pem | openssl md5 ;\
 openssl rsa -noout -modulus -in private.key |openssl md5
 ```
 
-### 例子 - 证书的文本内容
+### 例子 - 证书内容
 
 ```text
 Certificate:
