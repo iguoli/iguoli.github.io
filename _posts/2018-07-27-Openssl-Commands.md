@@ -1,7 +1,7 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-modify_date: 2020-05-11
+modify_date: 2020-07-15
 tags: Encryption OpenSSL
 key: Openssl-Commands-2018-07-27
 ---
@@ -35,7 +35,7 @@ openssl no-<command>
 
 ## 证书及私钥说明
 
-使用 HTTPS 方式访问 Web 服务，需要客户端信任由服务端使用的证书。
+使用 HTTPS 方式访问 Web 服务，客户端需要信任由服务端生成的证书。
 
 ![https connection](/assets/images/openssl/https_connection.png)
 
@@ -106,79 +106,6 @@ gP+frXcbdgp6jgsLWqn6uRxI3Cp/3qJCWr3foeDsyyxEDJjJXi77heIwoyOsfDDQ
 -----END RSA PRIVATE KEY-----
 ```
 
-## X.509 证书
-
-**[X.509][1]** 是[公钥证书 (Public Key Certificate)][2] 的标准格式，用来证明公开密钥持有者的身份。此文件包含了公钥信息、持有者身份信息（主体）、以及数字证书认证机构（发行者）对这份文件的数字签名，以保证这个文件的整体内容正确无误。
-
-`openssl x509` 命令可以显示证书信息，转换证书格式 (PEM <-> DER), 像 ***mini CA*** 一样签署一个证书请求，或者编辑证书。
-
-```zsh
-# 查看DER证书
-openssl x509 -in certificate.der -inform der -text -noout
-```
-
-```zsh
-# convert DER to PEM
-openssl x509 -inform DER -in certificate.der -out certificate.pem
-```
-
-```zsh
-# 查看PEM证书
-openssl x509 -in certificate.pem -text -noout
-```
-
-```text
-Certificate:
-    Data:
-        Version: 3 (0x2)
-        Serial Number:
-            10:e6:fc:62:b7:41:8a:d5:00:5e:45:b6
-        Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C=BE, O=GlobalSign nv-sa, CN=GlobalSign Organization Validation CA - SHA256 - G2
-        Validity
-            Not Before: Nov 21 08:00:00 2016 GMT
-            Not After : Nov 22 07:59:59 2017 GMT
-        Subject: C=US, ST=California, L=San Francisco, O=Wikimedia Foundation, Inc., CN=*.wikipedia.org
-        Subject Public Key Info:
-            Public Key Algorithm: id-ecPublicKey
-                Public-Key: (256 bit)
-            pub:
-                    00:c9:22:69:31:8a:d6:6c:ea:da:c3:7f:2c:ac:a5:
-                    af:c0:02:ea:81:cb:65:b9:fd:0c:6d:46:5b:c9:1e:
-                    9d:3b:ef
-                ASN1 OID: prime256v1
-                NIST CURVE: P-256
-        X509v3 extensions:
-            X509v3 Key Usage: critical
-                Digital Signature, Key Agreement
-            Authority Information Access:
-                CA Issuers - URI:http://secure.globalsign.com/cacert/gsorganizationvalsha2g2r1.crt
-                OCSP - URI:http://ocsp2.globalsign.com/gsorganizationvalsha2g2
-            X509v3 Certificate Policies:
-                Policy: 1.3.6.1.4.1.4146.1.20
-                  CPS: https://www.globalsign.com/repository/
-                Policy: 2.23.140.1.2.2
-            X509v3 Basic Constraints:
-                CA:FALSE
-            X509v3 CRL Distribution Points:
-                Full Name:
-                  URI:http://crl.globalsign.com/gs/gsorganizationvalsha2g2.crl
-            X509v3 Subject Alternative Name:
-                DNS:wikipedia.org, DNS:*.mediawiki.org, DNS:wikimedia.org
-            X509v3 Extended Key Usage:
-                TLS Web Server Authentication, TLS Web Client Authentication
-            X509v3 Subject Key Identifier:
-                28:2A:26:2A:57:8B:3B:CE:B4:D6:AB:54:EF:D7:38:21:2C:49:5C:36
-            X509v3 Authority Key Identifier:
-                keyid:96:DE:61:F1:BD:1C:16:29:53:1C:C0:CC:7D:3B:83:00:40:E6:1A:7C
-
-    Signature Algorithm: sha256WithRSAEncryption
-         8b:c3:ed:d1:9d:39:6f:af:40:72:bd:1e:18:5e:30:54:23:35:
-         ...
-```
-
-![Certificate](../assets/images/secure/x509.png)
-
 ## [RSA](https://zh.wikipedia.org/wiki/RSA加密演算法)
 
 **RSA** 是常用的非对称加密算法，用于生成公钥和私钥对.
@@ -196,10 +123,10 @@ Certificate:
 
 ```zsh
 # 生成 2048 位不带密码保护的私钥
-openssl genrsa -out private.pem 2048
+openssl genrsa -out private.key 2048
 
 # 生成 4096 位带密码保护的私钥
-openssl genrsa -aes256 -out private.pem 4096
+openssl genrsa -aes256 -out private.key 4096
 ```
 
 `openssl rsa` 命令处理 RSA 密钥. 可以转换不同格式的密钥并打印密钥组成内容
@@ -224,19 +151,22 @@ openssl genrsa -aes256 -out private.pem 4096
 
 ```zsh
 # 打印密钥编码后版本
-openssl rsa -in private.pem
+openssl rsa -in private.key
 
 # 打印密钥纯文本版本
-openssl rsa -in private.pem -text -noout
+openssl rsa -in private.key -text -noout
 
 # 读取私钥，输出公钥
-openssl rsa -in private.pem -pubout -out public.pem
+openssl rsa -in private.key -pubout -out public.pem
 
 # 删除私钥的保护密码
-openssl rsa -in private.pem -out new-private.pem
+openssl rsa -in encrypted.key -out unencrypted.key
+
+# 给私钥添加密码保护
+openssl rsa -aes256 -in unencrypted.key -out encrypted.key
 
 # 将私钥从 PEM 格式转换成 DER 格式
-openssl rsa -in private.pem -outform DER -out private.der
+openssl rsa -in private.key -outform DER -out private.der
 ```
 
 ```zsh
@@ -252,7 +182,7 @@ ssh-keygen -y -f id_rsa > id_rsa.pub
 
 ```zsh
 # 将 p7b 格式的证书转换成 x509 格式的证书
-openssl pkcs7 -print_certs -in certificat.p7b -out certificate.cer
+openssl pkcs7 -print_certs -in certificate.p7b -out certificate.pem
 ```
 
 ### PKCS#10 - 证书申请标准（Certification Request Standard）
@@ -306,13 +236,16 @@ openssl pkcs7 -print_certs -in certificat.p7b -out certificate.cer
 
 ```zsh
 # 生成一个 2048 位的无密码保护私钥和一个 CSR
-openssl req -newkey rsa:2048 -nodes -keyout domain.pem -out domain.csr
+openssl req -newkey rsa:2048 -nodes -keyout private.key -out domain.csr
+
+# 使用已有的私钥生成一个新的 CSR
+openssl req -key private.key -new -out domain.csr
 
 # 查看 CSR 证书
 openssl req -in domain.csr -text -noout
 
 # 生成一个自签名信息
-openssl req -new -x509 -days 365 -private ca-private -sha256 -subj '/' -out ca.pem
+openssl req -new -x509 -days 365 -private ca-private.key -sha256 -subj '/' -out ca.pem
 ```
 
 ### PKCS#12 - 个人消息交换标准（Personal Information Exchange Syntax Standard）
@@ -359,31 +292,123 @@ openssl req -new -x509 -days 365 -private ca-private -sha256 -subj '/' -out ca.p
   The output file to write to, or standard output if not specified.
 
 ```zsh
-# 使用 pem 格式的证书和私钥生成 p12/pfx 证书
-openssl pkcs12 -export -inkey private.pem -in certificate.pem -out certificate.p12
-openssl pkcs12 -export -inkey private.pem -in certificate.pem -out certificate.pfx
+# 使用 PEM 格式的证书，上级签发证书和私钥生成 P12/PFX 证书
+openssl pkcs12 -export -inkey private.key -in certificate.pem -certfile CACert.pem -out certificate.pfx
 
-# 将 p12/pfx 中的证书转换为 pem 证书
-openssl pkcs12 -in certificate.p12 -nokeys -out certificate.pem
+# 将包含私钥和证书的 P12/PFX 文件转换成 PEM 格式
+openssl pkcs12 -in keystore.pfx -out keystore.pem
 
-# 将 p12/pfx 中的私钥转换为 pem 私钥
-openssl pkcs12 -in certificate.p12 -nocerts -out private.pem -nodes
+# 将 P12/PFX 中的证书输出为 PEM 证书
+openssl pkcs12 -in keystore.pfx -nokeys -out certificate.pem
 
-# 查看证书与私钥
-openssl pkcs12 -in certificate.p12
+# 将 P12/PFX 中的私钥输出为 PEM 私钥
+openssl pkcs12 -in keystore.pfx -nocerts -out private.key -nodes
 
-# 查看客户端证书
-openssl pkcs12 -in certificate.p12 -nokeys -cacerts
+# 查看 P12/PFX 文件
+openssl pkcs12 -in keystore.pfx
 
-# 查看上级 CA 证书
-openssl pkcs12 -in certificate.p12 -nokeys -clcerts
+# 查看 P12/PFX 文件中的证书
+openssl pkcs12 -in keystore.pfx -nokeys -cacerts
 
-# 查看整个证书链和私钥
-openssl pkcs12 -in certificate.p12 -chain
+# 查看 P12/PFX 文件中的上级 CA 证书
+openssl pkcs12 -in keystore.pfx -nokeys -clcerts
 
-# 查看证书链和私钥额外信息
-openssl pkcs12 -in certificate.p12 -info
+# 查看 P12/PFX 文件中的证书链和私钥
+openssl pkcs12 -in keystore.pfx -chain
+
+# 查看 P12/PFX 文件中的证书链和私钥的额外信息
+openssl pkcs12 -in keystore.pfx -info
 ```
+
+## X.509 证书
+
+**[X.509][1]** 是[公钥证书 (Public Key Certificate)][2] 的标准格式，用来证明公开密钥持有者的身份。此文件包含了公钥信息、持有者身份信息（主体）、以及数字证书认证机构（发行者）对这份文件的数字签名，以保证这个文件的整体内容正确无误。
+
+`openssl x509` 命令可以显示证书信息，转换证书格式 (PEM <-> DER), 像 ***mini CA*** 一样签署一个证书请求，或者编辑证书。
+
+```zsh
+# 查看 DER 格式证书
+openssl x509 -in certificate.der -inform der -text -noout
+
+# convert DER to PEM
+openssl x509 -inform DER -in certificate.der -out certificate.pem
+
+# 查看 PEM 格式证书
+openssl x509 -in certificate.pem -text -noout
+```
+
+### 检查证书与私钥是否匹配
+
+比较 CSR，证书和私钥中所包含公钥信息的 MD5 值，确保它们一致。
+
+```zsh
+openssl x509 -noout -modulus -in certificate.pem | openssl md5
+
+openssl req -noout -modulus -in csr.pem | openssl md5
+
+openssl rsa -noout -modulus -in private.key |openssl md5
+```
+
+使用一条命令来比较证书与私钥是否匹配
+
+```zsh
+openssl x509 -noout -modulus -in certificate.pem | openssl md5 ;\
+openssl rsa -noout -modulus -in private.key |openssl md5
+```
+
+### 证书的文本内容
+
+```text
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            10:e6:fc:62:b7:41:8a:d5:00:5e:45:b6
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=BE, O=GlobalSign nv-sa, CN=GlobalSign Organization Validation CA - SHA256 - G2
+        Validity
+            Not Before: Nov 21 08:00:00 2016 GMT
+            Not After : Nov 22 07:59:59 2017 GMT
+        Subject: C=US, ST=California, L=San Francisco, O=Wikimedia Foundation, Inc., CN=*.wikipedia.org
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+            pub:
+                    00:c9:22:69:31:8a:d6:6c:ea:da:c3:7f:2c:ac:a5:
+                    af:c0:02:ea:81:cb:65:b9:fd:0c:6d:46:5b:c9:1e:
+                    9d:3b:ef
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Agreement
+            Authority Information Access:
+                CA Issuers - URI:http://secure.globalsign.com/cacert/gsorganizationvalsha2g2r1.crt
+                OCSP - URI:http://ocsp2.globalsign.com/gsorganizationvalsha2g2
+            X509v3 Certificate Policies:
+                Policy: 1.3.6.1.4.1.4146.1.20
+                  CPS: https://www.globalsign.com/repository/
+                Policy: 2.23.140.1.2.2
+            X509v3 Basic Constraints:
+                CA:FALSE
+            X509v3 CRL Distribution Points:
+                Full Name:
+                  URI:http://crl.globalsign.com/gs/gsorganizationvalsha2g2.crl
+            X509v3 Subject Alternative Name:
+                DNS:wikipedia.org, DNS:*.mediawiki.org, DNS:wikimedia.org
+            X509v3 Extended Key Usage:
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Subject Key Identifier:
+                28:2A:26:2A:57:8B:3B:CE:B4:D6:AB:54:EF:D7:38:21:2C:49:5C:36
+            X509v3 Authority Key Identifier:
+                keyid:96:DE:61:F1:BD:1C:16:29:53:1C:C0:CC:7D:3B:83:00:40:E6:1A:7C
+
+    Signature Algorithm: sha256WithRSAEncryption
+         8b:c3:ed:d1:9d:39:6f:af:40:72:bd:1e:18:5e:30:54:23:35:
+         ...
+```
+
+![Certificate](../assets/images/secure/x509.png)
 
 ## S_CLIENT
 
