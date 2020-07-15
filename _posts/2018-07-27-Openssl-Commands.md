@@ -468,7 +468,7 @@ Certificate:
          ...
 ```
 
-![Certificate](../assets/images/secure/x509.png)
+![Certificate](/assets/images/secure/x509.png)
 
 ## S_CLIENT
 
