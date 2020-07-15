@@ -33,13 +33,13 @@ openssl list-public-key-algorithms
 openssl no-<command>
 ```
 
-## 证书及私钥说明
+## 证书与私钥
 
 使用 HTTPS 方式访问 Web 服务，客户端需要信任由服务端生成的证书。
 
 ![https connection](/assets/images/openssl/https_connection.png)
 
-### 编码格式
+## 编码格式
 
 同样的证书或私钥，可能有不同的编码格式，目前有以下两种编码格式.
 
@@ -356,7 +356,7 @@ openssl x509 -noout -modulus -in certificate.pem | openssl md5 ;\
 openssl rsa -noout -modulus -in private.key |openssl md5
 ```
 
-### 证书的文本内容
+### 例子 - 证书的文本内容
 
 ```text
 Certificate:
