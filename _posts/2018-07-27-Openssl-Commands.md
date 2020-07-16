@@ -381,20 +381,23 @@ openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out do
 ### 部分 x509 命令参数
 
 > -days arg
+>
 > The number of days to make a certificate valid for.  The default is 30 days.
 >
 > -extensions section
-> The section to add certificate extensions from.  If this option is not specified, the extensions
-> should either be contained in the unnamed (default) section or the default section should contain
-> a variable called "extensions" which contains the section to use.
+>
+> The section to add certificate extensions from.  If this option is not specified, the extensions should either be contained in the unnamed (default) section or the default section should contain a variable called "extensions" which contains the section to use.
 >
 > -extfile file
+>
 > File containing certificate extensions to use.  If not specified, no extensions are added to the certificate.
 >
 > -req
+>
 > Expect a certificate request on input instead of a certificate.
 >
 > -signkey file
+>
 > Self-sign file using the supplied private key.
 
 ### 检查证书与私钥是否匹配
