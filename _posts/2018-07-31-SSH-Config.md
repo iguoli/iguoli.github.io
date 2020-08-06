@@ -1,7 +1,7 @@
 ---
 title: SSH Config
 date: 2018-07-31
-modify_date: 2020-06-05
+modify_date: 2020-08-06
 tags: SSH
 key: SSH-Config-2018-07-31
 ---
@@ -45,6 +45,15 @@ Host *.example.com
 Host 10.10.10.*
 Host *
 ```
+
+可以在主机名前加 **感叹号** `!` 忽略某些主机，例如
+
+```text
+Host * !jumphost
+    ProxyJump jumphost
+```
+
+会对所有主机添加 `ProxyJump` 指令，但会忽略 `jumphost` 主机。
 
 ### 多次匹配
 
