@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL 客户端应用
 date: 2020-03-06
-modify_date: 2020-03-12
+modify_date: 2020-08-12
 tags: Database
 key: Postgresql-psql-2020-03-06
 ---
@@ -353,19 +353,19 @@ select date_part(day, now());
 ### 使用 [`Copy`][Copy] 语句在数据库与文件系统之间复制数据
 
 ```sql
-# copies a table to the client using the vertical bar (|) as the field delimite
+-- copies a table to the client using the vertical bar (|) as the field delimite
 COPY country TO STDOUT (DELIMITER '|');
 
-# copy data from a file into the country table
+-- copy data from a file into the country table
 COPY country FROM '/usr1/proj/bray/sql/country_data';
 
-# copy into a file just the countries whose names start with 'A'
+-- copy into a file just the countries whose names start with 'A'
 COPY (SELECT * FROM country WHERE country_name LIKE 'A%') TO '/usr1/proj/bray/sql/a_list_countries.copy';
 
-# copy into a compressed file, you can pipe the output through an external compression program
+-- copy into a compressed file, you can pipe the output through an external compression program
 COPY country TO PROGRAM 'gzip > /usr1/proj/bray/sql/country_data.gz';
 
-# copy into a csv file with header
+-- copy into a csv file with header
 COPY country TO '/tmp/table.csv' (FORMAT csv, HEADER)
 ```
 
