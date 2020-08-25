@@ -1,7 +1,7 @@
 ---
 title: Git 常用命令
 date: 2017-06-05
-modify_date: 2020-01-03
+modify_date: 2020-08-24
 tags: Git
 key: Git-Commands-2017-06-05
 ---
@@ -1150,6 +1150,34 @@ git change-commits GIT_AUTHOR_NAME 'old name' 'new name'
 # 修改历史提交中的邮箱名
 git change-commits GIT_AUTHOR_EMAIL 'old@email.com' 'new@email.com'
 ```
+
+## 其它有用的命令
+
+### 在历史提交中查找文件（包括已删除文件）
+
+```zsh
+git log --oneline --all -- 'file-full-path'
+
+git log --oneline --all --full-history -- 'file-full-path'
+```
+
+如果只想查看该文件的最后一次改动提交，可以加上 `-1` 参数
+
+```zsh
+git log --oneline --all -1 -- 'file-full-path'
+
+git log --oneline --all --full-history -1 -- 'file-full-path'
+```
+
+### 在历史提交中查找文件内容的改动
+
+例如，查找字符串 `-----BEGIN RSA PRIVATE KEY-----` 何时被添加，何时被改动，何时被删除
+
+```zsh
+git log --oneline --all -S '-----BEGIN RSA PRIVATE KEY-----'
+```
+
+如果需要更复杂的字符串查找，可以使用正则表达式选项 `-G<regex>`。
 
 ## 使用 SSH KEY 访问 Github
 
