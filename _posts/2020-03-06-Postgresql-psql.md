@@ -451,12 +451,13 @@ psql -U postgres -d mydb -f db.sql
 
 数据库集群备份。`pg_dump` 只能备份单个数据库，而 `pg_basebackup` 可以备份整个 PostgreSQL 实例。
 
-编辑 [pg_hba.conf] 文件设置数据库复制权限
+编辑主数据库的 [pg_hba.conf] 文件设置数据库复制权限
 
 ```conf
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
-local   replication     postgres                                peer
-host    replication     postgres        10.0.0.2/32             md5
+local   replication     postgres                                peer  # 允许本机与数据库同名的 postgres 用户对数据库进行复制
+host    replication     postgres        10.0.0.2/32             md5   # 允许从 IP 为 10.0.0.2 的主机使用 postgres 用户及密码登录数据库进行复制
+host    replication     all             0.0.0.0/0               trust # 允许从任意主机使用任意数据库用户登录数据库进行复制
 ```
 
 在本地备份为 tar.gz 包
@@ -497,4 +498,4 @@ service postgresql-9.4 start
 [pg_restore]: https://www.postgresql.org/docs/current/app-pgrestore.html
 
 [pg_basebackup]: https://www.postgresql.org/docs/current/app-pgbasebackup.html
-[pg_hba.conf]: https://www.postgresql.org/docs/12/auth-pg-hba-conf.html
+[pg_hba.conf]: https://www.postgresql.org/docs/current/auth-pg-hba-conf.html
