@@ -555,6 +555,12 @@ openssl s_client -showcerts -servername example.com -connect example.com:443 </d
 openssl s_client -showcerts -connect example.com:443 </dev/null
 ```
 
+使用 HTTP 代理
+
+```zsh
+openssl s_client -proxy 10.1.1.8:8800 -showcerts -connect example.com:443 </dev/null
+```
+
 显示服务器证书的详细信息
 
 ```zsh
