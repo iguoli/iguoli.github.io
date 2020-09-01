@@ -5,7 +5,7 @@ tags: Chef
 key: Chef-Learning-Note-2018-07-01
 ---
 
-# 登录 Chef Server 下载 Starter Kit
+## 登录 Chef Server 下载 Starter Kit
 
 1. 打开 [Chef hosted 官网](https://manage.chef.io/signup) 注册并登录
 2. 在 chef server 中创建新的组织
@@ -13,7 +13,7 @@ key: Chef-Learning-Note-2018-07-01
 
 <!--more-->
 
-# 检查是否可以正确连接到 Chef Server
+## 检查是否可以正确连接到 Chef Server
 
 ```zsh
 $ cd ~/chef-repo
@@ -31,13 +31,13 @@ $ mkdir ~/chef-repo/cookbooks
 $ chef generate cookbook ~/chef-repo/cookbooks/your_cookbook_name
 ```
 
-# 本地测试 Recipes
+## 本地测试 Recipes
 
 ```zsh
 chef-client --local-mode hello.rb
 ```
 
-# 上传 cookbook 到 Chef server
+## 上传 cookbook 到 Chef server
 
 ```zsh
 $ cd ~/chef-repo/
@@ -50,7 +50,7 @@ $ knife cookbook list
 learn_chef_httpd   0.1.0
 ```
 
-# 启动 Node 关联到 Chef Server 并执行 Recipes
+## 启动 Node 关联到 Chef Server 并执行 Recipes
 
 ```zsh
 $ cd ~/chef-repo
@@ -76,15 +76,18 @@ Update your node's configuration
 - You ran `knife bootstrap` to associate your node with the Chef server and do an initial check-in. Bootstrapping is a one-time process.
 - The `knife ssh` command enables you to update your node's configuration when your cookbook changes.
 
-# Chef 模板
+## Chef 模板
 
 - Chef server created what's called a `node object`
 - The `<%= %>` syntax enables you to provide placeholders in your template file.
 
-# 更新 cookbook 的版本等信息
+## 更新 cookbook 的版本等信息
 
 ```zsh
-$ vim ~/chef-repo/cookbooks/learn_chef_httpd/metadata.rb
+vim ~/chef-repo/cookbooks/learn_chef_httpd/metadata.rb
+```
+
+```ruby
 name 'learn_chef_httpd'
 maintainer 'The Authors'
 maintainer_email 'you@example.com'
@@ -96,13 +99,13 @@ issues_url 'https://github.com/learn-chef/learn_chef_httpd/issues' if respond_to
 source_url 'https://github.com/learn-chef/learn_chef_httpd' if respond_to?(:source_url)
 ```
 
-# 在 Node 上执更新后的 cookbook
+## 在 Node 上执更新后的 cookbook
 
 ```zsh
 knife ssh 'name:node-centos' 'sudo chef-client' -x vagrant -i ~/.ssh/id_rsa -a ipaddress
 ```
 
-# 从 Berkshelf 下载 cookbook
+## 从 Berkshelf 下载 cookbook
 
 Berkshelf is a tool that helps you resolve cookbook dependencies.
 
@@ -127,7 +130,7 @@ Uploaded cron (6.1.1) to: 'https://api.chef.io/organizations/learning2018'
 Uploaded chef-client (10.1.0) to: 'https://api.chef.io/organizations/learning2018'
 ```
 
-# 创建 role
+## 创建 role
 
 Roles enable you to focus on the function your node performs collectively rather than each of its individual components (its run-list, node attributes, and so on). For example, you might have a web server role, a database role, or a load balancer role. Here, you'll create a role named web to define your node's function as a web server.
 
@@ -170,34 +173,34 @@ knife node run_list set node-centos 'role[web]'
 knife node show node1-centos --run-list
 ```
 
-# 启动 chef-client 执行 role
+## 启动 chef-client 执行 role
 
 ```zsh
 knife ssh 'role:web' 'sudo chef-client' -x vagrant -a ipaddress
 ```
 
-# Clean up your environment
+## Clean up your environment
 
-## Delete the node from the Chef server
+### Delete the node from the Chef server
 
 ```zsh
 knife node delete node-centos --yes
 knife client delete node-centos --yes
 ```
 
-## Delete your cookbook from the Chef server
+### Delete your cookbook from the Chef server
 
 ```zsh
 knife cookbook delete learn_chef_httpd --all --yes
 ```
 
-## Delete the role from the Chef server
+### Delete the role from the Chef server
 
 ```zsh
 knife role delete web --yes
 ```
 
-## Delete the RSA private key from your node
+### Delete the RSA private key from your node
 
 ```zsh
 sudo rm /etc/chef/client.pem

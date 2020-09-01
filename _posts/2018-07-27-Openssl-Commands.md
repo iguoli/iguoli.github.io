@@ -358,6 +358,42 @@ openssl pkcs12 -in keystore.pfx -chain
 openssl pkcs12 -in keystore.pfx -info
 ```
 
+### Java KeyStore (JKS)
+
+Java KeyStore 是 Java 存储私钥和公钥信息的存储格式，从 JDK8 开始，Java 推荐使用 PKCS12 格式的 KeyStore。`keytool` 是 Java 密钥和证书管理工具，它将密钥（private key）和证书（certificates）存储在 `keystore` 文件中。
+
+```zsh
+# 将 p12 证书导入 JKS 并指定别名
+keytool -importkeystore -srcstoretype pkcs12 -srckeystore domain.p12 -destkeystore domain.jks -alias friendly_name
+
+# 修改 keystore 保护密码
+keytool -storepasswd -keystore domain.jks -new new_storepass -storepass origin_storepass
+
+# 修改 keypass 保护密码
+keytool -keypasswd -keystore domain.jks -alias friendly_name -keypass origin_keypass -new new_keypass -storepass password
+
+# 查看单个证书
+keytool -printcert -file domain.crt -v
+
+# 列出所有证书
+keytool -list -keystore domain.jks -v -storepass password
+
+# 列出 jre 信任的证书
+keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -v -storepass password
+
+# 使用别名查看特定证书
+keytool -list -keystore domain.jks -alias friendly_name -v -storepass password
+
+# 导入证书
+keytool -import -trustcacerts -file certificate.pem -alias friendly_name -keystore domain.jks -storepass password
+
+# 导出证书
+keytool -export -keystore domain.jks -alias friendly_name -file domain.crt -storepass password
+
+# 删除指定证书
+keytool -delete -keystore domain.jks -alias friendly_name -storepass password
+```
+
 ## X.509 证书
 
 **[X.509][1]** 是[公钥证书 (Public Key Certificate)][2] 的标准格式，用来证明公开密钥持有者的身份。此文件包含了公钥信息、持有者身份信息（主体）、以及数字证书认证机构（发行者）对这份文件的数字签名，以保证这个文件的整体内容正确无误。
