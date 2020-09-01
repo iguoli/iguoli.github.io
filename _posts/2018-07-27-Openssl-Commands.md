@@ -363,8 +363,16 @@ openssl pkcs12 -in keystore.pfx -info
 Java KeyStore 是 Java 存储私钥和公钥信息的存储格式，从 JDK8 开始，Java 推荐使用 PKCS12 格式的 KeyStore。`keytool` 是 Java 密钥和证书管理工具，它将密钥（private key）和证书（certificates）存储在 `keystore` 文件中。
 
 ```zsh
+# keytool 帮助命令
+keytool --help
+keytool -importkeystore --help
+
 # 将 p12 证书导入 JKS 并指定别名
 keytool -importkeystore -srcstoretype pkcs12 -srckeystore domain.p12 -destkeystore domain.jks -alias friendly_name
+
+# 将 JKS 中的私钥导出为 p12 证书
+# 注意: destkeypass 和 deststorepass 的密码相同，这是因为 PKCS12 不支持 KeyStore 和 Key 使用不同的密码。
+keytool -importkeystore -srckeystore domain.jks -srcstorepass store_password -srckeypass key_password -srcalias friendly_name -destalias friendly_name -destkeystore domain.p12 -deststoretype PKCS12 -deststorepass password -destkeypass password
 
 # 修改 keystore 保护密码
 keytool -storepasswd -keystore domain.jks -new new_storepass -storepass origin_storepass
