@@ -1,7 +1,7 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-modify_date: 2020-07-15
+modify_date: 2020-09-07
 tags: Encryption OpenSSL
 key: Openssl-Commands-2018-07-27
 ---
@@ -453,14 +453,44 @@ openssl x509 -noout -modulus -in certificate.pem | openssl md5
 
 openssl req -noout -modulus -in csr.pem | openssl md5
 
-openssl rsa -noout -modulus -in private.key |openssl md5
+openssl rsa -noout -modulus -in private.key | openssl md5
 ```
 
-使用一条命令来比较证书与私钥是否匹配
+- 使用一条命令来比较证书与私钥是否匹配
 
 ```zsh
 openssl x509 -noout -modulus -in certificate.pem | openssl md5 ;\
-openssl rsa -noout -modulus -in private.key |openssl md5
+openssl rsa -noout -modulus -in private.key | openssl md5
+```
+
+- 查看证书完整信息
+
+```zsh
+openssl x509 -text -noout -in certificate.pem
+```
+
+- 查看证书日期信息
+
+```zsh
+openssl x509 -dates -noout -in certificate.pem
+```
+
+- 查看证书过期时间
+
+```zsh
+openssl x509 -enddate -noout -in certificate.pem
+```
+
+- 查看证书 subject
+
+```zsh
+openssl x509 -subject -noout -in certificate.pem
+```
+
+- 查看证书发布者信息
+
+```zsh
+openssl x509 -issuer -noout -in certificate.pem
 ```
 
 ### 例子 - 证书内容
