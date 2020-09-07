@@ -446,7 +446,7 @@ openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out do
 
 ### 检查证书与私钥是否匹配
 
-比较 CSR，证书和私钥中所包含公钥信息的 MD5 值，确保它们一致。
+- 比较 CSR，证书和私钥中所包含公钥信息的 MD5 值，确保它们一致。
 
 ```zsh
 openssl x509 -noout -modulus -in certificate.pem | openssl md5
@@ -462,6 +462,8 @@ openssl rsa -noout -modulus -in private.key | openssl md5
 openssl x509 -noout -modulus -in certificate.pem | openssl md5 ;\
 openssl rsa -noout -modulus -in private.key | openssl md5
 ```
+
+### 查看证书信息
 
 - 查看证书完整信息
 
