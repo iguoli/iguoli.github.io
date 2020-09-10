@@ -463,6 +463,51 @@ openssl x509 -noout -modulus -in certificate.pem | openssl md5 ;\
 openssl rsa -noout -modulus -in private.key | openssl md5
 ```
 
+- 使用脚本检查
+
+`color-variables` 参考 [Bash Colors](https://iguoli.github.io/2017/11/11/Bash-Colors.html#color-variables)
+
+```zsh
+#!/usr/bin/env bash
+
+# script name: is_match
+
+source ~/color-variables
+
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 root_directory keyfile_extension crtfile_extension"
+    echo "Example: is_match . key crt"
+    exit 1
+fi
+
+for dir in $(find $1 -name '.git' -prune -o  -type d -print)
+do 
+    echo -e "\nChecking the directory: ${Yellow}$dir${NC}"
+
+    if ! (ls $dir/*.$2 && ls $dir/*.$3) >/dev/null 2>&1
+    then
+        echo -e "${IWhite}No key or certificate found in $dir, skipping...${NC}"
+        continue
+    fi
+
+    keys=( $dir/*.$2 )
+    crts=( $dir/*.$3 )
+    key=${keys[0]}
+    crt=${crts[0]}
+    key_hash=$(openssl rsa -modulus -noout -in $key | openssl md5)
+    crt_hash=$(openssl x509 -modulus -noout -in $crt | openssl md5)
+
+    echo -e "the ${Yellow}$key${NC} md5 value: $key_hash"
+    echo -e "the ${Yellow}$crt${NC} md5 value: $crt_hash"
+
+    if [ "$key_hash" = "$crt_hash" ]; then
+        echo -e "${RGreen}match.${NC}"
+    else
+        echo -e "${RRed}not match!${NC}"
+    fi
+done
+```
+
 ### 查看证书信息
 
 - 查看证书完整信息

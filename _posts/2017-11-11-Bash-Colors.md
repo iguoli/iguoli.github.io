@@ -139,6 +139,16 @@ KPurple='\033[5;35m'      # Purple
 KCyan='\033[5;36m'        # Cyan
 KWhite='\033[5;37m'       # White
 
+# Reverse
+RBlack='\033[7;30m'       # Black
+RRed='\033[7;31m'         # Red
+RGreen='\033[7;32m'       # Green
+RYellow='\033[7;33m'      # Yellow
+RBlue='\033[7;34m'        # Blue
+RPurple='\033[7;35m'      # Purple
+RCyan='\033[7;36m'        # Cyan
+RWhite='\033[7;37m'       # White
+
 # Background
 On_Black='\033[40m'       # Black
 On_Red='\033[41m'         # Red
