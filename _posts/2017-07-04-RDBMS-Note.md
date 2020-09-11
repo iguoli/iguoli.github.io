@@ -1,5 +1,5 @@
 ---
-title: 关系型数据库笔记
+title: 关系型数据库管理系统 (RDBMS)
 date: 2017-07-04
 tags: Database RDBMS
 key: RDBMS-Note-2017-07-04

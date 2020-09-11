@@ -1,8 +1,8 @@
 ---
-title: Bash参考手册索引
+title: Bash Reference Manual
 date: 2016-06-20
-modify_date: 2020-01-05
-tags: Linux Bash
+modify_date: 2020-09-11
+tags: Bash
 key: Bash-Reference-Manual-2016-06-20
 ---
 
@@ -110,11 +110,13 @@ Bash 的所有内部命令都会在成功时返回 `0`，失败时返回 `非0`�
 
 ## [6.4 Bash 条件表达式][Bash-Conditional-Expressions]
 
-条件表达式由复合命令 `[[` 和内部命令 `test` 与 `[` 使用。
+条件表达式由复合命令 `[[` 以及内部命令 `test` 和 `[` 使用。
 
-字符串比较操作符: `==`, `!=`, `>`, `<`
+- 各类文件测度操作符: `-a`, `-b`, `-d`, `-e`, `-f`, ...
 
-数值比较操作符: `-eq`, `-ne`, `-lt`, `-le`, `-gt`, `-ge`
+- 字符串比较操作符: `==`, `!=`, `>`, `<`
+
+- 数值比较操作符: `-eq`, `-ne`, `-lt`, `-le`, `-gt`, `-ge`
 
 [Bash-Reference-Manual]: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
 [Shell-Commands]: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Commands

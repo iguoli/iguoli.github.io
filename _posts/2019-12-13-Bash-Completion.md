@@ -1,6 +1,7 @@
 ---
-title: 编写 Bash 的自动补全脚本
+title: Bash Completion
 date: 2019-12-04
+modify_date: 2020-09-11
 tags: Bash
 key: Bash-Completion-2019-12-13
 ---
@@ -16,7 +17,7 @@ $ mkdir -p /etc/bash_completion.d
 
 # ssh 的自动补全代码 
 $ vim /etc/bash_completion.d/ssh
-_ssh() 
+_ssh()
 {
     local cur prev opts
     COMPREPLY=()

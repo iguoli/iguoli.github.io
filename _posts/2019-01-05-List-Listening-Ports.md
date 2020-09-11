@@ -1,5 +1,5 @@
 ---
-title: 查看系统监听端口
+title: List Listening Ports
 date: 2019-01-05 14:43:14
 tags: Linux MacOS
 key: List-Listening-Ports-2019-01-05

@@ -163,3 +163,7 @@ On_White='\033[47m'       # White
 echo -e "${Red}Error${NC} Text"
 echo -e "${IGreen}Success${NC}"
 ```
+
+## 参考链接
+
+[How to change the output color of echo in Linux](https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux)

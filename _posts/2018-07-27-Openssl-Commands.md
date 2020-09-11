@@ -1,7 +1,7 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-modify_date: 2020-09-07
+modify_date: 2020-09-11
 tags: Encryption OpenSSL
 key: Openssl-Commands-2018-07-27
 ---
@@ -538,6 +538,12 @@ openssl x509 -subject -noout -in certificate.pem
 
 ```zsh
 openssl x509 -issuer -noout -in certificate.pem
+```
+
+- 检查目录及子目录中所有 `.pem` 和 `.crt` 后辍的证书日期
+
+```zsh
+find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo && echo "%" && openssl x509 -noout -subject -enddate -in %'
 ```
 
 ### 例子 - 证书内容
