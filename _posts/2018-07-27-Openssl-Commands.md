@@ -408,20 +408,6 @@ keytool -delete -keystore domain.jks -alias friendly_name -storepass password
 
 `openssl x509` 命令可以显示证书信息，转换证书格式 (PEM <-> DER), 像 ***mini CA*** 一样签署一个证书请求，或者编辑证书。
 
-```zsh
-# 查看 DER 格式证书
-openssl x509 -in certificate.der -inform der -text -noout
-
-# convert DER to PEM
-openssl x509 -inform DER -in certificate.der -out certificate.pem
-
-# 查看 PEM 格式证书
-openssl x509 -in certificate.pem -text -noout
-
-# 为 CSR 生成自签名证书
-openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out domain.crt -extensions req_ext -extfile openssl.cnf
-```
-
 ### 部分 x509 命令参数
 
 > -days arg
@@ -443,6 +429,77 @@ openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out do
 > -signkey file
 >
 > Self-sign file using the supplied private key.
+
+### 查看证书信息
+
+- 查看证书完整信息
+
+```zsh
+openssl x509 -text -noout -in certificate.pem
+```
+
+- 查看 DER 格式证书
+
+```zsh
+openssl x509 -in certificate.der -inform der -text -noout
+```
+
+- 转换 DER 格式证书到 PEM 格式
+
+```zsh
+openssl x509 -inform DER -in certificate.der -out certificate.pem
+```
+
+- 查看证书日期信息
+
+```zsh
+openssl x509 -dates -noout -in certificate.pem
+```
+
+- 查看证书过期时间
+
+```zsh
+openssl x509 -enddate -noout -in certificate.pem
+```
+
+- 查看证书 subject
+
+```zsh
+openssl x509 -subject -noout -in certificate.pem
+```
+
+- 查看证书发布者信息
+
+```zsh
+openssl x509 -issuer -noout -in certificate.pem
+```
+
+- 检查目录及子目录中所有 `.pem` 和 `.crt` 后辍的证书日期
+
+```zsh
+find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo; echo %; openssl x509 -noout -subject -enddate -in %'
+```
+
+### 根据 CSR 生成自签名证书
+
+```zsh
+openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out domain.crt -extensions req_ext -extfile openssl.cnf
+```
+
+### PEM 证书长度
+
+PEM 标准（RFC1421）强制证书每行使用64个字符，否则会遇到类似下面的 `bad base64 decode`{:.error} 报错
+{:.warning}
+
+```text
+2675996:error:0906D064:PEM routines:PEM_read_bio:bad base64 decode:pem_lib.c:818:
+```
+
+可以使用 UNIX 工具 `fold` 将单行的 PEM 证书转换为标准的每行 64 字符的证书
+
+```zsh
+fold -w 64 oneline.pem > standard.pem
+```
 
 ### 检查证书与私钥是否匹配
 
@@ -481,7 +538,7 @@ if [ "$#" -ne 3 ]; then
 fi
 
 for dir in $(find $1 -name '.git' -prune -o  -type d -print)
-do 
+do
     echo -e "\nChecking the directory: ${Yellow}$dir${NC}"
 
     if ! (ls $dir/*.$2 && ls $dir/*.$3) >/dev/null 2>&1
@@ -508,45 +565,7 @@ do
 done
 ```
 
-### 查看证书信息
-
-- 查看证书完整信息
-
-```zsh
-openssl x509 -text -noout -in certificate.pem
-```
-
-- 查看证书日期信息
-
-```zsh
-openssl x509 -dates -noout -in certificate.pem
-```
-
-- 查看证书过期时间
-
-```zsh
-openssl x509 -enddate -noout -in certificate.pem
-```
-
-- 查看证书 subject
-
-```zsh
-openssl x509 -subject -noout -in certificate.pem
-```
-
-- 查看证书发布者信息
-
-```zsh
-openssl x509 -issuer -noout -in certificate.pem
-```
-
-- 检查目录及子目录中所有 `.pem` 和 `.crt` 后辍的证书日期
-
-```zsh
-find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo && echo "%" && openssl x509 -noout -subject -enddate -in %'
-```
-
-### 例子 - 证书内容
+### 证书内容
 
 ```text
 Certificate:
