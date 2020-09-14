@@ -286,12 +286,12 @@ openssl req -new -x509 -days 365 -key private.key -sha256 -extensions req_ext -c
 
 [PKCS12][6] 是一种证书存储格式，用于实现将许多加密对象存储在一个单独的文件中。通常用它来打包一个私钥及有关的 X.509 证书，或者打包信任链的全部项目。
 
-`openssl pkcs12` 命令用来解析或者创建 `PKCS#12` 格式的证书，参考 [pkcs12][7] 命令获得帮助。
+`openssl pkcs12` 命令用来解析或者创建 PKCS#12 格式的证书，参考 [pkcs12][7] 命令获得帮助。
 
 - 创建 PKCS12 文件，包含私钥，client证书，其它证书，别名及文件保护密码
 
 ```zsh
-openssl pkcs12 -export -inkey private.key -in certificate.pem -certfile CACert.pem -name friendly_name -out keystore.p12 -passout pass:password
+openssl pkcs12 -export -inkey private.key -in certificate.pem -certfile CACert.pem -name entry_alias -out keystore.p12 -passout pass:password
 ```
 
 注意：PKCS12 文件中存储的私钥将使用与 PKCS12 文件相同的保护密码
@@ -344,7 +344,7 @@ openssl pkcs12 -in keystore.p12 -info
 
 ### Java KeyStore (JKS)
 
-Java KeyStore 是 Java 存储私钥和公钥信息的存储格式，从 JDK8 开始，Java 推荐使用 PKCS12 格式的 KeyStore。`keytool` 是 Java 密钥和证书管理工具，它将密钥（private key）和证书（certificates）存储在 `keystore` 文件中。
+**Java KeyStore** 是 Java 存储私钥和公钥信息的存储格式，从 JDK8 开始，Java 推荐使用 PKCS12 格式的密钥库。`keytool` 是 Java 密钥和证书管理工具，用来操作 **Java KeyStore** 文件。
 
 `keytool` 命令中用到两种密码
 
