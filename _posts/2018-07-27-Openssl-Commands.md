@@ -33,6 +33,20 @@ openssl list-public-key-algorithms
 openssl no-<command>
 ```
 
+### Pass Phrase Arguments
+
+`openssl` 中有几个命令可以接受密码参数，例如 `pkcs12`。通常使用 `-passin` 和 `-passout` 做为输入和输出密码。密码可以有多种形式，其格式如下所述。
+
+| Format          | Description                                                                                                                                                                                                                                                                                                                                 |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pass:password` | the actual password is **password**. Since the password is visible to utilities (like 'ps' under Unix) this form should only be used where security is not important.                                                                                                                                                                       |
+| `env:var`       | obtain the password from the environment variable **var**. Since the environment of other processes is visible on certain platforms (e.g. ps under certain Unix OSes) this option should be used with caution.                                                                                                                              |
+| `file:pathname` | the first line of **pathname** is the password. If the same pathname argument is supplied to **-passin** and **-passout** arguments then the first line will be used for the input password and the next line for the output password. **pathname** need not refer to a regular file: it could for example refer to a device or named pipe. |
+| `fd:number`     | read the password from the file descriptor **number**. This can be used to send the data via a pipe for example.                                                                                                                                                                                                                            |
+| `stdin`         | read the password from standard input.                                                                                                                                                                                                                                                                                                      | 
+
+如果命令要求输入密码，但未在参数中提供密码，则命令会在终端提示用户输入密码。
+
 ## 证书与私钥
 
 使用 HTTPS 方式访问 Web 服务，客户端需要信任由服务端生成的证书。
@@ -130,24 +144,6 @@ openssl genrsa -aes256 -out private.key 4096
 ```
 
 `openssl rsa` 命令处理 RSA 密钥. 可以转换不同格式的密钥并打印密钥组成内容
-
-- ***-in \<keyfile\>***  
-  从文件中读取密钥
-
-- ***-out \<keyfile\>***  
-  将密钥文件写入到文件
-
-- ***-pubin***  
-  默认是读取一个私钥，加上这个选项后，则读取一个公钥
-
-- ***-pubout***  
-  默认是输出一个私钥，加上这个选项后，则输出一个公钥
-
-- ***-text***  
-  打印公钥或私钥各个组成部分的纯文本版本和编码后的版本
-
-- ***-noout***  
-  不打印密钥编码后的版本 (BASE64编码)
 
 ```zsh
 # 打印密钥编码后版本
@@ -288,118 +284,131 @@ openssl req -new -x509 -days 365 -key private.key -sha256 -extensions req_ext -c
 
 ### PKCS#12 - 个人消息交换标准（Personal Information Exchange Syntax Standard）
 
-定义了包含私钥与公钥证书（public key certificate）的文件格式。私钥采密码(password)保护。常见的PFX就履行了PKCS#12。
+[PKCS12][6] 是一种证书存储格式，用于实现将许多加密对象存储在一个单独的文件中。通常用它来打包一个私钥及有关的 X.509 证书，或者打包信任链的全部项目。
 
-`openssl pkcs12` 命令用来解析或者创建 `PKCS#12` 格式的证书
+`openssl pkcs12` 命令用来解析或者创建 `PKCS#12` 格式的证书，参考 [pkcs12][7] 命令获得帮助。
 
-- ***-cacerts***  
-  Only output CA certificates (not client certificates).
-
-- ***-clcerts***  
-  Only output client certificates (not CA certificates).
-
-- ***-chain***  
-  Include the entire certificate chain of the user certificate.  The standard CA store is used for this search.  If the search fails, it is considered a fatal error.
-
-- ***-export***  
-  Create a PKCS#12 file (rather than parsing one).
-
-- ***-in \<file\>***  
-  The input file to read from, or standard input if not specified.  The order doesn't matter but one private key and its corresponding certificate should be present. If additional certificates are present, they will also be included in the PKCS#12 file.
-
-- ***-inkey \<file\>***   
-  File to read a private key from. If not present, a private key must be present in the input file.
-
-- ***-info***  
-  Output additional information about the PKCS#12 file structure, algorithms used, and iteration counts.
-
-- ***-name \<name\>***  
-  Specify the "friendly name" for the certificate and private key.  This name is typically displayed in list
-  boxes by software importing the file.
-
-- ***-nocerts***  
-  Do not output certificates.
-
-- ***-nodes***  
-  Do not encrypt private keys.
-
-- ***-nokeys***  
-  Do not output private keys.
-
-- ***-out \<file\>***  
-  The output file to write to, or standard output if not specified.
+- 创建 PKCS12 文件，包含私钥，client证书，其它证书，别名及文件保护密码
 
 ```zsh
-# 使用 PEM 格式的证书，上级签发证书和私钥生成 P12/PFX 证书
-openssl pkcs12 -export -inkey private.key -in certificate.pem -certfile CACert.pem -out certificate.pfx
+openssl pkcs12 -export -inkey private.key -in certificate.pem -certfile CACert.pem -name friendly_name -out keystore.p12 -passout pass:password
+```
 
-# 将包含私钥和证书的 P12/PFX 文件转换成 PEM 格式
-openssl pkcs12 -in keystore.pfx -out keystore.pem
+注意：PKCS12 文件中存储的私钥将使用与 PKCS12 文件相同的保护密码
+{:.warning}
 
-# 将 P12/PFX 中的证书输出为 PEM 证书
-openssl pkcs12 -in keystore.pfx -nokeys -out certificate.pem
+- 解析 PKCS12 文件
 
-# 将 P12/PFX 中的私钥输出为 PEM 私钥
-openssl pkcs12 -in keystore.pfx -nocerts -out private.key -nodes
+```zsh
+openssl pkcs12 -in keystore.p12
 
-# 查看 P12/PFX 文件
-openssl pkcs12 -in keystore.pfx
+# 解析 PKCS12 文件并输出到文件
+openssl pkcs12 -in keystore.p12 -out keystore.pem
+```
 
-# 查看 P12/PFX 文件中的证书
-openssl pkcs12 -in keystore.pfx -nokeys -cacerts
+- 输出 PKCS12 文件中的所有证书到文件
 
-# 查看 P12/PFX 文件中的上级 CA 证书
-openssl pkcs12 -in keystore.pfx -nokeys -clcerts
+```zsh
+openssl pkcs12 -in keystore.p12 -nokeys -out certificate.pem
+```
 
-# 查看 P12/PFX 文件中的证书链和私钥
-openssl pkcs12 -in keystore.pfx -chain
+- 输出 PKCS12 文件中的 client 证书到文件
 
-# 查看 P12/PFX 文件中的证书链和私钥的额外信息
-openssl pkcs12 -in keystore.pfx -info
+```zsh
+openssl pkcs12 -in keystore.p12 -nokeys -clcerts -out certificate.pem
+```
+
+- 输出 PKCS12 文件中的 CA 证书到文件
+
+```zsh
+openssl pkcs12 -in keystore.p12 -nokeys -cacerts -out certificate.pem
+```
+
+- 输出 PKCS12 文件中的私钥到文件，私钥无密码保护
+
+```zsh
+openssl pkcs12 -in keystore.p12 -nocerts -out private.key -nodes
+```
+
+- 查看 PKCS12 文件中的证书链和私钥
+
+```zsh
+openssl pkcs12 -in keystore.p12 -chain
+```
+
+- 查看 PKCS12 文件中的证书链和私钥的额外信息
+
+```zsh
+openssl pkcs12 -in keystore.p12 -info
 ```
 
 ### Java KeyStore (JKS)
 
 Java KeyStore 是 Java 存储私钥和公钥信息的存储格式，从 JDK8 开始，Java 推荐使用 PKCS12 格式的 KeyStore。`keytool` 是 Java 密钥和证书管理工具，它将密钥（private key）和证书（certificates）存储在 `keystore` 文件中。
 
+`keytool` 命令中用到两种密码
+
+- **storepass**: 密钥库的保护密码
+- **keypass**: 密钥库中存储的私钥的保护密码
+
+`keytool -importkeystore` 命令用于将源密钥库中的单个条目或所有条目导入到目标密钥库。
+
+- 提供 **srcalias** 选项后，该命令会将别名标识的单个条目导入目标密钥库。
+  - 如果目标别名未提供 **destalias**，则将 **srcalias** 用作目标别名。
+  - 如果源条目受密码保护，则 **srckeypass** 将用于恢复该条目。
+  - 如果未提供 **srckeypass**，则 `keytool` 将尝试使用 **srcstorepass** 恢复该条目。
+  - 如果未提供 **srcstorepass** 或它不正确，则将提示用户输入密码。
+  - 目标条目将使用 **destkeypass** 保护。如果未提供 **destkeypass**，则目标条目将保持源条目密码。
+
+- 如果未提供 **srcalias** 选项，那么源密钥库中的所有条目都将导入到目标密钥库中。
+  - 每个目标条目将存储在源条目的别名下。
+  - 如果源条目受密码保护，则将使用 **srcstorepass** 恢复该条目。
+  - 如果未提供 **srcstorepass** 或它不正确，则将提示用户输入密码。
+  - 如果目标密钥库中不支持源密钥库条目类型，或者在将条目存储到目标密钥库中时发生错误，则会提示用户是跳过条目还是退出。
+  - 目标条目将受到源条目密码的保护。
+
+- 如果目标别名库中已经存在目标别名，则会提示用户覆盖该条目，或使用其他别名创建新条目。
+
 ```zsh
-# keytool 帮助命令
-keytool --help
-keytool -importkeystore --help
+# 将 P12 文件转换为 Java KeyStore 文件，目标条目使用与源条目相同的别名
+keytool -importkeystore -srckeystore keystore.p12 -srcalias entry_alias -srcstoretype pkcs12 -srcstorepass storepass -destkeystore keystore.jks -deststorepass storepass
 
-# 将 p12 证书导入 JKS 并指定别名
-keytool -importkeystore -srcstoretype pkcs12 -srckeystore domain.p12 -destkeystore domain.jks -alias friendly_name
+# 将 Java KeyStore 文件中转换为 P12 文件，目标条目使用与源条目不同的别名
+keytool -importkeystore -srckeystore keystore.jks -srcalias entry_alias -srcstorepass storepass -destkeystore keystore.p12 -destalias other_alias_name -deststoretype pkcs12 -deststorepass storepass
+```
 
-# 将 JKS 中的私钥导出为 p12 证书
-# 注意: destkeypass 和 deststorepass 的密码相同，这是因为 PKCS12 不支持 KeyStore 和 Key 使用不同的密码。
-keytool -importkeystore -srckeystore domain.jks -srcstorepass store_password -srckeypass key_password -srcalias friendly_name -destalias friendly_name -destkeystore domain.p12 -deststoretype PKCS12 -deststorepass password -destkeypass password
+注意: PKCS12 不支持密钥库和私钥使用不同的保护密码，所以转换到 PKCS12 格式的密钥库时，如果指定了 **destkeypass** 和 **deststorepass** ，那么密码必须相同。
+{:.warning}
 
+`keytool` 其它命令
+
+```zsh
 # 修改 keystore 保护密码
-keytool -storepasswd -keystore domain.jks -new new_storepass -storepass origin_storepass
+keytool -storepasswd -keystore keystore.jks -new new_storepass -storepass origin_storepass
 
 # 修改 keypass 保护密码
-keytool -keypasswd -keystore domain.jks -alias friendly_name -keypass origin_keypass -new new_keypass -storepass password
+keytool -keypasswd -keystore keystore.jks -alias friendly_name -keypass origin_keypass -new new_keypass -storepass password
 
 # 查看单个证书
 keytool -printcert -file domain.crt -v
 
 # 列出所有证书
-keytool -list -keystore domain.jks -v -storepass password
+keytool -list -keystore keystore.jks -v -storepass password
 
 # 列出 jre 信任的证书
 keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -v -storepass password
 
 # 使用别名查看特定证书
-keytool -list -keystore domain.jks -alias friendly_name -v -storepass password
+keytool -list -keystore keystore.jks -alias friendly_name -v -storepass password
 
 # 导入证书
-keytool -import -trustcacerts -file certificate.pem -alias friendly_name -keystore domain.jks -storepass password
+keytool -import -trustcacerts -file certificate.pem -alias friendly_name -keystore keystore.jks -storepass password
 
 # 导出证书
-keytool -export -keystore domain.jks -alias friendly_name -file domain.crt -storepass password
+keytool -export -keystore keystore.jks -alias friendly_name -file domain.crt -storepass password
 
 # 删除指定证书
-keytool -delete -keystore domain.jks -alias friendly_name -storepass password
+keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
 ```
 
 ## X.509 证书
@@ -407,28 +416,6 @@ keytool -delete -keystore domain.jks -alias friendly_name -storepass password
 **[X.509][1]** 是[公钥证书 (Public Key Certificate)][2] 的标准格式，用来证明公开密钥持有者的身份。此文件包含了公钥信息、持有者身份信息（主体）、以及数字证书认证机构（发行者）对这份文件的数字签名，以保证这个文件的整体内容正确无误。
 
 `openssl x509` 命令可以显示证书信息，转换证书格式 (PEM <-> DER), 像 ***mini CA*** 一样签署一个证书请求，或者编辑证书。
-
-### 部分 x509 命令参数
-
-> -days arg
->
-> The number of days to make a certificate valid for.  The default is 30 days.
->
-> -extensions section
->
-> The section to add certificate extensions from.  If this option is not specified, the extensions should either be contained in the unnamed (default) section or the default section should contain a variable called "extensions" which contains the section to use.
->
-> -extfile file
->
-> File containing certificate extensions to use.  If not specified, no extensions are added to the certificate.
->
-> -req
->
-> Expect a certificate request on input instead of a certificate.
->
-> -signkey file
->
-> Self-sign file using the supplied private key.
 
 ### 查看证书信息
 
@@ -659,27 +646,35 @@ openssl s_client -showcerts -servername example.com -connect example.com:443 </d
 
 ### Without SNI
 
-如果远程服务器未使用 SNI，则可以跳过 `-servername` 参数：
+- 如果远程服务器未使用 SNI，则可以跳过 `-servername` 参数：
 
 ```zsh
 openssl s_client -showcerts -connect example.com:443 </dev/null
 ```
 
-使用 HTTP 代理
+- 使用 HTTP 代理
 
 ```zsh
 openssl s_client -proxy 10.1.1.8:8800 -showcerts -connect example.com:443 </dev/null
 ```
 
-显示服务器证书的详细信息
+- 显示服务器证书的详细信息
 
 ```zsh
-echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -text
-# or
-openssl s_client -connect example.com:443 </dev/null 2>/dev/null | openssl x509 -text
+echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -text
 ```
 
-只显示证书的 PEM 格式部分
+```zsh
+openssl s_client -connect example.com:443 </dev/null 2>/dev/null | openssl x509 -noout -text
+```
+
+- 显示服务器证书的所有者和过期时间
+
+```zsh
+echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -subject -enddate
+```
+
+- 显示证书的 PEM 格式部分
 
 ```zsh
 # 单证书
@@ -695,3 +690,5 @@ echo | openssl s_client -showcerts -connect example.com:443 | sed -ne '/-BEGIN C
 [3]: https://en.wikipedia.org/wiki/Fully_qualified_domain_name
 [4]: https://zh.wikipedia.org/wiki/公开密钥认证
 [5]: https://zh.wikipedia.org/wiki/公钥密码学标准
+[6]: https://zh.wikipedia.org/wiki/PKCS_12
+[7]: https://www.openssl.org/docs/man1.1.1/man1/pkcs12.html
