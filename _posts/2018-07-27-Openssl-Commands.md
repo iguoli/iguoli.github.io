@@ -532,7 +532,7 @@ openssl rsa -noout -modulus -in private.key | openssl md5
 source ~/color-variables
 
 if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 root_directory keyfile_extension crtfile_extension"
+    echo "Usage: $0 <root_directory> <keyfile_extension> <certfile_extension>"
     echo "Example: is_match . key crt"
     exit 1
 fi
