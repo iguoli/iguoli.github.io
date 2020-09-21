@@ -178,7 +178,7 @@ ssh-keygen -y -f id_rsa > id_rsa.pub
 
 ```zsh
 # 将 p7b 格式的证书转换成 x509 格式的证书
-openssl pkcs7 -print_certs -in certificate.p7b -out certificate.pem
+openssl pkcs7 -print_certs -in cert.p7b -out cert.pem
 ```
 
 ### PKCS#10 - 证书申请标准（Certification Request Standard）
@@ -291,7 +291,7 @@ openssl req -new -x509 -days 365 -key private.key -sha256 -extensions req_ext -c
 - 创建 PKCS12 文件，包含私钥，client证书，其它证书，别名及文件保护密码
 
 ```zsh
-openssl pkcs12 -export -inkey private.key -in certificate.pem -certfile CACert.pem -name entry_alias -out keystore.p12 -passout pass:password
+openssl pkcs12 -export -inkey private.key -in cert.pem -certfile CACert.pem -name entry_alias -out keystore.p12 -passout pass:password
 ```
 
 注意：PKCS12 文件中存储的私钥将使用与 PKCS12 文件相同的保护密码
@@ -309,19 +309,19 @@ openssl pkcs12 -in keystore.p12 -out keystore.pem
 - 输出 PKCS12 文件中的所有证书到文件
 
 ```zsh
-openssl pkcs12 -in keystore.p12 -nokeys -out certificate.pem
+openssl pkcs12 -in keystore.p12 -nokeys -out cert.pem
 ```
 
 - 输出 PKCS12 文件中的 client 证书到文件
 
 ```zsh
-openssl pkcs12 -in keystore.p12 -nokeys -clcerts -out certificate.pem
+openssl pkcs12 -in keystore.p12 -nokeys -clcerts -out cert.pem
 ```
 
 - 输出 PKCS12 文件中的 CA 证书到文件
 
 ```zsh
-openssl pkcs12 -in keystore.p12 -nokeys -cacerts -out certificate.pem
+openssl pkcs12 -in keystore.p12 -nokeys -cacerts -out cert.pem
 ```
 
 - 输出 PKCS12 文件中的私钥到文件，私钥无密码保护
@@ -402,7 +402,7 @@ keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -v -storepass passwo
 keytool -list -keystore keystore.jks -alias friendly_name -v -storepass password
 
 # 导入证书
-keytool -import -trustcacerts -file certificate.pem -alias friendly_name -keystore keystore.jks -storepass password
+keytool -import -trustcacerts -file cert.pem -alias friendly_name -keystore keystore.jks -storepass password
 
 # 导出证书
 keytool -export -keystore keystore.jks -alias friendly_name -file domain.crt -storepass password
@@ -422,49 +422,55 @@ keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
 - 查看证书完整信息
 
 ```zsh
-openssl x509 -text -noout -in certificate.pem
+openssl x509 -in cert.pem -noout -text
 ```
 
 - 查看 DER 格式证书
 
 ```zsh
-openssl x509 -in certificate.der -inform der -text -noout
+openssl x509 -in cert.der -inform der -text -noout
 ```
 
 - 转换 DER 格式证书到 PEM 格式
 
 ```zsh
-openssl x509 -inform DER -in certificate.der -out certificate.pem
+openssl x509 -inform DER -in cert.der -out cert.pem
 ```
 
 - 查看证书日期信息
 
 ```zsh
-openssl x509 -dates -noout -in certificate.pem
+openssl x509 -in cert.pem -noout -dates
 ```
 
 - 查看证书过期时间
 
 ```zsh
-openssl x509 -enddate -noout -in certificate.pem
+openssl x509 -in cert.pem -noout -enddate
 ```
 
 - 查看证书 subject
 
 ```zsh
-openssl x509 -subject -noout -in certificate.pem
+openssl x509 -in cert.pem -noout -subject
 ```
 
 - 查看证书发布者信息
 
 ```zsh
-openssl x509 -issuer -noout -in certificate.pem
+openssl x509 -in cert.pem -noout -issuer
+```
+
+- 查看证书 SAN (Subject Alternative Name)
+
+```zsh
+openssl x509 -in cert.pem -noout -ext subjectAltName
 ```
 
 - 检查目录及子目录中所有 `.pem` 和 `.crt` 后辍的证书日期
 
 ```zsh
-find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo; echo %; openssl x509 -noout -subject -enddate -in %'
+find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo; echo %; openssl x509 -noout -subject -ext subjectAltName -enddate -in %'
 ```
 
 ### 根据 CSR 生成自签名证书
@@ -493,7 +499,7 @@ fold -w 64 oneline.pem > standard.pem
 - 比较 CSR，证书和私钥中所包含公钥信息的 MD5 值，确保它们一致。
 
 ```zsh
-openssl x509 -noout -modulus -in certificate.pem | openssl md5
+openssl x509 -noout -modulus -in cert.pem | openssl md5
 
 openssl req -noout -modulus -in csr.pem | openssl md5
 
@@ -503,7 +509,7 @@ openssl rsa -noout -modulus -in private.key | openssl md5
 - 使用一条命令来比较证书与私钥是否匹配
 
 ```zsh
-openssl x509 -noout -modulus -in certificate.pem | openssl md5 ;\
+openssl x509 -noout -modulus -in cert.pem | openssl md5 ;\
 openssl rsa -noout -modulus -in private.key | openssl md5
 ```
 
@@ -668,10 +674,10 @@ echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noo
 openssl s_client -connect example.com:443 </dev/null 2>/dev/null | openssl x509 -noout -text
 ```
 
-- 显示服务器证书的所有者和过期时间
+- 显示服务器证书的所有者，SAN和过期时间
 
 ```zsh
-echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -subject -enddate
+echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -subject -ext subjectAltName -enddate
 ```
 
 - 显示证书的 PEM 格式部分
