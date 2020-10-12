@@ -1,6 +1,7 @@
 ---
 title: Chef 学习笔记
 date: 2018-07-01 12:32:07
+modify_date: 2020-10-12
 tags: Chef
 key: Chef-Learning-Note-2018-07-01
 ---
@@ -204,4 +205,119 @@ knife role delete web --yes
 
 ```zsh
 sudo rm /etc/chef/client.pem
+```
+
+## Knife Subcommands Summary
+
+### knife node
+
+- `list`
+
+```zsh
+knife node list
+```
+
+- `show`
+
+```zsh
+# To show basic information about a node, truncated and nicely formatted
+knife node show NODE_NAME
+
+# To show all information about a node, nicely formatted
+# -l, --long
+knife node show -l $host
+
+# To list a single node attribute
+# -a ATTR, --attribute ATTR
+knife node show $host -a ATTRIBUTE_NAME
+
+# To view the FQDN for a node named
+knife node show $host -a fqdn
+
+knife node show $host -a cookbooks
+
+# To view the run-list for a node named
+# -r, --run-list
+knife node show $host -r
+```
+
+- `run_list add`
+
+  - A run-list is an ordered list of **roles** and/or **recipes** that are run in the exact order defined in the run-list; if a recipe appears more than once in the run-list, Chef Infra Client will not run it twice.
+
+  - Both **roles** and **recipes** must be in quotes.
+
+  - Use the `run_list add` argument to add **run-list items (roles or recipes)** to a node.
+
+```zsh
+# Syntax
+knife node run_list add NODE_NAME RUN_LIST_ITEM
+
+# To add a role to a run-list
+knife node run_list add $host 'role[NAME]'
+
+# To add a recipe to a run-list using the fully qualified format
+knife node run_list add $host 'recipe[COOKBOOK::RECIPE]'
+
+# To add a recipe to a run-list using the cookbook format
+knife node run_list add $host 'COOKBOOK::RECIPE_NAME'
+
+# To add the default recipe of a cookbook to a run-list
+knife node run_list add $host 'COOKBOOK'
+
+# To add roles and recipes to a run-list
+knife node run_list add $host 'role[NAME], recipe[COOKBOOK::RECIPE]'
+```
+
+- `run_list remove`
+
+Use the `run_list remove` argument to remove **run-list items (roles or recipes)** from a node. 
+
+```zsh
+# Syntax
+knife node run_list remove NODE_NAME RUN_LIST_ITEM
+
+# To remove a role from a run-list
+knife node run_list remove $host 'role[ROLE_NAME]'
+
+# To remove a recipe from a run-list using the fully qualified format
+knife node run_list remove $host 'recipe[COOKBOOK::RECIPE_NAME]'
+```
+
+- `run_list set`
+
+Use the `run_list set` argument to set the run-list for a node.
+
+```zsh
+# Syntax
+knife node run_list set NODE_NAME RUN_LIST_ITEM
+```
+
+### knife status
+
+```zsh
+knife status
+
+knife status | grep -P -i 'pattern'
+```
+
+### knife runs
+
+```zsh
+# List running status for all hosts
+knife runs list
+
+# List running status for a specific host
+knife runs list $host
+
+# Get the details for a run_id
+knife runs show $run_id
+```
+
+### knife role
+
+```zsh
+knife role list
+
+knife role show ROLE_NAME
 ```
