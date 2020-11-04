@@ -17,6 +17,9 @@ key: Openssl-Commands-2018-07-27
 ```zsh
 openssl <command> [command_opts] [command_args]
 
+# 查看版本
+openssl version -a
+
 # 分别列出当前 openssl 工具中所有 standard commands, message digest commands 或 cipher commands 的名称
 openssl list-standard-commands
 openssl list-message-digest-commands
@@ -672,6 +675,12 @@ echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noo
 
 ```zsh
 openssl s_client -connect example.com:443 </dev/null 2>/dev/null | openssl x509 -noout -text
+```
+
+- 检查 PostgreSQL 数据库使用的证书（需要使用 `openssl 1.1.1` 之后的版本）
+
+```zsh
+echo | openssl s_client starttls postgres -connect localhost:5432 2>/dev/null | openssl x509 -noout -text
 ```
 
 - 显示服务器证书的所有者，SAN和过期时间
