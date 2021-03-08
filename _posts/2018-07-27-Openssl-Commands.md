@@ -46,7 +46,7 @@ openssl no-<command>
 | `env:var`       | obtain the password from the environment variable **var**. Since the environment of other processes is visible on certain platforms (e.g. ps under certain Unix OSes) this option should be used with caution.                                                                                                                              |
 | `file:pathname` | the first line of **pathname** is the password. If the same pathname argument is supplied to **-passin** and **-passout** arguments then the first line will be used for the input password and the next line for the output password. **pathname** need not refer to a regular file: it could for example refer to a device or named pipe. |
 | `fd:number`     | read the password from the file descriptor **number**. This can be used to send the data via a pipe for example.                                                                                                                                                                                                                            |
-| `stdin`         | read the password from standard input.                                                                                                                                                                                                                                                                                                      | 
+| `stdin`         | read the password from standard input.                                                                                                                                                                                                                                                                                                      |
 
 如果命令要求输入密码，但未在参数中提供密码，则命令会在终端提示用户输入密码。
 
@@ -698,6 +698,31 @@ echo | openssl s_client -connect example.com:443 | openssl x509
 # 证书链
 echo | openssl s_client -showcerts -connect example.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
 ```
+
+## S_SERVER
+
+| Item                            | Location               |
+| ------------------------------- | ---------------------- |
+| CA certificate (public key)     | ca_certificate.pem     |
+| Server certificate (public key) | server_certificate.pem |
+| Server private key              | server_key.pem         |
+| Client certificate (public key) | client_certificate.pem |
+| Client private key              | client_key.pem         |
+
+```zsh
+openssl s_server -accept 8443 \
+  -cert server_certificate.pem -key server_key.pem -CAfile ca_certificate.pem
+```
+
+上面的命令将启动一个 OpenSSL s_server 进程，使用提供的CA证书，服务器证书和私钥。用于测试对TLS连接的证书进行完整性检查。
+
+```zsh
+openssl s_client -connect localhost:8443 \
+  -cert client_certificate.pem -key client_key.pem -CAfile ca_certificate.pem \
+  -verify 8 -verify_hostname CN_NAME
+```
+
+将 CN_NAME 替换为希望验证的主机域名或证书中的 CN 名称。这将打开与上面启动的示例TLS服务器的新TLS连接。 可以不使用-verify_hostname参数，但是OpenSSL将不再执行该验证。
 
 [0]: https://www.openssl.org/docs/manmaster
 [1]: https://zh.wikipedia.org/wiki/X.509
