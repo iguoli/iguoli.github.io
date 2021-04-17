@@ -1,7 +1,7 @@
 ---
 title: Git 常用命令
 date: 2017-06-05
-modify_date: 2020-08-24
+modify_date: 2021-04-17
 tags: Git
 key: Git-Commands-2017-06-05
 ---
@@ -1102,6 +1102,14 @@ $ git prune --expire now
 ```
 
 [`git-filter-repo`](https://github.com/newren/git-filter-repo) 是一个 git 历史重写工具，可以方便的从历史中删除文件或目录，更改文件内容，相比于 `filter-branch` 会更加高效。
+
+```zsh
+# 查看历史提交中含有私钥文件的提交
+git log --oneline --all '*.key'
+
+# 删除历史提交中的所有私钥文件
+git-filter-repo --invert-paths --path-glob '*.key' --dry-run
+```
 
 ## [Git 别名](https://git-scm.com/book/zh/v2/Git-基础-Git-别名)
 
