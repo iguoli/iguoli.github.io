@@ -1,7 +1,7 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-modify_date: 2020-09-11
+modify_date: 2021-05-12
 tags: Encryption OpenSSL
 key: Openssl-Commands-2018-07-27
 ---
@@ -476,10 +476,45 @@ openssl x509 -in cert.pem -noout -ext subjectAltName
 find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo; echo %; openssl x509 -noout -subject -ext subjectAltName -enddate -in %'
 ```
 
-### 根据 CSR 生成自签名证书
+### 生成自签名证书
+
+1. [生成证书私钥](#rsa)
+
+2. [生成CSR](#pkcs10---证书申请标准certification-request-standard)
+
+3. 使用私钥和 CSR 生成自签名证书
+
+- 方法一：私钥 -> CSR -> 自签名证书
 
 ```zsh
-openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out domain.crt -extensions req_ext -extfile openssl.cnf
+# 生成 2048 位不带密码保护的私钥
+openssl genrsa -out private.key 2048
+
+# 使用私钥生成CSR
+openssl req -new -key private.key -out domain.csr
+
+# 使用 openssl x509 命令生成自签名证书，有效期10年
+openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out self-signed.crt
+```
+
+- 方法二：私钥和CSR -> 自签名证书
+
+```zsh
+# 生成 2048 位的无密码保护私钥和CSR，使用配置文件 openssl.cnf 设置证书信息
+openssl req -newkey rsa:2048 -nodes -keyout private.key -out domain.csr -config openssl.cnf
+
+# 使用 openssl x509 命令生成自签名证书，有效期10年
+openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out self-signed.crt
+```
+
+- 方法三：私钥 -> 自签名证书
+
+```zsh
+# 生成 2048 位不带密码保护的私钥
+openssl genrsa -out private.key 2048
+
+# 使用 openssl req 命令生成自签名证书，使用配置文件 openssl.cnf 设置证书信息，使用 openssl.cnf 中的 [ req_ext ] 扩展来设置 Subject Alternative Name (SAN)
+openssl req -new -x509 -days 365 -key private.key -sha256 -out self-signed.crt -extensions req_ext -config openssl.cnf
 ```
 
 ### PEM 证书长度
