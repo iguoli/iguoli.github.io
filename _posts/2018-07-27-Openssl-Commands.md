@@ -392,6 +392,9 @@ keytool -storepasswd -keystore keystore.jks -new new_storepass -storepass origin
 # 修改 keypass 保护密码
 keytool -keypasswd -keystore keystore.jks -alias friendly_name -keypass origin_keypass -new new_keypass -storepass password
 
+# 修改 alias
+keytool -changealias -keystore keystore.jks -alias old_name -destalias new_name
+
 # 查看单个证书
 keytool -printcert -file domain.crt -v
 
