@@ -34,6 +34,12 @@ Run command
 update-ca-trust extract
 ```
 
+Check the CA cert is installed into `ca-bundle.crt`
+
+```zsh
+head /etc/pki/tls/certs/ca-bundle.crt
+```
+
 ## Install CA certs for JDK
 
 ```zsh
