@@ -365,6 +365,7 @@ openssl pkcs12 -in keystore.p12 -info
   - 如果未提供 **srckeypass**，则 `keytool` 将尝试使用 **srcstorepass** 恢复该条目。
   - 如果未提供 **srcstorepass** 或它不正确，则将提示用户输入密码。
   - 目标条目将使用 **destkeypass** 保护。如果未提供 **destkeypass**，则目标条目将保持源条目密码。
+  - 如果未提供 **deststorepass** ，则将提示用户输入密码。
 
 - 如果未提供 **srcalias** 选项，那么源密钥库中的所有条目都将导入到目标密钥库中。
   - 每个目标条目将存储在源条目的别名下。
