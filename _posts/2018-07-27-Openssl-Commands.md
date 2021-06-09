@@ -379,7 +379,7 @@ openssl pkcs12 -in keystore.p12 -info
 # 将 P12 文件转换为 Java KeyStore 文件，目标条目使用与源条目相同的别名
 keytool -importkeystore -srckeystore keystore.p12 -srcalias entry_alias -srcstoretype pkcs12 -srcstorepass storepass -destkeystore keystore.jks -deststorepass storepass
 
-# 将 Java KeyStore 文件中转换为 P12 文件，目标条目使用与源条目不同的别名
+# 将 Java KeyStore 文件转换为 P12 文件，目标条目使用与源条目不同的别名
 keytool -importkeystore -srckeystore keystore.jks -srcalias entry_alias -srcstorepass storepass -destkeystore keystore.p12 -destalias other_alias_name -deststoretype pkcs12 -deststorepass storepass
 ```
 
