@@ -1,7 +1,7 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-modify_date: 2021-05-12
+modify_date: 2021-06-09
 tags: Encryption OpenSSL
 key: Openssl-Commands-2018-07-27
 ---
@@ -299,6 +299,9 @@ openssl pkcs12 -export -inkey private.key -in cert.pem -certfile CACert.pem -nam
 
 注意：PKCS12 文件中存储的私钥将使用与 PKCS12 文件相同的保护密码
 {:.warning}
+
+`.pfx` 和 `.p12` 都是 PKCS#12 文件。因为历史原因，**PFX** 是 Microsoft 常用扩展名，**P12** 是 Netscape 常用扩展名。这两个扩展名可以互换使用。
+{:.info}
 
 - 解析 PKCS12 文件
 
