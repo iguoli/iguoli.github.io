@@ -1,8 +1,8 @@
 ---
-title: MacOS/Linux 新装系统环境配置
+title: macOS/Linux 新装系统环境配置
 date: 2017-05-18
 modify_date: 2020-04-23
-tags: Linux MacOS Provision
+tags: Linux macOS Provision
 key: New-System-Setup-2017-05-18
 ---
 
@@ -63,7 +63,7 @@ git config --global core.editor vim
 # Ubuntu
 sudo apt install connect-proxy
 
-# MacOS
+# macOS
 brew install connect
 
 # Get the version
@@ -102,7 +102,7 @@ sudo make install-config (installs proxychains.conf)
 
 配置文件: `/etc/proxychains.conf`
 
-### MacOS
+### macOS
 
 ```zsh
 brew install proxychains-ng

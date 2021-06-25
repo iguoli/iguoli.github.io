@@ -1,14 +1,14 @@
 ---
-title: MacOS 常用配置
+title: macOS 常用命令行工具
 date: 2017-05-20
 modify_date: 2020-05-18
-tags: MacOS GNU Utils
-key: MacOS-Utils-2017-05-20
+tags: macOS GNU Utils
+key: macOS-Utils-2017-05-20
 ---
 
-## 在 MacOS/OS X 上安装和使用 GNU 命令行工具
+## 在 macOS/OS X 上安装和使用 GNU 命令行工具
 
-MacOS 系统默认使用 BSD 版本的命令行工具，这与 Linux 系统的命令行工具不同，但这两个版本都符合 POSIX 标准。我们可以使用 Homebrew 安装 GNU 命令行工具。
+macOS 系统默认使用 BSD 版本的命令行工具，这与 Linux 系统的命令行工具不同，但这两个版本都符合 POSIX 标准。我们可以使用 Homebrew 安装 GNU 命令行工具。
 
 ```zsh
 brew install coreutils
@@ -39,7 +39,7 @@ brew install wdiff
 brew install wget
 ```
 
-另外，MacOS/OS X 自带了一些 GNU 命令行工具，你可以更新到较新的版本
+另外，macOS/OS X 自带了一些 GNU 命令行工具，你可以更新到较新的版本
 
 ```zsh
 brew install bash
@@ -83,7 +83,7 @@ export MANPATH="/usr/local/opt/file-formula/share/man/man1:$MANPATH"
 dircolors > ~/.dircolors
 ```
 
-## 使用 `grc` 命令让其它命令彩色化输出
+## 使用 grc 命令让其它命令彩色化输出
 
 ```zsh
 brew install grc
