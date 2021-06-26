@@ -1,7 +1,7 @@
 ---
 title: macOS New System Provision
 date: 2021-06-25
-modify_date: 2021-06-25
+modify_date: 2021-06-26
 tags: macOS
 key: macOS-New-System-Provision-2021-06-25
 ---
@@ -141,10 +141,13 @@ Host github github.com
 
 [Homebrew国内如何自动安装（国内地址）](https://zhuanlan.zhihu.com/p/111014448)
 
-执行以下命令，脚本会提示选择国内几个比较常用的镜像，然后一路安装即可。
+执行以下命令，脚本会提示选择国内几个比较常用的镜像，选择中科大镜像然后一路安装即可。
 
 ```zsh
 /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
+
+# Set Homebrew-bottles mirror
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 ```
 
 ### 安装 OpenJDK
@@ -213,12 +216,48 @@ export MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 ```
 
+### 安装 [ProxyChains-NG](https://github.com/rofl0r/proxychains-ng)
+
+proxychains-ng 是命令行代理工具。
+
+```zsh
+brew install proxychains-ng
+
+alias pcs='proxychains4'
+```
+
+```zsh
+$ vim /usr/local/etc/proxychains.conf
+
+[ProxyList] 
+socks5  127.0.0.1 7891
+```
+
+### 安装 [Pygments](https://pygments.org)
+
+Pygments 是代码高亮工具，用于美化输出。
+
+```zsh
+brew install pygments
+
+export LESSOPEN="|/usr/local/bin/pygmentize -g -O style=solarized-dark %s"
+```
+
 ### 安装常用应用
 
 - 效率神器 [Alfred](https://www.alfredapp.com/)
 - 改键神器 [Karabiner-Elements](https://karabiner-elements.pqrs.org/)
 - 比对神器 [Beyond Compare](https://www.scootersoftware.com/)
 - 卸载神器 [AppCleaner](https://freemacsoft.net/appcleaner/)
+- 笔记工具 [Boostnote](https://github.com/BoostIO/Boostnote)
+- KVM神器 [Barrier](https://github.com/debauchee/barrier)
 - 工具栏图标管理 [Bartender](https://www.macbartender.com/)
-- 笔记本工具 [Boostnote](https://github.com/BoostIO/Boostnote)
 - 黑苹果工具 [Hackintool](https://github.com/headkaze/Hackintool)
+
+### Beyond Compare
+
+- [Command Line Reference](https://www.scootersoftware.com/v4help/index.html?command_line_reference.html)
+
+```zsh
+ln -s '/Applications/Beyond Compare.app/Contents/MacOS/bcomp' /usr/local/bin/
+```
