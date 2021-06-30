@@ -1,7 +1,7 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-modify_date: 2021-06-09
+modify_date: 2021-06-30
 tags: Encryption OpenSSL
 key: Openssl-Commands-2018-07-27
 ---
@@ -390,32 +390,41 @@ keytool -importkeystore -srckeystore keystore.jks -srcalias entry_alias -srcstor
 `keytool` 其它命令
 
 ```zsh
+# 查看 keytool 帮助
+keytool -help
+
+# 查看 keytool 子命令帮助
+keytool -exportcert -help
+
 # 修改 keystore 保护密码
 keytool -storepasswd -keystore keystore.jks -new new_storepass -storepass origin_storepass
 
 # 修改 keypass 保护密码
-keytool -keypasswd -keystore keystore.jks -alias friendly_name -keypass origin_keypass -new new_keypass -storepass password
+keytool -keypasswd -keystore keystore.jks -storepass password -alias friendly_name -keypass origin_keypass -new new_keypass
 
 # 修改 alias
-keytool -changealias -keystore keystore.jks -alias old_name -destalias new_name
+keytool -changealias -keystore keystore.jks -storepass password -alias old_name -destalias new_name
 
-# 查看单个证书
-keytool -printcert -file domain.crt -v
+# 查看证书文件
+keytool -printcert -file cert.pem -v
 
-# 列出所有证书
-keytool -list -keystore keystore.jks -v -storepass password
+# 打印 keystore 中指定 alias 的证书，以可读方式显示
+keytool -list -keystore keystore.jks -storepass password -alias friendly_name -v
 
-# 列出 jre 信任的证书
-keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -v -storepass password
+# 打印 keystore 中指定 alias 的证书，以 PEM 格式显示
+keytool -list -keystore keystore.jks -storepass password -alias friendly_name -rfc
 
-# 使用别名查看特定证书
-keytool -list -keystore keystore.jks -alias friendly_name -v -storepass password
+# 打印 jre 信任的证书
+# 证书路径1: $JAVA_HOME/jre/lib/security/cacerts 
+# 证书路径2: /usr/lib/jvm/java-1.8.0/jre/lib/security
+# 证书路径3: /etc/pki/java/cacerts 
+keytool -list -keystore /etc/pki/java/cacerts -storepass password
 
 # 导入证书
-keytool -import -trustcacerts -file cert.pem -alias friendly_name -keystore keystore.jks -storepass password
+keytool -importcert -trustcacerts -keystore keystore.jks -storepass password -alias friendly_name -file cert.pem
 
-# 导出证书
-keytool -export -keystore keystore.jks -alias friendly_name -file domain.crt -storepass password
+# 导出证书 PEM 格式
+keytool -exportcert -keystore keystore.jks -storepass password -alias friendly_name -rfc -file cert.pem
 
 # 删除指定证书
 keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
