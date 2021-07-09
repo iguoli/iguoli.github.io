@@ -1,7 +1,7 @@
 ---
 title: macOS New System Provision
 date: 2021-06-25
-modify_date: 2021-06-26
+modify_date: 2021-07-09
 tags: macOS
 key: macOS-New-System-Provision-2021-06-25
 ---
@@ -67,10 +67,11 @@ cd macadmin-scripts
 #### NUC8 黑苹果
 
 1. 插入优盘。
-2. 开机或重新启动后，立即持续点按 **F10**，进入 BIOS 启动菜单，选择 UEFI 开头的优盘进行引导
+2. 开机或重新启动后，立即持续点按 **F10**，进入 BIOS 启动菜单，选择 UEFI 开头的优盘进行引导。
 3. 引导后立即按以下任意一种方法进入 Recovery 模式
     - 按住 **Command ⌘** 键，持续点按 **R** 键。
-    - 持续点按 **ESC** 键或 **Option (Alt) ⌥** 键，出现 OC 引导菜单，按空格键，出现引导项 "macOS Boot From Recovery"，选中并回车
+    - 持续点按 **ESC** 键或 **Option (Alt) ⌥** 键，出现 OC 引导菜单，按空格键，出现引导项 "macOS Boot From Recovery"，选中并回车。
+4. 短暂等待后进入 Recovery 模式。
 
 在进入 Recovery 模式后，首先选择 **磁盘工具** 来格式化硬盘。点击 **磁盘工具** 界面左上角的 **显示 -> 显示所有设备**，选中硬盘的根节点，然后点击界面上方的 **抹掉**，在弹出的抹掉对话框中填入和选择:
 
@@ -110,11 +111,11 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false
 
 ### NUC8 黑苹果删除TF卡小图标
 
-1. 重启系统，系统开机时按住 `Command+R` 键进入 Recovery 模式
+1. 重启系统，系统开机时按住 `Command+R` 键进入 Recovery 模式。
 
-2. 在 Recovery 界面顶部的 **Utilities** 菜单中打开终端
+2. 在 Recovery 界面顶部的 **Utilities** 菜单中打开终端。
 
-3. 输入命令 `csrutil disable` 关闭 SIP (System Integrity Protection)
+3. 输入命令 `csrutil disable` 关闭 SIP (System Integrity Protection)。
 
 4. 关闭终端，重启系统。
 
@@ -126,7 +127,7 @@ rm -rf '/System/Library/CoreServices/Menu Extras/ExpressCard.menu'
 touch '/System/Library/CoreServices/Menu Extras/ExpressCard.menu'
 ```
 
-如需重新打开 SIP，则重启系统再次进入 Recovery 模式，在终端输入命令 `csrutil enable`
+如需重新打开 SIP，则重启系统再次进入 Recovery 模式，在终端输入命令 `csrutil enable`。
 
 ### 科学上网
 
