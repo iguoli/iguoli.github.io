@@ -109,9 +109,9 @@ sudo scutil --set ComputerName Lis-Macmini
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false
 ```
 
-### NUC8 黑苹果删除TF卡小图标
+### 关闭系统完整性保护 SIP (System Integrity Protection)
 
-1. 重启系统，系统开机时按住 `Command+R` 键进入 Recovery 模式。
+1. 重启系统，系统开机时按住 **Command+R** 键进入 Recovery 模式。
 
 2. 在 Recovery 界面顶部的 **Utilities** 菜单中打开终端。
 
@@ -119,7 +119,11 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false
 
 4. 关闭终端，重启系统。
 
-5. 进入系统后打开终端，输入以下命令
+5. 进入系统后打开终端，输入命令 `csrutil status` 检查是否关闭。
+
+### NUC8 黑苹果删除TF卡小图标
+
+关闭 SIP 后，执行以下命令
 
 ```zsh
 sudo mount -uw / && killall Finder
@@ -197,6 +201,9 @@ $ vim /usr/local/etc/proxychains.conf
 [ProxyList] 
 socks5  127.0.0.1 7891
 ```
+
+注意：对 `curl` 命令使用 `proxychains4` 代理，必须关闭系统完整性保护 (SIP)
+{:.warning}
 
 ### 配置 [zsh](https://github.com/ohmyzsh/ohmyzsh) 和 [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
