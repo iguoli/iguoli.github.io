@@ -1,9 +1,9 @@
 ---
-title: macOS New System Provision
+title: macOS System Provision
 date: 2021-06-25
 modify_date: 2021-07-09
 tags: macOS
-key: macOS-New-System-Provision-2021-06-25
+key: macOS-System-Provision-2021-06-25
 ---
 
 ## [使用恢复系统重新安装 macOS](https://support.apple.com/zh-cn/guide/mac-help/mchlp1599/11.0/mac/11.0)

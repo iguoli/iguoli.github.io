@@ -1,9 +1,9 @@
 ---
-title: macOS/Linux 新装系统环境配置
+title: Linux System Provision
 date: 2017-05-18
-modify_date: 2020-04-23
-tags: Linux macOS Provision
-key: New-System-Setup-2017-05-18
+modify_date: 2021-07-09
+tags: Linux
+key: Linux-System-Provision-2017-05-18
 ---
 
 ## 安装系统常用开发工具
@@ -52,8 +52,8 @@ sudo make install install-doc install-html
 git config --global user.name 'your name'
 git config --global user.email 'your@email.com'
 git config --global credential.helper 'cache --timeout=86400'
-git config --global http.proxy socks5://127.0.0.1:1080
-git config --global https.proxy socks5://127.0.0.1:1080
+git config --global http.proxy socks5://127.0.0.1:7891
+git config --global https.proxy socks5://127.0.0.1:7891
 git config --global core.editor vim
 ```
 
@@ -62,9 +62,6 @@ git config --global core.editor vim
 ```zsh
 # Ubuntu
 sudo apt install connect-proxy
-
-# macOS
-brew install connect
 
 # Get the version
 connect -V
@@ -76,10 +73,9 @@ connect -V
 $ vim ~/.ssh/config
 
 Host github.com
-    HostName github.com
     User git
-    ProxyCommand connect -S socks-proxy:1080 %h %p
-    ProxyCommand connect -H http-proxy:8080 %h %p
+    # -S for socks5 proxy, -H for http proxy
+    ProxyCommand connect -S 127.0.0.1:7891 %h %p
 ```
 
 ## 安装[Proxychains-ng](https://github.com/rofl0r/proxychains-ng)
@@ -87,8 +83,6 @@ Host github.com
 `proxychains` 用于在命令行中为单个命令提供代理服务，这样可以在不启用全局代理的同时让某些命令通过代理连接。
 
 注意: `proxychains` 只会代理 `TCP` 连接，所以如果使用 `proxychains4 ping www.google.com` 则不会生效，因为 `ping` 命令使用 `ICMP` 协议。
-
-### Linux distros
 
 ```zsh
 sudo apt install -y build-essential
@@ -102,26 +96,13 @@ sudo make install-config (installs proxychains.conf)
 
 配置文件: `/etc/proxychains.conf`
 
-### macOS
-
-```zsh
-brew install proxychains-ng
-```
-
-配置文件: `/usr/local/etc/proxychains.conf`
-
 ### 在配置文件中添加代理
 
 在配置文件 [`proxychains.conf`](https://github.com/rofl0r/proxychains-ng/blob/master/src/proxychains.conf) 中的 `[ProxyList]` 中加入代理，通常只需要启用一个代理即可，多个代理会形成代理链。
 
 ```ini
-strict_chain
-proxy_dns
-remote_dns_subnet 224
-tcp_read_time_out 15000
-tcp_connect_time_out 8000
 [ProxyList]
-socks5 127.0.0.1 1080
+socks5 127.0.0.1 7891
 ```
 
 ### 添加别名
@@ -157,6 +138,12 @@ chsh -s "$(which zsh)"
 
 ```zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+如果无法直接访问，可以使用 proxychains-ng 走代理访问，
+
+```zsh
+sh -c "$(pcs curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 安装[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)插件
@@ -212,30 +199,6 @@ sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
 sudo update-alternatives --set editor /usr/bin/vim
 sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
 sudo update-alternatives --set vi /usr/bin/vim
-```
-
-Mac 上安装 [MacVim](https://macvim-dev.github.io/macvim/)
-
-- 使用 `brew install macvim` 命令安装，需要手工在 `/Applications` 文件夹创建应用链接
-
-```zsh
-ln -Fs /usr/local/Cellar/macvim/<version>/MacVim.app/Contents /Applications/MacVim.app
-```
-
-- 手工创建以下软链接，并确保 `$PATH` 环境变量中的 `/usr/local/bin` 在 `/usr/bin` 之前
-
-```zsh
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/vi
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/vim
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/vimdiff
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/gvim
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/gview
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/gvimdiff
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/mvim
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/mview
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/mvimdiff
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/rvim
-ln -s /Applications/MacVim.app/Contents/bin/mvim /usr/local/bin/view
 ```
 
 安装[Vundle](https://github.com/VundleVim/Vundle.vim)
