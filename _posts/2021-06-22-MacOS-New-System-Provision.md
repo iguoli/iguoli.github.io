@@ -6,11 +6,17 @@ tags: macOS
 key: macOS-New-System-Provision-2021-06-25
 ---
 
-全新安装 macOS 系统及常用工具。
+## [使用恢复系统重新安装 macOS](https://support.apple.com/zh-cn/guide/mac-help/mchlp1599/11.0/mac/11.0)
+
+重新启动 Mac，然后立即按住以下其中一个组合键
+
+- 安装与电脑兼容的 macOS 最新版本：按住 **Option-Command-R**。
+- 重新安装电脑原始版本的 macOS（包括可用的更新）：按住 **Shift-Option-Command-R**。
+- 重新安装储存在电脑内建恢复宗卷中的 macOS 版本：按住 **Command-R**。
 
 <!--more-->
 
-## 安装 macOS
+## 使用优盘安装全新 macOS
 
 ### 准备 macOS 启动优盘
 
@@ -40,12 +46,33 @@ cd macadmin-scripts
     sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/u_disk
     ```
 
-如果是黑苹果，还要使用 [`Hackintool`](https://github.com/headkaze/Hackintool) 工具装载优盘的 **EFI** 分区，将制作好的 EFI 文件放入优盘 **EFI** 分区中，否则优盘无法引导。
+  - **Mojave**
+
+    ```zsh
+    sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/u_disk
+    ```
+
+如果是黑苹果，还要使用 [`Hackintool`](https://github.com/headkaze/Hackintool) 工具装载优盘的 **EFI** 分区，将制作好的 EFI 文件放入优盘 **EFI** 分区中，否则优盘无法引导黑苹果主机。
 {:.warning}
 
-### 优盘安装 macOS 系统
+### 优盘引导并安装
 
-插入优盘重启机器，通过优盘引导进入 Recovery 模式。在进入 Recovery 模式后，首先选择 **磁盘工具** 来格式化硬盘。点击 **磁盘工具** 界面左上角的 **显示 -> 显示所有设备**，选中硬盘的根节点，然后点击界面上方的 **抹掉**，在弹出的抹掉对话框中填入和选择:
+#### 白苹果
+
+1. 插入优盘。
+2. 将 Mac 开机或重启后，立即按住 **Option (Alt) ⌥** 键，直到出现可引导磁盘选项。
+3. 选择可引导安装磁盘后回车。
+4. 短暂等待后进入 Recovery 模式。
+
+#### NUC8 黑苹果
+
+1. 插入优盘。
+2. 开机或重新启动后，立即持续点按 **F10**，进入 BIOS 启动菜单，选择 UEFI 开头的优盘进行引导
+3. 引导后立即按以下任意一种方法进入 Recovery 模式
+    - 按住 **Command ⌘** 键，持续点按 **R** 键。
+    - 持续点按 **ESC** 键或 **Option (Alt) ⌥** 键，出现 OC 引导菜单，按空格键，出现引导项 "macOS Boot From Recovery"，选中并回车
+
+在进入 Recovery 模式后，首先选择 **磁盘工具** 来格式化硬盘。点击 **磁盘工具** 界面左上角的 **显示 -> 显示所有设备**，选中硬盘的根节点，然后点击界面上方的 **抹掉**，在弹出的抹掉对话框中填入和选择:
 
 - 名称：Macintosh HD
 - 格式：APFS
