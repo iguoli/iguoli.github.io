@@ -154,16 +154,44 @@ git config --global https.proxy 'socks5://127.0.0.1:7891'
 
 ```zsh
 $ vim ~/.ssh/config
-Host github github.com
-    HostName github.com
-    Port 22
+Host github.com
     User git
-    IdentityFile ~/.ssh/li_rsa
     # -S for socks5 proxy, -H for http proxy
     ProxyCommand connect -S 127.0.0.1:7891 %h %p
 ```
 
 `connect` 工具参考下面的 [安装 Connect 工具](#安装-connect-工具)
+
+### 配置 [zsh](https://github.com/ohmyzsh/ohmyzsh) 和 [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+
+配置登录 shell 为 zsh
+
+```zsh
+echo $SHELL                           # 检查当前 shell
+which zsh                             # 检查 zsh 是否安装
+cat /etc/shells                       # 检查 zsh 是否已在 shell 列表
+which zsh | sudo tee -a /etc/shells   # 如果 zsh 不在列表，将其写入到 shell 列表
+chsh -s "$(which zsh)"                # 变更启动 shell 为 zsh
+```
+
+关闭终端并重新打开。
+
+安装 oh-my-zsh
+
+```zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+安装[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)插件
+
+```zsh
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+```
+
+安装[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+
+```zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
 
 ### 安装 Homebrew
 
@@ -217,7 +245,6 @@ brew install connect
 $ vim ~/.ssh/config
 Host github.com
     User git
-    HostName github.com
     ProxyCommand connect -S 127.0.0.1:7891 %h %p
 ```
 
@@ -273,6 +300,7 @@ export LESSOPEN="|/usr/local/bin/pygmentize -g -O style=solarized-dark %s"
 
 ### 安装常用应用
 
+- 终端应用 [iTerm2](https://iterm2.com/)
 - 效率神器 [Alfred](https://www.alfredapp.com/)
 - 改键神器 [Karabiner-Elements](https://karabiner-elements.pqrs.org/)
 - 比对神器 [Beyond Compare](https://www.scootersoftware.com/)
