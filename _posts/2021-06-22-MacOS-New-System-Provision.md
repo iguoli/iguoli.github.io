@@ -162,6 +162,42 @@ Host github.com
 
 `connect` 工具参考下面的 [安装 Connect 工具](#安装-connect-工具)
 
+### 安装 Homebrew
+
+[Homebrew国内如何自动安装（国内地址）](https://zhuanlan.zhihu.com/p/111014448)
+
+执行以下命令，脚本会提示选择国内几个比较常用的镜像，选择中科大镜像然后一路安装即可。
+
+```zsh
+/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
+
+# Set Homebrew-bottles mirror
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+```
+
+### 安装 Connect 工具
+
+```zsh
+brew install connect
+```
+
+### 安装 [ProxyChains-NG](https://github.com/rofl0r/proxychains-ng)
+
+proxychains-ng 是命令行代理工具。
+
+```zsh
+brew install proxychains-ng
+
+alias pcs='proxychains4'
+```
+
+```zsh
+$ vim /usr/local/etc/proxychains.conf
+
+[ProxyList] 
+socks5  127.0.0.1 7891
+```
+
 ### 配置 [zsh](https://github.com/ohmyzsh/ohmyzsh) 和 [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 配置登录 shell 为 zsh
@@ -181,6 +217,13 @@ chsh -s "$(which zsh)"                # 变更启动 shell 为 zsh
 ```zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
+
+如果无法直接访问，可以使用 proxychains-ng 走代理访问，
+
+```zsh
+sh -c "$(pcs curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
 安装[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)插件
 
 ```zsh
@@ -191,19 +234,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/z
 
 ```zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
-### 安装 Homebrew
-
-[Homebrew国内如何自动安装（国内地址）](https://zhuanlan.zhihu.com/p/111014448)
-
-执行以下命令，脚本会提示选择国内几个比较常用的镜像，选择中科大镜像然后一路安装即可。
-
-```zsh
-/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
-
-# Set Homebrew-bottles mirror
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 ```
 
 ### 安装 OpenJDK
@@ -233,21 +263,6 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
 [AdoptOpenJDK]: https://adoptopenjdk.net/
 
-### 安装 Connect 工具
-
-```zsh
-brew install connect
-```
-
-用法
-
-```zsh
-$ vim ~/.ssh/config
-Host github.com
-    User git
-    ProxyCommand connect -S 127.0.0.1:7891 %h %p
-```
-
 ### 安装 MacVim 替代系统自带 Vim
 
 ```zsh
@@ -269,23 +284,6 @@ export MANPATH="/usr/local/opt/grep/libexec/gnuman:$MANPATH"
 export MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
 export MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-```
-
-### 安装 [ProxyChains-NG](https://github.com/rofl0r/proxychains-ng)
-
-proxychains-ng 是命令行代理工具。
-
-```zsh
-brew install proxychains-ng
-
-alias pcs='proxychains4'
-```
-
-```zsh
-$ vim /usr/local/etc/proxychains.conf
-
-[ProxyList] 
-socks5  127.0.0.1 7891
 ```
 
 ### 安装 [Pygments](https://pygments.org)
