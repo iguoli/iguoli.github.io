@@ -272,13 +272,13 @@ IP.1    = 10.10.10.10
 
 ```zsh
 # 生成一个 2048 位的无密码保护私钥和一个新的 CSR，使用 openssl.cnf 中的配置信息
-openssl req -newkey rsa:2048 -nodes -keyout private.key -out domain.csr -config openssl.cnf
+openssl req -newkey rsa:2048 -nodes -keyout private.key -out cert.csr -config openssl.cnf
 
 # 使用已有的私钥生成一个新的 CSR
-openssl req -new -key private.key -out domain.csr
+openssl req -new -key private.key -out cert.csr
 
 # 查看 CSR 证书
-openssl req -in domain.csr -text -noout
+openssl req -in cert.csr -text -noout
 
 # 生成一个新的自签名证书，并且使用 openssl.cnf 中的 [ req_ext ] 扩展来设置 Subject Alternative Name (SAN)
 # 使用 openssl x509 也可以生成自签名证书，见后面 x509 部分
@@ -507,20 +507,20 @@ find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo
 openssl genrsa -out private.key 2048
 
 # 使用私钥生成CSR
-openssl req -new -key private.key -out domain.csr
+openssl req -new -key private.key -out cert.csr
 
 # 使用 openssl x509 命令生成自签名证书，有效期10年
-openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out self-signed.crt
+openssl x509 -req -sha256 -days 3650 -in cert.csr -signkey private.key -out self-signed.crt
 ```
 
 - 方法二：私钥和CSR -> 自签名证书
 
 ```zsh
 # 生成 2048 位的无密码保护私钥和CSR，使用配置文件 openssl.cnf 设置证书信息
-openssl req -newkey rsa:2048 -nodes -keyout private.key -out domain.csr -config openssl.cnf
+openssl req -newkey rsa:2048 -nodes -keyout private.key -out cert.csr -config openssl.cnf
 
 # 使用 openssl x509 命令生成自签名证书，有效期10年
-openssl x509 -req -sha256 -days 3650 -in domain.csr -signkey private.key -out self-signed.crt
+openssl x509 -req -sha256 -days 3650 -in cert.csr -signkey private.key -out self-signed.crt
 ```
 
 - 方法三：私钥 -> 自签名证书
@@ -569,47 +569,53 @@ openssl rsa -noout -modulus -in private.key | openssl md5
 
 - 使用脚本检查
 
-`color-variables` 参考 [Bash Colors](https://iguoli.github.io/2017/11/11/Bash-Colors.html#color-variables)
-
 ```zsh
 #!/usr/bin/env bash
 
-# script name: is_match
+# script name: key_match
 
-source ~/color-variables
-
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <root_directory> <keyfile_extension> <certfile_extension>"
-    echo "Example: is_match . key crt"
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <keyfile> <certfile or csrfile>"
+    echo "Example: key_match private.key cert.pem"
+    echo "Example: key_match private.key cert.csr"
     exit 1
 fi
 
-for dir in $(find $1 -name '.git' -prune -o  -type d -print)
-do
-    echo -e "\nChecking the directory: ${Yellow}$dir${NC}"
+function match {
+    keyfile=$1
+    certfile=$2
 
-    if ! (ls $dir/*.$2 && ls $dir/*.$3) >/dev/null 2>&1
-    then
-        echo -e "${IWhite}No key or certificate found in $dir, skipping...${NC}"
-        continue
-    fi
+    # Set color variables
+    Red=$(tput setaf 1) Green=$(tput setaf 2) Yellow=$(tput setaf 3)
+    R=$(tput rev) NC=$(tput sgr0)
 
-    keys=( $dir/*.$2 )
-    crts=( $dir/*.$3 )
-    key=${keys[0]}
-    crt=${crts[0]}
-    key_hash=$(openssl rsa -modulus -noout -in $key | openssl md5)
-    crt_hash=$(openssl x509 -modulus -noout -in $crt | openssl md5)
-
-    echo -e "the ${Yellow}$key${NC} md5 value: $key_hash"
-    echo -e "the ${Yellow}$crt${NC} md5 value: $crt_hash"
-
-    if [ "$key_hash" = "$crt_hash" ]; then
-        echo -e "${RGreen}match.${NC}"
+    if grep -q '\-----BEGIN PRIVATE KEY-----' $keyfile 2>/dev/null; then
+        key_hash=$(openssl rsa -modulus -noout -in $keyfile | openssl md5)
     else
-        echo -e "${RRed}not match!${NC}"
+        echo -e "Invalid key file: ${Red}$keyfile${NC}"
+        return 1
     fi
-done
+
+    if grep -q '\-----BEGIN CERTIFICATE-----' $certfile 2>/dev/null; then
+        cert_hash=$(openssl x509 -modulus -noout -in $certfile | openssl md5)
+    elif grep -q '\-----BEGIN CERTIFICATE REQUEST-----' $certfile 2>/dev/null; then
+        cert_hash=$(openssl req -modulus -noout -in $certfile | openssl md5)
+    else
+        echo -e "Invalid certificate or CSR file: ${Red}$certfile${NC}"
+        return 1
+    fi
+
+    printf "%-30s md5 value: %s\n" "${Red}$keyfile${NC}" "${Yellow}$key_hash${NC}"
+    printf "%-30s md5 value: %s\n" "${Red}$certfile${NC}" "${Yellow}$cert_hash${NC}"
+
+    if [ "$key_hash" = "$cert_hash" ]; then
+        echo -e "$R${Green}match.${NC}"
+    else
+        echo -e "$R${Red}not match!${NC}"
+    fi
+}
+
+match "$@"
 ```
 
 ### 证书内容
