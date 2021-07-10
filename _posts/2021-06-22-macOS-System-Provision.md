@@ -276,7 +276,13 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 brew install macvim
 ```
 
-MacVim 会在 `/usr/local/bin` 下创建 Vim 命令行程序的软链接，而系统自带的 Vim 在 `/usr/bin` 目录下，因此只要确保在 `$PATH` 环境变量中，`/usr/local/bin` 路径在 `/usr/bin` 之前即可使用新的 Vim
+MacVim 会在 `/usr/local/bin` 下创建 Vim 命令行程序的软链接，而系统自带的 Vim 在 `/usr/bin` 目录下，因此只要确保在 `$PATH` 环境变量中，`/usr/local/bin` 路径在 `/usr/bin` 之前即可使用新的 Vim。
+
+#### 安装 [vim-plug](https://github.com/junegunn/vim-plug)
+
+```zsh
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
 
 ### 安装 GNU 命令行工具
 
