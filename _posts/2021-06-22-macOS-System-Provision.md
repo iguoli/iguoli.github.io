@@ -109,6 +109,15 @@ sudo scutil --set ComputerName Lis-Macmini
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false
 ```
 
+### 系统偏好设置
+
+- **键盘**
+  - **文本**：去掉 **自动纠正拼写** 等勾选。
+  - **快捷键**：
+    - Mojave系统：页面下方 **全键盘控制** 选择 **所有控制**。
+    - Catalina系统：页面正文勾选 **使用键盘导航在控制间移动焦点**。
+- **辅助功能** -> **鼠标与触控板** -> **触控板选项** -> 勾选 **启动拖移**，**三指拖移**
+
 ### 关闭系统完整性保护 SIP (System Integrity Protection)
 
 1. 重启系统，系统开机时按住 **Command+R** 键进入 Recovery 模式。
@@ -323,13 +332,18 @@ export LESSOPEN="|/usr/local/bin/pygmentize -g -O style=solarized-dark %s"
 - 比对神器 [Beyond Compare](https://www.scootersoftware.com/)
 - 卸载神器 [AppCleaner](https://freemacsoft.net/appcleaner/)
 - 笔记工具 [Boostnote](https://github.com/BoostIO/Boostnote)
-- KVM神器 [Barrier](https://github.com/debauchee/barrier)
-- 工具栏图标管理 [Bartender](https://www.macbartender.com/)
+- 图标管理 [Bartender](https://www.macbartender.com/)
+- KVM 神器 [Barrier](https://github.com/debauchee/barrier)
+- 亮屏工具 [Caffeinated](https://caffeinated.app)
+- 日历工具 [小历](https://apps.apple.com/cn/app/小历-小而美的日历/id1114272557?mt=12)
+- 五笔输入法 [清歌输入法](https://qingg.im)
+- 输入法指示 [ShowyEdge](https://showyedge.pqrs.org)
+- 解压缩工具 [The Unarchiver](https://theunarchiver.com)
 - 黑苹果工具 [Hackintool](https://github.com/headkaze/Hackintool)
 
 ### Beyond Compare
 
-- [Command Line Reference](https://www.scootersoftware.com/v4help/index.html?command_line_reference.html)
+- 添加命令行 [Command Line Reference](https://www.scootersoftware.com/v4help/index.html?command_line_reference.html)
 
 ```zsh
 ln -s '/Applications/Beyond Compare.app/Contents/MacOS/bcomp' /usr/local/bin/
