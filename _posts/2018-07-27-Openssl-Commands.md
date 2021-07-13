@@ -294,7 +294,7 @@ openssl req -new -x509 -days 365 -key private.key -sha256 -extensions req_ext -c
 - 创建 PKCS12 文件，包含私钥，client证书，其它证书，别名及文件保护密码
 
 ```zsh
-openssl pkcs12 -export -inkey private.key -in cert.pem -certfile CACert.pem -name entry_alias -out keystore.p12 -passout pass:password
+openssl pkcs12 -export -inkey private.key -in cert.pem -certfile CACert.pem -out keystore.p12 -name entry_alias -passout pass:password
 ```
 
 注意：PKCS12 文件中存储的私钥将使用与 PKCS12 文件相同的保护密码
