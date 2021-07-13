@@ -737,7 +737,7 @@ openssl s_client -connect example.com:443 </dev/null 2>/dev/null | openssl x509 
 - 检查 PostgreSQL 数据库使用的证书（需要使用 `openssl 1.1.1` 之后的版本）
 
 ```zsh
-echo | openssl s_client starttls postgres -connect localhost:5432 2>/dev/null | openssl x509 -noout -text
+echo | openssl s_client -starttls postgres -connect localhost:5432 2>/dev/null | openssl x509 -noout -text
 ```
 
 - 显示服务器证书的所有者，SAN和过期时间
