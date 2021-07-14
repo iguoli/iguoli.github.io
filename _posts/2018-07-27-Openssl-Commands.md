@@ -707,7 +707,7 @@ Certificate:
 如果远程服务器使用的是 SNI（即在一个 IP 地址上共享多个 SSL 主机），则需要发送正确的主机名才能获得正确的证书。
 
 ```zsh
-openssl s_client -showcerts -servername example.com -connect example.com:443 </dev/null
+openssl s_client -servername example.com -connect example.com:443 </dev/null 2>/dev/null
 ```
 
 ### Without SNI
@@ -715,35 +715,31 @@ openssl s_client -showcerts -servername example.com -connect example.com:443 </d
 - 如果远程服务器未使用 SNI，则可以跳过 `-servername` 参数：
 
 ```zsh
-openssl s_client -showcerts -connect example.com:443 </dev/null
+echo | openssl s_client -connect example.com:443 2>/dev/null
 ```
 
 - 使用 HTTP 代理
 
 ```zsh
-openssl s_client -proxy 10.1.1.8:8800 -showcerts -connect example.com:443 </dev/null
+echo | openssl s_client -proxy 10.1.1.8:8800 -connect example.com:443
 ```
 
 - 显示服务器证书的详细信息
 
 ```zsh
-echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -text
-```
-
-```zsh
-openssl s_client -connect example.com:443 </dev/null 2>/dev/null | openssl x509 -noout -text
+echo | openssl s_client -connect example.com:443 | openssl x509 -noout -text
 ```
 
 - 检查 PostgreSQL 数据库使用的证书（需要使用 `openssl 1.1.1` 之后的版本）
 
 ```zsh
-echo | openssl s_client -starttls postgres -connect localhost:5432 2>/dev/null | openssl x509 -noout -text
+echo | openssl s_client -starttls postgres -connect localhost:5432 | openssl x509 -noout -text
 ```
 
 - 显示服务器证书的所有者，SAN和过期时间
 
 ```zsh
-echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -subject -ext subjectAltName -enddate
+echo | openssl s_client -connect example.com:443 | openssl x509 -noout -subject -enddate -ext subjectAltName
 ```
 
 - 显示证书的 PEM 格式部分
@@ -754,6 +750,23 @@ echo | openssl s_client -connect example.com:443 | openssl x509
 
 # 证书链
 echo | openssl s_client -showcerts -connect example.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+```
+
+### 证书打印函数
+
+此函数可以通过 **SSH Config** 文件来配置跳转主机，打印远程主机证书。
+
+```zsh
+function printcert {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: $0 <ssh_hostname> <port>"
+        echo "Example: $0 portal.example.com 443 "
+        return 1
+    fi
+
+    ssh $1 "echo | openssl s_client -connect localhost:$2 2>/dev/null" | openssl x509 -noout -subject -enddate -ext subjectAltName
+    echo
+}
 ```
 
 ## S_SERVER
