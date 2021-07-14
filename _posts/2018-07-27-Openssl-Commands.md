@@ -715,25 +715,25 @@ openssl s_client -servername example.com -connect example.com:443 </dev/null 2>/
 - 如果远程服务器未使用 SNI，则可以跳过 `-servername` 参数：
 
 ```zsh
-echo | openssl s_client -connect example.com:443 2>/dev/null
+echo | openssl s_client -connect localhost:443 2>/dev/null
 ```
 
 - 使用 HTTP 代理
 
 ```zsh
-echo | openssl s_client -proxy 10.1.1.8:8800 -connect example.com:443
+echo | openssl s_client -proxy 10.1.1.8:8800 -connect localhost:443
 ```
 
 - 显示服务器证书的详细信息
 
 ```zsh
-echo | openssl s_client -connect example.com:443 | openssl x509 -noout -text
+echo | openssl s_client -connect localhost:443 | openssl x509 -noout -text
 ```
 
 - 显示服务器证书的所有者，SAN和过期时间
 
 ```zsh
-echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -subject -enddate -ext subjectAltName
+echo | openssl s_client -connect localhost:443 2>/dev/null | openssl x509 -noout -subject -enddate -ext subjectAltName
 ```
 
 - 检查 PostgreSQL 数据库使用的证书（需要使用 `openssl 1.1.1` 之后的版本）
@@ -746,10 +746,10 @@ echo | openssl s_client -starttls postgres -connect localhost:5432 2>/dev/null |
 
 ```zsh
 # 单证书
-echo | openssl s_client -connect example.com:443 | openssl x509
+echo | openssl s_client -connect localhost:443 | openssl x509
 
 # 证书链
-echo | openssl s_client -showcerts -connect example.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+echo | openssl s_client -showcerts -connect localhost:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
 ```
 
 ### 证书打印函数
@@ -760,7 +760,7 @@ echo | openssl s_client -showcerts -connect example.com:443 | sed -ne '/-BEGIN C
 function printcert {
     if [ "$#" -ne 2 ]; then
         echo "Usage: $0 <ssh_hostname> <port>"
-        echo "Example: $0 portal.example.com 443 "
+        echo "Example: $0 localhost 443 "
         return 1
     fi
 
