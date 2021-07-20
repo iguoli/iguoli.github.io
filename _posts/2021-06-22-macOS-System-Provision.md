@@ -154,6 +154,59 @@ XCode Command Line Tools 包含了 `git` 等系统常用的命令行工具。
 xcode-select --install
 ```
 
+### 安装 Homebrew
+
+[Homebrew国内如何自动安装（国内地址）](https://zhuanlan.zhihu.com/p/111014448)
+
+执行以下命令，脚本会提示选择国内几个比较常用的镜像，选择中科大镜像然后一路安装即可。
+
+```zsh
+/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
+
+# Set Homebrew-bottles mirror
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+```
+
+### 设置命令行代理
+
+大部分终端命令都会识别以下命令行代理环境变量，如果有特殊命令不识别，可以使用 **ProxyChains-NG** 命令。
+
+```zsh
+export http_proxy=http://127.0.0.1:7890
+export https_proxy=http://127.0.0.1:7890
+export all_proxy=socks5://127.0.0.1:7891
+```
+
+取消命令行代理环境变量
+
+```zsh
+unset all_proxy http_proxy https_proxy
+```
+
+### 安装 Connect 工具
+
+```zsh
+brew install connect
+```
+
+### 安装 [ProxyChains-NG](https://github.com/rofl0r/proxychains-ng)
+
+```zsh
+brew install proxychains-ng
+
+alias pcs='proxychains4'
+```
+
+```zsh
+$ vim /usr/local/etc/proxychains.conf
+
+[ProxyList] 
+socks5  127.0.0.1 7891
+```
+
+注意：对 `curl` 命令使用 `proxychains4` 代理，必须关闭系统完整性保护 (SIP)
+{:.warning}
+
 ### 配置 Git 代理加速下载与 Clone
 
 #### HTTP 和 HTTPS 协议代理
@@ -173,47 +226,6 @@ Host github.com
     ProxyCommand connect -S 127.0.0.1:7891 %h %p
 ```
 
-`connect` 工具参考下面的 [安装 Connect 工具](#安装-connect-工具)
-
-### 安装 Homebrew
-
-[Homebrew国内如何自动安装（国内地址）](https://zhuanlan.zhihu.com/p/111014448)
-
-执行以下命令，脚本会提示选择国内几个比较常用的镜像，选择中科大镜像然后一路安装即可。
-
-```zsh
-/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
-
-# Set Homebrew-bottles mirror
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
-```
-
-### 安装 Connect 工具
-
-```zsh
-brew install connect
-```
-
-### 安装 [ProxyChains-NG](https://github.com/rofl0r/proxychains-ng)
-
-proxychains-ng 是命令行代理工具。
-
-```zsh
-brew install proxychains-ng
-
-alias pcs='proxychains4'
-```
-
-```zsh
-$ vim /usr/local/etc/proxychains.conf
-
-[ProxyList] 
-socks5  127.0.0.1 7891
-```
-
-注意：对 `curl` 命令使用 `proxychains4` 代理，必须关闭系统完整性保护 (SIP)
-{:.warning}
-
 ### 配置 [zsh](https://github.com/ohmyzsh/ohmyzsh) 和 [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 配置登录 shell 为 zsh
@@ -232,12 +244,6 @@ chsh -s "$(which zsh)"                # 变更启动 shell 为 zsh
 
 ```zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-如果无法直接访问，可以使用 proxychains-ng 走代理访问，
-
-```zsh
-sh -c "$(pcs curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 安装[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)插件

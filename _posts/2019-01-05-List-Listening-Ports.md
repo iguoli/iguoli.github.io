@@ -1,15 +1,15 @@
 ---
 title: List Listening Ports
 date: 2019-01-05 14:43:14
-tags: Linux MacOS
+tags: Linux macOS
 key: List-Listening-Ports-2019-01-05
 ---
 
-MacOS/Linux 系统下查看系统监听端口的命令。
+macOS/Linux 系统下查看系统监听端口的命令。
 
 <!--more-->
 
-## MacOS
+## macOS
 
 ```zsh
 lsof -Pn -i4 | grep LISTEN
