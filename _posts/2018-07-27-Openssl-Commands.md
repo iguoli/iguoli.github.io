@@ -456,7 +456,7 @@ ketytool -importcert -alias friendly_name -file cert.pem -storepass changeit
 
   - 在将证书添加到密钥库之前，`keytool` 尝试使用密钥库中的可信证书构建从该证书到自签名证书 (通常是一个根CA) 的信任链来验证它
 
-  - 如果使用 `-trustcacerts` 选项，则 cacerts 密钥库中的证书也会被添加会信任链中的可证书。
+  - 如果使用 `-trustcacerts` 选项，则 cacerts 密钥库中的证书也会被添加为信任链中的可信证书。
 
 ```zsh
 keytool -importcert -trustcacerts -keystore keystore.jks -storepass password -alias friendly_name -file cert.pem
