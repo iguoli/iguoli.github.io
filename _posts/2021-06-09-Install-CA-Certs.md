@@ -2,7 +2,7 @@
 title: Install CA Certs
 date: 2021-06-09
 modify_date: 2021-06-09
-tags: Linux
+tags: SSL-TLS
 key: Install-CA-Certs-2021-06-09
 ---
 
@@ -40,8 +40,8 @@ Check the CA cert is installed into `ca-bundle.crt`
 head /etc/pki/tls/certs/ca-bundle.crt
 ```
 
-## Install CA certs for JDK
+## Install CA certs to JDK
 
 ```zsh
-keytool -import -keystore /etc/pki/java/cacerts -storepass changeit -file ca.pem -alias friendly_name
+keytool -importcert -alias friendly_name -file ca.pem -storepass changeit
 ```

@@ -1,8 +1,8 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-modify_date: 2021-06-30
-tags: Encryption OpenSSL
+modify_date: 2021-07-22
+tags: SSL-TLS
 key: Openssl-Commands-2018-07-27
 ---
 
@@ -376,57 +376,100 @@ openssl pkcs12 -in keystore.p12 -info
 
 - 如果目标别名库中已经存在目标别名，则会提示用户覆盖该条目，或使用其他别名创建新条目。
 
-```zsh
-# 将 P12 文件转换为 Java KeyStore 文件，目标条目使用与源条目相同的别名
-keytool -importkeystore -srckeystore keystore.p12 -srcalias entry_alias -srcstoretype pkcs12 -srcstorepass storepass -destkeystore keystore.jks -deststorepass storepass
+`keytool` 常用命令
 
-# 将 Java KeyStore 文件转换为 P12 文件，目标条目使用与源条目不同的别名
+- 将密钥库类型从 PKCS12 转换为 JKS，目标条目使用与源条目相同的别名
+```zsh
+keytool -importkeystore -srckeystore keystore.p12 -srcalias entry_alias -srcstoretype pkcs12 -srcstorepass storepass -destkeystore keystore.jks -deststorepass storepass
+```
+
+- 将密钥库类型从 JKS 转换为 PKCS12，目标条目使用与源条目不同的别名
+
+```zsh
 keytool -importkeystore -srckeystore keystore.jks -srcalias entry_alias -srcstorepass storepass -destkeystore keystore.p12 -destalias other_alias_name -deststoretype pkcs12 -deststorepass storepass
 ```
 
 注意: PKCS12 不支持密钥库和私钥使用不同的保护密码，所以转换到 PKCS12 格式的密钥库时，如果指定了 **destkeypass** 和 **deststorepass** ，那么密码必须相同。
 {:.warning}
 
-`keytool` 其它命令
+- 查看 keytool 子命令帮助
 
 ```zsh
-# 查看 keytool 帮助
-keytool -help
+keytool -importcert -help
+```
 
-# 查看 keytool 子命令帮助
-keytool -exportcert -help
+- 修改密钥库保护密码
 
-# 修改 keystore 保护密码
-keytool -storepasswd -keystore keystore.jks -new new_storepass -storepass origin_storepass
+```zsh
+keytool -storepasswd -keystore keystore.jks -storepass origin_storepass -new new_storepass
+```
 
-# 修改 keypass 保护密码
+- 修改 keypass 保护密码
+
+```zsh
 keytool -keypasswd -keystore keystore.jks -storepass password -alias friendly_name -keypass origin_keypass -new new_keypass
+```
 
-# 修改 alias
+- 修改别名
+
+```zsh
 keytool -changealias -keystore keystore.jks -storepass password -alias old_name -destalias new_name
+```
 
-# 查看证书文件
+- 查看证书文件
+
+```zsh
 keytool -printcert -file cert.pem -v
+```
 
-# 打印 keystore 中指定 alias 的证书，以可读方式显示
+- 打印密钥库中指定别名的证书，以可读方式显示
+
+```zsh
 keytool -list -keystore keystore.jks -storepass password -alias friendly_name -v
+```
 
-# 打印 keystore 中指定 alias 的证书，以 PEM 格式显示
+- 打印密钥库中指定别名的证书，以 PEM 格式显示
+
+```zsh
 keytool -list -keystore keystore.jks -storepass password -alias friendly_name -rfc
+```
 
-# 打印 jre 信任的证书
-# 证书路径1: $JAVA_HOME/jre/lib/security/cacerts 
-# 证书路径2: /usr/lib/jvm/java-1.8.0/jre/lib/security
-# 证书路径3: /etc/pki/java/cacerts 
-keytool -list -keystore /etc/pki/java/cacerts -storepass password
+- 打印 JRE cacerts 密钥库
 
-# 导入证书
+```zsh
+keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass password
+```
+
+- 导入证书到JRE cacerts 密钥库
+
+  对于 `-importcert` 子命令，如果不提供 `-keystore` 参数，默认使用 JRE 的 cacerts
+{:.info}
+
+```zsh
+ketytool -importcert -alias friendly_name -file cert.pem -storepass changeit
+```
+
+- 导入证书到指定密钥库
+
+  - 导入新的受信任证书时，密钥库中不能存在相同的别名。
+
+  - 在将证书添加到密钥库之前，`keytool` 尝试使用密钥库中的可信证书构建从该证书到自签名证书 (通常是一个根CA) 的信任链来验证它
+
+  - 如果使用 `-trustcacerts` 选项，则 cacerts 密钥库中的证书也会被添加会信任链中的可证书。
+
+```zsh
 keytool -importcert -trustcacerts -keystore keystore.jks -storepass password -alias friendly_name -file cert.pem
+```
 
-# 导出证书 PEM 格式
+- 导出 PEM 格式证书
+
+```
 keytool -exportcert -keystore keystore.jks -storepass password -alias friendly_name -rfc -file cert.pem
+```
 
-# 删除指定证书
+- 删除证书
+
+```
 keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
 ```
 
