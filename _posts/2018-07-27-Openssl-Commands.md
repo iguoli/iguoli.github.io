@@ -379,6 +379,7 @@ openssl pkcs12 -in keystore.p12 -info
 `keytool` 常用命令
 
 - 将密钥库类型从 PKCS12 转换为 JKS，目标条目使用与源条目相同的别名
+
 ```zsh
 keytool -importkeystore -srckeystore keystore.p12 -srcalias entry_alias -srcstoretype pkcs12 -srcstorepass storepass -destkeystore keystore.jks -deststorepass storepass
 ```
