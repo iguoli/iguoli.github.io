@@ -464,13 +464,13 @@ keytool -importcert -trustcacerts -keystore keystore.jks -storepass password -al
 
 - 导出 PEM 格式证书
 
-```
+```zsh
 keytool -exportcert -keystore keystore.jks -storepass password -alias friendly_name -rfc -file cert.pem
 ```
 
 - 删除证书
 
-```
+```zsh
 keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
 ```
 
