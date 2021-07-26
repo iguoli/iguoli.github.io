@@ -1,7 +1,7 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-modify_date: 2021-07-22
+modify_date: 2021-07-25
 tags: SSL-TLS
 key: Openssl-Commands-2018-07-27
 ---
@@ -801,18 +801,50 @@ echo | openssl s_client -showcerts -connect localhost:443 | sed -ne '/-BEGIN CER
 此函数可以通过 **SSH Config** 文件来配置跳转主机，打印远程主机证书。
 
 ```zsh
-function printcert {
-    if [ "$#" -ne 2 ]; then
-        echo "Usage: $0 <ssh_hostname> <port>"
-        echo "Example: $0 localhost 443 "
-        return 1
-    fi
+#!/usr/bin/env bash
 
-    cmd='ssh $1 "echo | openssl s_client -connect localhost:$2 2>/dev/null" | openssl x509 -noout -subject -enddate -ext subjectAltName'
-    echo $cmd
-    eval $cmd
-    echo
+
+function usage {
+    echo "Usage: $0 [-p] <ssh_hostname> [port]"
+    echo "Example: $0 -p portal.example.com 8080"
+    exit 1
 }
+
+while getopts ":p" flag; do
+    case "${flag}" in
+        p)
+            proxy=true
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [[ $# -eq 1 ]]; then
+    server=$1
+    port="443"
+elif [[ $# -eq 2 ]]; then
+    server=$1
+    port=$2
+else
+    usage
+fi
+
+if [[ "$proxy" == true ]]; then
+    cmd="echo | openssl s_client -proxy 10.1.1.86:8000 -connect $server:$port 2>/dev/null | openssl x509 -noout -subject -enddate -ext subjectAltName"
+else
+    cmd="ssh $server \"echo | openssl s_client -connect localhost:$port 2>/dev/null\" | openssl x509 -noout -subject -enddate -ext subjectAltName"
+fi
+
+# Set color variables
+Red=$(tput setaf 1) Green=$(tput setaf 2) Yellow=$(tput setaf 3)
+R=$(tput rev) NC=$(tput sgr0)
+
+printf "%s\n\n" "$cmd${Green}"
+eval "$cmd"
+echo "${NC}"
 ```
 
 ## S_SERVER
