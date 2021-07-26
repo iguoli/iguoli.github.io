@@ -808,7 +808,9 @@ function printcert {
         return 1
     fi
 
-    ssh $1 "echo | openssl s_client -connect localhost:$2 2>/dev/null" | openssl x509 -noout -subject -enddate -ext subjectAltName
+    cmd='ssh $1 "echo | openssl s_client -connect localhost:$2 2>/dev/null" | openssl x509 -noout -subject -enddate -ext subjectAltName'
+    echo $cmd
+    eval $cmd
     echo
 }
 ```
