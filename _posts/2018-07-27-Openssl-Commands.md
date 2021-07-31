@@ -164,7 +164,7 @@ openssl pkcs7 -print_certs -in cert.p7b -out cert.pem
 
 [RSA]: https://zh.wikipedia.org/wiki/RSA加密演算法
 
-`openssl genrsa` 命令可以生成 RSA 私钥.
+### 部分命令行选项
 
 - ***-aes256***  
   使用 aes256 算法加密私钥，并要求输入一个保护密码
@@ -175,9 +175,11 @@ openssl pkcs7 -print_certs -in cert.p7b -out cert.pem
 - ***numbits***  
   生成密钥所需要的 bit 长度
 
+### 常用命令
+
 ```bash
-# 生成 2048 位不带密码保护的私钥
-openssl genrsa -out key.pem 2048
+# 生成 4096 位不带密码保护的私钥
+openssl genrsa -out key.pem 4096
 
 # 生成 4096 位带密码保护的私钥
 openssl genrsa -aes256 -out key.pem 4096
@@ -241,7 +243,7 @@ ssh-keygen -y -f id_rsa > id_rsa.pub
 distinguished_name = req_distinguished_name
 req_extensions     = v3_req
 x509_extensions    = v3_ca   # The extensions to add to the self signed cert
-x509_extensions    = user_cert
+x509_extensions    = v3_usr  # The extensions to add to the user cert
 
 [ req_distinguished_name ]
 countryName                     = Country Name (2 letter code)
@@ -269,7 +271,7 @@ DNS.1   = *.galaxy.com
 DNS.2   = galaxy.com
 IP.1    = 10.10.10.10
 
-[ user_cert ]
+[ v3_usr   # The extensions to add to the user cert ]
 # Extensions for a user cert
 subjectKeyIdentifier    = hash
 authorityKeyIdentifier  = keyid, issuer
@@ -285,7 +287,7 @@ basicConstraints        = critical, CA:true
 keyUsage                = critical, digitalSignature, keyCertSign, cRLSign
 ```
 
-部分命令行选项：
+### 部分命令行选项
 
 - ***-days \<n\>***  
   指定证书有效期，默认是30天，与 `-x509` 选项一起使用
@@ -320,7 +322,7 @@ keyUsage                = critical, digitalSignature, keyCertSign, cRLSign
 - ***-[digets]***
   指定签署请求时使用的信息摘要算法，如 `-md5`，`-sha1`，`-sha256`
 
-常用命令：
+### 常用命令
 
 - 生成一个 4096 位的无密码保护私钥和一个新的证书申请，使用 openssl.cnf 中的配置信息
 
@@ -340,10 +342,18 @@ openssl req -new -key key.pem -out req.pem
 openssl req -in req.pem -text -noout
 ```
 
-- 生成一个新的自签名证书，并且使用 openssl.cnf 中的 [ req_ext ] 扩展来设置 Subject Alternative Name (SAN)
+### 生成自签名证书
+
+- 生成新的私钥和自签名证书
 
 ```bash
-openssl req -x509 -days 365 -key key.pem -out cert.pem -config openssl.cnf -extensions req_ext
+openssl req -x509 -days 10950 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -config openssl.cnf
+```
+
+- 使用已有私钥生成自签名证书
+
+```bash
+openssl req -x509 -days 10950 -key key.pem -out cert.pem -config openssl.cnf
 ```
 
 ## [x509v3_config]
@@ -534,10 +544,10 @@ openssl req -x509 -days 365 -key key.pem -out cert.pem -config openssl.cnf -exte
 
 [openssl pkcs12]: https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html
 
-`.pfx` 和 `.p12` 都是 ***PKCS12*** 文件。因为历史原因，**PFX** 是 Microsoft 常用扩展名，**P12** 是 Netscape 常用扩展名，这两个扩展名可以互换使用。
+***PFX*** 和 ***P12*** 都是 ***PKCS12*** 文件。因为历史原因，***PFX*** 是 Microsoft 常用扩展名，***P12*** 是 Netscape 常用扩展名，这两个扩展名可以互换使用。
 {:.info}
 
-- 创建 PKCS12 文件，包含私钥，client证书，其它证书，别名及文件保护密码
+- 创建 PKCS12 文件，包含私钥，证书，CA证书，别名及文件保护密码
 
 ```bash
 openssl pkcs12 -export -inkey key.pem -in cert.pem -certfile CACert.pem -out keystore.p12 -name entry_alias -passout pass:password
@@ -619,7 +629,7 @@ openssl pkcs12 -in keystore.p12 -info
 
 - 如果目标别名库中已经存在目标别名，则会提示用户覆盖该条目，或使用其他别名创建新条目。
 
-`keytool` 常用命令
+### 常用命令
 
 - 将密钥库类型从 PKCS12 转换为 JKS，目标条目使用与源条目相同的别名
 
@@ -723,7 +733,7 @@ keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
 
 `openssl x509` 命令可以显示证书信息，转换证书格式 (PEM <-> DER), 像 ***mini CA*** 一样签署一个证书请求，或者编辑证书。
 
-### 查看证书信息
+### 常用命令
 
 - 查看证书完整信息
 
@@ -779,54 +789,19 @@ openssl x509 -in cert.pem -noout -ext subjectAltName
 find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo; echo %; openssl x509 -noout -subject -ext subjectAltName -enddate -in %'
 ```
 
-### 生成自签名证书
+### 作为 CA 签发证书
 
-1. [生成证书私钥](#rsa)
-
-2. [生成CSR](#pkcs10---证书申请标准certification-request-standard)
-
-3. 使用私钥和证书申请 生成自签名证书
-
-- 方法一：私钥 ->证书申请 -> 自签名证书
+与 `openssl req` 的 `-config` 选项类似， `openssl x509` 命令接受一个 `-extfile` 选项，可以从配置文件中读取要加入到证书的扩展选项。
 
 ```bash
-# 生成 4096 位不带密码保护的私钥
-openssl genrsa -out key.pem 4096
-
-# 使用私钥生成CSR
-openssl req -new -key key.pem -out req.pem
-
-# 使用 openssl x509 命令生成自签名证书，有效期10年
-openssl x509 -req -sha256 -days 10950 -in req.pem -signkey key.pem -out cert.pem
+openssl x509 -req -in req.pem -CA cacert.pem -CAkey cakey.pem -out cert.pem -extfile openssl.cnf
 ```
 
-- 方法二：私钥和CSR -> 自签名证书
+### 将证书申请转换为一个自签名CA证书
 
 ```bash
-# 生成 4096 位的无密码保护私钥和CSR，使用配置文件 openssl.cnf 设置证书信息
-openssl req -newkey rsa:4096 -nodes -keyout key.pem -out req.pem -config openssl.cnf
-
-# 使用 openssl x509 命令生成自签名证书，有效期10年
-openssl x509 -req -sha256 -days 10950 -in req.pem -signkey key.pem -out cert.pem
+openssl -x509 -req -in careq.pem -key key.pem -out cacert.pem -extfile openssl.cnf -extensions v3_ca
 ```
-
-- 方法三：私钥 -> 自签名证书
-
-```bash
-# 生成 4096 位不带密码保护的私钥
-openssl genrsa -out key.pem 4096
-
-# 使用 openssl req 命令生成自签名证书，使用配置文件 openssl.cnf 设置证书信息，使用 openssl.cnf 中的 [ req_ext ] 扩展来设置 Subject Alternative Name (SAN)
-openssl req -x509 -days 365 -key key.pem -out cert.pem -config openssl.cnf -extensions req_ext
-```
-
-- 方法四：直接生成自签名证书
-
-```bash
-openssl req -x509 -days 10950 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -config openssl.cnf
-```
-
-关于是直接使用自签名证书，还是把自签名证书作为 CA，然后再签发其它证书
 
 ### PEM 证书长度
 
@@ -967,7 +942,9 @@ Certificate:
 
 ![Certificate](/assets/images/secure/x509.png)
 
-## S_CLIENT
+## [openssl s_client]
+
+[openssl s_client]: https://www.openssl.org/docs/man1.0.2/man1/openssl-s_client.html
 
 > s_client 是一个以 SSL 协议连接远程服务器的客户端程序，该工具可以用于测试诊断。
 
@@ -1098,7 +1075,9 @@ eval "$cmd"
 echo "${NC}"
 ```
 
-## S_SERVER
+## [openssl s_server]
+
+[openssl s_server]: https://www.openssl.org/docs/man1.0.2/man1/openssl-s_server.html
 
 | Item                            | Location               |
 | ------------------------------- | ---------------------- |
