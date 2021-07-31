@@ -10,7 +10,7 @@ key: Git-Commands-2017-06-05
 
 Git 帮助命令，以下三个命令结果相同
 
-```zsh
+```bash
 git help help
 
 git help --help
@@ -22,7 +22,7 @@ man git-help
 
 所有可用 Git 命令帮助
 
-```zsh
+```bash
 git help --all
 
 git help -a
@@ -30,7 +30,7 @@ git help -a
 
 所有可用的 Git 指南
 
-```zsh
+```bash
 git help --guides
 
 git help -g
@@ -50,7 +50,7 @@ git help -g
 
 例如，关闭 `git log` 输出时的分页器 (默认是 `less`)
 
-```zsh
+```bash
 git -c pager.log= log -1
 
 # 或关闭所有输出的分页器
@@ -78,7 +78,7 @@ git -c core.pager= log -1
   对系统中的所有仓库都会生效，这个变量的默认值是 `$XDG_CONFIG_HOME/git/ignore`。
   {:.warning}
 
-  ```zsh
+  ```bash
   git config --global core.excludesfile ~/.config/git/ignore
   ```
 
@@ -86,7 +86,7 @@ git -c core.pager= log -1
 
 ### 匹配模式的格式
 
-```zsh
+```bash
 # 所有目录下的所有 .gif 文件
 *.gif
 
@@ -167,7 +167,7 @@ pattern attr1 attr2 [attribute list...]
 
 然后在配置命令中定义 `indent` 过滤器
 
-```zsh
+```bash
 git config --global filter.indent.clean indent
 
 git config --global filter.indent.smudge cat
@@ -211,7 +211,7 @@ git config --global filter.indent.smudge cat
 
 这些 Git 对象存储于 `.git/objects` 目录下。
 
-```zsh
+```bash
 find .git/objects
 
 find .git/objects -type f
@@ -219,7 +219,7 @@ find .git/objects -type f
 
 底层命令 `hash-object` 可将任意数据保存于 .git 目录，并返回相应的键值。`-w` 选项指示 `hash-object` 命令存储数据对象；若不指定此选项，则该命令仅返回对应的键值。`--stdin` 选项则指示该命令从标准输入读取内容；若不指定此选项，则须在命令尾部给出待存储文件的路径。该命令输出一个长度为 40 个字符的校验和。这是一个 SHA-1 哈希值，一个将待存储的数据外加一个头部信息 (header) 一起做 SHA-1 校验运算而得的校验和。校验和的前两个字符用于命名子目录，余下的 38 个字符则用作文件名。
 
-```zsh
+```bash
 $ echo 'test content' | git hash-object -w --stdin
 d670460b4b4aece5915caf5c68d12f560a9fe3e4
 
@@ -243,7 +243,7 @@ store = f'{header}{content}'        # blob 5\x00what?
 
 查看 Git 对象
 
-```zsh
+```bash
 # 提交对象
 git cat-file -p master
 
@@ -265,7 +265,7 @@ git cat-file -p v1.1
 
 Git 对象的文件名是一个 SHA-1 值，不便于记忆，因此我们需要一个文件来保存 SHA-1 值，并给文件起一个简单的名字，然后用这个名字指针来替代原始的 SHA-1 值。在 Git 里，这样的文件被称为`引用 (references，或缩写为 refs)`，你可以在 `.git/refs` 目录下找到这类含有 SHA-1 值的文件。
 
-```zsh
+```bash
 find .git/refs
 ```
 
@@ -278,7 +278,7 @@ find .git/refs
 
 `git show-ref` 可以显示所有引用及其对应的 commit ID.
 
-```zsh
+```bash
 git show-ref
 
 # 只显示 "refs/heads/ 和 "refs/tags" 目录下的引用
@@ -290,7 +290,7 @@ git show-ref --tags -d
 
 `git update-ref` 可以手动创建一个本地引用。比如创建一个名为 test 的引用，指向与 master 相同的提交对象。
 
-```zsh
+```bash
 git update-ref refs/heads/test `git rev-parse master`
 
 git update-ref refs/heads/test 3739d69fc41b3b6f348104a9784d2a192171ce4d
@@ -300,7 +300,7 @@ git update-ref refs/heads/test 3739d69fc41b3b6f348104a9784d2a192171ce4d
 
 删除上面的 test 引用
 
-```zsh
+```bash
 git update-ref -d refs/heads/test
 ```
 
@@ -308,7 +308,7 @@ git update-ref -d refs/heads/test
 
 HEAD 文件是一个符号引用 (symbolic reference)，指向目前所在的分支。它不是指向一个 SHA-1 值，而是指向一个引用，可以使用 `git symbolic-ref` 来查看和修改符号引用。
 
-```zsh
+```bash
 # 查看 HEAD 指向的引用
 $ cat .git/HEAD
 ref: refs/heads/master
@@ -326,7 +326,7 @@ ref: refs/heads/test
 
 可以像这样创建轻量标签
 
-```zsh
+```bash
 git update-ref refs/tags/v1.0 `git rev-parse master`
 ```
 
@@ -338,13 +338,13 @@ git update-ref refs/tags/v1.0 `git rev-parse master`
 
 Git 最初向磁盘中存储对象时所使用的格式被称为"**松散 (loose)**"对象格式。但是，Git 会时不时地将多个这些对象打包成一个称为"**包文件 (packfile)**"的二进制文件，以节省空间和提高效率。当版本库中有太多的松散对象，或者你手动执行 `git gc` 命令，或者你向远程服务器执行推送时，Git 都会这样做。
 
-```zsh
+```bash
 git gc
 ```
 
 这个时候再查看 objects 目录，你会发现大部分的对象都不见了，与此同时出现了一对新文件: 创建的包文件和一个索引。
 
-```zsh
+```bash
 $ find .git/objects -type f
 .git/objects/bd/9dbf5aae1a3862dd1526723246b20206e5fc37
 .git/objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4
@@ -355,7 +355,7 @@ $ find .git/objects -type f
 
 `git verify-pack -v` 这个底层命令可以让你查看已打包的内容。
 
-```zsh
+```bash
 git verify-pack -v .git/objects/pack/pack-978e03944f5c581011e6998cd0e9e30000905586.idx
 ```
 
@@ -363,13 +363,13 @@ git verify-pack -v .git/objects/pack/pack-978e03944f5c581011e6998cd0e9e300009055
 
 假设你添加了这样一个远程仓库:
 
-```zsh
+```bash
 git remote add origin https://github.com/schacon/simplegit-progit
 ```
 
 上述命令会在你的 `.git/config` 文件中添加一个小节，并在其中指定远程版本库的名称 (origin)、URL 和一个用于 `fetch` 操作的**引用规格 (refspec)**
 
-```zsh
+```bash
 [remote "origin"]
    url = https://github.com/schacon/simplegit-progit
    fetch = +refs/heads/*:refs/remotes/origin/*
@@ -379,7 +379,7 @@ git remote add origin https://github.com/schacon/simplegit-progit
 
 默认情况下，引用规格由 `git remote add` 命令自动生成，Git 获取服务器中 `refs/heads/` 下面的所有引用，并将它写入到本地的 `refs/remotes/origin/` 中。所以，如果服务器上有一个 master 分支，我们可以在本地通过下面这种方式来访问该分支上的提交记录:
 
-```zsh
+```bash
 git log origin/master
 git log remotes/origin/master
 git log refs/remotes/origin/master
@@ -389,7 +389,7 @@ git log refs/remotes/origin/master
 
 可以使用 <span style="color:red"><b>命名空间 (或目录) </b></span>来对引用进行分类管理。假设你有一个 QA 团队，他们推送了一系列分支，同时你只想要获取 `master` 和 QA 团队的所有分支而不关心其他任何分支，那么可以使用如下配置:
 
-```zsh
+```bash
 [remote "origin"]
    url = https://github.com/schacon/simplegit-progit
    fetch = +refs/heads/master:refs/remotes/origin/master
@@ -402,13 +402,13 @@ git log refs/remotes/origin/master
 
 QA 团队最初应该如何将他们的分支放入远程的 `qa/` 命名空间呢？我们可以通过**引用规格推送**来完成这个任务。
 
-```zsh
+```bash
 git push origin master:refs/heads/qa/master
 ```
 
 如果他们希望 Git 每次运行 `git push origin` 时都像上面这样推送，可以在他们的配置文件中添加一条 `push` 值:
 
-```zsh
+```bash
 [remote "origin"]
    url = https://github.com/schacon/simplegit-progit
    fetch = +refs/heads/*:refs/remotes/origin/*
@@ -421,7 +421,7 @@ git push origin master:refs/heads/qa/master
 
 可以通过引用规格从远程服务器上删除引用
 
-```zsh
+```bash
 git push origin :topic
 ```
 
@@ -437,7 +437,7 @@ Git 会不定时地自动运行一个叫做 "`auto gc`" 的命令，这个命令
 
 `gc` 会做的另一件事是打包你的引用到一个单独的文件 `.git/packed-refs`
 
-```zsh
+```bash
 $ git gc
 $ cat .git/packed-refs
 # pack-refs with: peeled fully-peeled
@@ -452,7 +452,7 @@ cac0cab538b970a37ea1e769cbbde608743bc96d refs/tags/v1.0
 
 `git count-objects -v` 命令来快速查看数据库占用空间大小。
 
-```zsh
+```bash
 git count-objects -v
 ```
 
@@ -460,7 +460,7 @@ git count-objects -v
 
 查看 gitrevisions 了解 revision 相关概念
 
-```zsh
+```bash
 man gitrevisions
 ```
 
@@ -468,7 +468,7 @@ man gitrevisions
 
 Git 可以为 SHA-1 值生成出简短且唯一的缩写。`git log` 的 `--abbrev-commit` 参数会显示简短且唯一的 SHA-1 值，默认是 7 个字符。
 
-```zsh
+```bash
 git log --abbrev-commit --pretty=oneline
 ```
 
@@ -476,7 +476,7 @@ git log --abbrev-commit --pretty=oneline
 
 如果你想知道某个分支指向哪个特定的 SHA-1，或者想看任何一个例子中被简写的 SHA-1 ，你可以使用一个叫做 `rev-parse` 的 Git 探测工具。
 
-```zsh
+```bash
 git rev-parse master
 git rev-parse origin/master
 git rev-parse v1.1
@@ -487,7 +487,7 @@ git rev-parse v1.1
 Git 会在后台保存一个引用日志(reflog)， 记录最近几个月你的 HEAD 和分支引用所指向的历史，
 包括撤销掉的提交，类似于 bash 的 history 功能。 引用日志只存在于本地仓库，只记录你自己的操作记录。
 
-```zsh
+```bash
 git reflog
 
 # 使用@{n}来引用reflog的提交记录
@@ -544,13 +544,13 @@ J = F^2  = B^3^2   = A^^3^2
 
 最常用的提交区间语法是**双点**。这种语法可以让 Git 选出在一个分支中而不在另一个分支中的提交。比如，你想要查看 experiment 分支中还有哪些提交尚未被合并入 master 分支。你可以使用 `master..experiment` 来让 Git 显示 <span style="color:red">"在 experiment 分支中而不在 master 分支中的提交"</span>。
 
-```zsh
+```bash
 git log master..experiment
 ```
 
 你也可以反过来查看在 master 分支中而不在 experiment 分支中的提交
 
-```zsh
+```bash
 git log experiment..master
 ```
 
@@ -558,7 +558,7 @@ git log experiment..master
 
 Git 允许你在任意引用前加上 ^ 字符或者 --not 来指明你不希望提交被包含其中的分支。因此下列3个命令是等价的:
 
-```zsh
+```bash
 git log refA..refB
 git log refB ^refA
 git log refB --not refA
@@ -566,7 +566,7 @@ git log refB --not refA
 
 你可以在查询中指定超过两个的引用，这是双点语法无法实现的。比如，你想查看所有被 refA 或 refB 包含的但是不被 refC 包含的提交，你可以输入下面中的任意一个命令
 
-```zsh
+```bash
 git log refA refB ^refC
 git log refA refB --not refC
 ```
@@ -575,7 +575,7 @@ git log refA refB --not refC
 
 这个语法可以选择出被两个引用中的一个包含但又不被两者同时包含的提交。`--left-right` 参数会显示每个提交到底处于哪一侧的分支。
 
-```zsh
+```bash
 git log --left-right master...experiment
 ```
 
@@ -583,7 +583,7 @@ git log --left-right master...experiment
 
 ## 差异比较
 
-```zsh
+```bash
 # 比较working tree和index tree的不同
 git diff
 
@@ -604,7 +604,7 @@ git diff HEAD origin/master
 
 ## [重置揭密](https://git-scm.com/book/zh/v2/Git-工具-重置揭密)
 
-```zsh
+```bash
 # 1. 移动HEAD(--soft)
 git reset --soft HEAD~
 
@@ -638,7 +638,7 @@ git checkout HEAD~2 -- filename
 
 对于本地已经提交，还未推送远端仓库的提交，可以在本地进行撤销操作。
 
-```zsh
+```bash
 # 用新的提交来替换最近一次提交
 # 如果文件没有变化，则只修改提交信息
 git commit --amend -m '新的提交替换上次提交'
@@ -653,7 +653,7 @@ git commit -m '新的提交'
 对于已经推送远端仓库的提交，可以将已经存在的一个或多个提交的变更回滚掉，并记录一个新的提交。
 回滚操作相当于 git 替你将之前的变更删掉，再将老的代码粘贴回来，将这些变更再重新提交。
 
-```zsh
+```bash
 # 回滚HEAD中倒数第4个提交的变更，并生成一个新的提交
 git revert HEAD~3
 
@@ -665,7 +665,7 @@ git revert -n master~5..master~2
 
 ## 变基操作
 
-```zsh
+```bash
 # 基本命令形式
 git rebase <upstream> [branch]
 
@@ -676,7 +676,7 @@ git rebase master develop
 
 如果指定了`<branch>`，在变基前会先进行`git checkout <branch>`的动作，没有指定的话就是操作当前`<branch>`，因此上例中的第二个命令形式等价于
 
-```zsh
+```bash
 git checkout develop
 git rebase master
 ```
@@ -689,7 +689,7 @@ git rebase master
 
 ## 暂存工作，更新仓库，恢复工作
 
-```zsh
+```bash
 git stash # 工作区修改暂存
 git pull  # 更新分支
 git stash pop # 暂存修改恢复到工作区
@@ -697,7 +697,7 @@ git stash pop # 暂存修改恢复到工作区
 
 ## [远程仓库](https://git-scm.com/book/zh/v2/Git-基础-远程仓库的使用)
 
-```zsh
+```bash
 # 查看已经配置的远程仓库
 git remote -v
 git remote -vv
@@ -728,38 +728,38 @@ git remote rm alpha
 
 创建分支
 
-```zsh
+```bash
 git branch hotfix
 ```
 
 切换分支
 
-```zsh
+```bash
 git checkout hotfix
 ```
 
 创建并切换分支，等价于执行上面两条命令
 
-```zsh
+```bash
 git checkout -b hotfix
 ```
 
 将 hotfix 分支合并到 master 分支
 
-```zsh
+```bash
 git checkout master
 git merge hotfix
 ```
 
 删除 hotfix 分支
 
-```zsh
+```bash
 git branch -d hotfix
 ```
 
 列出所有分支
 
-```zsh
+```bash
 git branch
 
 # 显示分支引用的 commit 对象及 commit 信息
@@ -793,25 +793,25 @@ Stack Overflow 上关于 [What are the differences between local branch, local t
 
 列出所有的**远程引用**
 
-```zsh
+```bash
 git ls-remote
 ```
 
 列出所有**远程跟踪分支**
 
-```zsh
+```bash
 git branch -r
 ```
 
 列出**远程分支**的详细信息
 
-```zsh
+```bash
 git remote show origin
 ```
 
 抓取远程分支数据，更新远程跟踪分支。抓取哪些远程分支由 `git config remote.origin.fetch` 的[引用规格](#引用规格)给出。假如有 `origin`，`stage` 和 `production` 三个远程仓库
 
-```zsh
+```bash
 # 抓取默认的远程仓库上的分支 (origin)
 git fetch
 
@@ -827,37 +827,37 @@ git fetch --all --prune
 
 删除远程跟踪分支
 
-```zsh
+```bash
 git branch -r -d origin/features
 ```
 
 将远程跟踪分支数据合并到当前分支
 
-```zsh
+```bash
 git merge origin/master
 ```
 
 从一个远程跟踪分支检出一个本地分支会自动创建所谓的 "**跟踪分支 (tracking branch)**"，它跟踪的分支叫做 "**上游分支 (upstream branch)**"。如果在一个跟踪分支上输入 `git pull`，Git 能自动地识别去哪个服务器上抓取、合并到哪个分支。
 
-```zsh
+```bash
 git checkout -b feature-1 origin/feature-1
 ```
 
 由于这个命令十分常用，Git 提供了 `-t 或 --track` 选项来简化操作
 
-```zsh
+```bash
 git checkout -t origin/feature-1
 ```
 
 设置已有的本地分支跟踪一个刚刚拉取下来的远程分支，或者想要修改正在跟踪的上游分支，你可以使用 `-u 或 --set-upstream-to` 选项运行 git branch 来显式地设置。
 
-```zsh
+```bash
 git branch -u origin/dev
 ```
 
 查看设置的所有跟踪分支
 
-```zsh
+```bash
 git branch -vv
 ```
 
@@ -867,13 +867,13 @@ git branch -vv
 
 `git remote prune` 和 `git fetch --prune` 做同样的事情：删除已经不存在的远程分支的引用。这在团队工作流中非常需要，远程分支在合并到 `master` 之后会被删除。第二个命令 `git fetch --prune` 在 prune 远程引用之前先连接到远程仓库获取最新的状态。 它本质上是下面命令的组合:
 
-```zsh
+```bash
 git fetch --all && git remote prune
 ```
 
 ### 推送
 
-```zsh
+```bash
 # repository: 远程仓库，可以是URL或远程引用，默认为origin；
 # refspecs:   src:dest, src可以是分支名，也可以是任意SHA-1表达式(参考gitrevisions)
 #             推送空的src可以从远程仓库删除对应的分支
@@ -908,7 +908,7 @@ git push origin :/refs/tags/v1.1
 
 ### 列出已有标签
 
-```zsh
+```bash
 $ git tag
 v0.1
 v1.0
@@ -918,7 +918,7 @@ v2.3
 
 通过模式搜索标签
 
-```zsh
+```bash
 $ git tag -l 'v1.*'
 v1.0
 v1.1
@@ -936,14 +936,14 @@ v1.1
 
 创建含附注型标签
 
-```zsh
+```bash
 # -a 表示 annotated，-m 指定标签说明信息
 git tag -a v1.4 -m 'my version 1.4'
 ```
 
 可以对任意存在的提交对象 (commit object) 打上标签
 
-```zsh
+```bash
 git tag -a v1.3 -m 'last commit' HEAD^
 
 git tag -a v1.2 -m 'version 1.2' 9fceb02
@@ -951,7 +951,7 @@ git tag -a v1.2 -m 'version 1.2' 9fceb02
 
 查看指定标签
 
-```zsh
+```bash
 git show v1.4
 ```
 
@@ -959,7 +959,7 @@ git show v1.4
 
 轻量级标签实际上就是一个保存着对应提交对象的校验和信息的文件。创建轻量级标签不需要任何参数，直接给出标签名字即可
 
-```zsh
+```bash
 git tag v1.4-lw
 ```
 
@@ -967,13 +967,13 @@ git tag v1.4-lw
 
 默认情况下，`git push` 并不会把标签传送到远端服务器上，只有通过显式命令才能分享标签到远端仓库。其命令格式如同推送分支，运行 `git push origin [tagname]` 即可
 
-```zsh
+```bash
 git push origin v1.5
 ```
 
 如果要一次推送所有本地新增的标签上去，可以使用 --tags 选项
 
-```zsh
+```bash
 git push origin --tags
 ```
 
@@ -981,13 +981,13 @@ git push origin --tags
 
 使用 `git tag -d <tagname>` 可以删除本地标签
 
-```zsh
+```bash
 git tag -d v1.4-lw
 ```
 
 使用 `git push origin :refs/tags/v1.4-lw` 删除远程仓库中的标签
 
-```zsh
+```bash
 git push origin :refs/tags/v1.4-lw
 ```
 
@@ -995,7 +995,7 @@ git push origin :refs/tags/v1.4-lw
 
 使用 `--bare` 选项来克隆一个裸仓库，即一个不包含当前工作目录的仓库。
 
-```zsh
+```bash
 git clone --bare https://github.com/user/my-project.git my-project.git
 ```
 
@@ -1031,7 +1031,7 @@ Suppose origin has a few branches (`master (HEAD)`, `next`, `pu`, and `maint`), 
 
 `--bare` 方式
 
-```zsh
+```bash
 # bare clone
 git clone --bare git@github.com/user/origin-repository.git
 
@@ -1043,7 +1043,7 @@ git push --mirror git@github.com/user/mirror-repository.git
 
 `--mirror` 方式
 
-```zsh
+```bash
 git clone --mirror git@github.com/user/origin-repository.git
 
 cd origin-repository.git
@@ -1060,7 +1060,7 @@ git push --mirror git@github.com/user/mirror-repository.git
 
 ## [移除对象](https://git-scm.com/book/zh/v2/Git-内部原理-维护与数据恢复)
 
-```zsh
+```bash
 # 找出占用空间最大的数据对象，第三列为文件大小
 $ git verify-pack -v .git/objects/pack/pack-a8…30.idx | sort -k 3 -n | tail -3
 bf1e07a27a65dfa74d6a500b07c3f5a68c77eceb blob   3279775 2914719 22414147
@@ -1103,7 +1103,7 @@ $ git prune --expire now
 
 [`git-filter-repo`](https://github.com/newren/git-filter-repo) 是一个 git 历史重写工具，可以方便的从历史中删除文件或目录，更改文件内容，相比于 `filter-branch` 会更加高效。
 
-```zsh
+```bash
 # 查看历史提交中含有私钥文件的提交
 git log --oneline --all '*.key'
 
@@ -1113,7 +1113,7 @@ git-filter-repo --invert-paths --path-glob '*.key' --dry-run
 
 ## [Git 别名](https://git-scm.com/book/zh/v2/Git-基础-Git-别名)
 
-```zsh
+```bash
 # 撤消暂存
 $ git config --global alias.unstage 'reset HEAD --'
 git unstage Readme.md
@@ -1145,7 +1145,7 @@ remove-file = "!f() { git filter-branch -f --index-filter \"git rm --cached --ig
 
 首先使用格式化输出 log 找出历史提交中所有的用户名和邮箱名
 
-```zsh
+```bash
 # 找出历史提交中使用过的用户名
 git log --format=%an | sort -u
 
@@ -1163,7 +1163,7 @@ git change-commits GIT_AUTHOR_EMAIL 'old@email.com' 'new@email.com'
 
 ### 在历史提交中查找文件（包括已删除文件）
 
-```zsh
+```bash
 git log --oneline --all -- 'file-full-path'
 
 git log --oneline --all --full-history -- 'file-full-path'
@@ -1171,7 +1171,7 @@ git log --oneline --all --full-history -- 'file-full-path'
 
 如果只想查看该文件的最后一次改动提交，可以加上 `-1` 参数
 
-```zsh
+```bash
 git log --oneline --all -1 -- 'file-full-path'
 
 git log --oneline --all --full-history -1 -- 'file-full-path'
@@ -1181,7 +1181,7 @@ git log --oneline --all --full-history -1 -- 'file-full-path'
 
 例如，查找字符串 `-----BEGIN RSA PRIVATE KEY-----` 何时被添加，何时被改动，何时被删除
 
-```zsh
+```bash
 git log --oneline --all -S '-----BEGIN RSA PRIVATE KEY-----'
 ```
 
@@ -1192,7 +1192,7 @@ git log --oneline --all -S '-----BEGIN RSA PRIVATE KEY-----'
 使用`ssh-keygen`将生成的公钥添加到 Github 账户，在本地通过`git@github.com:username/repo.git`访问。
 `git`命令默认使用`~/.ssh/id_rsa`，如果需要使用其它私钥，需要将私钥添加到`ssh-agent`
 
-```zsh
+```bash
 # 启动ssh agent
 eval $(ssh-agent -s)
 

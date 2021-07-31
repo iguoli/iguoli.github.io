@@ -30,7 +30,7 @@ key: Bash-Redirections-2017-05-23
 
 下面的命令将 `stdout` 和 `stderr` 都重定向到文件 `file`
 
-```zsh
+```bash
 command >file 2>&1
 ```
 
@@ -47,13 +47,13 @@ command >file 2>&1
 
 Bash 使用 `&>` 操作符简化上面的重定向命令
 
-```zsh
+```bash
 command &>file
 ```
 
 注意，重定向的顺序非常重要，下面的重定向只将 `stdout` 重定向到了文件 `file`，而 `stderr` 依然还是指向到原来的 terminal。
 
-```zsh
+```bash
 command 2>&1 >file
 ```
 执行该命令时的过程如下：
@@ -69,19 +69,19 @@ command 2>&1 >file
 
 ### 忽略命令产生的输出
 
-```zsh
+```bash
 command > /dev/null
 ```
 
 `/dev/null` 是个特殊的文件，任何写入到它的数据都会被忽略。所以将标准输出重定向到这个特殊文件来忽略命令产生的输出。同样，我们也可以同时将标准输出和标准错误重定向到这个文件。
 
-```zsh
+```bash
 command >/dev/null 2>&1
 ```
 
 或者使用简单的写法
 
-```zsh
+```bash
 command &> /dev/null
 ```
 

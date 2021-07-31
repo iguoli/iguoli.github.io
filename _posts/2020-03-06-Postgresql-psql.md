@@ -14,7 +14,7 @@ PostgreSQL 交互式终端 `psql` 的使用，包括连接字符串，免密设�
 
 ### MacOS 上安装 [psql]
 
-```zsh
+```bash
 brew install libpq
 
 # libpq is keg-only, you can add its opt-path to the PATH
@@ -24,7 +24,7 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 
 ### [psql] 命令摘要
 
-```zsh
+```bash
 psql [option...] [dbname [username]]
 
 General options:
@@ -38,7 +38,7 @@ General options:
 
 要连接到数据库，需要*目标数据库名称*，*服务器主机名*，*端口号*及*用户名*。可以通过命令行选项（分别为`-d`，`-h`，`-p`和`-U`）告知psql这些参数。
 
-```zsh
+```bash
 psql -h HOSTNAME -U USERNAME -d DBNAME
 
 # 或
@@ -47,7 +47,7 @@ psql -h HOSTNAME DBNAME USERNAME
 
 通过设置环境变量 *PGDATABASE*，*PGHOST*，*PGPORT*，*PGUSER*可以避免每次输入这些信息。
 
-```zsh
+```bash
 export PGHOST='192.168.10.10'
 export PGDATABASE='mydb'
 export PGUSER='myname'
@@ -69,7 +69,7 @@ psql
 
 前四个字段可以是具体的字符串或`*`，第一个匹配当前连接的密码会被使用。因此，应该把具体的条目放前面，把通配符多的条目放后面。在 Unix 系统上，还要注意文件的权限是`0600`
 
-```zsh
+```bash
 $ vim ~/.pgpass
 # hostname:port:database:username:password
 192.168.10.10:5432:*:postgres:mypassword
@@ -86,7 +86,7 @@ You are connected to database "mydb" as user "postgres" on host "192.168.10.10" 
 
 另一种连接数据库的方式是使用[连接字符串(connection strings)][Connection Strings]，有 *Keyword/Value连接字符串* 和 *连接URI(Connection URI)* 两种格式。
 
-```zsh
+```bash
 # keyword=value
 psql "host=localhost user=postgres dbname=mydb connect_timeout=10 sslmode=require"
 
@@ -127,7 +127,7 @@ postgresql://host1:123,host2:456/somedb?target_session_attrs=any&application_nam
 
 ### [psql] 常用命令
 
-```zsh
+```bash
 # 连接数据库，执行命令，然后退出
 psql -c '\?'
 psql -c '\x' -c 'select * from table1'
@@ -415,7 +415,7 @@ Options controlling the restore:
 
 将数据库导出为 SQL-script 文件
 
-```zsh
+```bash
 # 导出 mydb 数据库到 SQL-script 文件
 pg_dump -h localhost -p 5432 -U postgres mydb > db.sql
 
@@ -462,13 +462,13 @@ host    replication     all             0.0.0.0/0               trust # 允许�
 
 在本地备份为 tar.gz 包
 
-```zsh
+```bash
 pg_basebackup -D backup -Ft -Xs -z -P
 ```
 
 在远程机器进行复制并启用
 
-```zsh
+```bash
 service posgresql-9.4 stop
 
 mv /var/lib/pgsql/9.4/data /var/lib/pgsql/9.4/data.bak

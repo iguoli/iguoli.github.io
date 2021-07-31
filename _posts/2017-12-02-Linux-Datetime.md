@@ -70,7 +70,7 @@ Time Zone Abbreviations
 
 在支持 `systemd` Linux系统上，使用 `timedatectl` 命令
 
-```zsh
+```bash
 $ timedatectl
       Local time: Mon 2019-08-05 10:02:54 CST
   Universal time: Mon 2019-08-05 02:02:54 UTC
@@ -83,20 +83,20 @@ NTP synchronized: no
 
 使用 `tzselect` 命令查看可用的系统时区，该命令不会修改系统时区
 
-```zsh
+```bash
 tzselect
 ```
 
 使用 `readlink` 命令查看 `/etc/localtime` 指向的时区文件
 
-```zsh
+```bash
 $ readlink /etc/localtime
 /usr/share/zoneinfo/Asia/Shanghai
 ```
 
 查看 `/etc/timezone` 文件
 
-```zsh
+```bash
 $ cat /etc/timezone
 Asia/Shanghai
 ```
@@ -105,31 +105,31 @@ Asia/Shanghai
 
 在支持 `systemd` Linux系统上，使用 `timedatectl set-timezone` 命令
 
-```zsh
+```bash
 timedatectl set-timezone Asia/Shanghai
 ```
 
 直接修改 `/etc/localtime` 指向的时区文件
 
-```zsh
+```bash
 ln -s -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 
 在 RedHat Linux 和 CentOS 系统上使用 `timeconfig` 命令
 
-```zsh
+```bash
 timeconfig
 ```
 
 在 Debian/Ubuntu 等类似系统上使用 `dpkg-reconfigure` 工具
 
-```zsh
+```bash
 dpkg-reconfigure tzdata
 ```
 
 在脚本中指定时区，使用 `TZ` 环境变量
 
-```zsh
+```bash
 TZ='Asia/Shanghai'
 ```
 
@@ -139,7 +139,7 @@ TZ='Asia/Shanghai'
 
 [man date](http://man7.org/linux/man-pages/man1/date.1.html)
 
-```zsh
+```bash
 # output date and time in RFC 2822 format.
 # Example: Mon, 14 Aug 2006 02:34:56 -0600
 date -R
@@ -161,13 +161,13 @@ TZ='Asia/Shanghai' date
 
 在支持 `systemd` Linux系统上，使用 `timedatectl set-time` 命令
 
-```zsh
+```bash
 timedatectl set-time '2019/08/05 12:55:00'
 ```
 
 使用 `date` 命令修改时间
 
-```zsh
+```bash
 date -s '2019/08/05 13:52:00'
 
 # 单独修改日期

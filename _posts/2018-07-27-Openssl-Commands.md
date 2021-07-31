@@ -14,7 +14,7 @@ key: Openssl-Commands-2018-07-27
 
 <!--more-->
 
-```zsh
+```bash
 openssl <command> [command_opts] [command_args]
 
 # 查看版本
@@ -36,7 +36,7 @@ openssl list-public-key-algorithms
 openssl no-<command>
 ```
 
-### Pass Phrase Arguments
+### [Pass Phrase Arguments](https://www.openssl.org/docs/manmaster/man1/openssl-passphrase-options.html)
 
 `openssl` 中有几个命令可以接受密码参数，例如 `pkcs12`。通常使用 `-passin` 和 `-passout` 做为输入和输出密码。密码可以有多种形式，其格式如下所述。
 
@@ -123,9 +123,46 @@ gP+frXcbdgp6jgsLWqn6uRxI3Cp/3qJCWr3foeDsyyxEDJjJXi77heIwoyOsfDDQ
 -----END RSA PRIVATE KEY-----
 ```
 
-## [RSA](https://zh.wikipedia.org/wiki/RSA加密演算法)
+## [PKCS - Public Key Cryptography Standards (公钥密码学标准)][5]
 
-**RSA** 是常用的非对称加密算法，用于生成公钥和私钥对.
+### PKCS#7 - 密码消息语法标准（Cryptographic Message Syntax Standard）
+
+`openssl pkcs7` 命令用于处理 ***PKCS7*** 格式的证书
+
+```bash
+# 将 p7b 格式的证书转换成 x509 格式的证书
+openssl pkcs7 -print_certs -in cert.p7b -out cert.pem
+```
+
+### PKCS#10 - 证书申请标准（Certification Request Standard）
+
+该标准规范了向证书中心申请证书之CSR（certificate signing request）的格式。 在 PKI 系统中，一个 **证书签名请求 (CSR)** 是申请者为了向 CA 中心申请 **[数字身份证书][4]** 而发送的信息。下面是一个 CSR 中需要的典型信息。
+
+|   DC   |       Information        |         Description          |           Sample           |
+| :----: | :----------------------: | :--------------------------: | :------------------------: |
+|  `CN`  |       Common Name        | 希望保证安全的域名 [FQDN][3] |      *.wikipedia.org       |
+|  `O`   |    Organization Name     |        组织或公司名称        | Wikimedia Foundation, Inc. |
+|  `OU`  | Organizational Unit Name |           部门名称           |             IT             |
+|  `L`   |     Locality / City      |          城市或地区          |       San Francisco        |
+|  `ST`  |    State or Province     |            省/州             |         California         |
+|  `C`   |         Country          |       两字母的国家代码       |             US             |
+| `MAIL` |      Email address       |     公司或部门的联系邮箱     |    support@it.corp.com     |
+
+`openssl req` 命令用来创建和处理 ***PKCS10*** 格式的证书，这些信息可以写在配置文件中，例如创建一个名为 `openssl.cnf` 的配置文件，内容如下:
+
+### PKCS#12 - 个人消息交换标准（Personal Information Exchange Syntax Standard）
+
+***[PKCS12][6]*** 是一种证书存储格式，用于实现将许多加密对象存储在一个单独的文件中。通常用它来打包一个私钥及有关的 X.509 证书，或者打包信任链的全部项目。
+
+`openssl pkcs12` 命令用来解析或者创建 ***PKCS12*** 格式的证书。
+
+## [openssl rsa]
+
+[openssl rsa]: https://www.openssl.org/docs/manmaster/man1/openssl-rsa.html
+
+**[RSA]** 是常用的非对称加密算法，用于生成公钥和私钥对.
+
+[RSA]: https://zh.wikipedia.org/wiki/RSA加密演算法
 
 `openssl genrsa` 命令可以生成 RSA 私钥.
 
@@ -138,72 +175,73 @@ gP+frXcbdgp6jgsLWqn6uRxI3Cp/3qJCWr3foeDsyyxEDJjJXi77heIwoyOsfDDQ
 - ***numbits***  
   生成密钥所需要的 bit 长度
 
-```zsh
+```bash
 # 生成 2048 位不带密码保护的私钥
-openssl genrsa -out private.key 2048
+openssl genrsa -out key.pem 2048
 
 # 生成 4096 位带密码保护的私钥
-openssl genrsa -aes256 -out private.key 4096
+openssl genrsa -aes256 -out key.pem 4096
 ```
 
-`openssl rsa` 命令处理 RSA 密钥. 可以转换不同格式的密钥并打印密钥组成内容
+- 打印密钥文本
 
-```zsh
-# 打印密钥编码后版本
-openssl rsa -in private.key
+```bash
+openssl rsa -in key.pem -text -noout
+```
 
-# 打印密钥纯文本版本
-openssl rsa -in private.key -text -noout
+- 读取私钥，输出公钥
 
-# 读取私钥，输出公钥
-openssl rsa -in private.key -pubout -out public.pem
+```bash
+openssl rsa -in key.pem -pubout -out public.pem
+```
 
-# 删除私钥的保护密码
+- 删除私钥的保护密码
+
+```bash
 openssl rsa -in encrypted.key -out unencrypted.key
-
-# 给私钥添加密码保护
-openssl rsa -aes256 -in unencrypted.key -out encrypted.key
-
-# 将私钥从 PEM 格式转换成 DER 格式
-openssl rsa -in private.key -outform DER -out private.der
 ```
 
-```zsh
-# ssh 生成公钥的命令
+- 给私钥添加密码保护
+
+```bash
+openssl rsa -aes256 -in unencrypted.key -out encrypted.key
+```
+
+- 将私钥从 PEM 格式转换成 DER 格式
+
+```bash
+openssl rsa -in key.pem -outform DER -out key.der
+```
+
+- `ssh` 生成公钥的命令
+
+```bash
 ssh-keygen -y -f id_rsa > id_rsa.pub
 ```
 
-## [PKCS - Public Key Cryptography Standards (公钥密码学标准)][5]
+## [openssl req]
 
-### PKCS#7 - 密码消息语法标准（Cryptographic Message Syntax Standard）
+[openssl req]: https://www.openssl.org/docs/manmaster/man1/openssl-req.html
 
-`openssl pkcs7` 命令用于处理 `PKCS#7(p7b)` 格式的证书
+`openssl req` 命令接受 `-config` 选项，可以从指定的配置文件中读取配置，配置选项写在配置文件中的 ***`[ req ]`*** 部分，具体配置选项和取值参考 [openssl req] 手册的 **CONFIGURATION FILE FORMAT** 部分，主要用到的选项如下:
 
-```zsh
-# 将 p7b 格式的证书转换成 x509 格式的证书
-openssl pkcs7 -print_certs -in cert.p7b -out cert.pem
-```
+- **distinguished_name**
+  - 指定配置文件中的某个段名，该段包含证书或证书申请中关于名称的各个字段和默认值。
 
-### PKCS#10 - 证书申请标准（Certification Request Standard）
+- **req_extensions**
+  - 指定配置文件中的某个段名，该段包含要加入证书申请中的一系列扩展，可被命令行 `-reqexts` 选项改写。
 
-规范了向证书中心申请证书之CSR（certificate signing request）的格式。 在 PKI 系统中，一个 **证书签名请求 (CSR)** 是申请者为了向 CA 中心申请 **[数字身份证书][4]** 而发送的信息。下面是一个 CSR 中需要的典型信息。
+- **x509_extensions**
+  - 指定配置文件中的某个段名，该段包含要加入证书中的一系列扩展，可被命令行 `-extensions` 选项改写。
 
-|   DC   |       Information        |         Description          |           Sample           |
-| :----: | :----------------------: | :--------------------------: | :------------------------: |
-|  `CN`  |       Common Name        | 希望保证安全的域名 [FQDN][3] |      *.wikipedia.org       |
-|  `O`   |    Organization Name     |        组织或公司名称        | Wikimedia Foundation, Inc. |
-|  `OU`  | Organizational Unit Name |           部门名称           |             IT             |
-|  `L`   |     Locality / City      |          城市或地区          |       San Francisco        |
-|  `ST`  |    State or Province     |            省/州             |         California         |
-|  `C`   |         Country          |       两字母的国家代码       |             US             |
-| `MAIL` |      Email address       |     公司或部门的联系邮箱     |    support@it.corp.com     |
+关于扩展段的格式及取值等信息，可以查看 *[x509v3_config]* 手册页，下面是配置文件的一个例子
 
-这些信息可以在自定义的配置文件中提前配置，例如创建一个 `openssl.cnf` 的配置文件，内容如下:
-
-```conf
+```ini
 [ req ]
 distinguished_name = req_distinguished_name
-req_extensions     = req_ext
+req_extensions     = v3_req
+x509_extensions    = v3_ca   # The extensions to add to the self signed cert
+x509_extensions    = user_cert
 
 [ req_distinguished_name ]
 countryName                     = Country Name (2 letter code)
@@ -218,30 +256,42 @@ organizationalUnitName          = Organizational Unit Name (eg, section)
 organizationalUnitName_default  = Sales
 commonName                      = Common Name (e.g. server FQDN or YOUR name)
 commonName_max                  = 64
-commonName_default              = localhost
+commonName_default              = *.galaxy.com
 emailAddress                    = Email Address
 emailAddress_max                = 64
 emailAddress_default            = sales@galaxy.com
 
-[ req_ext ]
+[ v3_req ]
 subjectAltName = @alt_names
 
 [ alt_names ]
-DNS.1   = www.galaxy.com
+DNS.1   = *.galaxy.com
 DNS.2   = galaxy.com
-DNS.3   = *.galaxy.com
 IP.1    = 10.10.10.10
+
+[ user_cert ]
+# Extensions for a user cert
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid, issuer
+basicConstraints        = CA:FALSE
+keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage        = serverAuth, clientAuth
+
+[ v3_ca ]
+# Extensions for a typical CA
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid:always, issuer:always
+basicConstraints        = critical, CA:true
+keyUsage                = critical, digitalSignature, keyCertSign, cRLSign
 ```
 
-其中 `[ req_ext ]` 中配置了 **Subject Alternative Name (SAN)**，可以在随后生成 CSR 或自签名证书时使用。
-
-`openssl req` 命令通常用来创建和处理 `PKCS#10` 格式的证书，也可以创建自签名证书。
+部分命令行选项：
 
 - ***-days \<n\>***  
   指定证书有效期，默认是30天，与 `-x509` 选项一起使用
 
 - ***-newkey rsa:2048***  
-  生成一个新的 CSR，同时生成一个 2048 位的 RSA 私钥
+  生成一个新的证书申请，同时生成一个 2048 位的 RSA 私钥
 
 - ***-keyout \<keyfile\>***  
   新私钥要写入的文件
@@ -259,7 +309,7 @@ IP.1    = 10.10.10.10
   不打印编码后版本 (BASE64编码)
 
 - ***-new***  
-  生成一个新的证书请求，会提示用户输入相关字段的值，如果没有 ***-key*** 选项，会使用指定配置文件中的信息生成一个新的 RSA 私钥.
+  生成一个新的证书申请，会提示用户输入相关字段的值，如果没有 ***-key*** 选项，会使用指定配置文件中的信息生成一个新的 RSA 私钥.
 
 - ***-x509***  
   输出自签名的证书，而不是请求一个证书. 通常用于生成测试证书或自签名的根证书.
@@ -270,42 +320,235 @@ IP.1    = 10.10.10.10
 - ***-[digets]***
   指定签署请求时使用的信息摘要算法，如 `-md5`，`-sha1`，`-sha256`
 
-```zsh
-# 生成一个 2048 位的无密码保护私钥和一个新的 CSR，使用 openssl.cnf 中的配置信息
-openssl req -newkey rsa:2048 -nodes -keyout private.key -out cert.csr -config openssl.cnf
+常用命令：
 
-# 使用已有的私钥生成一个新的 CSR
-openssl req -new -key private.key -out cert.csr
+- 生成一个 4096 位的无密码保护私钥和一个新的证书申请，使用 openssl.cnf 中的配置信息
 
-# 查看 CSR 证书
-openssl req -in cert.csr -text -noout
-
-# 生成一个新的自签名证书，并且使用 openssl.cnf 中的 [ req_ext ] 扩展来设置 Subject Alternative Name (SAN)
-# 使用 openssl x509 也可以生成自签名证书，见后面 x509 部分
-openssl req -new -x509 -days 365 -key private.key -sha256 -extensions req_ext -config openssl.cnf -out self-signed.crt
+```bash
+openssl req -newkey rsa:4096 -nodes -keyout key.pem -out req.pem -config openssl.cnf
 ```
 
-### PKCS#12 - 个人消息交换标准（Personal Information Exchange Syntax Standard）
+- 使用已有的私钥生成一个新的证书申请
 
-[PKCS12][6] 是一种证书存储格式，用于实现将许多加密对象存储在一个单独的文件中。通常用它来打包一个私钥及有关的 X.509 证书，或者打包信任链的全部项目。
+```bash
+openssl req -new -key key.pem -out req.pem
+```
 
-`openssl pkcs12` 命令用来解析或者创建 PKCS#12 格式的证书，参考 [pkcs12][7] 命令获得帮助。
+- 查看证书申请
+
+```bash
+openssl req -in req.pem -text -noout
+```
+
+- 生成一个新的自签名证书，并且使用 openssl.cnf 中的 [ req_ext ] 扩展来设置 Subject Alternative Name (SAN)
+
+```bash
+openssl req -x509 -days 365 -key key.pem -out cert.pem -config openssl.cnf -extensions req_ext
+```
+
+## [x509v3_config]
+
+[x509v3_config]: https://www.openssl.org/docs/manmaster/man5/x509v3_config.html
+
+对 CA 证书或普通证书，下面是推荐的常用扩展选项，取值以及解释。
+
+### Certificate Authorities & Intermediate CAs
+
+#### Self-signed CA
+
+- ***keyUsage***: `cRLSign`, `digitalSignature`, `keyCertSign`
+  - *Should not contain any other KUs or EKUs*
+
+- ***V3 Profile***:
+
+  ```ini
+  [ v3_ca ]
+  basicConstraints        = critical, CA:TRUE
+  subjectKeyIdentifier    = hash
+  authorityKeyIdentifier  = keyid:always, issuer:always
+  keyUsage                = critical, cRLSign, digitalSignature, keyCertSign
+  subjectAltName          = @alt_ca
+  ```
+
+#### Intermediate CA
+
+- ***keyUsage***: `cRLSign`, `digitalSignature`, `keyCertSign`
+  - *Should not contain any other KUs or EKUs*
+
+- ***V3 Profile***:
+
+  ```ini
+  [ v3_ica ]
+  basicConstraints        = critical, CA:TRUE, pathlen:1
+  subjectKeyIdentifier    = hash
+  authorityKeyIdentifier  = keyid:always, issuer:always
+  keyUsage                = critical, cRLSign, digitalSignature, keyCertSign
+  subjectAltName          = @alt_ica
+  ```
+
+  - *Where **`pathlen:`** is equal to the number of CAs/ICAs it can sign*
+  - *Can not sign other CAs/ICAs if **`pathlen:`** is set to 0*
+
+### Non-CA Certificates
+
+#### VPN Server
+
+- ***keyUsage***: `nonRepudiation`, `digitalSignature`, `keyEncipherment`, `keyAgreement`
+
+- ***V3 Profile***:
+
+  ```ini
+  [ v3_vpn_server ]
+  basicConstraints        = critical, CA:FALSE
+  subjectKeyIdentifier    = hash
+  authorityKeyIdentifier  = keyid:always, issuer:always
+  keyUsage                = critical, nonRepudiation, digitalSignature, keyEncipherment, keyAgreement 
+  extendedKeyUsage        = critical, serverAuth
+  subjectAltName          = @alt_vpn_server
+  ```
+
+#### VPN Client
+
+- ***keyUsage***: `nonRepudiation`, `digitalSignature`, `keyEncipherment`
+
+- ***V3 Profile***:
+
+  ```ini
+  [ v3_vpn_client ]
+  basicConstraints        = critical, CA:FALSE
+  subjectKeyIdentifier    = hash
+  authorityKeyIdentifier  = keyid:always, issuer:always
+  keyUsage                = critical, nonRepudiation, digitalSignature, keyEncipherment
+  extendedKeyUsage        = critical, clientAuth
+  subjectAltName          = @alt_vpn_client
+  ```
+
+### keyUsage
+
+---
+
+#### CA ONLY
+
+**`keyCertSign`**
+
+- Subject public key is used to verify signatures on certificates
+- *This extension must only be used for CA certificates*
+
+**`cRLSign`**
+
+- Subject public key is to verify signatures on revocation information, such as a CRL
+- *This extension must only be used for CA certificates*
+
+---
+
+**`digitalSignature`**
+
+- Certificate may be used to apply a digital signature
+  - Digital signatures are often used for entity authentication & data origin authentication with integrity
+
+**`nonRepudiation`**
+
+- Certificate may be used to sign data as above but the certificate public key may be used to provide non-repudiation services
+  - This prevents the signing entity from falsely denying some action
+
+**`keyEncipherment`**
+
+- Certificate may be used to encrypt a symmetric key which is then transferred to the target
+  - Target decrypts key, subsequently using it to encrypt & decrypt data between the entities
+
+**`dataEncipherment`**
+
+- Certificate may be used to encrypt & decrypt actual application data
+
+**`keyAgreement`**
+
+- Certificate enables use of a key agreement protocol to establish a symmetric key with a target
+- Symmetric key may then be used to encrypt & decrypt data sent between the entities
+
+**`encipherOnly`**
+
+- Public key used only for enciphering data while performing key agreement
+  - ***Req. KU***: *`keyAgreement`*
+
+**`decipherOnly`**
+
+- Public key used only for deciphering data while performing key agreement
+  - ***Req. KU***: *`keyAgreement`*
+
+### extendedKeyUsage
+
+**`serverAuth`**
+
+- All VPN servers should be signed with this EKU present
+  - SSL/TLS Web/VPN Server authentication EKU, distinguishing a server which clients can authenticate against
+  - This supersedes *`nscertype`* options (ns in *`nscertype`* stands for NetScape [browser])
+  - ***Req. KU***: *`digitalSignature`*, *`keyEncipherment`* or *`keyAgreement`*
+
+**`clientAuth`**
+
+- All VPN clients must be signed with this EKU present
+  - SSL/TLS Web/VPN Client authentication EKU distinguishing a client as a client only
+  - ***Req. KU***: *`digitalSignature`* and/or *`keyAgreement`*
+
+**`codeSigning`**
+
+- Code Signing
+  - ***Req. KU***: *`digitalSignature`*, *`nonRepudiation`*, and/or *`keyEncipherment`* or *`keyAgreement`*
+
+**`emailProtection`**
+
+- Email Protection via S/MIME, allows you to send and receive encrypted emails
+  - ***Req. KU***: *`digitalSignature`*, *`keyEncipherment`* or *`keyAgreement`*
+
+**`timeStamping`**
+
+- Trusted Timestamping
+  - ***Req. KU***: *`digitalSignature`*, *`nonRepudiation`*
+
+**`OCSPSigning`**
+
+- OCSP Signing
+  - ***Req. KU***: *`digitalSignature`*, *`nonRepudiation`*
+
+**`msCodeInd`**
+
+- Microsoft Individual Code Signing (authenticode)
+  - ***Req. KU***: *`digitalSignature`*, *`keyEncipherment`* or *`keyAgreement`*
+
+**`msCodeCom`**
+
+- Microsoft Commerical Code Signing (authenticode)
+  - ***Req. KU***: *`digitalSignature`*, *`keyEncipherment`* or *`keyAgreement`*
+
+**`mcCTLSign`**
+
+- Microsoft Trust List Signing
+  - ***Req. KU***: *`digitalSignature`*, *`nonRepudiation`*
+
+**`msEFS`**
+
+- Microsoft Encrypted File System Signing
+  - ***Req. KU***: *`digitalSignature`*, *`keyEncipherment`* or *`keyAgreement`*
+
+## [openssl pkcs12]
+
+[openssl pkcs12]: https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html
+
+`.pfx` 和 `.p12` 都是 ***PKCS12*** 文件。因为历史原因，**PFX** 是 Microsoft 常用扩展名，**P12** 是 Netscape 常用扩展名，这两个扩展名可以互换使用。
+{:.info}
 
 - 创建 PKCS12 文件，包含私钥，client证书，其它证书，别名及文件保护密码
 
-```zsh
-openssl pkcs12 -export -inkey private.key -in cert.pem -certfile CACert.pem -out keystore.p12 -name entry_alias -passout pass:password
+```bash
+openssl pkcs12 -export -inkey key.pem -in cert.pem -certfile CACert.pem -out keystore.p12 -name entry_alias -passout pass:password
 ```
 
 注意：PKCS12 文件中存储的私钥将使用与 PKCS12 文件相同的保护密码
 {:.warning}
 
-`.pfx` 和 `.p12` 都是 PKCS#12 文件。因为历史原因，**PFX** 是 Microsoft 常用扩展名，**P12** 是 Netscape 常用扩展名。这两个扩展名可以互换使用。
-{:.info}
-
 - 解析 PKCS12 文件
 
-```zsh
+```bash
 openssl pkcs12 -in keystore.p12
 
 # 解析 PKCS12 文件并输出到文件
@@ -314,41 +557,41 @@ openssl pkcs12 -in keystore.p12 -out keystore.pem
 
 - 输出 PKCS12 文件中的所有证书到文件
 
-```zsh
+```bash
 openssl pkcs12 -in keystore.p12 -nokeys -out cert.pem
 ```
 
 - 输出 PKCS12 文件中的 client 证书到文件
 
-```zsh
+```bash
 openssl pkcs12 -in keystore.p12 -nokeys -clcerts -out cert.pem
 ```
 
 - 输出 PKCS12 文件中的 CA 证书到文件
 
-```zsh
+```bash
 openssl pkcs12 -in keystore.p12 -nokeys -cacerts -out cert.pem
 ```
 
 - 输出 PKCS12 文件中的私钥到文件，私钥无密码保护
 
-```zsh
-openssl pkcs12 -in keystore.p12 -nocerts -out private.key -nodes
+```bash
+openssl pkcs12 -in keystore.p12 -nocerts -out key.pem -nodes
 ```
 
 - 查看 PKCS12 文件中的证书链和私钥
 
-```zsh
+```bash
 openssl pkcs12 -in keystore.p12 -chain
 ```
 
 - 查看 PKCS12 文件中的证书链和私钥的额外信息
 
-```zsh
+```bash
 openssl pkcs12 -in keystore.p12 -info
 ```
 
-### Java KeyStore (JKS)
+## Java KeyStore (JKS)
 
 **Java KeyStore** 是 Java 存储私钥和公钥信息的存储格式，从 JDK8 开始，Java 推荐使用 PKCS12 格式的密钥库。`keytool` 是 Java 密钥和证书管理工具，用来操作 **Java KeyStore** 文件。
 
@@ -380,13 +623,13 @@ openssl pkcs12 -in keystore.p12 -info
 
 - 将密钥库类型从 PKCS12 转换为 JKS，目标条目使用与源条目相同的别名
 
-```zsh
+```bash
 keytool -importkeystore -srckeystore keystore.p12 -srcalias entry_alias -srcstoretype pkcs12 -srcstorepass storepass -destkeystore keystore.jks -deststorepass storepass
 ```
 
 - 将密钥库类型从 JKS 转换为 PKCS12，目标条目使用与源条目不同的别名
 
-```zsh
+```bash
 keytool -importkeystore -srckeystore keystore.jks -srcalias entry_alias -srcstorepass storepass -destkeystore keystore.p12 -destalias other_alias_name -deststoretype pkcs12 -deststorepass storepass
 ```
 
@@ -395,49 +638,49 @@ keytool -importkeystore -srckeystore keystore.jks -srcalias entry_alias -srcstor
 
 - 查看 keytool 子命令帮助
 
-```zsh
+```bash
 keytool -importcert -help
 ```
 
 - 修改密钥库保护密码
 
-```zsh
+```bash
 keytool -storepasswd -keystore keystore.jks -storepass origin_storepass -new new_storepass
 ```
 
 - 修改 keypass 保护密码
 
-```zsh
+```bash
 keytool -keypasswd -keystore keystore.jks -storepass password -alias friendly_name -keypass origin_keypass -new new_keypass
 ```
 
 - 修改别名
 
-```zsh
+```bash
 keytool -changealias -keystore keystore.jks -storepass password -alias old_name -destalias new_name
 ```
 
 - 查看证书文件
 
-```zsh
+```bash
 keytool -printcert -file cert.pem -v
 ```
 
 - 打印密钥库中指定别名的证书，以可读方式显示
 
-```zsh
+```bash
 keytool -list -keystore keystore.jks -storepass password -alias friendly_name -v
 ```
 
 - 打印密钥库中指定别名的证书，以 PEM 格式显示
 
-```zsh
+```bash
 keytool -list -keystore keystore.jks -storepass password -alias friendly_name -rfc
 ```
 
 - 打印 JRE cacerts 密钥库
 
-```zsh
+```bash
 keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass password
 ```
 
@@ -446,7 +689,7 @@ keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass password
   对于 `-importcert` 子命令，如果不提供 `-keystore` 参数，默认使用 JRE 的 cacerts
 {:.info}
 
-```zsh
+```bash
 ketytool -importcert -alias friendly_name -file cert.pem -storepass changeit
 ```
 
@@ -458,23 +701,23 @@ ketytool -importcert -alias friendly_name -file cert.pem -storepass changeit
 
   - 如果使用 `-trustcacerts` 选项，则 cacerts 密钥库中的证书也会被添加为信任链中的可信证书。
 
-```zsh
+```bash
 keytool -importcert -trustcacerts -keystore keystore.jks -storepass password -alias friendly_name -file cert.pem
 ```
 
 - 导出 PEM 格式证书
 
-```zsh
+```bash
 keytool -exportcert -keystore keystore.jks -storepass password -alias friendly_name -rfc -file cert.pem
 ```
 
 - 删除证书
 
-```zsh
+```bash
 keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
 ```
 
-## X.509 证书
+## [openssl x509](https://www.openssl.org/docs/manmaster/man1/openssl-x509.html)
 
 **[X.509][1]** 是[公钥证书 (Public Key Certificate)][2] 的标准格式，用来证明公开密钥持有者的身份。此文件包含了公钥信息、持有者身份信息（主体）、以及数字证书认证机构（发行者）对这份文件的数字签名，以保证这个文件的整体内容正确无误。
 
@@ -484,55 +727,55 @@ keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
 
 - 查看证书完整信息
 
-```zsh
+```bash
 openssl x509 -in cert.pem -noout -text
 ```
 
 - 查看 DER 格式证书
 
-```zsh
+```bash
 openssl x509 -in cert.der -inform der -text -noout
 ```
 
 - 转换 DER 格式证书到 PEM 格式
 
-```zsh
+```bash
 openssl x509 -inform DER -in cert.der -out cert.pem
 ```
 
 - 查看证书日期信息
 
-```zsh
+```bash
 openssl x509 -in cert.pem -noout -dates
 ```
 
 - 查看证书过期时间
 
-```zsh
+```bash
 openssl x509 -in cert.pem -noout -enddate
 ```
 
 - 查看证书 subject
 
-```zsh
+```bash
 openssl x509 -in cert.pem -noout -subject
 ```
 
 - 查看证书发布者信息
 
-```zsh
+```bash
 openssl x509 -in cert.pem -noout -issuer
 ```
 
 - 查看证书 SAN (Subject Alternative Name)
 
-```zsh
+```bash
 openssl x509 -in cert.pem -noout -ext subjectAltName
 ```
 
 - 检查目录及子目录中所有 `.pem` 和 `.crt` 后辍的证书日期
 
-```zsh
+```bash
 find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo; echo %; openssl x509 -noout -subject -ext subjectAltName -enddate -in %'
 ```
 
@@ -542,39 +785,45 @@ find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo
 
 2. [生成CSR](#pkcs10---证书申请标准certification-request-standard)
 
-3. 使用私钥和 CSR 生成自签名证书
+3. 使用私钥和证书申请 生成自签名证书
 
-- 方法一：私钥 -> CSR -> 自签名证书
+- 方法一：私钥 ->证书申请 -> 自签名证书
 
-```zsh
+```bash
 # 生成 4096 位不带密码保护的私钥
-openssl genrsa -out private.key 4096
+openssl genrsa -out key.pem 4096
 
 # 使用私钥生成CSR
-openssl req -new -key private.key -out cert.csr
+openssl req -new -key key.pem -out req.pem
 
 # 使用 openssl x509 命令生成自签名证书，有效期10年
-openssl x509 -req -sha256 -days 3650 -in cert.csr -signkey private.key -out self-signed.crt
+openssl x509 -req -sha256 -days 10950 -in req.pem -signkey key.pem -out cert.pem
 ```
 
 - 方法二：私钥和CSR -> 自签名证书
 
-```zsh
+```bash
 # 生成 4096 位的无密码保护私钥和CSR，使用配置文件 openssl.cnf 设置证书信息
-openssl req -newkey rsa:4096 -nodes -keyout private.key -out cert.csr -config openssl.cnf
+openssl req -newkey rsa:4096 -nodes -keyout key.pem -out req.pem -config openssl.cnf
 
 # 使用 openssl x509 命令生成自签名证书，有效期10年
-openssl x509 -req -sha256 -days 3650 -in cert.csr -signkey private.key -out self-signed.crt
+openssl x509 -req -sha256 -days 10950 -in req.pem -signkey key.pem -out cert.pem
 ```
 
 - 方法三：私钥 -> 自签名证书
 
-```zsh
+```bash
 # 生成 4096 位不带密码保护的私钥
-openssl genrsa -out private.key 4096
+openssl genrsa -out key.pem 4096
 
 # 使用 openssl req 命令生成自签名证书，使用配置文件 openssl.cnf 设置证书信息，使用 openssl.cnf 中的 [ req_ext ] 扩展来设置 Subject Alternative Name (SAN)
-openssl req -new -x509 -days 365 -key private.key -sha256 -out self-signed.crt -extensions req_ext -config openssl.cnf
+openssl req -x509 -days 365 -key key.pem -out cert.pem -config openssl.cnf -extensions req_ext
+```
+
+- 方法四：直接生成自签名证书
+
+```bash
+openssl req -x509 -days 10950 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -config openssl.cnf
 ```
 
 关于是直接使用自签名证书，还是把自签名证书作为 CA，然后再签发其它证书
@@ -590,40 +839,40 @@ PEM 标准（RFC1421）强制证书每行使用64个字符，否则会遇到类�
 
 可以使用 UNIX 工具 `fold` 将单行的 PEM 证书转换为标准的每行 64 字符的证书
 
-```zsh
+```bash
 fold -w 64 oneline.pem > standard.pem
 ```
 
 ### 检查证书与私钥是否匹配
 
-- 比较 CSR，证书和私钥中所包含公钥信息的 MD5 值，确保它们一致。
+- 比较证书申请，证书和私钥中所包含公钥信息的 MD5 值，确保它们一致。
 
-```zsh
+```bash
 openssl x509 -noout -modulus -in cert.pem | openssl md5
 
 openssl req -noout -modulus -in csr.pem | openssl md5
 
-openssl rsa -noout -modulus -in private.key | openssl md5
+openssl rsa -noout -modulus -in key.pem | openssl md5
 ```
 
 - 使用一条命令来比较证书与私钥是否匹配
 
-```zsh
+```bash
 openssl x509 -noout -modulus -in cert.pem | openssl md5 ;\
-openssl rsa -noout -modulus -in private.key | openssl md5
+openssl rsa -noout -modulus -in key.pem | openssl md5
 ```
 
 - 使用脚本检查
 
-```zsh
+```bash
 #!/usr/bin/env bash
 
 # script name: key_match
 
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <keyfile> <certfile or csrfile>"
-    echo "Example: key_match private.key cert.pem"
-    echo "Example: key_match private.key cert.csr"
+    echo "Example: key_match key.pem cert.pem"
+    echo "Example: key_match key.pem req.pem"
     exit 1
 fi
 
@@ -752,7 +1001,7 @@ Certificate:
 
 如果远程服务器使用的是 SNI（即在一个 IP 地址上共享多个 SSL 主机），则需要发送正确的主机名才能获得正确的证书。
 
-```zsh
+```bash
 openssl s_client -servername example.com -connect example.com:443 </dev/null 2>/dev/null
 ```
 
@@ -760,37 +1009,37 @@ openssl s_client -servername example.com -connect example.com:443 </dev/null 2>/
 
 - 如果远程服务器未使用 SNI，则可以跳过 `-servername` 参数：
 
-```zsh
+```bash
 echo | openssl s_client -connect localhost:443 2>/dev/null
 ```
 
 - 使用 HTTP 代理
 
-```zsh
+```bash
 echo | openssl s_client -proxy 10.1.1.8:8800 -connect localhost:443
 ```
 
 - 显示服务器证书的详细信息
 
-```zsh
+```bash
 echo | openssl s_client -connect localhost:443 | openssl x509 -noout -text
 ```
 
 - 显示服务器证书的所有者，SAN和过期时间
 
-```zsh
+```bash
 echo | openssl s_client -connect localhost:443 2>/dev/null | openssl x509 -noout -subject -enddate -ext subjectAltName
 ```
 
 - 检查 PostgreSQL 数据库使用的证书（需要使用 `openssl 1.1.1` 之后的版本）
 
-```zsh
+```bash
 echo | openssl s_client -starttls postgres -connect localhost:5432 2>/dev/null | openssl x509 -noout -subject -enddate -ext subjectAltName
 ```
 
 - 显示证书的 PEM 格式部分
 
-```zsh
+```bash
 # 单证书
 echo | openssl s_client -connect localhost:443 | openssl x509
 
@@ -802,7 +1051,7 @@ echo | openssl s_client -showcerts -connect localhost:443 | sed -ne '/-BEGIN CER
 
 此函数可以通过 **SSH Config** 文件来配置跳转主机，打印远程主机证书。
 
-```zsh
+```bash
 #!/usr/bin/env bash
 
 
@@ -859,14 +1108,14 @@ echo "${NC}"
 | Client certificate (public key) | client_certificate.pem |
 | Client private key              | client_key.pem         |
 
-```zsh
+```bash
 openssl s_server -accept 8443 \
   -cert server_certificate.pem -key server_key.pem -CAfile ca_certificate.pem
 ```
 
 上面的命令将启动一个 OpenSSL s_server 进程，使用提供的CA证书，服务器证书和私钥。用于测试对TLS连接的证书进行完整性检查。
 
-```zsh
+```bash
 openssl s_client -connect localhost:8443 \
   -cert client_certificate.pem -key client_key.pem -CAfile ca_certificate.pem \
   -verify 8 -verify_hostname CN_NAME

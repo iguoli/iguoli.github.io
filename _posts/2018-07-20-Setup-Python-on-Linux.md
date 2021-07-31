@@ -13,7 +13,7 @@ key: Setup-Python-on-Linux-2018-07-20
 
 - 使用 Homebrew 安装
 
-```zsh
+```bash
 $ brew install pyenv
 
 $ vim ~/.zshrc
@@ -22,7 +22,7 @@ eval "$(pyenv init -)"
 
 - 从 Github 直接下载
 
-```zsh
+```bash
 $ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
 $ vim ~/.zshenv
@@ -42,7 +42,7 @@ $ exec "$SHELL"
 
 `python-build` 是 `pyenv` 的一个插件，提供 `pyenv install` 命令来使用 `pyenv` 可以下载编译不同的 python 版本。该插件接受一个 `PYTHON_BUILD_MIRROR_URL` 环境变量来指定下载 python 的镜像地址。
 
-```zsh
+```bash
 export PYTHON_BUILD_MIRROR_URL="https://npm.taobao.org/mirrors/python/"
 ```
 
@@ -55,13 +55,13 @@ export PYTHON_BUILD_MIRROR_URL="https://npm.taobao.org/mirrors/python/"
 1. 从~/.zshenv 文件删除环境变量及`pyenv init`
 2. 删除 pyenv 的根目录
 
-```zsh
+```bash
 rm -rf $(pyenv root)
 ```
 
 ## pyenv 常用命令
 
-```zsh
+```bash
 # 查看可安装的Python版本
 pyenv install -l
 
@@ -83,13 +83,13 @@ pyenv commands
 
 ## 安装 pyenv-virtualenv
 
-```zsh
+```bash
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 ```
 
 ## 设置 pyenv virtualenv 环境变量
 
-```zsh
+```bash
 $ vim ~/.zshenv
 eval "$(pyenv virtualenv-init -)"
 
@@ -99,7 +99,7 @@ exec "$SHELL"
 
 ## 使用 pyenv virtualenv
 
-```zsh
+```bash
 # 使用指定Python版本创建virtualenv环境
 pyenv virtualenv 3.6.6 venv-name36
 

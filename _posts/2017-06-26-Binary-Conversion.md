@@ -15,7 +15,7 @@ key: Binary-Conversion-2017-06-26
 
 ### 十进制转二进制
 
-```zsh
+```bash
 echo "obase=2; 192" | bc
 ```
 
@@ -27,7 +27,7 @@ echo "obase=2; 192" | bc
 
 ### 十进制转四/八/十二/十六进制
 
-```zsh
+```bash
 echo "obase=4; 192" | bc
 echo "obase=8; 192" | bc
 echo "obase=12; 192" | bc
@@ -36,7 +36,7 @@ echo "obase=16; 192" | bc
 
 ## 二进制转十进制
 
-```zsh
+```bash
 echo "ibase=2; 11000000" | bc
 ```
 
@@ -44,19 +44,19 @@ echo "ibase=2; 11000000" | bc
 
 ## 八进制转十进制
 
-```zsh
+```bash
 echo "ibase=8; 300" | bc
 ```
 
 ## 十六进制转十进制
 
-```zsh
+```bash
 echo "ibase=16; C0" | bc
 ```
 
 ## 二进制转十六进制
 
-```zsh
+```bash
 echo "ibase=2; obase=16; 11000000" | bc
 ```
 
@@ -68,7 +68,7 @@ echo "ibase=2; obase=16; 11000000" | bc
 
 可以将十六进制转换为十进制
 
-```zsh
+```bash
 $((0xC0))
 ```
 
@@ -76,7 +76,7 @@ $((0xC0))
 
 可以将十进制转换为八进制/十六进制  
 
-```zsh
+```bash
 printf "%x\n" 192
 
 printf "%o\n" 192

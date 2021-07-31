@@ -11,7 +11,7 @@ macOS/Linux 系统下查看系统监听端口的命令。
 
 ## macOS
 
-```zsh
+```bash
 lsof -Pn -i4 | grep LISTEN
 ```
 
@@ -19,7 +19,7 @@ lsof -Pn -i4 | grep LISTEN
 
 ## Linux
 
-```zsh
+```bash
 netstat -tupln
 ```
 

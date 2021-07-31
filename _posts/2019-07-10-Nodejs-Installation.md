@@ -16,7 +16,7 @@ key: Nodejs-Installation-2019-07-10
 
 ### 解压安装包到 `/usr/local/lib/nodejs`
 
-```zsh
+```bash
 VERSION=v10.16.0
 DISTRO=linux-x64
 sudo mkdir -p /usr/local/lib/nodejs
@@ -25,7 +25,7 @@ sudo tar -xvJf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs
 
 ### 在 `/usr/bin` 目录下创建软链接
 
-```zsh
+```bash
 sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node /usr/bin/node
 
 sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm /usr/bin/npm
@@ -43,7 +43,7 @@ sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npx /usr/bin/npx
 
 得到类似于下面的输出
 
-```zsh
+```bash
 $ node -v
 v10.16.0
 
@@ -68,7 +68,7 @@ $ npm version
 
 ### 在启动文件 `~/.profile (bash)` 或 `~/.zshenv (zsh)` 中设置环境变量
 
-```zsh
+```bash
 # Nodejs
 VERSION=v10.16.0
 DISTRO=linux-x64
@@ -77,7 +77,7 @@ export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 
 ### 重新应用启动文件
 
-```zsh
+```bash
 # bash
 source ~/.profile
 
@@ -91,7 +91,7 @@ source ~/.zshenv
 
 在 MacOS 上使用 Homebrew 安装
 
-```zsh
+```bash
 brew install nodenv
 
 echo 'eval "$(nodenv init -)"' >> ~/.zshrc
@@ -101,7 +101,7 @@ source ~/.zshrc
 
 克隆 git 仓库安装
 
-```zsh
+```bash
 git clone https://github.com/nodenv/nodenv.git ~/.nodenv
 
 # Optionally, try to compile dynamic bash extension to speed up nodenv.
@@ -116,26 +116,26 @@ echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ~/.zshrc
 ### 安装插件
 
 [node-build](https://github.com/nodenv/node-build) 插件
-```zsh
+```bash
 mkdir -p "$(nodenv root)"/plugins
 git clone https://github.com/nodenv/node-build.git "$(nodenv root)"/plugins/node-build
 ```
 
 [node-build-update-defs](https://github.com/nodenv/node-build-update-defs) 插件
 
-```zsh
+```bash
 git clone https://github.com/nodenv/node-build-update-defs.git "$(nodenv root)"/plugins/node-build-update-defs
 ```
 
 获取最新的 nodejs 版本列表
 
-```zsh
+```bash
 nodenv update-version-defs
 ```
 
 ### 使用 nodenv 安装 nodejs
 
-```zsh
+```bash
 # list all available versions
 nodenv install -l
 
@@ -145,7 +145,7 @@ nodenv install 12.16.2
 
 ### 卸载 nodenv
 
-```zsh
+```bash
 # for homebrew
 brew uninstall nodenv
 
@@ -155,7 +155,7 @@ rm -rf `nodenv root`
 
 ## 配置 npm 国内镜像源
 
-```zsh
+```bash
 # get current registry
 npm config get registry
 

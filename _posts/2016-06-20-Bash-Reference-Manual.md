@@ -34,7 +34,7 @@ Bash 常用语法及相关概念
 
 ##### (())
 
-```zsh
+```bash
 ((arithmetic expression))
 ```
 
@@ -42,7 +42,7 @@ Bash 常用语法及相关概念
 
 ##### [[]]
 
-```zsh
+```bash
 [[conditional expression]]
 ```
 
@@ -54,7 +54,7 @@ Bash 提供了两种方式来把一系列命令放在一起作为整体执行。
 
 ##### ()
 
-```zsh
+```bash
 ( list )
 ```
 
@@ -62,7 +62,7 @@ Bash 提供了两种方式来把一系列命令放在一起作为整体执行。
 
 ##### {}
 
-```zsh
+```bash
 { list; }
 ```
 
@@ -74,13 +74,13 @@ Bash 提供了两种方式来把一系列命令放在一起作为整体执行。
 
 命令替换用命令的输出取代命令本身。
 
-```zsh
+```bash
 $(command)
 ```
 
 或
 
-```zsh
+```bash
 `command`
 ```
 
@@ -88,7 +88,7 @@ $(command)
 
 算术扩展可以对算术表达式求值并替换成的求值的结果。
 
-```zsh
+```bash
 $((arithmetic expression))
 ```
 

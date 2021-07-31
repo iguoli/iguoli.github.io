@@ -16,7 +16,7 @@ Bash 中使用 `echo` 输出颜色代码的格式
 
 例如：
 
-```zsh
+```bash
 echo -e "\e[0;31mText\e[0m"
 
 # Color Variables
@@ -75,7 +75,7 @@ echo -e "${Red}Text${NC}"
 
 ## Color Variables
 
-```zsh
+```bash
 # No Color
 NC='\033[0m'              # Text Reset
 
