@@ -243,7 +243,6 @@ ssh-keygen -y -f id_rsa > id_rsa.pub
 distinguished_name = req_distinguished_name
 req_extensions     = v3_req
 x509_extensions    = v3_ca   # The extensions to add to the self signed cert
-x509_extensions    = v3_usr  # The extensions to add to the user cert
 
 [ req_distinguished_name ]
 countryName                     = Country Name (2 letter code)
@@ -266,11 +265,6 @@ emailAddress_default            = security@example.com
 [ v3_req ]
 subjectAltName = @alt_names
 
-[ alt_names ]
-DNS.1   = *.galaxy.com
-DNS.2   = galaxy.com
-IP.1    = 10.10.10.10
-
 [ v3_usr ]
 # Extensions for a user cert
 subjectKeyIdentifier    = hash
@@ -278,6 +272,12 @@ authorityKeyIdentifier  = keyid, issuer
 basicConstraints        = CA:FALSE
 keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
 extendedKeyUsage        = serverAuth, clientAuth
+subjectAltName          = @alt_names
+
+[ alt_names ]
+DNS.1   = *.galaxy.com
+DNS.2   = galaxy.com
+IP.1    = 10.10.10.10
 
 [ v3_ca ]
 # Extensions for a typical CA
@@ -793,8 +793,10 @@ find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo
 
 与 `openssl req` 的 `-config` 选项类似， `openssl x509` 命令接受一个 `-extfile` 选项，可以从配置文件中读取要加入到证书的扩展选项。
 
+当签署证书时，CA 需要为每个证书生成一个唯一的序列号，由于每个证书的序列号对于每个颁发者都必须是唯一的，因此颁发者需要跟踪它以前使用过哪些序列号，以确保它不会重复使用任何序列号。OpenSSL 提供了一种使用序列号文件进行跟踪的简单方法。当你指定 `-CAcreateserial` 时，它会将序列号 `01` 或一个随机数分配给签名证书，然后创建此序列号文件。在未来的签名操作中，应该使用 `-CAserial` 和该文件的名称，而不是 `-CAcreateserial`，并且 OpenSSL 将为每个签名的证书增加该文件中的值。这样，你可以用一个颁发者证书签署一堆证书，并且它们的所有序列号都是唯一的。
+
 ```bash
-openssl x509 -req -in req.pem -CA cacert.pem -CAkey cakey.pem -out cert.pem -extfile openssl.cnf
+openssl x509 -req -in req.pem -CA cacert.pem -CAkey cakey.pem -CAcreateserial -out cert.pem -extfile openssl.cnf -extensions v3_usr
 ```
 
 ### 将证书申请转换为一个自签名CA证书
