@@ -251,17 +251,17 @@ countryName_default             = CN
 stateOrProvinceName             = State or Province Name (full name)
 stateOrProvinceName_default     = Bejing
 localityName                    = Locality Name (eg, city)
-localityName_default            = Chaoyang
+localityName_default            = Bejing
 organizationName                = Organization Name (eg, company)
-organizationName_default        = Galaxy, LTD
+organizationName_default        = Example Company
 organizationalUnitName          = Organizational Unit Name (eg, section)
-organizationalUnitName_default  = Sales
+organizationalUnitName_default  = Security
 commonName                      = Common Name (e.g. server FQDN or YOUR name)
 commonName_max                  = 64
-commonName_default              = *.galaxy.com
+commonName_default              = *.example.com
 emailAddress                    = Email Address
 emailAddress_max                = 64
-emailAddress_default            = sales@galaxy.com
+emailAddress_default            = security@example.com
 
 [ v3_req ]
 subjectAltName = @alt_names
@@ -271,7 +271,7 @@ DNS.1   = *.galaxy.com
 DNS.2   = galaxy.com
 IP.1    = 10.10.10.10
 
-[ v3_usr   # The extensions to add to the user cert ]
+[ v3_usr ]
 # Extensions for a user cert
 subjectKeyIdentifier    = hash
 authorityKeyIdentifier  = keyid, issuer
