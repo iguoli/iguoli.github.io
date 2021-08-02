@@ -844,12 +844,12 @@ openssl rsa -noout -modulus -in key.pem | openssl md5
 ```bash
 #!/usr/bin/env bash
 
-# script name: key_match
+# script name: keymatch
 
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <keyfile> <certfile or csrfile>"
-    echo "Example: key_match key.pem cert.pem"
-    echo "Example: key_match key.pem req.pem"
+    echo "Example: $0 key.pem cert.pem"
+    echo "Example: $0 key.pem req.pem"
     exit 1
 fi
 
@@ -1033,6 +1033,7 @@ echo | openssl s_client -showcerts -connect localhost:443 | sed -ne '/-BEGIN CER
 ```bash
 #!/usr/bin/env bash
 
+# script name: printcert
 
 function usage {
     echo "Usage: $0 [-p] <ssh_hostname> [port]"
@@ -1072,9 +1073,9 @@ fi
 Red=$(tput setaf 1) Green=$(tput setaf 2) Yellow=$(tput setaf 3)
 R=$(tput rev) NC=$(tput sgr0)
 
-printf "%s\n\n" "$cmd${Green}"
+printf "%s\n\n" "$cmd"
 eval "$cmd"
-echo "${NC}"
+echo
 ```
 
 ## [openssl s_server]
