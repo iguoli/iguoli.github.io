@@ -478,6 +478,78 @@ pg_basebackup -h 10.0.0.1 -U postgres -D /var/lib/pgsql/9.4/data -Xs -P
 service postgresql-9.4 start
 ```
 
+## 升级 postgreql 数据库
+
+从版本 9.4 升级到 9.6，在同一台数据库服务器上安装9.6版本，参考[官网安装文档][install-postgresql]
+
+[install-postgresql]: https://www.postgresql.org/download/linux/redhat/
+
+```bash
+sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+sudo dnf -qy module disable postgresql
+sudo dnf install -y postgresql96-server
+sudo /usr/pgsql-9.6/bin/postgresql96-setup initdb
+sudo systemctl enable postgresql-9.6
+sudo systemctl start postgresql-9.6
+```
+
+如果已经安装过9.6版本，需要再次将9.4数据库升级到9.6，可以将9.6的data目录备份，然后使用 `initdb` 新建data目录。
+
+```bash
+mv /var/lib/pgsql/9.6/data{,.bak}
+
+initdb -D /var/lib/pgsql/9.6/data
+```
+
+升级前先检查是否有兼容性问题
+
+```bash
+/usr/pgsql-9.6/bin/pg_upgrade --old-bindir=/usr/pgsql-9.4/bin/ --new-bindir=/usr/pgsql-9.6/bin/ --old-datadir=/var/lib/pgsql/9.4/data/ --new-datadir=/var/lib/pgsql/9.6/data/ --check
+```
+
+```text
+Performing Consistency Checks
+-----------------------------
+Checking cluster versions                                   ok
+Checking database user is the install user                  ok
+Checking database connection settings                       ok
+Checking for prepared transactions                          ok
+Checking for system-defined composite types in user tables  ok
+Checking for reg* system OID user data types                ok
+Checking for contrib/isn with bigint-passing mismatch       ok
+Checking for roles starting with 'pg_'                      ok
+Checking for presence of required libraries                 ok
+Checking database user is the install user                  ok
+Checking for prepared transactions                          ok
+Checking for new cluster tablespace directories             ok
+
+*Clusters are compatible*
+```
+
+升级前需要先停掉老数据库服务
+
+```bash
+service postgresql-9.4 stop
+```
+
+开始升级
+
+```bash
+/usr/pgsql-9.6/bin/pg_upgrade --old-bindir=/usr/pgsql-9.4/bin/ --new-bindir=/usr/pgsql-9.6/bin/ --old-datadir=/var/lib/pgsql/9.4/data/ --new-datadir=/var/lib/pgsql/9.6/data/
+```
+
+启动新版本数据库
+
+```bash
+service postgresql-9.6 start
+```
+
+使用 psql 登录数据库检查数据库版本
+
+```sql
+select version();
+```
+
 ## 参考文档
 
 - [PostgreSQL 官方文档](https://www.postgresql.org/docs/current/index.html)
