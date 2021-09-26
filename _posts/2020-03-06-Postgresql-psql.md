@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL 客户端应用
 date: 2020-03-06
-modify_date: 2020-08-12
+modify_date: 2021-09-09
 tags: Database
 key: Postgresql-psql-2020-03-06
 ---
@@ -548,6 +548,31 @@ service postgresql-9.6 start
 
 ```sql
 select version();
+```
+
+## 内置查询命令
+
+```sql
+show config_file;
+show hba_file;
+```
+
+### postgresql.conf
+
+```ini
+listen_addresses = '*'
+port             = 5432
+max_connections  = 1024
+
+# replication
+max_wal_senders  = 5
+wal_level        = hot_standby
+```
+
+### pg_hba.conf
+
+```ini
+
 ```
 
 ## 参考文档
