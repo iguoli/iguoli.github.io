@@ -185,6 +185,10 @@ unset all_proxy http_proxy https_proxy
 
 ### 安装 Connect 工具
 
+- 从[Github下载](https://github.com/gotoh/ssh-connect)压缩包后直接解压即可，或
+
+- 使用 Homebrew 安装
+
 ```bash
 brew install connect
 ```
@@ -342,6 +346,7 @@ export LESSOPEN="|/usr/local/bin/pygmentize -g -O style=solarized-dark %s"
 - KVM神器 [Barrier](https://github.com/debauchee/barrier)
 - 亮屏工具 [Caffeinated](https://caffeinated.app)
 - 日历工具 [小历](https://apps.apple.com/cn/app/小历-小而美的日历/id1114272557?mt=12)
+- 显示器控制 [MonitorControl](https://github.com/MonitorControl/MonitorControl)
 - 五笔输入法 [清歌输入法](https://qingg.im)
 - 输入法指示 [ShowyEdge](https://showyedge.pqrs.org)
 - 解压缩工具 [The Unarchiver](https://theunarchiver.com)
