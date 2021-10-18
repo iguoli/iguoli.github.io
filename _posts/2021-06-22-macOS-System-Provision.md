@@ -264,7 +264,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 ### 安装 OpenJDK
 
-- 从 [官方网站][AdoptOpenJDK] 下载安装包直接安装。
+- 从官方网站 [Adoptium][] (原网站[AdoptOpenJDK][]) 下载安装包直接安装。
 
 - 或者使用 Homebrew 进行安装
 
@@ -288,6 +288,7 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 ```
 
 [AdoptOpenJDK]: https://adoptopenjdk.net/
+[Adoptium]: https://adoptium.net/
 
 ### 安装 MacVim 替代系统自带 Vim
 
