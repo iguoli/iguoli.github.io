@@ -35,72 +35,6 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
-## SSH known host update
-
-```bash
-TARGET_HOST=[hostname or IP]
-
-# Remove the old key(s) from known_hosts
-ssh-keygen -R $TARGET_HOST
-
-# Add the new key(s) to known_hosts (and also hash the hostname/address)
-ssh-keyscan -H $TARGET_HOST >> ~/.ssh/known_hosts
-```
-
-## Autossh
-
-语法
-
-```bash
-autossh [-V] [-M port[:echo_port]] [-f] [SSH_OPTIONS]
-```
-
-远程登录
-
-```bash
-autossh -M 12345 -i .ssh/id_rsa remote-server
-```
-
-端口转发
-
-```bash
-autossh -M 12345 -o ServerAliveInterval=60 -o ServerAliveCountMax=10 -NT -L 0.0.0.0:8080:remote-server:8080 jump-server
-```
-
-## SSH supported escape sequences
-
-```text
- ~.   - terminate connection (and any multiplexed sessions)
- ~B   - send a BREAK to the remote system
- ~C   - open a command line
- ~R   - request rekey
- ~V/v - decrease/increase verbosity (LogLevel)
- ~^Z  - suspend ssh
- ~#   - list forwarded connections
- ~&   - background ssh (when waiting for connections to terminate)
- ~?   - this message
- ~~   - send the escape character by typing it twice
-(Note that escapes are only recognized immediately after newline.)
-```
-
-## 使用 PSSH 并行访问多台远程主机
-
-```text
--h HOST_FILE, --hosts=HOST_FILE
-                      hosts file (each line "[user@]host[:port]")
--l USER, --user=USER  username (OPTIONAL)
--p PAR, --par=PAR     max number of parallel threads (OPTIONAL)
--A, --askpass         Ask for a password (OPTIONAL)
--x ARGS, --extra-args=ARGS
-                      Extra command-line arguments, with processing for
-                      spaces, quotes, and backslashes
--i, --inline          inline aggregated output and error for each server
-```
-
-```bash
-pssh -x -q -i -h server-list -l root -A echo 'hello world.'
-```
-
 ## 使用 Type 命令查看系统命令
 
 `-t` 选项，打印所给命令的类型
@@ -144,32 +78,6 @@ stat -f /home
 ```bash
 find /var/log/ -name '*.log' -type f | xargs stat --printf='%s\t%n\n'
 ```
-
-## 使用 SSH + TAR 实现远程备份或远程复制
-
-将远程数据压缩后复制到本地
-
-```bash
-# 压缩remote-server上的/opt/app目录到标准输出，排除/opt/app目录下的logs目录和*.log文件
-ssh user@remote-server 'tar czf - --exclude="logs" --exclude="*.log" /opt/app' > app.tar.gz
-
-# 只打包应用所在目录
-ssh user@remote-server 'tar czf - -C /opt --exclude="logs" --exclude="*.log" app' > app.tar.gz
-```
-
-将远程压缩文件解压到本地
-
-```bash
-ssh user@remote-server 'cd /opt; cat app.tar.gz' | tar xzvf - -C /opt
-```
-
-将本地数据压缩后备份到远程服务器
-
-```bash
-tar cvzf - -C /opt app | ssh user@remote-server 'cat > /opt/app.tar.gz'
-```
-
-`scp` 命令在进行远程复制时不会压缩数据，须使用 `-C` 选项开启压缩模式.
 
 ## 网络相关命令
 
