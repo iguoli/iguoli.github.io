@@ -1,9 +1,9 @@
 ---
-title: PostgreSQL 客户端应用
+title: PostgreSQL
 date: 2020-03-06
-modify_date: 2021-09-09
+modify_date: 2021-11-04
 tags: Database
-key: Postgresql-psql-2020-03-06
+key: Postgresql-2020-03-06
 ---
 
 ## [psql] - PostgreSQL 交互式终端
@@ -478,20 +478,69 @@ pg_basebackup -h 10.0.0.1 -U postgres -D /var/lib/pgsql/9.4/data -Xs -P
 service postgresql-9.4 start
 ```
 
-## 升级 postgreql 数据库
+## 安装 PostgreSQL 数据库 (RHEL/CentOS 8)
 
-从版本 9.4 升级到 9.6，在同一台数据库服务器上安装9.6版本，参考[官网安装文档][install-postgresql]
+- 安装系统 AppStream Repo 中的 *postgresql module*
+
+```bash
+yum module list postgresql*
+
+yum module install postgresql:9.6
+```
+
+- 安装官网 Repo 中 *postgresql-server*，参考[官网安装文档][install-postgresql]
 
 [install-postgresql]: https://www.postgresql.org/download/linux/redhat/
 
+注意，安装官网 Repo 的 *postgresql-server* 安装包，需要先禁用系统 AppStream Repo 中的 *postgresql module stream*，否则将无法看到该包。
+{:.warning}
+
 ```bash
+# Install the repository RPM:
 sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+# Disable the built-in PostgreSQL module:
 sudo dnf -qy module disable postgresql
+
+# Install PostgreSQL:
 sudo dnf install -y postgresql96-server
+
+# Optionally initialize the database and enable automatic start:
 sudo /usr/pgsql-9.6/bin/postgresql96-setup initdb
 sudo systemctl enable postgresql-9.6
 sudo systemctl start postgresql-9.6
 ```
+
+- 安装不再支持的 PostgreSQL 数据库版本，参考[官方文档][archived-postgresql]
+
+[archived-postgresql]: https://yum.postgresql.org/repopackages/
+
+```bash
+# Create special repo config file
+cat << EOF > /etc/yum.repos.d/pgdg-94.repo
+[pgdg94]
+name=PostgreSQL 9.4 RPMs for RHEL/CentOS 8
+baseurl=https://yum-archive.postgresql.org/9.4/redhat/rhel-8-x86_64
+enabled=1
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG
+EOF
+
+# Disable the built-in PostgreSQL module:
+sudo dnf -qy module disable postgresql
+
+# Install PostgreSQL:
+sudo dnf install -y postgresql94-server
+
+# Optionally initialize the database and enable automatic start:
+sudo /usr/pgsql-9.4/bin/postgresql94-setup initdb
+sudo systemctl enable postgresql-9.4
+sudo systemctl start postgresql-9.4
+```
+
+## 升级 PostgreSQL 数据库
+
+从版本 9.4 升级到 9.6，在安装9.4版本的同一台服务器上安装9.6版本，
 
 如果已经安装过9.6版本，需要再次将9.4数据库升级到9.6，可以将9.6的data目录备份，然后使用 `initdb` 新建data目录。
 
@@ -550,7 +599,9 @@ service postgresql-9.6 start
 select version();
 ```
 
-## 内置查询命令
+## 数据库配置
+
+### 内置查询命令
 
 ```sql
 show config_file;
@@ -574,6 +625,8 @@ wal_level        = hot_standby
 ```ini
 
 ```
+
+配置修改后，可以使用 `/usr/pgsql-9.4/bin/pg_ctl reload` 命令使配置生效而不重启数据库。
 
 ## 参考文档
 
