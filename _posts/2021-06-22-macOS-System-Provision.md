@@ -1,7 +1,7 @@
 ---
 title: macOS System Provision
 date: 2021-06-25
-modify_date: 2021-07-09
+modify_date: 2021-11-06
 tags: macOS
 key: macOS-System-Provision-2021-06-25
 ---
@@ -144,7 +144,41 @@ touch '/System/Library/CoreServices/Menu Extras/ExpressCard.menu'
 
 ### 科学上网
 
-安装 [ClashX](https://github.com/yichengchen/clashX) 加速 GitHub 访问和外网工具下载。
+安装 [Surge] 或 [ClashX] 加速 GitHub 访问和外网工具下载。关于代理对网络的接管，可以参考 [Surge 官方手册] - [章节2 接管] 的解释:
+
+[Surge]: https://nssurge.com/
+[Surge 官方手册]: https://manual.nssurge.com/book/understanding-surge/cn/
+[章节2 接管]: https://manual.nssurge.com/book/understanding-surge/cn/#代理服务接管方法-1
+[ClashX]: https://github.com/yichengchen/clashX
+
+> 要想使 Surge 实现后续的转发、修改和截获等功能，首先需要 Surge 对网络连接进行接管。
+> 
+> 在 macOS 和 iOS 下，要想使程序发出的网络连接被另一个程序所接管，而不是直接将数据发送到物理网卡，有以下三种方式：
+>
+> 1. 配置代理：如果系统配置了代理服务器，那么程序在执行网络请求的时候，就不会直接连接目标服务器，而是产生一个发向代理服务器的连接。利用这个特性，可以在本地启动一个代理服务，并配置系统代理为 127.0.0.1 （即本机）的一个端口，这样就可以接管网络请求。
+>
+> 
+> <span style="color:tomato">但是，这种方式要求程序自身支持代理机制，系统的代理设置只是告知程序应该使用代理，需要程序自己完成代理的后续逻辑。好在，对于绝大部分带用户界面的程序，由于开发时使用了系统的高层网络框架（Cocoa/Cocoa Touch），开发者不需要进行任何额外的工作就可以支持代理。</span>
+> 
+> 而对于命令行程序，由于使用的是 POSIX 接口进行网络请求，该接口并没有对代理服务器提供内嵌支持，所以需要开发者自己完成对代理服务器的支持，这导致各种命令行程序对代理的支持情况和具体行为并不统一。同时由于大部分命令行程序并没有为 macOS 进行特殊处理，所以不会理会系统配置里的代理服务器设置。大部分命令行程序需要通过环境变量 https_proxy 和 http_proxy 去配置代理，还有一部分需要通过修改配置文件进行配置。
+> 
+> 还有少量程序由于完全缺乏代理服务器的支持，无法通过这种方式去接管网络连接。
+
+### 设置命令行代理
+
+大部分终端命令都会识别以下环境变量来使用命令行代理，如果有特殊命令不识别，可以使用 **ProxyChains-NG** 命令。
+
+```bash
+export http_proxy=http://127.0.0.1:7890
+export https_proxy=http://127.0.0.1:7890
+export all_proxy=socks5://127.0.0.1:7891
+```
+
+取消命令行代理环境变量
+
+```bash
+unset all_proxy http_proxy https_proxy
+```
 
 ### 安装 XCode Command Line Tools
 
@@ -165,22 +199,6 @@ xcode-select --install
 
 # Set Homebrew-bottles mirror
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
-```
-
-### 设置命令行代理
-
-大部分终端命令都会识别以下命令行代理环境变量，如果有特殊命令不识别，可以使用 **ProxyChains-NG** 命令。
-
-```bash
-export http_proxy=http://127.0.0.1:7890
-export https_proxy=http://127.0.0.1:7890
-export all_proxy=socks5://127.0.0.1:7891
-```
-
-取消命令行代理环境变量
-
-```bash
-unset all_proxy http_proxy https_proxy
 ```
 
 ### 安装 Connect 工具
@@ -230,9 +248,7 @@ Host github.com
     ProxyCommand connect -S 127.0.0.1:7891 %h %p
 ```
 
-### 配置 [zsh](https://github.com/ohmyzsh/ohmyzsh) 和 [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
-
-配置登录 shell 为 zsh
+### 配置 [zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 ```bash
 echo $SHELL                           # 检查当前 shell
@@ -242,21 +258,23 @@ which zsh | sudo tee -a /etc/shells   # 如果 zsh 不在列表，将其写入�
 chsh -s "$(which zsh)"                # 变更启动 shell 为 zsh
 ```
 
-关闭终端并重新打开。
-
-安装 oh-my-zsh
+### 安装 [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-安装[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)插件
+**注意**：如果因墙而无法访问，可以为 `curl` 命令[设置代理](#设置命令行代理)
+
+#### 安装插件
+
+[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
 ```bash
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
-安装[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -333,6 +351,27 @@ Pygments 是代码高亮工具，用于美化输出。
 brew install pygments
 
 export LESSOPEN="|/usr/local/bin/pygmentize -g -O style=solarized-dark %s"
+```
+
+#### 样式
+
+Pygments 提供了[内建样式](https://pygments.org/styles/)，下面的命令列出已安装的样式
+
+```bash
+pygmentize -L styles
+```
+
+### 安装 [Generic Colouriser](https://github.com/garabik/grc)
+
+`grc` 工具可以彩色化其它命令行工具的输出
+
+```bash
+brew install grc
+
+grc diff -u file-a file-b
+grc tail /var/log/syslog
+grc ps aux
+grc ping localhost
 ```
 
 ### 安装常用应用

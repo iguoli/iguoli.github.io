@@ -1,20 +1,20 @@
 ---
 title: Linux System Provision
 date: 2017-05-18
-modify_date: 2021-07-09
+modify_date: 2021-11-06
 tags: Linux
 key: Linux-System-Provision-2017-05-18
 ---
 
 ## 安装系统常用开发工具
 
-**Ubuntu**:
+##### Ubuntu
 
 ```bash
 sudo apt install -y build-essential
 ```
 
-**Redhat**:
+##### CentOS 8
 
 ```bash
 sudo yum groupinstall "Development Tools"
@@ -22,7 +22,25 @@ sudo yum groupinstall "Development Tools"
 
 <!--more-->
 
-## 安装[Git](https://github.com/git/git)
+## 设置命令行代理
+
+大部分终端命令都会识别以下环境变量来使用命令行代理，如果有特殊命令不识别，可以使用 **ProxyChains-NG** 命令。
+
+```bash
+export http_proxy=http://127.0.0.1:7890
+export https_proxy=http://127.0.0.1:7890
+export all_proxy=socks5://127.0.0.1:7891
+```
+
+取消命令行代理环境变量
+
+```bash
+unset all_proxy http_proxy https_proxy
+```
+
+## 安装 [Git](https://github.com/git/git)
+
+##### Ubuntu
 
 从 PPA 安装[ppa:git-core/ppa](https://launchpad.net/~git-core/+archive/ubuntu/ppa)
 
@@ -32,7 +50,13 @@ sudo apt update
 sudo apt install -y git
 ```
 
-从源代码安装[git](https://github.com/git/git/blob/master/INSTALL)
+##### CentOS 8
+
+```bash
+sudo yum install -y git
+```
+
+##### [从源代码安装](https://github.com/git/git/blob/master/INSTALL)
 
 ```bash
 cd
@@ -46,7 +70,7 @@ make all doc
 sudo make install install-doc install-html
 ```
 
-配置 git
+##### 配置
 
 ```bash
 git config --global user.name 'your name'
@@ -59,15 +83,25 @@ git config --global core.editor vim
 
 ## 安装 [Connect](https://bitbucket.org/gotoh/connect/wiki/Home)
 
+##### Ubuntu
+
 ```bash
-# Ubuntu
 sudo apt install connect-proxy
 
-# Get the version
-connect -V
+# See the locations of the package installed
+dpkg -L connect-proxy
 ```
 
-在 `.ssh/config` 中配置 `github` 使用代理
+##### CentOS 8
+
+```bash
+sudo yum install connect-proxy
+
+# See the locations of the package installed
+rpm -ql connect-proxy
+```
+
+##### 配置
 
 ```bash
 $ vim ~/.ssh/config
@@ -75,17 +109,23 @@ $ vim ~/.ssh/config
 Host github.com
     User git
     # -S for socks5 proxy, -H for http proxy
-    ProxyCommand connect -S 127.0.0.1:7891 %h %p
+    ProxyCommand connect-proxy -S 127.0.0.1:7891 %h %p
 ```
 
-## 安装[Proxychains-ng](https://github.com/rofl0r/proxychains-ng)
+## 安装 [Proxychains-ng](https://github.com/rofl0r/proxychains-ng)
 
 `proxychains` 用于在命令行中为单个命令提供代理服务，这样可以在不启用全局代理的同时让某些命令通过代理连接。
 
 注意: `proxychains` 只会代理 `TCP` 连接，所以如果使用 `proxychains4 ping www.google.com` 则不会生效，因为 `ping` 命令使用 `ICMP` 协议。
 
+##### CentOS 8 安装
+
 ```bash
-sudo apt install -y build-essential
+sudo yum install -y proxychains-ng
+```
+##### 源代码安装
+
+```bash
 git clone https://github.com/rofl0r/proxychains-ng.git
 cd proxychains-ng
 ./configure --prefix=/usr --sysconfdir=/etc
@@ -94,31 +134,35 @@ sudo make install
 sudo make install-config (installs proxychains.conf)
 ```
 
-配置文件: `/etc/proxychains.conf`
+##### 配置
 
-### 在配置文件中添加代理
-
-在配置文件 [`proxychains.conf`](https://github.com/rofl0r/proxychains-ng/blob/master/src/proxychains.conf) 中的 `[ProxyList]` 中加入代理，通常只需要启用一个代理即可，多个代理会形成代理链。
+在配置文件 [`/etc/proxychains.conf`](https://github.com/rofl0r/proxychains-ng/blob/master/src/proxychains.conf) 中的 `[ProxyList]` 中加入代理，通常只需要启用一个代理即可，多个代理会形成代理链。
 
 ```ini
 [ProxyList]
 socks5 127.0.0.1 7891
 ```
 
-### 添加别名
+添加别名
 
 ```bash
 alias pcs=proxychains4
 ```
 
-## 安装[zsh](https://github.com/zsh-users/zsh) and [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+## 安装 [zsh](https://github.com/zsh-users/zsh)
 
-从源代码安装[zsh](https://github.com/zsh-users/zsh/blob/master/INSTALL)
+##### CentOS 8
+
+```bash
+sudo yum install -y zsh
+```
+
+##### [源代码安装](https://github.com/zsh-users/zsh/blob/master/INSTALL)
 
 ```bash
 # for Ubuntu system
 sudo apt install -y autoconf perl libncurses5-dev yodl
-# for Redhat system
+# for CentOS 8 system
 sudo yum install -y ncurses-devel
 
 cd
@@ -128,31 +172,35 @@ cd zsh
 ./configure --prefix=/usr --bindir=/bin
 make
 sudo make install
+```
+
+配置 zsh 为默认 shell
+
+> CentOS 8 没有安装 `chsh` 工具，该工具位于 `util-linux-user` 安装包内，需要手工安装。
+
+```bash
+sudo yum install -y util-linux-user
 which zsh | sudo tee -a /etc/shells
 chsh -s "$(which zsh)"
 ```
 
 登出当前 shell 后再重新登入，启用 zsh
 
-安装[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+## 安装 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-如果无法直接访问，可以使用 proxychains-ng 走代理访问，
+### 安装插件
+
+[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
 ```bash
-sh -c "$(pcs curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
-安装[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)插件
-
-```bash
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-```
-
-安装[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -160,15 +208,19 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 ## 安装 Vim
 
-从 PPA 安装[ppa:jonathonf/vim](https://launchpad.net/~jonathonf/+archive/ubuntu/vim)(Notice that this Vim don't have python compiled)
+##### Ubuntu
 
 ```bash
-sudo add-apt-repository ppa:jonathonf/vim
-sudo apt update
 sudo apt install -y vim
 ```
 
-从源代码安装[Vim](https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source)
+##### CentOS 8
+
+```bash
+sudo yum install -y vim
+```
+
+##### [源代码安装](https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source)
 
 ```bash
 sudo apt install libncurses5-dev libgnome2-dev libgnomeui-dev \
@@ -201,15 +253,13 @@ sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
 sudo update-alternatives --set vi /usr/bin/vim
 ```
 
-安装[Vundle](https://github.com/VundleVim/Vundle.vim)
+#### 安装 [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```bash
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-cp ~/conf/.vimrc ~
-vim +PluginInstall +qall
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-配置[YouCompleteMe](https://github.com/Valloric/YouCompleteMe)插件
+#### 安装 [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) 插件
 
 ```bash
 sudo apt-get install build-essential cmake python-dev python3-dev
@@ -230,7 +280,7 @@ cmake -G "Unix Makefiles" . -DPATH_TO_LLVM_ROOT=~/llvm ~/.vim/bundle/YouComplete
 cmake --build . --target ycm_core
 ```
 
-## 安装[tmux](https://github.com/tmux/tmux)
+## 安装 [tmux](https://github.com/tmux/tmux)
 
 ```bash
 # for Ubuntu system
@@ -247,7 +297,7 @@ make
 sudo make install
 ```
 
-安装[oh-my-tmux](https://github.com/gpakosz/.tmux)
+### 安装 [oh-my-tmux](https://github.com/gpakosz/.tmux)
 
 ```bash
 cd
@@ -256,25 +306,9 @@ ln -s -f .tmux/.tmux.conf .
 cp ~/conf/.tmux.conf.local .
 ```
 
-## 安装常用工具
+### 安装 [Pygments](https://pygments.org)
 
-### 代码片段查询
-
-- [howdoi](https://github.com/gleitz/howdoi)
-
-- [cheat](https://github.com/cheat/cheat)
-
-```bash
-brew install cheat
-# or
-pip install cheat
-
-pip install howdoi
-```
-
-### 代码彩色化输出
-
-[Pygments](https://pygments.org)
+##### PIP
 
 ```bash
 pip install pygments
@@ -282,12 +316,29 @@ pip install pygments
 pygmentize hello.py
 ```
 
-### 命令行彩色化输出
-
-[Generic Colouriser](https://github.com/garabik/grc)
+##### CentOS 8
 
 ```bash
-brew install grc
+sudo yum install -y python3-pygments
+
+export LESSOPEN="|/usr/bin/pygmentize -g -O style=colorful %s"
+```
+
+#### 样式
+
+Pygments 提供了[内建样式](https://pygments.org/styles/)，下面的命令列出已安装的样式
+
+```bash
+pygmentize -L styles
+```
+
+### 安装 [Generic Colouriser](https://github.com/garabik/grc)
+
+`grc` 工具可以彩色化其它命令行工具的输出
+
+##### Ubuntu
+
+```bash
 apt install grc
 
 grc diff
@@ -296,9 +347,21 @@ grc ps
 grc ping
 ```
 
-## 安装 powerline fonts
+## 安装代码片段查询工具 [howdoi] 和 [cheat]
 
-参考[Powerline](https://github.com/powerline/fonts)
+[howdoi]: https://github.com/gleitz/howdoi
+
+[cheat]: https://github.com/cheat/cheat
+
+```bash
+pip install cheat
+
+pip install howdoi
+```
+
+## 安装 [Powerline] fonts
+
+[Powerline]: https://github.com/powerline/fonts
 
 ```bash
 # clone
@@ -309,30 +372,4 @@ cd fonts
 # clean-up a bit
 cd ..
 rm -rf fonts
-```
-
-## 安装[genpac](https://github.com/JinnLynn/genpac)，设置系统代理
-
-```bash
-pip install genpac
-
-# 生成autoproxy.pac文件
-genpac -c ~/conf/genpac/config.ini
-
-# 在LinuxMint下通过cinnamon-settings打开系统设置->网络->网络代理
-# 使用自动设置，URL填写'file:///home/username/autoproxy.pac'
-```
-
-## 安装[google-chrome](https://www.google.com/chrome/browser/desktop/index.html)
-
-从[google](https://www.google.com/chrome/browser/desktop/index.html)下载 deb 安装包
-或者使用[google linux repository](https://www.google.com/linuxrepositories/)
-
-```bash
-wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c "echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' > /etc/apt/sources.list.d/google-chrome.list"
-sudo apt update
-sudo apt install -y google-chrome-stable
-# 设置google通过pac代理上网
-google-chrome --proxy-pac-url='file:///home/username/autoproxy.pac'
 ```
