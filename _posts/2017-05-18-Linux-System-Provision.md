@@ -306,7 +306,7 @@ ln -s -f .tmux/.tmux.conf .
 cp ~/conf/.tmux.conf.local .
 ```
 
-### 安装 [Pygments](https://pygments.org)
+## 安装 [Pygments](https://pygments.org)
 
 ##### PIP
 
@@ -332,7 +332,7 @@ Pygments 提供了[内建样式](https://pygments.org/styles/)，下面的命令
 pygmentize -L styles
 ```
 
-### 安装 [Generic Colouriser](https://github.com/garabik/grc)
+## 安装 [Generic Colouriser](https://github.com/garabik/grc)
 
 `grc` 工具可以彩色化其它命令行工具的输出
 
