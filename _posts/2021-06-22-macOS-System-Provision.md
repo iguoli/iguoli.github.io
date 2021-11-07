@@ -367,11 +367,12 @@ pygmentize -L styles
 
 ```bash
 brew install grc
+```
 
-grc diff -u file-a file-b
-grc tail /var/log/syslog
-grc ps aux
-grc ping localhost
+##### 自动设置常用命令别名
+
+```bash
+sed -e '$a\[[ -s "/usr/local/etc/grc.zsh" ]] && source /usr/local/etc/grc.zsh' ~/.zshrc
 ```
 
 ### 安装常用应用

@@ -340,11 +340,22 @@ pygmentize -L styles
 
 ```bash
 apt install grc
+```
 
-grc diff
-grc tail
-grc ps
-grc ping
+##### 源码安装
+
+```bash
+git clone https://github.com/garabik/grc.git
+cd grc
+./install.sh
+cd ..
+rm -rf grc
+```
+
+##### 自动设置常用命令别名
+
+```bash
+sed -e '$a\[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh' ~/.zshrc
 ```
 
 ## 安装代码片段查询工具 [howdoi] 和 [cheat]
