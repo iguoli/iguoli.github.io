@@ -483,7 +483,7 @@ service postgresql-9.4 start
 - 安装系统 AppStream Repo 中的 *postgresql module*
 
 ```bash
-yum module list postgresql*
+yum module list 'postgresql*'
 
 yum module install postgresql:9.6
 ```
