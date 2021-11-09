@@ -1,7 +1,7 @@
 ---
 title: Linux Commands Summary
 date: 2017-12-03
-modify_date: 2011-11-09
+modify_date: 2021-11-09
 tags: Linux Utils
 key: Linux-Commands-2017-12-03
 ---
@@ -34,44 +34,6 @@ key: Linux-Commands-2017-12-03
 [08]: http://man7.org/linux/man-pages/dir_section_8.html
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
-
-## Systemctl 命令
-
-### 查看当前内存中的 Units
-
-```bash
-systemctl list-units
-```
-
-> The **LOAD** column shows the load state, one of `loaded`, `not-found`, `bad-setting`, `error`, `masked`. The **ACTIVE** columns shows the general unit state, one of `active`, `reloading`, `inactive`, `failed`, `activating`, `deactivating`. The **SUB** column shows the unit-type-specific detailed state of the unit, possible values vary by unit type.
-
-### 命令帮助
-
-```bash
-# 查看所有类型取值
-systemctl list-units --type=help
-
-# 查看所有状态取值
-systemctl list-units --state=help
-```
-
-### 服务类型的 Units
-
-```bash
-systemctl list-units --type=service
-```
-
-### 服务状态 (State)
-
-```bash
-systemctl list-units --type=service --state=inactive
-```
-
-### 服务子状态 (Sub-state)
-
-```bash
-systemctl list-units --type=service --state=exited
-```
 
 ## 使用 Type 命令查看系统命令
 
