@@ -16,6 +16,8 @@ systemctl list-units
 
 > The **LOAD** column shows the load state, one of `loaded`, `not-found`, `bad-setting`, `error`, `masked`. The **ACTIVE** columns shows the general unit state, one of `active`, `reloading`, `inactive`, `failed`, `activating`, `deactivating`. The **SUB** column shows the unit-type-specific detailed state of the unit, possible values vary by unit type.
 
+<!--more-->
+
 ### Unit 种类
 
 ```bash
