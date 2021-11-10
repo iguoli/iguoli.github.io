@@ -622,8 +622,8 @@ wal_level        = hot_standby
 
 ### [pg_hba.conf]
 
-|local|         database|  user||  auth-method| [auth-options]
-|host|          database|  user|  address|     auth-method| [auth-options]
+| local | database | user |         | auth-method | [auth-options] |
+| host  | database | user | address | auth-method | [auth-options] |
 
 配置修改后，可以使用 `/usr/pgsql-9.4/bin/pg_ctl reload` 命令使配置生效而不重启数据库。
 
