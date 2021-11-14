@@ -372,7 +372,9 @@ COPY country TO '/tmp/table.csv' (FORMAT csv, HEADER)
 注意，输入文件路径可以是绝对路径或相对路径，输出文件路径必须是绝对路径
 {:.warning}
 
-## [pg_dump] 和 [pg_restore]
+## 备份与恢复
+
+### [pg_dump] 和 [pg_restore]
 
 数据库导出/导入工具。
 
@@ -411,7 +413,7 @@ Options controlling the restore:
   -t, --table=NAME             restore named relation (table, view, etc.)
 ```
 
-### 示例
+#### 示例
 
 将数据库导出为 SQL-script 文件
 
@@ -447,7 +449,7 @@ pg_dump -U postgres -t mytab mydb > db.sql
 psql -U postgres -d mydb -f db.sql
 ```
 
-## [pg_basebackup]
+### [pg_basebackup]
 
 数据库集群备份。`pg_dump` 只能备份单个数据库，而 `pg_basebackup` 可以备份整个 PostgreSQL 实例。
 
@@ -478,7 +480,7 @@ pg_basebackup -h 10.0.0.1 -U postgres -D /var/lib/pgsql/9.4/data -Xs -P
 service postgresql-9.4 start
 ```
 
-## 安装 PostgreSQL 数据库 (RHEL/CentOS 8)
+## 安装 PostgreSQL 数据库
 
 - 安装系统 AppStream Repo 中的 *postgresql module*
 
@@ -540,17 +542,17 @@ sudo systemctl start postgresql-9.4
 
 ## 升级 PostgreSQL 数据库
 
-从版本 9.4 升级到 9.6，在安装9.4版本的同一台服务器上安装9.6版本，
+### 9.4 → 9.6
 
-如果已经安装过9.6版本，需要再次将9.4数据库升级到9.6，可以将9.6的data目录备份，然后使用 `initdb` 新建data目录。
+如果已经安装过9.6版本，需要再次将9.4数据库升级到9.6，可以将9.6的data目录备份，然后使用 `/usr/pgsql-9.6/initdb` 新建data目录。
 
 ```bash
 mv /var/lib/pgsql/9.6/data{,.bak}
 
-initdb -D /var/lib/pgsql/9.6/data
+/usr/pgsql-9.6/bin/initdb -D /var/lib/pgsql/9.6/data
 ```
 
-升级前先检查是否有兼容性问题
+### 兼容性检查
 
 ```bash
 /usr/pgsql-9.6/bin/pg_upgrade --old-bindir=/usr/pgsql-9.4/bin/ --new-bindir=/usr/pgsql-9.6/bin/ --old-datadir=/var/lib/pgsql/9.4/data/ --new-datadir=/var/lib/pgsql/9.6/data/ --check
@@ -575,7 +577,7 @@ Checking for new cluster tablespace directories             ok
 *Clusters are compatible*
 ```
 
-升级前需要先停掉老数据库服务
+停掉 9.4 的数据库
 
 ```bash
 service postgresql-9.4 stop
@@ -587,7 +589,7 @@ service postgresql-9.4 stop
 /usr/pgsql-9.6/bin/pg_upgrade --old-bindir=/usr/pgsql-9.4/bin/ --new-bindir=/usr/pgsql-9.6/bin/ --old-datadir=/var/lib/pgsql/9.4/data/ --new-datadir=/var/lib/pgsql/9.6/data/
 ```
 
-启动新版本数据库
+启动 9.6 数据库
 
 ```bash
 service postgresql-9.6 start
@@ -599,7 +601,9 @@ service postgresql-9.6 start
 select version();
 ```
 
-## 数据库配置
+## 流复制
+
+### 数据库配置
 
 ### 内置查询命令
 
@@ -616,8 +620,11 @@ port             = 5432
 max_connections  = 1024
 
 # replication
-max_wal_senders  = 5
-wal_level        = hot_standby
+max_wal_senders   = 2
+wal_level         = hot_standby
+hot_standby       = on
+max_wal_senders   = 2
+wal_keep_segments = 16
 ```
 
 ### [pg_hba.conf]
@@ -626,6 +633,14 @@ wal_level        = hot_standby
 | host  | database | user | address | auth-method | [auth-options] |
 
 配置修改后，可以使用 `/usr/pgsql-9.4/bin/pg_ctl reload` 命令使配置生效而不重启数据库。
+
+### [recovery.conf]
+
+```ini
+recovery_target_timeline = 'latest'
+standby_mode = 'on'
+primary_conninfo = 'host=192.168.33.10 port=5432 user=postgres password=postgres'
+```
 
 ## 参考文档
 
@@ -648,3 +663,4 @@ wal_level        = hot_standby
 
 [pg_basebackup]: https://www.postgresql.org/docs/current/app-pgbasebackup.html
 [pg_hba.conf]: https://www.postgresql.org/docs/current/auth-pg-hba-conf.html
+[recovery.conf]: https://www.postgresql.org/docs/9.6/recovery-config.html
