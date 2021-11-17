@@ -35,6 +35,13 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+## sudo and su
+
+```bash
+sudo -H -u postgres psql db
+
+su - postgres -c 'psql db'
+```
 ## 使用 Type 命令查看系统命令
 
 `-t` 选项，打印所给命令的类型
