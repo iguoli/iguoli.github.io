@@ -17,9 +17,13 @@ key: SSH-Port-Forwarding-2018-09-08
 > `-T`  
 > Disable pseudo-terminal allocation.
 
-<!--more-->
-
 `-C` 选项可以对所有转发数据进行压缩，如果转发数据大部分是文本数据，会提高转发效率，如果是二进制数据，则会降低转发效率。
+
+See:
+
+- [What is the meaning of "Do not execute a remote command"?](https://unix.stackexchange.com/questions/636167/what-is-the-meaning-of-do-not-execute-a-remote-command)
+- [What is Pseudo TTY-Allocation? (SSH and Github)](https://stackoverflow.com/questions/17900760/what-is-pseudo-tty-allocation-ssh-and-github)
+<!--more-->
 
 ## [常规隧道][Tunneling]（本地端口转发）
 
