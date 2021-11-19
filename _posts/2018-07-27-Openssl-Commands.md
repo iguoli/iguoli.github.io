@@ -848,8 +848,8 @@ openssl rsa -noout -modulus -in key.pem | openssl md5
 
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <keyfile> <certfile or csrfile>"
-    echo "Example: $0 key.pem cert.pem"
-    echo "Example: $0 key.pem req.pem"
+    echo "Example1: $0 key.pem cert.pem"
+    echo "Example2: $0 key.pem req.pem"
     exit 1
 fi
 
@@ -1033,11 +1033,19 @@ echo | openssl s_client -showcerts -connect localhost:443 | sed -ne '/-BEGIN CER
 ```bash
 #!/usr/bin/env bash
 
-# script name: printcert
+# script name: chkcert
+
+# Set color variables
+Red=$(tput setaf 1) Green=$(tput setaf 2) Yellow=$(tput setaf 3)
+Blue=$(tput setaf 4)
+R=$(tput rev) NC=$(tput sgr0)
 
 function usage {
     echo "Usage: $0 [-p] <ssh_hostname> [port]"
-    echo "Example: $0 -p portal.example.com 8080"
+    echo "Example1: print the cert info of a service on a host"
+    echo "${Green}$0${NC} pln-cd1-iweb3 ${Blue}9510${NC}"
+    echo "Example2: print the cret info of a VIP through proxy ${Red}10.1.1.86:8000${NC}"
+    echo "${Green}$0${NC} ${Blue}-p${NC} PLN-CD1-SKYBRAIN-01.FT1CORE.MCLOUD.ENTSVCS.NET"
     exit 1
 }
 
@@ -1068,10 +1076,6 @@ if [[ "$proxy" == true ]]; then
 else
     cmd="ssh $server \"echo | openssl s_client -connect localhost:$port 2>/dev/null\" | openssl x509 -noout -subject -enddate -ext subjectAltName"
 fi
-
-# Set color variables
-Red=$(tput setaf 1) Green=$(tput setaf 2) Yellow=$(tput setaf 3)
-R=$(tput rev) NC=$(tput sgr0)
 
 printf "%s\n\n" "$cmd"
 eval "$cmd"
