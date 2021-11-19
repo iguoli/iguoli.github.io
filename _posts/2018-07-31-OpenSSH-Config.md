@@ -1,12 +1,12 @@
 ---
-title: SSH Config
+title: OpenSSH Config
 date: 2018-07-31
 modify_date: 2020-08-06
-tags: SSH
-key: SSH-Config-2018-07-31
+tags: OpenSSH
+key: OpenSSH-Config-2018-07-31
 ---
 
-## 客户端配置文件 SSH_CONFIG
+## 客户端配置文件 SSH_CONFIG
 
 参考手册页了解详细内容
 
