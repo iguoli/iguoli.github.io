@@ -6,6 +6,8 @@ tags: Bash
 key: Bash-Colors-2017-11-11
 ---
 
+## [ANSI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code)
+
 Bash 中使用 `echo` 输出颜色代码的格式
 
 | 代码                 | 说明                            |
@@ -28,7 +30,7 @@ echo -e "${Red}Text${NC}"
 
 <!--more-->
 
-## Bash, Hex, Octal 三种形式的转义字符
+### Bash, Hex, Octal 三种形式的转义字符
 
 | modifier | bash  | hex    | octal   | NOTE                         |
 | -------- | ----- | ------ | ------- | ---------------------------- |
@@ -37,7 +39,7 @@ echo -e "${Red}Text${NC}"
 | end      | \e[0m | \x1m0m | \033[0m |                              |
 | end      | \e[m  | \x1b[m | \033[m  | 0 is appended if you omit it |
 
-## Style
+### Style
 
 只修改颜色，不影响字符
 
@@ -60,7 +62,7 @@ echo -e "${Red}Text${NC}"
 | Cross-out        | 9;   |
 
 
-## Color
+### Color
 
 | Color      | Foreground Code | Background Code |
 | ---------- | --------------- | --------------- |
@@ -73,7 +75,7 @@ echo -e "${Red}Text${NC}"
 | Cyan       | 36              | 46              |
 | Light Gray | 37              | 47              |
 
-## Color Variables
+### Color Variables
 
 ```bash
 # No Color
@@ -164,6 +166,52 @@ echo -e "${Red}Error${NC} Text"
 echo -e "${IGreen}Success${NC}"
 ```
 
+## tput
+
+| tput Color Capabilities | Description                              |
+| ----------------------- | ---------------------------------------- |
+| tput setab [1-7]        | Set a background color using ANSI escape |
+| tput setb [1-7]         | Set a background color                   |
+| tput setaf [1-7]        | Set a foreground color using ANSI escape |
+| tput setf [1-7]         | Set a foreground color                   |
+
+| tput Text Mode Capabilities | Description                        |
+| --------------------------- | ---------------------------------- |
+| tput bold                   | Set bold mode                      |
+| tput dim                    | turn on half-bright mode           |
+| tput smul                   | begin underline mode               |
+| tput rmul                   | exit underline mode                |
+| tput rev                    | Turn on reverse mode               |
+| tput smso                   | Enter standout mode (bold on rxvt) |
+| tput rmso                   | Exit standout mode                 |
+| tput sgr0                   | Turn off all attributes            |
+
+| tput Color Code | Color  | tput Color Code | Color   |
+| --------------- | ------ | --------------- | ------- |
+| 0               | Black  | 4               | Blue    |
+| 1               | Red    | 5               | Magenta |
+| 2               | Green  | 6               | Cyan    |
+| 3               | Yellow | 7               | White   |
+
+### Verify environment
+
+```bash
+echo $TERM
+
+tput colors
+```
+
+### Example Code
+
+```bash
+Red=$(tput setaf 1) Green=$(tput setaf 2) Yellow=$(tput setaf 3)
+Blue=$(tput setaf 4)
+R=$(tput rev) NC=$(tput sgr0)
+
+echo "${Red}Red Text${NC}"
+echo "${R}${Green}Reversed Green Text${NC}"
+```
 ## 参考链接
 
 [How to change the output color of echo in Linux](https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux)
+[tput setaf color table? How to determine color codes?](https://unix.stackexchange.com/questions/269077/tput-setaf-color-table-how-to-determine-color-codes)
