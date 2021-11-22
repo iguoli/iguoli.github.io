@@ -232,9 +232,9 @@ DROP SCHEMA myschema;
 DROP SCHEMA myschema CASCADE;
 ```
 
-## [SQL Commands]
+## [SQL Commands] - DDL
 
-### DDL
+### User
 
 ```sql
 -- USER
@@ -255,7 +255,11 @@ ALTER USER dbuser WITH SUPERUSER;
 
 -- 撤销用户SUPERUSER CREATEUSER的权限
 ALTER USER dbuser WITH NOSUPERUSER NOCREATEDB;
+```
 
+### Database
+
+```sql
 -- DATABASE
 -- 创建数据库 mydb
 CREATE DATABASE mydb OWNER dbuser;
@@ -268,7 +272,26 @@ ALTER DATABASE mydb OWNER TO testuser;
 
 -- DROP DATABASE
 DROP DATABASE mydb;
+```
 
+### Privileges
+
+```sql
+-- GRANT
+-- 授权 dbuser 可以对 myschema 中的所有表执行 SELECT INSERT 和 UPDATE 操作
+GRANT SELECT INSERT UPDATE ON myschema TO dbuser;
+
+-- 授权所有用户对 catalog 表有 SELECT 权限
+GRANT SELECT ON catalog TO PUBLIC;
+
+GRANT ALL PRIVILEGES ON DATABASE mydb TO dbuser;
+```
+
+## [SQL Commands] - DML
+
+### Create/Insert
+
+```sql
 -- CREATE TABLE
 CREATE TABLE films (
     code        char(5) CONSTRAINT firstkey PRIMARY KEY,
@@ -284,29 +307,17 @@ CREATE TABLE distributors (
      name   varchar(40) NOT NULL CHECK (name <> '')
 );
 
+-- Copy a table from an existing table including both table structure and data
+CREATE TABLE copied AS TABLE existing_table;
+
+-- Copy a table structure without data
+CREATE TABLE copied AS TABLE existing_table WITH NO DATA;
+
+-- Copy a table with partial data from an existing table
+CREATE TABLE copied AS SELECT * FROM existing_table WHERE conditions;
+
 -- DROP TABLE
 DROP TABLE films, distributors;
-
--- GRANT
--- 授权 dbuser 可以对 myschema 中的所有表执行 SELECT INSERT 和 UPDATE 操作
-GRANT SELECT INSERT UPDATE ON myschema TO dbuser;
-
--- 授权所有用户对 catalog 表有 SELECT 权限
-GRANT SELECT ON catalog TO PUBLIC;
-
-GRANT ALL PRIVILEGES ON DATABASE mydb TO dbuser;
-```
-
-### DML
-
-CRUD
-
-```sql
--- SELECT by order and display top 5 record
-SELECT * FROM films ORDER BY date_prod DESC LIMIT 5;
-
--- 获取近10年出品的电影
-SELECT * FROM films where date_prod > (now() - interval '10 years');
 
 -- INSERT
 INSERT INTO films VALUES
@@ -320,11 +331,27 @@ INSERT INTO films (code, title, did, date_prod, kind)
 INSERT INTO films (code, title, did, date_prod, kind) VALUES
     ('B6717', 'Tampopo', 110, '1985-02-10', 'Comedy'),
     ('HG120', 'The Dinner Game', 140, DEFAULT, 'Comedy');
+```
 
--- UPDATE
+### Read
+
+```sql
+-- SELECT by order and display top 5 record
+SELECT * FROM films ORDER BY date_prod DESC LIMIT 5;
+
+-- 获取近10年出品的电影
+SELECT * FROM films where date_prod > (now() - interval '10 years');
+```
+
+### Update
+
+```sql
 UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
+```
 
--- DELETE
+### Delete
+
+```sql
 DELETE FROM films where title='Yojimbo';
 ```
 
@@ -365,8 +392,11 @@ COPY (SELECT * FROM country WHERE country_name LIKE 'A%') TO '/usr1/proj/bray/sq
 -- copy into a compressed file, you can pipe the output through an external compression program
 COPY country TO PROGRAM 'gzip > /usr1/proj/bray/sql/country_data.gz';
 
--- copy into a csv file with header
-COPY country TO '/tmp/table.csv' (FORMAT csv, HEADER)
+-- export to a csv file with header
+COPY country TO '/tmp/table.csv' (FORMAT csv, HEADER);
+
+-- import the csv file into a table with header
+COPY country FROM '/tmp/table.csv' (DELIMITER ',', FORMAT cvs, HEADER true);
 ```
 
 注意，输入文件路径可以是绝对路径或相对路径，输出文件路径必须是绝对路径
@@ -640,6 +670,12 @@ wal_keep_segments = 16
 recovery_target_timeline = 'latest'
 standby_mode = 'on'
 primary_conninfo = 'host=192.168.33.10 port=5432 user=postgres password=postgres'
+```
+
+## 临时命令
+
+```sql
+show archive_modes
 ```
 
 ## 参考文档
