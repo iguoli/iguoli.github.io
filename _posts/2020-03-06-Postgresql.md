@@ -331,6 +331,9 @@ INSERT INTO films (code, title, did, date_prod, kind)
 INSERT INTO films (code, title, did, date_prod, kind) VALUES
     ('B6717', 'Tampopo', 110, '1985-02-10', 'Comedy'),
     ('HG120', 'The Dinner Game', 140, DEFAULT, 'Comedy');
+
+-- Insert data from another table
+INSERT INTO mytable SELECT * FROM anthoer_tabel where conditions;
 ```
 
 ### Read
@@ -377,7 +380,7 @@ select extract(year from now());
 select date_part(day, now());
 ```
 
-### 使用 [`Copy`][Copy] 语句在数据库与文件系统之间复制数据
+### [Copy][Copy]
 
 ```sql
 -- copies a table to the client using the vertical bar (|) as the field delimite
@@ -676,6 +679,9 @@ primary_conninfo = 'host=192.168.33.10 port=5432 user=postgres password=postgres
 
 ```sql
 show archive_modes
+
+-- Create restore point
+select pg_create_restore_point('first_point');
 ```
 
 ## 参考文档
