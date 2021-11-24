@@ -12,7 +12,7 @@ PostgreSQL 交互式终端 `psql` 的使用，包括连接字符串，免密设�
 
 <!--more-->
 
-### MacOS 上安装 [psql]
+### macOS 上安装 [psql]
 
 ```bash
 brew install libpq
@@ -315,6 +315,9 @@ CREATE TABLE copied AS TABLE existing_table WITH NO DATA;
 
 -- Copy a table with partial data from an existing table
 CREATE TABLE copied AS SELECT * FROM existing_table WHERE conditions;
+
+-- Rename an existing column
+ALTER TABLE distributors RENAME COLUMN address TO city;
 
 -- DROP TABLE
 DROP TABLE films, distributors;
@@ -636,6 +639,12 @@ select version();
 
 ## 流复制
 
+### 创建流复制用户
+
+```sql
+CREATE USER replica REPLICATION LOGIN PASSWORD 'P@ssw0rd!';
+```
+
 ### 数据库配置
 
 ### 内置查询命令
@@ -655,15 +664,18 @@ max_connections  = 1024
 # replication
 max_wal_senders   = 2
 wal_level         = hot_standby
+wal_keep_segments = 32
 hot_standby       = on
-max_wal_senders   = 2
-wal_keep_segments = 16
 ```
 
 ### [pg_hba.conf]
 
-| local | database | user |         | auth-method | [auth-options] |
-| host  | database | user | address | auth-method | [auth-options] |
+| TYPE  | DATABASE    | USER    | ADDRESS          | AUTH-METHOD |
+| ----- | ----------- | ------- | ---------------- | ----------- |
+| local | all         | all     |                  | peer        |
+| host  | all         | all     | 127.0.0.1/32     | trust       |
+| host  | all         | all     | 192.168.33.0/24  | md5         |
+| host  | replication | replica | 192.168.33.10/32 | md5         |
 
 配置修改后，可以使用 `/usr/pgsql-9.4/bin/pg_ctl reload` 命令使配置生效而不重启数据库。
 
@@ -672,7 +684,7 @@ wal_keep_segments = 16
 ```ini
 recovery_target_timeline = 'latest'
 standby_mode = 'on'
-primary_conninfo = 'host=192.168.33.10 port=5432 user=postgres password=postgres'
+primary_conninfo = 'host=192.168.33.10 port=5432 user=replica password=P@ssw0rd!'
 ```
 
 ## 临时命令

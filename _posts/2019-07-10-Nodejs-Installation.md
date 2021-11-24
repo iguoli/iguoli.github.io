@@ -89,7 +89,7 @@ source ~/.zshenv
 
 ### 安装 [nodenv](https://github.com/nodenv/nodenv)
 
-在 MacOS 上使用 Homebrew 安装
+在 macOS 上使用 Homebrew 安装
 
 ```bash
 brew install nodenv
