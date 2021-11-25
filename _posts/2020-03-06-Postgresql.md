@@ -319,6 +319,11 @@ CREATE TABLE copied AS SELECT * FROM existing_table WHERE conditions;
 -- Rename an existing column
 ALTER TABLE distributors RENAME COLUMN address TO city;
 
+-- change the types of two existing columns in one operation
+ALTER TABLE distributors
+  ALTER COLUMN email TYPE varchar(50),
+  ALTER COLUMN city TYPE varchar(30);
+
 -- DROP TABLE
 DROP TABLE films, distributors;
 
@@ -402,7 +407,7 @@ COPY country TO PROGRAM 'gzip > /usr1/proj/bray/sql/country_data.gz';
 COPY country TO '/tmp/table.csv' (FORMAT csv, HEADER);
 
 -- import the csv file into a table with header
-COPY country FROM '/tmp/table.csv' (DELIMITER ',', FORMAT cvs, HEADER true);
+COPY country (country, text, currency) FROM '/var/lib/pgsql/data.csv' (DELIMITER ',', FORMAT csv, header);
 ```
 
 注意，输入文件路径可以是绝对路径或相对路径，输出文件路径必须是绝对路径
@@ -642,7 +647,7 @@ select version();
 ### 创建流复制用户
 
 ```sql
-CREATE USER replica REPLICATION LOGIN PASSWORD 'P@ssw0rd!';
+CREATE USER replica WITH REPLICATION LOGIN PASSWORD 'P@ssw0rd!';
 ```
 
 ### 数据库配置
@@ -685,6 +690,63 @@ hot_standby       = on
 recovery_target_timeline = 'latest'
 standby_mode = 'on'
 primary_conninfo = 'host=192.168.33.10 port=5432 user=replica password=P@ssw0rd!'
+```
+
+### 查看数据库状态
+
+1. 主/备库状态
+
+```bash
+# version 9.4
+/usr/pgsql-9.4/bin/pg_controldata ${PGDATA}
+/usr/pgsql-9.4/bin/pg_controldata ${PGDATA} | grep state
+
+# version 12
+/usr/pgsql-12/bin/pg_controldata -D ${PGDATA}
+```
+
+显示结果
+
+```text
+# 主库
+Database cluster state:               in production
+
+# 备库
+Database cluster state:               in archive recovery
+```
+
+2. 检查异步流复制状态，查询主库 *pg_stat_replication* 表
+
+```sql
+select pid,state,client_addr,sync_priority,sync_state from pg_stat_replication;
+```
+
+3. 检查当前数据库是否处于备库状态，是的话返回 **(t)rue**，否的话返回 **(f)alse**
+
+```sql
+select pg_is_in_recovery();
+```
+
+### 主从切换
+
+1. 停止主库服务
+
+```bash
+sudo service postgresql-9.4 stop
+```
+
+2. 提升备库为主库
+
+```bash
+sudo -i -u postgres /usr/pgsql-9.4/bin/pg_ctl promote -D /var/lib/pgsql/9.4/data
+```
+
+3. 设置原主库 recovery.conf
+
+4. 启动原主库作为备库
+
+```bash
+sudo service postgresql-9.4 start
 ```
 
 ## 临时命令
