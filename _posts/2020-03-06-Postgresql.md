@@ -499,7 +499,7 @@ psql -U postgres -d mydb -f db.sql
 ```conf
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 local   replication     postgres                                peer  # 允许本机与数据库同名的 postgres 用户对数据库进行复制
-host    replication     postgres        10.0.0.2/32             md5   # 允许从 IP 为 10.0.0.2 的主机使用 postgres 用户及密码登录数据库进行复制
+host    replication     postgres        192.168.33.10/32        md5   # 允许从 IP 为 10.0.0.2 的主机使用 postgres 用户及密码登录数据库进行复制
 host    replication     all             0.0.0.0/0               trust # 允许从任意主机使用任意数据库用户登录数据库进行复制
 ```
 
@@ -690,6 +690,24 @@ hot_standby       = on
 recovery_target_timeline = 'latest'
 standby_mode = 'on'
 primary_conninfo = 'host=192.168.33.10 port=5432 user=replica password=P@ssw0rd!'
+```
+
+### 备库设置
+
+在第二台机器安装好 postgresql 服务器，不要启动，为 postgres 用户建立 `.pgpass` 文件
+
+```bash
+cat << EOF > ~/.pgpass
+192.168.33.10:5432:*:replica:P@ssw0rd!
+EOF
+
+chmod 0600 ~/.pgpass
+```
+
+使用 `pg_basebackup` 生成备库
+
+```bash
+pg_basebackup -h 192.168.33.10 -U replica -D /var/lib/pgsql/9.4/data -Xs -P
 ```
 
 ### 查看数据库状态
