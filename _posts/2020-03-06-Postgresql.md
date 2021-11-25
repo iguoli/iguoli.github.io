@@ -650,9 +650,7 @@ select version();
 CREATE USER replica WITH REPLICATION LOGIN PASSWORD 'P@ssw0rd!';
 ```
 
-### 数据库配置
-
-### 内置查询命令
+### 数据库配置查询命令
 
 ```sql
 show config_file;
