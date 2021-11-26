@@ -22,6 +22,20 @@ sudo yum groupinstall "Development Tools"
 
 <!--more-->
 
+## 关闭 SELinux
+
+用`getenforce`命令检查 SELinux 是否已禁用
+
+```bash
+getenforce
+```
+
+修改 `/etc/selinux/config` 配置文件，设置 SELinux 为 **disabled**
+
+```bash
+vim /etc/selinux/config
+```
+
 ## 设置命令行代理
 
 大部分终端命令都会识别以下环境变量来使用命令行代理，如果有特殊命令不识别，可以使用 **ProxyChains-NG** 命令。
