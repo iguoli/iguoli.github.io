@@ -774,6 +774,16 @@ show archive_modes
 select pg_create_restore_point('first_point');
 ```
 
+## 常见问题
+
+系统开启 SELinux 的话可能会阻止 web 应用访问数据库 (比如通过 php 访问数据库)，如果在不关闭 SELinux 的情况下允许对数据库访问，可以设置 **httpd_can_network_connect** 参数为 `on`。
+
+> **httpd_can_network_connect** (HTTPD Service):: Allow HTTPD scripts and modules to connect to the network.
+
+```bash
+sudo setsebool -P httpd_can_network_connect_db on
+```
+
 ## 参考文档
 
 - [PostgreSQL 官方文档](https://www.postgresql.org/docs/current/index.html)
