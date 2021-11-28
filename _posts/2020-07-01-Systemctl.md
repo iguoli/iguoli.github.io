@@ -35,6 +35,9 @@ systemctl list-units --type=service
 # equivalent to
 systemctl --type=service
 systemctl -t service
+
+# 列出所有服务状态，不管是否激活
+systemctl --all -t service
 ```
 
 ### Unit 状态
@@ -99,6 +102,12 @@ systemctl reload nginx sshd
 
 ```bash
 systemctl list-unit-files
+```
+
+### 查看所有服务文件状态
+
+```bash
+systemctl list-unit-files -t service
 ```
 
 ### 查看 postgresql 服务文件状态
