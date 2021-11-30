@@ -341,7 +341,7 @@ INSERT INTO films (code, title, did, date_prod, kind) VALUES
     ('HG120', 'The Dinner Game', 140, DEFAULT, 'Comedy');
 
 -- Insert data from another table
-INSERT INTO mytable SELECT * FROM anthoer_tabel where conditions;
+INSERT INTO mytable SELECT * FROM anthoer_tabel WHERE conditions;
 ```
 
 ### Read
@@ -351,7 +351,7 @@ INSERT INTO mytable SELECT * FROM anthoer_tabel where conditions;
 SELECT * FROM films ORDER BY date_prod DESC LIMIT 5;
 
 -- 获取近10年出品的电影
-SELECT * FROM films where date_prod > (now() - interval '10 years');
+SELECT * FROM films WHERE date_prod > (now() - interval '10 years');
 ```
 
 ### Update
@@ -363,7 +363,7 @@ UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
 ### Delete
 
 ```sql
-DELETE FROM films where title='Yojimbo';
+DELETE FROM films WHERE title='Yojimbo';
 ```
 
 [日期函数]
