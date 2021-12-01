@@ -220,7 +220,7 @@ alias pcs='proxychains4'
 ```
 
 ```bash
-$ vim /usr/local/etc/proxychains.conf
+$ vim $(brew --prefix)/etc/proxychains.conf
 
 [ProxyList] 
 socks5  127.0.0.1 7891
@@ -292,7 +292,7 @@ brew search jdk
 # 方法一
 brew install openjdk@8
 # 根据 Homebrew 提示，将 openjdk 链接到系统 Java wrappers
-sudo ln -sfn /usr/local/opt/openjdk@8/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-8.jdk
+sudo ln -sfn $(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-8.jdk
 
 # 方法二
 brew tap adoptopenjdk/openjdk
@@ -317,10 +317,10 @@ brew install macvim
 在 `/Applications` 文件夹创建应用链接
 
 ```bash
-ln -Fs /usr/local/Cellar/macvim/<version>/MacVim.app /Applications/
+ln -Fs $(brew --prefix)/Cellar/macvim/<version>/MacVim.app /Applications/
 ```
 
-MacVim 会在 `/usr/local/bin` 下创建 Vim 命令行程序的软链接，而系统自带的 Vim 在 `/usr/bin` 目录下，因此只要确保在 `$PATH` 环境变量中，`/usr/local/bin` 路径在 `/usr/bin` 之前即可使用新的 Vim。
+MacVim 会在 `$(brew --prefix)/bin` 下创建 Vim 命令行程序的软链接，而系统自带的 Vim 在 `/usr/bin` 目录下，因此只要确保在 `$PATH` 环境变量中，`$(brew --prefix)/bin` 路径在 `/usr/bin` 之前即可使用新的 Vim。
 
 #### 安装 [vim-plug](https://github.com/junegunn/vim-plug)
 
@@ -333,14 +333,14 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 ```bash
 brew install coreutils findutils gnu-sed grep
 
-export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="/usr/local/opt/grep/libexec/gnuman:$MANPATH"
-export MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
-export MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
+export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
+export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="$(brew --prefix)/opt/grep/libexec/gnuman:$MANPATH"
+export MANPATH="$(brew --prefix)/opt/gnu-sed/libexec/gnuman:$MANPATH"
+export MANPATH="$(brew --prefix)/opt/findutils/libexec/gnuman:$MANPATH"
+export MANPATH="$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH"
 ```
 
 ### 安装 [Pygments](https://pygments.org)
@@ -350,7 +350,7 @@ Pygments 是代码高亮工具，用于美化输出。
 ```bash
 brew install pygments
 
-export LESSOPEN="|/usr/local/bin/pygmentize -g -O style=solarized-dark %s"
+export LESSOPEN="|$(brew --prefix)/bin/pygmentize -g -O style=solarized-dark %s"
 ```
 
 #### 样式
@@ -372,7 +372,7 @@ brew install grc
 ##### 自动设置常用命令别名
 
 ```bash
-sed -e '$a\[[ -s "/usr/local/etc/grc.zsh" ]] && source /usr/local/etc/grc.zsh' ~/.zshrc
+sed -e '$a\[[ -s "$(brew --prefix)/etc/grc.zsh" ]] && source $(brew --prefix)/etc/grc.zsh' ~/.zshrc
 ```
 
 ### 安装常用应用
