@@ -201,6 +201,23 @@ xcode-select --install
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 ```
 
+#### 为 zsh 添加 Homebrew 自动补全
+
+参考 Homebrew 官网的[自动补全](https://docs.brew.sh/Shell-Completion)文档
+
+```bash
+cat << EOF >> ~/.zprofile
+# Add Homebrew autocompletion function to FPATH
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+EOF
+
+# Rebuild zcompdump
+rm -f ~/.zcompdump; compinit
+
+# Eliminate "zsh compinit: insecure directories" warnings
+chmod -R go-w "$(brew --prefix)/share"
+```
+
 ### 安装 Connect 工具
 
 - 从[Github下载](https://github.com/gotoh/ssh-connect)压缩包后直接解压即可，或
