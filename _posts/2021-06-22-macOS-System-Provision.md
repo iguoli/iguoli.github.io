@@ -201,9 +201,7 @@ xcode-select --install
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 ```
 
-#### 为 zsh 添加 Homebrew 自动补全
-
-参考 Homebrew 官网的[自动补全](https://docs.brew.sh/Shell-Completion)文档
+#### 为 zsh 添加 Homebrew [自动补全](https://docs.brew.sh/Shell-Completion)
 
 ```bash
 cat << EOF >> ~/.zprofile
