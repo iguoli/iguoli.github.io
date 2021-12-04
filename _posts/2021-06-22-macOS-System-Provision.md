@@ -295,6 +295,20 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
+### 安装 MacVim 替代系统自带 Vim
+
+```bash
+brew install --cask macvim
+```
+
+MacVim 会在 `$(brew --prefix)/bin` 下创建 Vim 命令行程序的软链接，而系统自带的 Vim 在 `/usr/bin` 目录下，因此只要确保在 `$PATH` 环境变量中，`$(brew --prefix)/bin` 路径在 `/usr/bin` 之前即可使用新的 Vim。
+
+#### 安装 [vim-plug](https://github.com/junegunn/vim-plug)
+
+```bash
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
 ### 安装 OpenJDK
 
 - 从官方网站 [Adoptium][] (原网站[AdoptOpenJDK][]) 下载安装包直接安装。
@@ -304,14 +318,14 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 ```bash
 brew search jdk
 
-# 方法一
+# 安装 AdoptOpenJDK
+brew tap adoptopenjdk/openjdk
+brew install --cask adoptopenjdk8
+
+# 安装 Oracle OpenJDK
 brew install openjdk@8
 # 根据 Homebrew 提示，将 openjdk 链接到系统 Java wrappers
 sudo ln -sfn $(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-8.jdk
-
-# 方法二
-brew tap adoptopenjdk/openjdk
-brew install --cask adoptopenjdk8
 ```
 
 在 `~/.zshrc` 中设置 `JAVA_HOME` 环境变量
@@ -322,26 +336,6 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
 [AdoptOpenJDK]: https://adoptopenjdk.net/
 [Adoptium]: https://adoptium.net/
-
-### 安装 MacVim 替代系统自带 Vim
-
-```bash
-brew install macvim
-```
-
-在 `/Applications` 文件夹创建应用链接
-
-```bash
-ln -Fs $(brew --prefix)/Cellar/macvim/<version>/MacVim.app /Applications/
-```
-
-MacVim 会在 `$(brew --prefix)/bin` 下创建 Vim 命令行程序的软链接，而系统自带的 Vim 在 `/usr/bin` 目录下，因此只要确保在 `$PATH` 环境变量中，`$(brew --prefix)/bin` 路径在 `/usr/bin` 之前即可使用新的 Vim。
-
-#### 安装 [vim-plug](https://github.com/junegunn/vim-plug)
-
-```bash
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
 
 ### 安装 GNU 命令行工具
 
