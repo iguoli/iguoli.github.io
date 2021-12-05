@@ -190,9 +190,7 @@ xcode-select --install
 
 ### 安装 Homebrew
 
-[Homebrew国内如何自动安装（国内地址）](https://zhuanlan.zhihu.com/p/111014448)
-
-执行以下命令，脚本会提示选择国内几个比较常用的镜像，选择中科大镜像然后一路安装即可。
+参考之前的 [Homebrew](https://iguoli.github.io/2019/12/04/Homebrew.html) 说明
 
 ```bash
 /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
@@ -319,8 +317,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 brew search jdk
 
 # 安装 AdoptOpenJDK
-brew tap adoptopenjdk/openjdk
-brew install --cask adoptopenjdk8
+brew install --cask temurin
 
 # 安装 Oracle OpenJDK
 brew install openjdk@8
