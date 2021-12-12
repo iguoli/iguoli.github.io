@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL
 date: 2020-03-06
-modify_date: 2021-11-04
+modify_date: 2021-12-12
 tags: Database
 key: Postgresql-2020-03-06
 ---
@@ -352,6 +352,12 @@ SELECT * FROM films ORDER BY date_prod DESC LIMIT 5;
 
 -- 获取近10年出品的电影
 SELECT * FROM films WHERE date_prod > (now() - interval '10 years');
+```
+
+#### 查询 jsonb
+
+```sql
+SELECT * FROM json_table WHERE json_data::TEXT LIKE '%String%' ORDER BY created LIMIT 10;
 ```
 
 ### Update
