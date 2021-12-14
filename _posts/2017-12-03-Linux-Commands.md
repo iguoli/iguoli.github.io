@@ -35,6 +35,16 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+## Start an application detached
+
+参考 [How to cleanly launch a GUI app via the Terminal?](https://askubuntu.com/questions/10547/how-to-cleanly-launch-a-gui-app-via-the-terminal)
+
+如果是 bash 或 zsh，可以在使用 `&!`，比如在命令行打开 `gvim`
+
+```bash
+gvim &!
+```
+
 ## sudo and su
 
 ```bash
@@ -42,6 +52,7 @@ sudo -H -u postgres psql db
 
 su - postgres -c 'psql db'
 ```
+
 ## 使用 Type 命令查看系统命令
 
 `-t` 选项，打印所给命令的类型
