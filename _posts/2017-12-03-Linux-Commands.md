@@ -35,6 +35,28 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+## sort 排序
+
+[GNU coreutils 7.5](http://article.gmane.org/gmane.comp.gnu.core-utils.announce/52) 在2009年8月发布以后，`sort` 提供了 `-h` 参数，可以对类似 `du -h` 等命令产生的带有数字后辍的输出进行排序
+
+[How can I sort du -h output by size](https://serverfault.com/questions/62411/how-can-i-sort-du-h-output-by-size)
+
+```bash
+du -sh * | sort -h
+```
+
+对数字排序
+
+```bash
+sort -n
+```
+
+对类似于 `abc:10:def` 的文本，可能通过 `-t` 参数设定分隔符，使用 `-k` 参数来选择分隔后的列
+
+```bash
+cat /etc/passwd | sort -n -t':' -k3
+```
+
 ## Start an application detached
 
 参考 [How to cleanly launch a GUI app via the Terminal?](https://askubuntu.com/questions/10547/how-to-cleanly-launch-a-gui-app-via-the-terminal)
