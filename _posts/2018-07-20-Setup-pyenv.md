@@ -93,7 +93,7 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/py
    brew uninstall pyenv
    ```
 
-## 使用 pyenv 安装 python
+## 安装 python
 
 - 可以通过设置 `http_proxy` 和 `https_proxy` 代理来加速下载过程。
 
@@ -105,6 +105,9 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/py
 
 - [Common build problems](https://github.com/pyenv/pyenv/wiki/Common-build-problems)
 
+从 3.9.1 版本开始，Python 已原生支持 M1 Chip (Apple Silicon)，在 M1 的 macOS 系统安装 python，需要注意如果使用 Homebrew 安装了 GNU coreutils，不能在 `PATH` 中添加 coreutils 的 bin 目录。
+{:.info}
+
 ### pyenv 命令
 
 ```bash
@@ -112,10 +115,10 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/py
 pyenv install -l
 
 # 安装某个版本的Python
-pyenv install 3.6.6
+pyenv install 3.10.0
 
 # 卸载某个版本的Python
-pyenv uninstall 3.6.6
+pyenv uninstall 3.10.0
 
 # 查看已安装的Python
 pyenv versions
@@ -131,17 +134,17 @@ pyenv commands
 
 ```bash
 # 使用指定Python版本创建virtualenv环境
-pyenv virtualenv 3.6.6 venv-name36
+pyenv virtualenv 3.10.0 jupyter-lab
 
 # 使用当前Python版本创建virtualenv环境
-pyenv virtualenv venv-name36
+pyenv virtualenv jupyter-lab
 
 # 激活virtualenv环境
-pyenv activate venv-name36
+pyenv activate jupyter-lab
 
 # 退出virtualenv环境
 pyenv deactivate
 
 # 自动激活和退出vritualenv环境
-pyenv local venv-name36
+pyenv local jupyter-lab
 ```

@@ -1,8 +1,9 @@
 ---
-title: Linux 下配置 Ruby 环境
+title: rbenv - Ruby 版本管理工具
 date: 2018-07-18
+modify_date: 2021-12-16
 tags: Ruby
-key: Setup-Ruby-on-Linux-2018-07-18
+key: Setup-rbenv-2018-07-18
 ---
 
 使用 rbenv 管理系统中多个 Ruby 版本。
