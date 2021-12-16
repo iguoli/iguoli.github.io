@@ -1,5 +1,5 @@
 ---
-title:  pyenv - Python 环境管理工具
+title:  pyenv - Python 版本管理工具
 date: 2018-07-20
 modify_date: 2021-12-14
 tags: Python
