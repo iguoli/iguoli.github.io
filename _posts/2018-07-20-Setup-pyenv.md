@@ -130,6 +130,22 @@ pyenv version
 pyenv commands
 ```
 
+### 配置 pip
+
+```bash
+mkdir ~/.pip
+
+cat <<EOF > ~/.pip/pip.conf
+[global]
+require-virtualenv = false
+download-cache = $HOME/.pip/cache
+index-url = https://mirrors.aliyun.com/pypi/simple/
+
+[list]
+format = columns
+EOF
+```
+
 ### pyenv virtualenv 命令
 
 ```bash
