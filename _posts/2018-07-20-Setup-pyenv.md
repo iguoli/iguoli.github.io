@@ -120,6 +120,18 @@ pyenv install 3.10.0
 # 卸载某个版本的Python
 pyenv uninstall 3.10.0
 
+# 使用指定版本创建virtualenv环境
+pyenv virtualenv 3.10.0 jupyterlab
+
+# 使用当前Python版本创建virtualenv环境
+pyenv virtualenv jupyterlab
+
+# 在当前目录自动激活和退出vritualenv环境
+pyenv local jupyterlab
+
+# 取消当前目录自动激活
+pyenv local --unset
+
 # 查看已安装的Python
 pyenv versions
 
@@ -149,11 +161,6 @@ EOF
 ### pyenv virtualenv 命令
 
 ```bash
-# 使用指定Python版本创建virtualenv环境
-pyenv virtualenv 3.10.0 jupyter-lab
-
-# 使用当前Python版本创建virtualenv环境
-pyenv virtualenv jupyter-lab
 
 # 激活virtualenv环境
 pyenv activate jupyter-lab
@@ -161,6 +168,4 @@ pyenv activate jupyter-lab
 # 退出virtualenv环境
 pyenv deactivate
 
-# 自动激活和退出vritualenv环境
-pyenv local jupyter-lab
 ```
