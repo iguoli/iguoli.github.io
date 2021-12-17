@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL
 date: 2020-03-06
-modify_date: 2021-12-12
+modify_date: 2021-12-16
 tags: Database
 key: Postgresql-2020-03-06
 ---
@@ -137,6 +137,16 @@ select * from table1;
 select * from table2;
 EOF
 ```
+
+### 在命令执行 SQL 文件
+
+有时有太多 sql 语句，不方便在命令行执行，可以放到文件中来一起执行。
+
+```sql
+psql -h 192.168.1.3 -U user -d mydb -a -f run.sql
+```
+
+`-a` 或 `--echo-all` 会将执行的每一行 sql 语句同时打在命令行上。在 psql 的 shell 中，可以使用元命令 `\i` 读取文件执行 sql。
 
 ### [psql] 元命令(Meta-Commands)
 
