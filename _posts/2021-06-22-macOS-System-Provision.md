@@ -2,7 +2,7 @@
 title: macOS System Provision
 date: 2021-06-25
 modify_date: 2021-11-06
-tags: macOS
+tags: macOS Provision
 key: macOS-System-Provision-2021-06-25
 ---
 

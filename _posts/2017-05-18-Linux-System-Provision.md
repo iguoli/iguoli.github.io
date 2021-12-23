@@ -2,7 +2,7 @@
 title: Linux System Provision
 date: 2017-05-18
 modify_date: 2021-11-06
-tags: Linux
+tags: Linux Provision
 key: Linux-System-Provision-2017-05-18
 ---
 

@@ -2,7 +2,7 @@
 title: Linux firewalld 设置
 date: 2021-11-10
 modify_date: 2021-11-26
-tags: Linux firewall
+tags: Linux Firewall
 key: Firewalld-2021-11-10
 ---
 
