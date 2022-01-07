@@ -1,7 +1,7 @@
 ---
-title: Linux 时间设置
+title: Linux datetime
 date: 2017-12-02
-modify_date: 2019-09-12
+modify_date: 2022-01-07
 tags: Linux Date
 key: Linux-Datetime-2017-12-02
 ---
@@ -61,10 +61,10 @@ Time Zone Abbreviations
 [What's the difference between **localtime** and **timezone** files?][2]
 
 - **/etc/timezone**  
-  是一个用户可读的纯文本文件，内容是你当前的时区。它可以写成 GMT/UTC 的偏移，但更多时候写成 `/usr/share/zoneinfo` 下的相对路径，指向合适的时区文件。例如，在中国，它可以写成 `Asia/Shanghai`。它的目的是增加时区的可读性，另外就是当 `/usr/share/zoneinfo` 目录下的时区文件更新时，确保 `/etc/localtime` 也能正确的更新。不过大部分系统通常将 `/etc/localtime` 直接设置成指向合适时区文件的软链接.
+  是一个用户可读的纯文本文件，内容是你当前的时区。它可以写成 GMT/UTC 的偏移，但更多时候写成 `/usr/share/zoneinfo` 下的相对路径，指向合适的时区文件。例如，在中国，它可以写成 `Asia/Shanghai`。它的目的是增加时区的可读性，另外就是当 `/usr/share/zoneinfo` 目录下的时区文件更新时，确保 `/etc/localtime` 也能正确的更新。**不过大部分系统通常将 `/etc/localtime` 直接设置成指向合适时区文件的软链接**。
 
 - **/etc/localtime**  
-  是一个二进制文件，内容是计算系统时间的规则 (相对于 **Unix time**，**Unix time** 是内核的内部表示，测量从 1970-01-01 00:00:00 UTC 以来过去了多少秒).
+  是一个二进制文件，内容是计算系统时间的规则 (相对于 **Unix time**，**Unix time** 是内核的内部表示，测量从 1970-01-01 00:00:00 UTC 以来过去了多少秒)。
 
 ### 显示当前时区
 
@@ -155,6 +155,13 @@ date +"%Y-%m-%d %H:%M:%S"
 
 # Show the China time
 TZ='Asia/Shanghai' date
+```
+
+### 时间转换
+
+```bash
+# 将美国芝加哥时间早上4点转换为本地时间
+date -d 'TZ="America/Chicago" 4am'
 ```
 
 ### 设置系统时间
