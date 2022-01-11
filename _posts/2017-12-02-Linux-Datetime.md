@@ -1,7 +1,7 @@
 ---
 title: Linux datetime
 date: 2017-12-02
-modify_date: 2022-01-07
+modify_date: 2022-01-11
 tags: Linux Date
 key: Linux-Datetime-2017-12-02
 ---
@@ -140,15 +140,36 @@ TZ='Asia/Shanghai'
 
 [man date](http://man7.org/linux/man-pages/man1/date.1.html)
 
+给 `date` 命令设置 `TZ` 环境变量来显示指定时区的时间
+
+```bash
+TZ=Asia/Shanghai date
+```
+
 显示 RFC 5322 格式时间，例如 `Tue, 11 Jan 2022 12:30:20 +0800`
 
 ```bash
 date -R
+
+date --rfc-email
+```
+
+显示 RFC 3339 格式时间，例如 `2022-01-11 12:30:20+08:00`
+
+> --rfc-3339=FMT 有效的时间参数为
+>
+> - `date`
+> - `seconds`
+> - `ns`
+>
+
+```bash
+date --rfc-3339=s
 ```
 
 显示 ISO 8601 格式时间，例如 `2022-01-11T12:30:20+08:00`
 > `-I[FMT], --iso-8601[=FMT]`. `-I` 默认只显示到日期，相当于 `-Id` 或 `-Idate`，
-> 该参数的有效时间格式为
+> 该参数的有效时间参数为
 >
 > - `date`
 > - `hours`
@@ -221,13 +242,13 @@ TZ='Asia/Shanghai' date -d '2022-01-10 20:29:03.947 EST'
 TZ='Asia/Shanghai' date -d '2022-01-10 20:29:03.947 EST' -Is
 ```
 
-将 UTC 时间转换为中国时间并以 RFC 3339 格式显示
+将 UTC 时间转换为中国时间并以 RFC 3339 格式显示到秒
 
 ```bash
 TZ='Asia/Shanghai' date -d '2022-01-10T20:29:03.947 UTC' --rfc-3339=s
 ```
 
-将 RFC 3339 格式 UTC -5 时区时间转换为中国时间并以 ISO 8601 格式显示
+将 RFC 3339 格式 UTC -5 时区时间转换为中国时间并以 ISO 8601 格式显示到秒
 
 ```bash
 TZ='Asia/Shanghai' date -d '2022-01-10 22:38:02.162-05' -Is
