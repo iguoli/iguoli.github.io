@@ -33,7 +33,8 @@ Time Zone Abbreviations
 - **CST (Central Standard Time)**: 美国中部时间，UTC -6  
   **CT (Central Time)**: UTC -6/-5
 
-- **EDT (Eastern Daylight Time)**: 美国东部时间，UTC -4  
+- **EST (Eastern Standard Time)**: 美国东部时间，UTC -5  
+  **EDT (Eastern Daylight Time)**: 美国东部时间，UTC -4  
   **ET (Eastern Time)**: UTC -5/-4
 
 - **PDT (Pacific Daylight Time)**: 太平洋时间，美国西部时间，UTC -7
@@ -135,33 +136,76 @@ TZ='Asia/Shanghai'
 
 ## 系统时间
 
-### 查看系统时间
+### 查看时间
 
 [man date](http://man7.org/linux/man-pages/man1/date.1.html)
 
-```bash
-# output date and time in RFC 2822 format.
-# Example: Mon, 14 Aug 2006 02:34:56 -0600
-date -R
+显示 RFC 5322 格式时间，例如 `Tue, 11 Jan 2022 12:30:20 +0800`
 
-# -I[FMT], --iso-8601[=FMT]. output date/time in ISO 8601 format.
-# FMT='date' for date only (the default), 'hours', 'minutes', 'seconds',
-# or 'ns' for date and time to the indicated precision.
-# Example: 2006-08-14T02:34:56-0600
+```bash
+date -R
+```
+
+显示 ISO 8601 格式时间，例如 `2022-01-11T12:30:20+08:00`
+> `-I[FMT], --iso-8601[=FMT]`. `-I` 默认只显示到日期，相当于 `-Id` 或 `-Idate`，
+> 该参数的有效时间格式为
+>
+> - `date`
+> - `hours`
+> - `minutes`
+> - `seconds`
+> - `ns`
+>
+
+```bash
+# 只显示日期
+date -I
+
+# 显示秒级 iso-8601 时间
+date -Is
+
+# 显示纳秒级 iso-8601 时间
 date -Ins
 
-# date +FORMAT
-date +"%Y-%m-%d %H:%M:%S"
+# 显示中国时区 iso-8601 时间
+TZ='Asia/Shanghai' date -Is
+```
 
-# Show the China time
-TZ='Asia/Shanghai' date
+显示自定义格式时间
+
+```bash
+date +"%Y-%m-%d %H:%M:%S"
+```
+
+显示 UTC 时间，例如 `2022-01-11 04:30:20`
+
+```bash
+date -u
+
+date -u +"%Y-%m-%d %H:%M:%S"
 ```
 
 ### 时间转换
 
+显示由 `--date=STRING` 描述的时间
+
+> The --date=STRING is a mostly free format human readable date string such as
+> "Sun, 29 Feb 2004 16:21:42 -0800" or "2004-02-29 16:21:42" or even "next
+> Thursday".  A date string may contain items indicating calendar date, time
+> of day, time zone, day of week, relative time, relative date, and numbers.
+> An empty string indicates the beginning of the day.  The date string format
+> is more complex than is easily documented here but is fully described in the
+> info documentation.
+
 ```bash
-# 将美国芝加哥时间早上4点转换为本地时间
+# 将美国芝加哥时间早上4点转换为当前系统时间
 date -d 'TZ="America/Chicago" 4am'
+
+# 将美国东部时间转换为当前系统时间
+date -d '2022-01-10 20:29:03.947 EST'
+
+# 将美国东部时间转换为中国时间
+TZ='Asia/Shanghai' date -d '2022-01-10 20:29:03.947 EST'
 ```
 
 ### 设置系统时间
