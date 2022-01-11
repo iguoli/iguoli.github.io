@@ -197,18 +197,40 @@ date -u +"%Y-%m-%d %H:%M:%S"
 > is more complex than is easily documented here but is fully described in the
 > info documentation.
 
+将美国芝加哥时间 (UTC -5) 早上4点转换为当前系统时间
+
 ```bash
-# 将美国芝加哥时间早上4点转换为当前系统时间
 date -d 'TZ="America/Chicago" 4am'
+```
 
-# 将美国东部时间转换为当前系统时间
+将美国东部时间转换为当前系统时间
+
+```bash
 date -d '2022-01-10 20:29:03.947 EST'
+```
 
-# 将美国东部时间转换为中国时间
+将美国东部时间转换为中国时间
+
+```bash
 TZ='Asia/Shanghai' date -d '2022-01-10 20:29:03.947 EST'
+```
 
-# 将美国东部时间转换为中国时间并以 ISO 8601 格式显示到秒
+将美国东部时间转换为中国时间并以 ISO 8601 格式显示到秒
+
+```bash
 TZ='Asia/Shanghai' date -d '2022-01-10 20:29:03.947 EST' -Is
+```
+
+将 UTC 时间转换为中国时间并以 RFC 3339 格式显示
+
+```bash
+TZ='Asia/Shanghai' date -d '2022-01-10T20:29:03.947 UTC' --rfc-3339=s
+```
+
+将 RFC 3339 格式 UTC -5 时区时间转换为中国时间并以 ISO 8601 格式显示
+
+```bash
+TZ='Asia/Shanghai' date -d '2022-01-10 22:38:02.162-05' -Is
 ```
 
 ### 设置系统时间
