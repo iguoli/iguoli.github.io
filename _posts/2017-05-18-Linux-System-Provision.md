@@ -335,7 +335,7 @@ pygmentize hello.py
 ```bash
 sudo yum install -y python3-pygments
 
-export LESSOPEN="|/usr/bin/pygmentize -g -O style=colorful %s"
+export LESSOPEN="|pygmentize -g -O style=colorful %s"
 ```
 
 #### 样式
@@ -364,6 +364,8 @@ cd grc
 ./install.sh
 cd ..
 rm -rf grc
+
+source /etc/grc.zsh
 ```
 
 ##### 自动设置常用命令别名

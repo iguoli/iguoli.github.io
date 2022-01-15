@@ -35,6 +35,16 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+## alternatives
+
+```bash
+alternatives --list
+
+alternatives --display java
+
+alternatives --config java
+```
+
 ## sort 排序
 
 [GNU coreutils 7.5](http://article.gmane.org/gmane.comp.gnu.core-utils.announce/52) 在2009年8月发布以后，`sort` 提供了 `-h` 参数，可以对类似 `du -h` 等命令产生的带有数字后辍的输出进行排序
