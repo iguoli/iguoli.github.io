@@ -293,6 +293,16 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
+#### 修改 vi-mode 光标风格
+
+在 *iTerm2* -> *Preferences* -> *Profiles* -> *Text* 中，将 **Cursor** 风格改为 **Box** 后，在 zsh 中，不管是 vi command mode 还是 vi insert mode，光标始终是 **Box** 风格，而我希望在 vi insert mode 时光标是 **Vertical bar** 的风格，因此需要修改 oh-my-zsh 的 vi-mode 插件文件 `~/.oh-my-zsh/plugins/vi-mode/vi-mode.plugin.zsh`，将 `VI_MODE_SET_CURSOR` 设置为 true。
+
+```bash
+$ vim ~/.oh-my-zsh/plugins/vi-mode/vi-mode.plugin.zsh
+
+typeset -g VI_MODE_SET_CURSOR=true
+```
+
 ### 安装 MacVim 替代系统自带 Vim
 
 ```bash
@@ -305,6 +315,21 @@ MacVim 会在 `$(brew --prefix)/bin` 下创建 Vim 命令行程序的软链接�
 
 ```bash
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+#### 修改 vim 光标风格
+
+同 zsh 中的 vi-mode 一样，iTerm2 下的 vim 也存在光标在不同模式下不能转换的问题，需要在 `.vimrc` 中加入以下设置
+
+```vim
+" the cursor style
+if exists('$TMUX')
+    let &t_SI .= "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
+    let &t_EI .= "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
+else
+    let &t_SI .= "\<Esc>[6 q"
+    let &t_EI .= "\<Esc>[2 q"
+endif
 ```
 
 ### 安装 OpenJDK
