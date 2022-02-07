@@ -847,43 +847,42 @@ openssl rsa -noout -modulus -in key.pem | openssl md5
 # script name: keymatch
 
 if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <keyfile> <certfile or csrfile>"
+    echo "Usage: $0 <key|cert|csr file> <key|cert|csr file>"
     echo "Example1: $0 key.pem cert.pem"
     echo "Example2: $0 key.pem req.pem"
     exit 1
 fi
 
 function match {
-    keyfile=$1
-    certfile=$2
-
     # Set color variables
     Red=$(tput setaf 1) Green=$(tput setaf 2) Yellow=$(tput setaf 3)
     R=$(tput rev) NC=$(tput sgr0)
 
-    if grep -q '\-----BEGIN PRIVATE KEY-----' $keyfile 2>/dev/null; then
-        key_hash=$(openssl rsa -modulus -noout -in $keyfile | openssl md5)
-    else
-        echo -e "Invalid key file: ${Red}$keyfile${NC}"
-        return 1
-    fi
+    hash1=$(mod_hash $1)
+    hash2=$(mod_hash $2)
 
-    if grep -q '\-----BEGIN CERTIFICATE-----' $certfile 2>/dev/null; then
-        cert_hash=$(openssl x509 -modulus -noout -in $certfile | openssl md5)
-    elif grep -q '\-----BEGIN CERTIFICATE REQUEST-----' $certfile 2>/dev/null; then
-        cert_hash=$(openssl req -modulus -noout -in $certfile | openssl md5)
-    else
-        echo -e "Invalid certificate or CSR file: ${Red}$certfile${NC}"
-        return 1
-    fi
+    printf "%-30s md5 value: %s\n" "${Green}$1${NC}" "${Yellow}$hash1${NC}"
+    printf "%-30s md5 value: %s\n" "${Green}$2${NC}" "${Yellow}$hash2${NC}"
 
-    printf "%-30s md5 value: %s\n" "${Red}$keyfile${NC}" "${Yellow}$key_hash${NC}"
-    printf "%-30s md5 value: %s\n" "${Red}$certfile${NC}" "${Yellow}$cert_hash${NC}"
-
-    if [ "$key_hash" = "$cert_hash" ]; then
+    if [ "$hash1" = "$hash2" ]; then
         echo -e "$R${Green}match.${NC}"
     else
         echo -e "$R${Red}not match!${NC}"
+    fi
+}
+
+function mod_hash {
+    # Get the module hash value from the input key|cert|csr file
+
+    if grep -q '\-----BEGIN PRIVATE KEY-----' $1 2>/dev/null; then
+        echo $(openssl rsa -modulus -noout -in $1 | openssl md5)
+    elif grep -q '\-----BEGIN CERTIFICATE-----' $1 2>/dev/null; then
+        echo $(openssl x509 -modulus -noout -in $1 | openssl md5)
+    elif grep -q '\-----BEGIN CERTIFICATE REQUEST-----' $1 2>/dev/null; then
+        echo $(openssl req -modulus -noout -in $1 | openssl md5)
+    else
+        echo -e "The input file ${Red}$1${NC} must be a valid key|cert|csr file."
+        exit 1
     fi
 }
 
