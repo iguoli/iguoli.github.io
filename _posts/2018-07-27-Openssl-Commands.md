@@ -1041,18 +1041,28 @@ Blue=$(tput setaf 4)
 R=$(tput rev) NC=$(tput sgr0)
 
 function usage {
-    echo "Usage: $0 [-p] <ssh_hostname> [port]"
-    echo "Example1: print the cert info of a service on a host"
-    echo "${Green}$0${NC} pln-cd1-iweb3 ${Blue}9510${NC}"
-    echo "Example2: print the cret info of a VIP through proxy ${Red}10.1.1.86:8000${NC}"
-    echo "${Green}$0${NC} ${Blue}-p${NC} PLN-CD1-SKYBRAIN-01.FT1CORE.MCLOUD.ENTSVCS.NET"
+    echo "Usage: $0 [-j <jump_host>] <fqdn> [port]"
+    echo "If no jump host provided, the jump host is the FT1 jump host"
+    echo "If no port provided, the default port is 443."
+    echo
+    echo "Example1: print the cert info of a service on a host with default jump host and port"
+    echo "${Green}$0${NC} test.example.net ${Blue}8000${NC}"
+    echo
+    echo "Example2: print the cret info of a VIP in production"
+    echo "${Green}$0${NC} ${Blue}-j prod-jump ${NC} prod.example.com"
     exit 1
 }
 
-while getopts ":p" flag; do
-    case "${flag}" in
-        p)
-            proxy=true
+# Use openssl@3 from homebrew
+openssl="$(brew --prefix)/opt/openssl@3/bin/openssl"
+
+# Set default jump host
+jump_host='default-ljump'
+
+while getopts ":j:" opt; do
+    case "${opt}" in
+        j)
+            jump_host=${OPTARG}
             ;;
         *)
             usage
@@ -1071,14 +1081,10 @@ else
     usage
 fi
 
-if [[ "$proxy" == true ]]; then
-    cmd="echo | openssl s_client -proxy 10.1.1.86:8000 -connect $server:$port 2>/dev/null | openssl x509 -noout -subject -enddate -ext subjectAltName"
-else
-    cmd="ssh $server \"echo | openssl s_client -connect localhost:$port 2>/dev/null\" | openssl x509 -noout -subject -enddate -ext subjectAltName"
-fi
+cmd="ssh ${jump_host} 'echo | openssl s_client -connect ${server}:${port} 2>/dev/null' | ${openssl} x509 -noout -subject -enddate -ext subjectAltName"
 
-printf "%s\n\n" "$cmd"
-eval "$cmd"
+printf "%s\n\n" "${cmd}"
+eval "${cmd}"
 echo
 ```
 
