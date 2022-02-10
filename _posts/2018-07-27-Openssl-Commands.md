@@ -1040,7 +1040,8 @@ Blue=$(tput setaf 4)
 R=$(tput rev) NC=$(tput sgr0)
 
 function usage {
-    echo "Usage: $0 [-j <jump_host>] <fqdn> [port]"
+    echo "Usage: $0 [-d] [-j <jump_host>] [-o s_client opt]<fqdn> [port]"
+    echo "-d only print the command like dry run"
     echo "If no jump host provided, the jump host is the FT1 jump host"
     echo "If no port provided, the default port is 443."
     echo
@@ -1048,7 +1049,8 @@ function usage {
     echo "${Green}$0${NC} test.example.net ${Blue}8000${NC}"
     echo
     echo "Example2: print the cret info of a VIP in production"
-    echo "${Green}$0${NC} ${Blue}-j prod-jump ${NC} prod.example.com"
+    echo "${Green}$0${NC} ${Blue}-j jump-host${NC} atcswa-cr-ngp-ivip.mcloud.entsvcs.com"
+    echo "${Green}$0${NC} ${Blue}-j jump-host -o '-starttls postgres'${NC} atc-cr-mongodb1.mcloud.entsvcs.com 5432"
     exit 1
 }
 
@@ -1058,10 +1060,16 @@ openssl="$(brew --prefix)/opt/openssl@3/bin/openssl"
 # Set default jump host
 jump_host='default-ljump'
 
-while getopts ":j:" opt; do
-    case "${opt}" in
+while getopts ":dj:o:" opt; do
+    case "${opts}" in
+        d)
+            dry_run=true
+            ;;
         j)
             jump_host=${OPTARG}
+            ;;
+        o)
+            s_client_opt=${OPTARG}
             ;;
         *)
             usage
@@ -1080,7 +1088,12 @@ else
     usage
 fi
 
-cmd="ssh ${jump_host} 'echo | openssl s_client -connect ${server}:${port} 2>/dev/null' | ${openssl} x509 -noout -subject -enddate -ext subjectAltName"
+cmd="ssh ${jump_host} 'echo | openssl s_client ${s_client_opt} -connect ${server}:${port} 2>/dev/null' | ${openssl} x509 -noout -subject -enddate -ext subjectAltName"
+
+if [ "$dry_run" = true ]; then
+    echo $cmd
+    exit 0
+fi
 
 printf "%s\n\n" "${cmd}"
 eval "${cmd}"
