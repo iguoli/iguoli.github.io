@@ -741,6 +741,12 @@ keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
 openssl x509 -in cert.pem -noout -text
 ```
 
+- 查看包含证书链的文件
+
+```bash
+openssl crl2pkcs7 -nocrl -certfile chained.pem | openssl pkcs7 -print_certs -noout
+```
+
 - 查看 DER 格式证书
 
 ```bash

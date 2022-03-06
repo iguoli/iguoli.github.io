@@ -35,6 +35,25 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+## Bash for loop
+
+```bash
+#!/bin/bash
+for i in 1 2 3 4 5
+do
+   echo "Welcome $i times"
+done
+```
+
+```bash
+for output in $(Linux Command)
+do
+    command1 on $output
+    command2 on $output
+    commandN
+done
+```
+
 ## alternatives
 
 ```bash
