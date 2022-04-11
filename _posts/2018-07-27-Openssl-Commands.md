@@ -1046,17 +1046,19 @@ Blue=$(tput setaf 4)
 R=$(tput rev) NC=$(tput sgr0)
 
 function usage {
-    echo "Usage: $0 [-d] [-j <jump_host>] [-o s_client opt]<fqdn> [port]"
-    echo "-d only print the command like dry run"
-    echo "If no jump host provided, the jump host is the FT1 jump host"
-    echo "If no port provided, the default port is 443."
+    echo "Usage: $0 [-d] [-j <jump_host>] [-o s_client opt] <fqdn> [port]"
+    echo "       -d only print the command like dry run."
+    echo "       If no jump host provided, default jump host set in script will be used."
+    echo "       If no port provided, the default port is 443."
     echo
     echo "Example1: print the cert info of a service on a host with default jump host and port"
     echo "${Green}$0${NC} test.example.net ${Blue}8000${NC}"
     echo
     echo "Example2: print the cret info of a VIP in production"
-    echo "${Green}$0${NC} ${Blue}-j jump-host${NC} atcswa-cr-ngp-ivip.mcloud.entsvcs.com"
-    echo "${Green}$0${NC} ${Blue}-j jump-host -o '-starttls postgres'${NC} atc-cr-mongodb1.mcloud.entsvcs.com 5432"
+    echo "${Green}$0${NC} ${Blue}-j jump-host${NC} vip.example.com"
+    echo
+    echo "Example3: print the cert info of PostgreSQL database"
+    echo "${Green}$0${NC} ${Blue}-j jump-host -o '-starttls postgres'${NC} postgresql.example.com 5432"
     exit 1
 }
 
