@@ -69,7 +69,7 @@ paste num.txt char.txt
 
 ### 参数
 
-- `-s`: 将读取到所有行合并为一行，如果指定多个文件，则每个文件一行
+- `-s`: 将从输入中读取到的所有行合并为一行，如果指定多个输入，则每个输入各自一行
 - `-d`: 指定合并时使用的分隔符
 
 ```bash
@@ -102,6 +102,14 @@ paste -s myfile
 ```bash
 find / -name bin -type d | paste -s -d: -
 ```
+
+用法4：给输入中的每一行加上行号
+
+```bash
+sed = char.txt | paste - -
+```
+
+这相当于使用命令 `nl char.txt`
 
 ## Bash for loop
 
