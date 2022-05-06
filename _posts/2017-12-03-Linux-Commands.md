@@ -142,6 +142,8 @@ alternatives --config java
 
 ## sort 排序
 
+### 对带数字后辍的输出排序
+
 [GNU coreutils 7.5](http://article.gmane.org/gmane.comp.gnu.core-utils.announce/52) 在2009年8月发布以后，`sort` 提供了 `-h` 参数，可以对类似 `du -h` 等命令产生的带有数字后辍的输出进行排序
 
 [How can I sort du -h output by size](https://serverfault.com/questions/62411/how-can-i-sort-du-h-output-by-size)
@@ -150,16 +152,40 @@ alternatives --config java
 du -sh * | sort -h
 ```
 
-对数字排序
+### 对数字排序
 
 ```bash
 sort -n
 ```
 
+### 对多列文本中的某列排序
+
 对类似于 `abc:10:def` 的文本，可以通过 `-t` 参数设定分隔符，使用 `-k` 参数来选择分隔后的列
 
 ```bash
 cat /etc/passwd | sort -n -t':' -k3
+```
+
+## uniq 去重和查重
+
+`uniq` 工具会检查文本中相邻行是否重复，不使用任何参数的话，会将相邻的重复行删除，只保留第一行。 因为 `uniq` 工具只能检查相邻行是否重复，因此在使用 `uniq` 命令前需要使用 `sort` 命令对文本排序，也可以直接使用 `sort -u` 命令对文本去重。
+
+### 去重
+
+```bash
+sort abc.txt | uniq
+
+sort -u abc.txt
+```
+
+### 查重
+
+```bash
+# 打印所有行，在每行前显示重复个数
+sort abc.txt | uniq -c
+
+# 只显示有重复的行和重复个数
+sort abc.txt | uniq -cd
 ```
 
 ## Start an application detached
