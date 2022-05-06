@@ -83,7 +83,7 @@ ssh -R proxy.server:8080:http.server:80 remotehost
 
 ## [SOCKS 代理][SOCKS Proxy]
 
-本地端口转发和远程端口转发只能转发单一端口，SOCKS 代理可以动态转发所有端口，无需指定远程主机端口。
+本地端口转发和远程端口转发只能转发单一端口，SOCKS 代理可以动态转发所有端口 (Dynamic Port Forwarding)，无需指定远程主机端口。
 
 ```bash
 ssh -D 1080 remotehost
@@ -143,7 +143,7 @@ KL 8080
 
 [Tunneling]: https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Tunnels#Tunneling
 [Reverse Tunneling]: https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Tunnels#Reverse_Tunneling
-[SOCKS Proxy]: https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Proxies_and_jumphosts#SOCKS_Proxy
+[SOCKS Proxy]: https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Proxies_and_Jump_Hosts
 [多主机端口转发]: https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Proxies_and_jumphosts#Port_Forwarding_Through_One_or_More_Intermediate_Hosts
 [在已建立的连接中添加或删除隧道]: https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Tunnels#Adding_or_Removing_Tunnels_within_an_Established_Connection
 [ssh(1)]: https://man.openbsd.org/ssh
