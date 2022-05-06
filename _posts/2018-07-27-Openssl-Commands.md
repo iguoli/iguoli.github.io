@@ -1069,7 +1069,7 @@ openssl="$(brew --prefix)/opt/openssl@3/bin/openssl"
 jump_host='default-ljump'
 
 while getopts ":dj:o:" opt; do
-    case "${opts}" in
+    case "${opt}" in
         d)
             dry_run=true
             ;;
