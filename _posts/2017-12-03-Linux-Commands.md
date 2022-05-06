@@ -35,6 +35,82 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+## paste
+
+`paste` 命令会将多个输入文件的对应行合并成一行，就像函数式编程中的 zip 函数一样，例如：
+
+num.txt
+
+```text
+1
+2
+3
+```
+
+char.txt
+
+```text
+a
+b
+c
+```
+
+```bash
+paste num.txt char.txt
+```
+
+输出
+
+```text
+1   a
+2   b
+3   c
+```
+
+### 参数
+
+- `-s`: 将从输入中读取到的所有行合并为一行，如果指定多个输入，则每个输入各自一行
+- `-d`: 指定合并时使用的分隔符
+
+```bash
+paste -s nub.txt char.txt
+```
+
+输出
+
+```text
+1 2 3
+a b c
+```
+
+### 例子
+
+用法1：将当前目录下的文件名按三列展示
+
+```bash
+ls | paste - - -
+```
+
+用法2：将单个文件的多行合并为一行
+
+```bash
+paste -s myfile
+```
+
+用法3：生成类似 PATH 环境变量的目录列表
+
+```bash
+find / -name bin -type d | paste -s -d: -
+```
+
+用法4：给输入中的每一行加上行号
+
+```bash
+sed = char.txt | paste - -
+```
+
+这相当于使用命令 `nl char.txt`
+
 ## Bash for loop
 
 ```bash

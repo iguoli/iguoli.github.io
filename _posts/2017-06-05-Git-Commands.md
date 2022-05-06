@@ -757,6 +757,12 @@ git merge hotfix
 git branch -d hotfix
 ```
 
+`git branch --force branchname startpoint` 可以将 `branchname` 分支强制重置为 `startpoint` 所在的 commit，因此可以用来快速移动分支，例如下面的命令就是将 master 移动到与 develop 分支相同的 commit.
+
+```bash
+git branch -f master develop
+```
+
 列出所有分支
 
 ```bash
