@@ -8,7 +8,7 @@ key: Github-API-2022-05-11
 
 ## 在 Organization 间迁移 Repositories
 
-Github 提供了 [Transfer a repository](https://docs.github.com/en/rest/repos/repos#transfer-a-repository) API, 可以在个人或组织间转移仓库
+Github 提供了 [Transfer a repository](https://docs.github.com/en/rest/repos/repos#transfer-a-repository) API, 可以在个人或组织间转移仓库。
 
 在 Github 页面个人头像上选择 *Settings* -> *Developer settings* -> *Personal access tokens*，添加一个新的访问token，作为访问 Github API 的密码。
 
@@ -22,7 +22,7 @@ function git_repo_transfer() {
     new_org=$2
     repo=$3
     curl -L \
-        -u "<user>:<generated access token>" \
+        -u "<username>:<generated access token>" \
         -H "Content-Type: application/json" \
         -H "Accept: application/vnd.github.v3+json" \
         -X POST https://github.dxc.com/api/v3/repos/$org/$repo/transfer \
