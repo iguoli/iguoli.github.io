@@ -14,6 +14,8 @@ Github 提供了 [Transfer a repository](https://docs.github.com/en/rest/repos/r
 
 下面的脚本可用于批量转移多个仓库，将要转移的仓库名写入 *repos.txt* 文件。
 
+<!--more-->
+
 ```bash
 #!/usr/bin/env bash
 
