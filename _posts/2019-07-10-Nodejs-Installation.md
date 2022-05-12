@@ -1,18 +1,14 @@
 ---
-title: Linux 上安装 Nodejs
+title: 设置 Nodejs 环境
 date: 2019-07-10
-modify_date: 2020-05-13
+modify_date: 2022-05-12
 tags: Javascript
 key: Nodejs-Installation-2019-07-10
 ---
 
-本文引用地址 [Nodejs help wiki](https://github.com/nodejs/help/wiki/Installation)
+## Linux 系统下手工安装 [Nodejs](https://github.com/nodejs/help/wiki/Installation)
 
-## 从官方下载 Nodejs 安装包
-
-[官方下载地址](https://nodejs.org/zh-cn/download/)
-
-<!--more-->
+### 从官方下载 [Nodejs](https://nodejs.org/zh-cn/download/) 安装包
 
 ### 解压安装包到 `/usr/local/lib/nodejs`
 
@@ -22,6 +18,8 @@ DISTRO=linux-x64
 sudo mkdir -p /usr/local/lib/nodejs
 sudo tar -xvJf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs
 ```
+
+<!--more-->
 
 ### 在 `/usr/bin` 目录下创建软链接
 
@@ -85,74 +83,6 @@ source ~/.profile
 source ~/.zshenv
 ```
 
-## 使用 nodenv 管理 nodejs
-
-### 安装 [nodenv](https://github.com/nodenv/nodenv)
-
-在 macOS 上使用 Homebrew 安装
-
-```bash
-brew install nodenv
-
-echo 'eval "$(nodenv init -)"' >> ~/.zshrc
-
-source ~/.zshrc
-```
-
-克隆 git 仓库安装
-
-```bash
-git clone https://github.com/nodenv/nodenv.git ~/.nodenv
-
-# Optionally, try to compile dynamic bash extension to speed up nodenv.
-# Don't worry if it fails, nodenv will still work normally.
-cd ~/.nodenv && src/configure && make -C src
-
-echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ~/.zshrc
-
-~/.nodenv/bin/nodenv init
-```
-
-### 安装插件
-
-[node-build](https://github.com/nodenv/node-build) 插件
-```bash
-mkdir -p "$(nodenv root)"/plugins
-git clone https://github.com/nodenv/node-build.git "$(nodenv root)"/plugins/node-build
-```
-
-[node-build-update-defs](https://github.com/nodenv/node-build-update-defs) 插件
-
-```bash
-git clone https://github.com/nodenv/node-build-update-defs.git "$(nodenv root)"/plugins/node-build-update-defs
-```
-
-获取最新的 nodejs 版本列表
-
-```bash
-nodenv update-version-defs
-```
-
-### 使用 nodenv 安装 nodejs
-
-```bash
-# list all available versions
-nodenv install -l
-
-# install a nodejs version
-nodenv install 12.16.2
-```
-
-### 卸载 nodenv
-
-```bash
-# for homebrew
-brew uninstall nodenv
-
-# for git clone
-rm -rf `nodenv root`
-```
-
 ## 配置 npm 国内镜像源
 
 ```bash
@@ -168,4 +98,59 @@ cat ~/.npmrc
 
 ```text
 registry=https://registry.npm.taobao.org
+```
+
+## macOS 系统安装 Nodejs
+
+使用 Homebrew 安装
+
+```bash
+brew install nodejs
+```
+
+## Windows 系统安装 Nodejs
+
+使用 scoop 安装
+
+```bash
+scoop install nodejs
+```
+
+安装完成后退出当前shell并重新打开
+
+## Nodejs 版本管理工具 [nvm](https://github.com/nvm-sh/nvm)
+
+### Windows 安装
+
+```bash
+scoop install nvm
+```
+
+### 用法
+
+列出可安装的版本
+
+```bash
+nvm list available
+```
+
+安装最新版本
+
+```bash
+nvm install latest
+
+# or
+nvm install node
+```
+
+安装最新长期支持 (LTS) 版本
+
+```bash
+nvm install lts
+```
+
+安装指定版本
+
+```bash
+nvm install 18.1.0
 ```
