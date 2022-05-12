@@ -132,6 +132,10 @@ scoop install nvm
 
 ```bash
 nvm list available
+
+# "ls" is an alias for "list"
+nvm ls available
+
 ```
 
 安装最新版本
@@ -139,7 +143,7 @@ nvm list available
 ```bash
 nvm install latest
 
-# or
+# "node" is an alias for the latest version
 nvm install node
 ```
 
