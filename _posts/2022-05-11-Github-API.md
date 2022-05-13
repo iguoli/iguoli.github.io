@@ -12,12 +12,14 @@ Github 提供了 [Transfer a repository](https://docs.github.com/en/rest/repos/r
 
 在 Github 页面个人头像上选择 *Settings* -> *Developer settings* -> *Personal access tokens*，添加一个新的访问token，作为访问 Github API 的密码。
 
-下面的脚本可用于批量转移多个仓库，将要转移的仓库名写入 *repos.txt* 文件。
+下面的脚本可用于批量转移多个仓库。
 
 <!--more-->
 
 ```bash
 #!/usr/bin/env bash
+#
+# script name: transfer-repo.sh
 
 function git_repo_transfer() {
     org=$1
@@ -37,4 +39,10 @@ echo $repos
 
 # $1 is origin organization name, $2 is new organization name
 for repo in $repos; do (git_repo_transfer $1 $2 "$repo"); done
+```
+
+将要转移的仓库名写入 *repos.txt* 文件，一行一个，然后在命令行执行脚本
+
+```bash
+./transfer-repo.sh org-name new-org-name
 ```
