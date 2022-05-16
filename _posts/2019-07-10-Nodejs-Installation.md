@@ -158,3 +158,76 @@ nvm install lts
 ```bash
 nvm install 18.1.0
 ```
+
+### macOS 安装
+
+```bash
+brew install nvm
+```
+
+依据 brew 安装后的提示，设置环境变量和自动补全
+
+```bash
+$ vim ~/.zshrc
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+```
+
+列出所有可安装版本
+
+```bash
+nvm ls-remote
+
+nvm ls-remote --lts
+```
+
+列出已安装版本
+
+```bash
+nvm ls
+```
+
+安装最新版本
+
+```bash
+nvm install node
+```
+
+安装最新长期支持版本
+
+```bash
+brew install --lts
+```
+
+设置默认使用版本
+
+```bash
+nvm alias default node
+
+nvm alias default 'lts/*'
+```
+
+查看当前使用版本
+
+```bash
+nvm current
+```
+
+在当前 *shell* 使用指定版本
+
+```bash
+nvm use node
+
+nvm use --lts
+```
+
+使用系统自带版本或查看系统安装版本
+
+```bash
+nvm use system
+
+nvm run system --version
+```
