@@ -120,13 +120,11 @@ scoop install nodejs
 
 ## Nodejs 版本管理工具 [nvm](https://github.com/nvm-sh/nvm)
 
-### Windows 安装
+### Windows 安装与用法
 
 ```bash
 scoop install nvm
 ```
-
-### 用法
 
 列出可安装的版本
 
@@ -135,7 +133,6 @@ nvm list available
 
 # "ls" is an alias for "list"
 nvm ls available
-
 ```
 
 安装最新版本
@@ -159,7 +156,7 @@ nvm install lts
 nvm install 18.1.0
 ```
 
-### macOS 安装
+### macOS 安装与用法
 
 ```bash
 brew install nvm

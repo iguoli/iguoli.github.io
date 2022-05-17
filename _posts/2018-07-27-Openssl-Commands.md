@@ -164,18 +164,18 @@ openssl pkcs7 -print_certs -in cert.p7b -out cert.pem
 
 [RSA]: https://zh.wikipedia.org/wiki/RSA加密演算法
 
-### 部分命令行选项
+### rsa 常用选项
 
 - ***-aes256***  
   使用 aes256 算法加密私钥，并要求输入一个保护密码
-  
+
 - ***-out***  
   输出到指定文件，如果没有该选项，则输出到屏幕
 
 - ***numbits***  
   生成密钥所需要的 bit 长度
 
-### 常用命令
+### rsa 常用命令
 
 ```bash
 # 生成 4096 位不带密码保护的私钥
@@ -224,6 +224,8 @@ ssh-keygen -y -f id_rsa > id_rsa.pub
 ## [openssl req]
 
 [openssl req]: https://www.openssl.org/docs/manmaster/man1/openssl-req.html
+
+### req 配置文件
 
 `openssl req` 命令接受 `-config` 选项，可以从指定的配置文件中读取配置，配置选项写在配置文件中的 ***`[ req ]`*** 部分，具体配置选项和取值参考 [openssl req] 手册的 **CONFIGURATION FILE FORMAT** 部分，主要用到的选项如下:
 
@@ -287,7 +289,7 @@ basicConstraints        = critical, CA:true
 keyUsage                = critical, digitalSignature, keyCertSign, cRLSign
 ```
 
-### 部分命令行选项
+### req 常用选项
 
 - ***-days \<n\>***  
   指定证书有效期，默认是30天，与 `-x509` 选项一起使用
@@ -314,7 +316,7 @@ keyUsage                = critical, digitalSignature, keyCertSign, cRLSign
   生成一个新的证书申请，会提示用户输入相关字段的值，如果没有 ***-key*** 选项，会使用指定配置文件中的信息生成一个新的 RSA 私钥.
 
 - ***-x509***  
-  输出自签名的证书，而不是请求一个证书. 通常用于生成测试证书或自签名的根证书.
+  生成自签名证书，而不是请求一个证书. 通常用于生成测试证书或自签名根证书.
 
 - ***-subj \<arg\>***  
   申请人信息，格式是 `/C=CN/O=Corp/.../CN=www.ez.com`，可以使用 `\` 转义，不会跳过空格.
@@ -322,7 +324,7 @@ keyUsage                = critical, digitalSignature, keyCertSign, cRLSign
 - ***-[digets]***
   指定签署请求时使用的信息摘要算法，如 `-md5`，`-sha1`，`-sha256`
 
-### 常用命令
+### req 常用命令
 
 - 生成一个 4096 位的无密码保护私钥和一个新的证书申请，使用 openssl.cnf 中的配置信息
 
@@ -342,15 +344,15 @@ openssl req -new -key key.pem -out req.pem
 openssl req -in req.pem -text -noout
 ```
 
-### 生成自签名证书
+### 生成自签名根证书
 
-- 生成新的私钥和自签名证书
+- 同时生成新的私钥和自签名根证书
 
 ```bash
 openssl req -x509 -days 10950 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -config openssl.cnf
 ```
 
-- 使用已有私钥生成自签名证书
+- 使用已有私钥生成自签名根证书
 
 ```bash
 openssl req -x509 -days 10950 -key key.pem -out cert.pem -config openssl.cnf
@@ -435,8 +437,6 @@ openssl req -x509 -days 10950 -key key.pem -out cert.pem -config openssl.cnf
 
 ### keyUsage
 
----
-
 #### CA ONLY
 
 **`keyCertSign`**
@@ -448,8 +448,6 @@ openssl req -x509 -days 10950 -key key.pem -out cert.pem -config openssl.cnf
 
 - Subject public key is to verify signatures on revocation information, such as a CRL
 - *This extension must only be used for CA certificates*
-
----
 
 **`digitalSignature`**
 
@@ -540,200 +538,13 @@ openssl req -x509 -days 10950 -key key.pem -out cert.pem -config openssl.cnf
 - Microsoft Encrypted File System Signing
   - ***Req. KU***: *`digitalSignature`*, *`keyEncipherment`* or *`keyAgreement`*
 
-## [openssl pkcs12]
-
-[openssl pkcs12]: https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html
-
-***PFX*** 和 ***P12*** 都是 ***PKCS12*** 文件。因为历史原因，***PFX*** 是 Microsoft 常用扩展名，***P12*** 是 Netscape 常用扩展名，这两个扩展名可以互换使用。
-{:.info}
-
-- 创建 PKCS12 文件，包含私钥，证书，CA证书，别名及文件保护密码
-
-```bash
-openssl pkcs12 -export -inkey key.pem -in cert.pem -certfile CACert.pem -out keystore.p12 -name entry_alias -passout pass:password
-```
-
-注意：PKCS12 文件中存储的私钥将使用与 PKCS12 文件相同的保护密码
-{:.warning}
-
-- 解析 PKCS12 文件
-
-```bash
-openssl pkcs12 -in keystore.p12
-
-# 解析 PKCS12 文件并输出到文件
-openssl pkcs12 -in keystore.p12 -out keystore.pem
-```
-
-- 输出 PKCS12 文件中的所有证书到文件
-
-```bash
-openssl pkcs12 -in keystore.p12 -nokeys -out cert.pem
-```
-
-- 输出 PKCS12 文件中的 client 证书到文件
-
-```bash
-openssl pkcs12 -in keystore.p12 -nokeys -clcerts -out cert.pem
-```
-
-- 输出 PKCS12 文件中的 CA 证书到文件
-
-```bash
-openssl pkcs12 -in keystore.p12 -nokeys -cacerts -out cert.pem
-```
-
-- 输出 PKCS12 文件中的私钥到文件，私钥无密码保护
-
-```bash
-openssl pkcs12 -in keystore.p12 -nocerts -out key.pem -nodes
-```
-
-- 查看 PKCS12 文件中的证书链和私钥
-
-```bash
-openssl pkcs12 -in keystore.p12 -chain
-```
-
-- 查看 PKCS12 文件中的证书链和私钥的额外信息
-
-```bash
-openssl pkcs12 -in keystore.p12 -info
-```
-
-## Java KeyStore (JKS)
-
-**Java KeyStore** 是 Java 存储私钥和公钥信息的存储格式，从 JDK8 开始，Java 推荐使用 PKCS12 格式的密钥库。`keytool` 是 Java 密钥和证书管理工具，用来操作 **Java KeyStore** 文件。
-
-`keytool` 命令中用到两种密码
-
-- **storepass**: 密钥库的保护密码
-- **keypass**: 密钥库中存储的私钥的保护密码
-
-`keytool -importkeystore` 命令用于将源密钥库中的单个条目或所有条目导入到目标密钥库。
-
-- 提供 **srcalias** 选项后，该命令会将别名标识的单个条目导入目标密钥库。
-  - 如果目标别名未提供 **destalias**，则将 **srcalias** 用作目标别名。
-  - 如果源条目受密码保护，则 **srckeypass** 将用于恢复该条目。
-  - 如果未提供 **srckeypass**，则 `keytool` 将尝试使用 **srcstorepass** 恢复该条目。
-  - 如果未提供 **srcstorepass** 或它不正确，则将提示用户输入密码。
-  - 目标条目将使用 **destkeypass** 保护。如果未提供 **destkeypass**，则目标条目将保持源条目密码。
-  - 如果未提供 **deststorepass** ，则将提示用户输入密码。
-
-- 如果未提供 **srcalias** 选项，那么源密钥库中的所有条目都将导入到目标密钥库中。
-  - 每个目标条目将存储在源条目的别名下。
-  - 如果源条目受密码保护，则将使用 **srcstorepass** 恢复该条目。
-  - 如果未提供 **srcstorepass** 或它不正确，则将提示用户输入密码。
-  - 如果目标密钥库中不支持源密钥库条目类型，或者在将条目存储到目标密钥库中时发生错误，则会提示用户是跳过条目还是退出。
-  - 目标条目将受到源条目密码的保护。
-
-- 如果目标别名库中已经存在目标别名，则会提示用户覆盖该条目，或使用其他别名创建新条目。
-
-### 常用命令
-
-- 将密钥库类型从 PKCS12 转换为 JKS，目标条目使用与源条目相同的别名
-
-```bash
-keytool -importkeystore -srckeystore keystore.p12 -srcalias entry_alias -srcstoretype pkcs12 -srcstorepass storepass -destkeystore keystore.jks -deststorepass storepass
-```
-
-- 将密钥库类型从 JKS 转换为 PKCS12，目标条目使用与源条目不同的别名
-
-```bash
-keytool -importkeystore -srckeystore keystore.jks -srcalias entry_alias -srcstorepass storepass -destkeystore keystore.p12 -destalias other_alias_name -deststoretype pkcs12 -deststorepass storepass
-```
-
-注意: PKCS12 不支持密钥库和私钥使用不同的保护密码，所以转换到 PKCS12 格式的密钥库时，如果指定了 **destkeypass** 和 **deststorepass** ，那么密码必须相同。
-{:.warning}
-
-- 查看 keytool 子命令帮助
-
-```bash
-keytool -importcert -help
-```
-
-- 修改密钥库保护密码
-
-```bash
-keytool -storepasswd -keystore keystore.jks -storepass origin_storepass -new new_storepass
-```
-
-- 修改 keypass 保护密码
-
-```bash
-keytool -keypasswd -keystore keystore.jks -storepass password -alias friendly_name -keypass origin_keypass -new new_keypass
-```
-
-- 修改别名
-
-```bash
-keytool -changealias -keystore keystore.jks -storepass password -alias old_name -destalias new_name
-```
-
-- 查看证书文件
-
-```bash
-keytool -printcert -file cert.pem -v
-```
-
-- 打印密钥库中指定别名的证书，以可读方式显示
-
-```bash
-keytool -list -keystore keystore.jks -storepass password -alias friendly_name -v
-```
-
-- 打印密钥库中指定别名的证书，以 PEM 格式显示
-
-```bash
-keytool -list -keystore keystore.jks -storepass password -alias friendly_name -rfc
-```
-
-- 打印 JRE cacerts 密钥库
-
-```bash
-keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass password
-```
-
-- 导入证书到JRE cacerts 密钥库
-
-  对于 `-importcert` 子命令，如果不提供 `-keystore` 参数，默认使用 JRE 的 cacerts
-{:.info}
-
-```bash
-ketytool -importcert -alias friendly_name -file cert.pem -storepass changeit
-```
-
-- 导入证书到指定密钥库
-
-  - 导入新的受信任证书时，密钥库中不能存在相同的别名。
-
-  - 在将证书添加到密钥库之前，`keytool` 尝试使用密钥库中的可信证书构建从该证书到自签名证书 (通常是一个根CA) 的信任链来验证它
-
-  - 如果使用 `-trustcacerts` 选项，则 cacerts 密钥库中的证书也会被添加为信任链中的可信证书。
-
-```bash
-keytool -importcert -trustcacerts -keystore keystore.jks -storepass password -alias friendly_name -file cert.pem
-```
-
-- 导出 PEM 格式证书
-
-```bash
-keytool -exportcert -keystore keystore.jks -storepass password -alias friendly_name -rfc -file cert.pem
-```
-
-- 删除证书
-
-```bash
-keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
-```
-
 ## [openssl x509](https://www.openssl.org/docs/manmaster/man1/openssl-x509.html)
 
 **[X.509][1]** 是[公钥证书 (Public Key Certificate)][2] 的标准格式，用来证明公开密钥持有者的身份。此文件包含了公钥信息、持有者身份信息（主体）、以及数字证书认证机构（发行者）对这份文件的数字签名，以保证这个文件的整体内容正确无误。
 
 `openssl x509` 命令可以显示证书信息，转换证书格式 (PEM <-> DER), 像 ***mini CA*** 一样签署一个证书请求，或者编辑证书。
 
-### 常用命令
+### x509 常用命令
 
 - 查看证书完整信息
 
@@ -948,6 +759,193 @@ Certificate:
 ```
 
 ![Certificate](/assets/images/secure/x509.png)
+
+## [openssl pkcs12]
+
+[openssl pkcs12]: https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html
+
+***PFX*** 和 ***P12*** 都是 ***PKCS12*** 文件。因为历史原因，***PFX*** 是 Microsoft 常用扩展名，***P12*** 是 Netscape 常用扩展名，这两个扩展名可以互换使用。
+{:.info}
+
+- 创建 PKCS12 文件，包含私钥，证书，CA证书，别名及文件保护密码
+
+```bash
+openssl pkcs12 -export -inkey key.pem -in cert.pem -certfile CACert.pem -out keystore.p12 -name entry_alias -passout pass:password
+```
+
+注意：PKCS12 文件中存储的私钥将使用与 PKCS12 文件相同的保护密码
+{:.warning}
+
+- 解析 PKCS12 文件
+
+```bash
+openssl pkcs12 -in keystore.p12
+
+# 解析 PKCS12 文件并输出到文件
+openssl pkcs12 -in keystore.p12 -out keystore.pem
+```
+
+- 输出 PKCS12 文件中的所有证书到文件
+
+```bash
+openssl pkcs12 -in keystore.p12 -nokeys -out cert.pem
+```
+
+- 输出 PKCS12 文件中的 client 证书到文件
+
+```bash
+openssl pkcs12 -in keystore.p12 -nokeys -clcerts -out cert.pem
+```
+
+- 输出 PKCS12 文件中的 CA 证书到文件
+
+```bash
+openssl pkcs12 -in keystore.p12 -nokeys -cacerts -out cert.pem
+```
+
+- 输出 PKCS12 文件中的私钥到文件，私钥无密码保护
+
+```bash
+openssl pkcs12 -in keystore.p12 -nocerts -out key.pem -nodes
+```
+
+- 查看 PKCS12 文件中的证书链和私钥
+
+```bash
+openssl pkcs12 -in keystore.p12 -chain
+```
+
+- 查看 PKCS12 文件中的证书链和私钥的额外信息
+
+```bash
+openssl pkcs12 -in keystore.p12 -info
+```
+
+## Java KeyStore (JKS)
+
+**Java KeyStore** 是 Java 存储私钥和公钥信息的存储格式，从 JDK8 开始，Java 推荐使用 PKCS12 格式的密钥库。`keytool` 是 Java 密钥和证书管理工具，用来操作 **Java KeyStore** 文件。
+
+`keytool` 命令中用到两种密码
+
+- **storepass**: 密钥库的保护密码
+- **keypass**: 密钥库中存储的私钥的保护密码
+
+`keytool -importkeystore` 命令用于将源密钥库中的单个条目或所有条目导入到目标密钥库。
+
+- 提供 **srcalias** 选项后，该命令会将别名标识的单个条目导入目标密钥库。
+  - 如果目标别名未提供 **destalias**，则将 **srcalias** 用作目标别名。
+  - 如果源条目受密码保护，则 **srckeypass** 将用于恢复该条目。
+  - 如果未提供 **srckeypass**，则 `keytool` 将尝试使用 **srcstorepass** 恢复该条目。
+  - 如果未提供 **srcstorepass** 或它不正确，则将提示用户输入密码。
+  - 目标条目将使用 **destkeypass** 保护。如果未提供 **destkeypass**，则目标条目将保持源条目密码。
+  - 如果未提供 **deststorepass** ，则将提示用户输入密码。
+
+- 如果未提供 **srcalias** 选项，那么源密钥库中的所有条目都将导入到目标密钥库中。
+  - 每个目标条目将存储在源条目的别名下。
+  - 如果源条目受密码保护，则将使用 **srcstorepass** 恢复该条目。
+  - 如果未提供 **srcstorepass** 或它不正确，则将提示用户输入密码。
+  - 如果目标密钥库中不支持源密钥库条目类型，或者在将条目存储到目标密钥库中时发生错误，则会提示用户是跳过条目还是退出。
+  - 目标条目将受到源条目密码的保护。
+
+- 如果目标别名库中已经存在目标别名，则会提示用户覆盖该条目，或使用其他别名创建新条目。
+
+### keytool 常用命令
+
+- 将密钥库类型从 PKCS12 转换为 JKS，目标条目使用与源条目相同的别名
+
+```bash
+keytool -importkeystore -srckeystore keystore.p12 -srcalias entry_alias -srcstoretype pkcs12 -srcstorepass storepass -destkeystore keystore.jks -deststorepass storepass
+```
+
+- 将密钥库类型从 JKS 转换为 PKCS12，目标条目使用与源条目不同的别名
+
+```bash
+keytool -importkeystore -srckeystore keystore.jks -srcalias entry_alias -srcstorepass storepass -destkeystore keystore.p12 -destalias other_alias_name -deststoretype pkcs12 -deststorepass storepass
+```
+
+注意: PKCS12 不支持密钥库和私钥使用不同的保护密码，所以转换到 PKCS12 格式的密钥库时，如果指定了 **destkeypass** 和 **deststorepass** ，那么密码必须相同。
+{:.warning}
+
+- 查看 keytool 子命令帮助
+
+```bash
+keytool -importcert -help
+```
+
+- 修改密钥库保护密码
+
+```bash
+keytool -storepasswd -keystore keystore.jks -storepass origin_storepass -new new_storepass
+```
+
+- 修改 keypass 保护密码
+
+```bash
+keytool -keypasswd -keystore keystore.jks -storepass password -alias friendly_name -keypass origin_keypass -new new_keypass
+```
+
+- 修改别名
+
+```bash
+keytool -changealias -keystore keystore.jks -storepass password -alias old_name -destalias new_name
+```
+
+- 查看证书文件
+
+```bash
+keytool -printcert -file cert.pem -v
+```
+
+- 打印密钥库中指定别名的证书，以可读方式显示
+
+```bash
+keytool -list -keystore keystore.jks -storepass password -alias friendly_name -v
+```
+
+- 打印密钥库中指定别名的证书，以 PEM 格式显示
+
+```bash
+keytool -list -keystore keystore.jks -storepass password -alias friendly_name -rfc
+```
+
+- 打印 JRE cacerts 密钥库
+
+```bash
+keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass password
+```
+
+- 导入证书到JRE cacerts 密钥库
+
+  对于 `-importcert` 子命令，如果不提供 `-keystore` 参数，默认使用 JRE 的 cacerts
+{:.info}
+
+```bash
+ketytool -importcert -alias friendly_name -file cert.pem -storepass changeit
+```
+
+- 导入证书到指定密钥库
+
+  - 导入新的受信任证书时，密钥库中不能存在相同的别名。
+
+  - 在将证书添加到密钥库之前，`keytool` 尝试使用密钥库中的可信证书构建从该证书到自签名证书 (通常是一个根CA) 的信任链来验证它
+
+  - 如果使用 `-trustcacerts` 选项，则 cacerts 密钥库中的证书也会被添加为信任链中的可信证书。
+
+```bash
+keytool -importcert -trustcacerts -keystore keystore.jks -storepass password -alias friendly_name -file cert.pem
+```
+
+- 导出 PEM 格式证书
+
+```bash
+keytool -exportcert -keystore keystore.jks -storepass password -alias friendly_name -rfc -file cert.pem
+```
+
+- 删除证书
+
+```bash
+keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
+```
 
 ## [openssl s_client]
 
