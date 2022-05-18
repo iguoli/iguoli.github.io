@@ -606,22 +606,39 @@ openssl x509 -in cert.pem -noout -ext subjectAltName
 find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo; echo %; openssl x509 -noout -subject -ext subjectAltName -enddate -in %'
 ```
 
-### 使用 CA 根证书签发证书
+### 使用 X509 的 *-CA* 参数签发证书
 
-首先 [生成自签名根证书](#生成自签名根证书)，并以此证书作为 CA 签发新的证书。
+首先通过 `openssl req` 命令[生成自签名根证书](#生成自签名根证书)，并以此证书作为 CA 来签发新证书。
 
-与 `openssl req` 的 `-config` 选项类似， `openssl x509` 命令接受一个 `-extfile` 选项，可以从配置文件中读取要加入到证书的扩展选项。
+与 `openssl req` 的 `-config` 选项类似， `openssl x509` 命令使用 `-extfile` 选项，从配置文件中读取要加入到证书的扩展选项。
 
-当签署证书时，CA 需要为每个证书生成一个唯一的序列号，由于每个证书的序列号对于每个颁发者都必须是唯一的，因此颁发者需要跟踪它以前使用过哪些序列号，以确保它不会重复使用任何序列号。OpenSSL 提供了一种使用序列号文件进行跟踪的简单方法。当你指定 `-CAcreateserial` 时，它会将序列号 `01` 或一个随机数分配给签名证书，然后创建此序列号文件。在未来的签名操作中，应该使用 `-CAserial` 和该文件的名称，而不是 `-CAcreateserial`，并且 OpenSSL 将为每个签名的证书增加该文件中的值。这样，你可以用一个颁发者证书签署一堆证书，并且它们的所有序列号都是唯一的。
+注意：*openssl 1.1.1* 版本的 `openssl x509` 命令无法将 csr 文件中的扩展复制到证书，可以参考问题 [Subject Alternative Name is not copied to signed certificate](https://stackoverflow.com/questions/33989190/subject-alternative-name-is-not-copied-to-signed-certificate)。而 *openssl 3.x* 版本的 `openssl x509` 命令可以使用 ***-copy_extensions copy*** 参数将 csr 文件中的扩展复制到证书文件。
+{.warning}
+
+当签署证书时，CA 需要为每个证书生成一个唯一的序列号，由于每个证书的序列号对于每个颁发者都必须是唯一的，因此颁发者需要跟踪它以前使用过哪些序列号，以确保它不会重复使用任何序列号。OpenSSL 提供了一种使用序列号文件进行跟踪的简单方法。当你指定 `-CAcreateserial` 时，它会将序列号 `01` 或一个随机数分配给签名证书，然后默认创建一个名为 *ca.srl* 的序列号文件。在未来的签名操作中，应该使用 `-CAserial ca.srl` 而不是 `-CAcreateserial`，OpenSSL 将为每个签名的证书增加该文件中的值。这样，CA 证书签署一系列证书时，它们的序列号都是唯一的。
+
+- openssl 1.1.1 版本
+
+使用 *-extfile openssl.cnf* 和 *-extensions v3_usr* 参数给证书添加扩展项。
 
 ```bash
 openssl x509 -req -in req.pem -days 365 -CA cacert.pem -CAkey cakey.pem -CAcreateserial -out cert.pem -extfile openssl.cnf -extensions v3_usr
 ```
 
-### 将证书申请转换为一个自签名CA证书
+- openssl 3.x 版本
+
+使用 *-copy_extensions copy*  参数从 csr 文件复制扩展项。
 
 ```bash
-openssl -x509 -req -in careq.pem -key key.pem -out cacert.pem -extfile openssl.cnf -extensions v3_ca
+openssl x509 -req -in req.pem -days 365 -CA cacert.pem -CAkey cakey.pem -CAcreateserial -out cert.pem -copy_extensions copy
+```
+
+### 将证书申请转换为一个自签名CA证书
+
+`openssl x509` 命令的 *-in* 参数默认需要读入一个证书文件，但使用 *-req* 参数后，则需要读入一个证书申请文件，并输出一个自签名的 ca 证书。
+
+```bash
+openssl x509 -days 3650 -req -in careq.pem -key key.pem -out cacert.pem -extfile openssl.cnf -extensions v3_ca
 ```
 
 ### PEM 证书长度
