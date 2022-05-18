@@ -349,13 +349,15 @@ openssl req -in req.pem -text -noout
 - 同时生成新的私钥和自签名根证书
 
 ```bash
+# valid for 30 years
 openssl req -x509 -days 10950 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -config openssl.cnf
 ```
 
 - 使用已有私钥生成自签名根证书
 
 ```bash
-openssl req -x509 -days 10950 -key key.pem -out cert.pem -config openssl.cnf
+# valid for 20 years
+openssl req -x509 -days 7300 -key key.pem -out cert.pem -config openssl.cnf
 ```
 
 ## [x509v3_config]
@@ -622,7 +624,8 @@ find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo
 使用 *-extfile openssl.cnf* 和 *-extensions v3_usr* 参数给证书添加扩展项。
 
 ```bash
-openssl x509 -req -in req.pem -days 365 -CA cacert.pem -CAkey cakey.pem -CAcreateserial -out cert.pem -extfile openssl.cnf -extensions v3_usr
+# valid for 5 years
+openssl x509 -req -in req.pem -days 1825 -CA cacert.pem -CAkey cakey.pem -CAcreateserial -out cert.pem -extfile openssl.cnf -extensions v3_usr
 ```
 
 - openssl 3.x 版本
@@ -630,7 +633,8 @@ openssl x509 -req -in req.pem -days 365 -CA cacert.pem -CAkey cakey.pem -CAcreat
 使用 *-copy_extensions copy*  参数从 csr 文件复制扩展项。
 
 ```bash
-openssl x509 -req -in req.pem -days 365 -CA cacert.pem -CAkey cakey.pem -CAcreateserial -out cert.pem -copy_extensions copy
+# valid for 3 years
+openssl x509 -req -in req.pem -days 1095 -CA cacert.pem -CAkey cakey.pem -CAcreateserial -out cert.pem -copy_extensions copy
 ```
 
 ### 将证书申请转换为一个自签名CA证书
@@ -638,7 +642,8 @@ openssl x509 -req -in req.pem -days 365 -CA cacert.pem -CAkey cakey.pem -CAcreat
 `openssl x509` 命令的 *-in* 参数默认需要读入一个证书文件，但使用 *-req* 参数后，则需要读入一个证书申请文件，并输出一个自签名的 ca 证书。
 
 ```bash
-openssl x509 -days 3650 -req -in careq.pem -key key.pem -out cacert.pem -extfile openssl.cnf -extensions v3_ca
+# valid for 10 years
+openssl x509 -req -in careq.pem -days 3650 -key key.pem -out cacert.pem -extfile openssl.cnf -extensions v3_ca
 ```
 
 ### PEM 证书长度
@@ -656,16 +661,16 @@ PEM 标准（RFC1421）强制证书每行使用64个字符，否则会遇到类�
 fold -w 64 oneline.pem > standard.pem
 ```
 
-### 检查证书与私钥是否匹配
+### 检查 *key*, *csr*, *cert* 是否匹配
 
 - 比较证书申请，证书和私钥中所包含公钥信息的 MD5 值，确保它们一致。
 
 ```bash
-openssl x509 -noout -modulus -in cert.pem | openssl md5
+openssl rsa -noout -modulus -in key.pem | openssl md5
 
 openssl req -noout -modulus -in csr.pem | openssl md5
 
-openssl rsa -noout -modulus -in key.pem | openssl md5
+openssl x509 -noout -modulus -in cert.pem | openssl md5
 ```
 
 - 使用一条命令来比较证书与私钥是否匹配
@@ -779,12 +784,12 @@ Certificate:
 
 ![Certificate](/assets/images/secure/x509.png)
 
-## [openssl pkcs12]
-
-[openssl pkcs12]: https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html
+## [openssl pkcs12](https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html)
 
 ***PFX*** 和 ***P12*** 都是 ***PKCS12*** 文件。因为历史原因，***PFX*** 是 Microsoft 常用扩展名，***P12*** 是 Netscape 常用扩展名，这两个扩展名可以互换使用。
 {:.info}
+
+### pkcs12 常用命令
 
 - 创建 PKCS12 文件，包含私钥，证书，CA证书，别名及文件保护密码
 
@@ -1000,7 +1005,7 @@ keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
 
 ### With SNI (Server Name Indication)
 
-如果远程服务器使用的是 SNI（即在一个 IP 地址上共享多个 SSL 主机），则需要发送正确的主机名才能获得正确的证书。
+如果远程服务器使用的是 SNI（即在一个 IP 地址上共享多个 SSL 主机），则需要 `-servername example.com` 发送指定的主机名才能获得正确的证书。
 
 ```bash
 openssl s_client -servername example.com -connect example.com:443 </dev/null 2>/dev/null
