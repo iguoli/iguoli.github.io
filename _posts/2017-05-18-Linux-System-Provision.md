@@ -19,7 +19,7 @@ Acquire {
 }
 ```
 
-###### CentOS Yum/Dnf
+##### CentOS Yum/Dnf
 
 参考 [设置Yum仓库代理](https://iguoli.github.io/2016/08/02/DNF-YUM.html#设置-yum-仓库代理)
 
