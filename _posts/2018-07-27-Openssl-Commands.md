@@ -341,12 +341,12 @@ openssl req -new -key key.pem -out req.pem
 - 查看证书申请
 
 ```bash
-openssl req -in req.pem -text -noout
+openssl req -in req.pem -noout -text
 ```
 
 ### 生成自签名根证书
 
-- 同时生成新的私钥和自签名根证书
+- 同时生成私钥和自签名根证书
 
 ```bash
 # valid for 30 years
@@ -605,7 +605,7 @@ openssl x509 -in cert.pem -noout -ext subjectAltName
 - 检查目录及子目录中所有 `.pem` 和 `.crt` 后辍的证书日期
 
 ```bash
-find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo; echo %; openssl x509 -noout -subject -ext subjectAltName -enddate -in %'
+find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo; echo %; openssl x509 -in % -noout -subject -ext subjectAltName -enddate'
 ```
 
 ### 使用 X509 的 *-CA* 参数签发证书
@@ -1128,7 +1128,7 @@ else
     usage
 fi
 
-cmd="ssh ${jump_host} 'echo | openssl s_client ${s_client_opt} -connect ${server}:${port} 2>/dev/null' | ${openssl} x509 -noout -subject -enddate -ext subjectAltName"
+cmd="ssh ${jump_host} 'echo | openssl s_client ${s_client_opt} -connect ${server}:${port} 2>/dev/null' | ${openssl} x509 -noout -subject -dates -ext subjectAltName"
 
 if [ "$dry_run" = true ]; then
     echo $cmd
