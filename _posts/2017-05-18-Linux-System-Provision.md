@@ -6,6 +6,23 @@ tags: Linux Provision
 key: Linux-System-Provision-2017-05-18
 ---
 
+## 设置包管理器代理
+
+##### Ubuntu Apt
+
+```bash
+$ vim /etc/apt/apt.conf.d/proxy.conf
+
+Acquire {
+  HTTP::proxy "http://10.1.1.122:7890";
+  HTTPS::proxy "http://10.1.1.122:7890";
+}
+```
+
+###### CentOS Yum/Dnf
+
+参考 [设置Yum仓库代理](https://iguoli.github.io/2016/08/02/DNF-YUM.html#设置-yum-仓库代理)
+
 ## 安装系统常用开发工具
 
 ##### Ubuntu
