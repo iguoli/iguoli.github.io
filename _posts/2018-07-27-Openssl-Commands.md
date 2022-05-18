@@ -606,7 +606,7 @@ openssl x509 -in cert.pem -noout -ext subjectAltName
 find . -regextype egrep -iregex '.*(pem|crt)' -print0 | xargs -0 -I% sh -c 'echo; echo %; openssl x509 -noout -subject -ext subjectAltName -enddate -in %'
 ```
 
-### 作为 CA 签发证书
+### 使用 CA 根证书签发证书
 
 首先 [生成自签名根证书](#生成自签名根证书)，并以此证书作为 CA 签发新的证书。
 
