@@ -130,16 +130,6 @@ do
 done
 ```
 
-## alternatives
-
-```bash
-alternatives --list
-
-alternatives --display java
-
-alternatives --config java
-```
-
 ## sort 排序
 
 ### 对带数字后辍的输出排序
