@@ -127,12 +127,9 @@ gP+frXcbdgp6jgsLWqn6uRxI3Cp/3qJCWr3foeDsyyxEDJjJXi77heIwoyOsfDDQ
 
 ### PKCS#7 - 密码消息语法标准（Cryptographic Message Syntax Standard）
 
-`openssl pkcs7` 命令用于处理 ***PKCS7*** 格式的证书
+*x509* 是数字证书的基本规范，而 *PKCS#7* 和 *PKCS#12* 是证书的两种封装形式，两者都可以封装 *X509* 证书。例如图片有 raw format，但也可以通过 JPEG 或 GIF 等格式来存储转发。
 
-```bash
-# 将 p7b 格式的证书转换成 x509 格式的证书
-openssl pkcs7 -print_certs -in cert.p7b -out cert.pem
-```
+`openssl pkcs7` 命令用于处理 ***PKCS7*** 格式的证书
 
 ### PKCS#10 - 证书申请标准（Certification Request Standard）
 
@@ -554,12 +551,6 @@ openssl req -x509 -days 7300 -key key.pem -out cert.pem -config openssl.cnf
 openssl x509 -in cert.pem -noout -text
 ```
 
-- 查看包含证书链的文件
-
-```bash
-openssl crl2pkcs7 -nocrl -certfile chained.pem | openssl pkcs7 -print_certs -noout
-```
-
 - 查看 DER 格式证书
 
 ```bash
@@ -793,6 +784,21 @@ Certificate:
 ```
 
 ![Certificate](/assets/images/secure/x509.png)
+
+## [openssl pkcs7](https://www.openssl.org/docs/manmaster/man1/openssl-pkcs7.html)
+
+### pkcs7 常用命令
+
+```bash
+# 将 p7b 格式的证书转换成 x509 格式的证书
+openssl pkcs7 -print_certs -in cert.p7b -out cert.pem
+```
+
+### 打印单文件中的多证书信息
+
+```bash
+openssl crl2pkcs7 -nocrl -certfile chained.pem | openssl pkcs7 -print_certs -noout
+```
 
 ## [openssl pkcs12](https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html)
 

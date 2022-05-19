@@ -6,6 +6,56 @@ tags: Linux Provision
 key: Linux-System-Provision-2017-05-18
 ---
 
+## 不同的 Shell 类型
+
+参考以下三个问题的回答:
+
+- [Difference between Login Shell and Non-Login Shell?](https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell)
+- [What is the difference between interactive shells, login shells, non-login shell and their use cases?](https://unix.stackexchange.com/questions/50665/what-is-the-difference-between-interactive-shells-login-shells-non-login-shell)
+- [What should/shouldn't go in .zshenv, .zshrc, .zlogin, .zprofile, .zlogout?](https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout)
+
+### Login shell
+
+**Login** shell 是在用户登录后创建的第一个进程，该进程读取以下文件来设置环境变量：
+
+- Bourne shell: `/etc/profile`, `~/.profile`
+- Bash: `/etc/profile`, `~/.profile`, `~/.bash_profile`
+- Zsh: `/etc/zprofile`, `~/.zprofile`
+- Csh: `/etc/csh.login`, `~/.login`
+
+之后其它的 shell 都是由这个 login shell 或其子孙 fork 出来，这些子孙 shell 会继承 login shell 的许多设置 (例如环境变量，`umask` 等)。
+
+### Interactive login shell
+
+当通过 text console 或 ssh 登录，或使用 `su -` 命令时，会得到一个 **interactive login** shell。当通过图形界面登录时 (例如 *X display manager*)，不会得到一个 login shell，而是得到一个 session manager 或 window manager.
+
+### Non-interactive login shell
+
+这种 shell 比较少见，一种情况是通过远程登录执行命令，将本地标准输入或标准输出传递给远程命令时会得到一个 **non-interactive login** shell。例如下面两个命令：
+
+```bash
+# 在远程主机执行本地脚本
+ssh user@remote.net 'bash -s' < local-script.sh
+
+# 将远程主机上的目录打包到本地
+ssh user@remote.net 'tar czf - /opt/app' > app.tar.gz
+```
+
+### Interactive, non-login shell
+
+当在一个已存在的 session (screen, X terminal, Emacs terminal buffer, a shell inside another, etc.) 的终端内打开一个 shell 时，就会得到一个 **interactive, non-login** shell。这个 shell 会读取下面的配置文件：
+
+- Bash: `~/.bashrc`
+- Zsh: `/etc/zshrc`, `~/.zshrc`
+- Csh: `/etc/csh.cshrc`, `~/.cshrc`
+
+### Non-interactive, non-login shell
+
+当 shell 运行脚本或执行命令行命令时，会得到一个 **non-interactive, non-login** shell。这类 shell 非常常见，例如一个程序调用另一个程序，其实是在 shell 中运行一个小型脚本来调用另一个程序。这类 shell 会读取一个 *startup file*：
+
+- Bash: `BASH_ENV` 环境变量指定的文件
+- Zsh: `/etc/zshenv`, `~/.zshenv`
+
 ## 设置包管理器代理
 
 ##### Ubuntu Apt

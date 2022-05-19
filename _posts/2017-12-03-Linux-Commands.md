@@ -461,5 +461,4 @@ groupmod -n new-group old-group
 ```bash
 # -r 会连同用户目录一起删除
 userdel -r login-name
-
 ```
