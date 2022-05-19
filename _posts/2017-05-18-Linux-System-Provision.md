@@ -89,6 +89,12 @@ update-alternatives --display java
 update-alternatives --config java
 ```
 
+-- 删除命令软链接
+
+```bash
+update-alternatives –remove python /usr/bin/python3.8
+```
+
 ## 设置用户 sudo 权限
 
 ##### Ubuntu
