@@ -56,6 +56,33 @@ ssh user@remote.net 'tar czf - /opt/app' > app.tar.gz
 - Bash: `BASH_ENV` 环境变量指定的文件
 - Zsh: `/etc/zshenv`, `~/.zshenv`
 
+## 设置用户 sudo 权限
+
+##### Ubuntu
+
+更改系统默认编辑器为 vim
+
+```bash
+update-alternatives --config editor
+```
+
+使用 `sudo visudo` 命令会直接编辑系统默认配置，对于普通用户，更好的方法是在 `/etc/sudoers.d` 目录下单独添加配置文件，文件名可以使用用户名
+
+```bash
+cd /etc/sudoers.d
+sudo visudo eric
+```
+
+在该文件中添加如下内容
+
+```conf
+# 不再需要用户 eric 输入密码
+Defaults:eric      !authenticate
+
+# 输入密码后 30 分钟内不需要再次输入密码
+Defaults           timestamp_timeout=30
+```
+
 ## 设置包管理器代理
 
 ##### Ubuntu Apt
