@@ -67,7 +67,7 @@ ssh user@remote.net 'tar czf - /opt/app' > app.tar.gz
 update-alternatives --list
 
 # Debian/Ubuntu
-update-alternatives --all
+update-alternatives --get-selections
 ```
 
 - 注册 python 软链接
