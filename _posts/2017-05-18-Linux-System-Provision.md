@@ -60,15 +60,32 @@ ssh user@remote.net 'tar czf - /opt/app' > app.tar.gz
 
 `update-alternatives` 管理系统中的软链接，用于切换软件的不同版本，这些软链接放置于 `/etc/alternatives` 目录下。
 
+- 列出系统当前管理的命令软链接
+
 ```bash
 # RedHat/CentOS
 update-alternatives --list
 
 # Debian/Ubuntu
 update-alternatives --all
+```
 
+- 注册 python 软链接
+
+```bash
+# --install <generic name> <symlink> <alternative> <priority>
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 60
+```
+
+- 显示命令的软链接信息
+
+```bash
 update-alternatives --display java
+```
 
+- 配置命令的软链接
+
+```bash
 update-alternatives --config java
 ```
 
