@@ -30,47 +30,21 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/py
 
 ### 配置 pyenv 和 pyenv-virtualenv
 
-- 如果是 Homebrew 安装
+在 `~/.zshrc` 添加
 
-  - 在  `~/.zprofile` 添加
+  ```bash
+  # pyenv
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  command -v pyenv >/dev/null && eval "$(pyenv init -)"
 
-    ```bash
-    if command -v pyenv >/dev/null; then
-        eval "$(pyenv init --path)"
-    fi
-    ```
-
-  - 在 `~/.zshrc` 添加
-
-    ```bash
-    if command -v pyenv >/dev/null; then
-        eval "$(pyenv init -)"
-    fi
-
-    if command -v pyenv-virtualenv >/dev/null; then
-        eval "$(pyenv virtualenv-init -)"
-    fi
-    ```
-
-- 如果是 Git 安装
-
-  - 在 `~/.zshrc` 添加
-
-    ```bash
-    export PYENV_ROOT="$HOME/.pyenv"
-    if command -v pyenv >/dev/null; then
-        export PATH="$PYENV_ROOT/bin:$PATH"
-        eval "$(pyenv init -)"
-    fi
-
-    if command -v pyenv-virtualenv >/dev/null; then
-        eval "$(pyenv virtualenv-init -)"
-    fi
-    ```
+  # pyenv-virtualenv
+  command -v pyenv-virtualenv >/dev/null && eval "$(pyenv virtualenv-init -)"
+  ```
 
 ## 卸载 pyenv
 
-1. 删除在 `~/.zprofile` 和 `~/.zshrc` 中的配置
+1. 删除在 `~/.zshrc` 中的配置
 2. 删除 pyenv 的根目录，这将删除所有安装的 Python 版本
 
    ```bash
