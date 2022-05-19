@@ -116,6 +116,7 @@ cat <<EOF > ~/.pip/pip.conf
 require-virtualenv = false
 download-cache = $HOME/.pip/cache
 index-url = https://mirrors.aliyun.com/pypi/simple/
+trusted-host = mirrors.aliyun.com
 
 [list]
 format = columns
