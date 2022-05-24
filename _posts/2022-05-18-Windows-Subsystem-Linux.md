@@ -24,6 +24,8 @@ wsl --install -d <Distro>
 wsl --terminate <Distro>
 ```
 
+<!--more-->
+
 ## 删除安装的 Linux 发行版
 
 在 *System Settings*, *Add or remove programs* 可以找到已安装的 Linux 发行版，点击 *Uninstall* 即可。
