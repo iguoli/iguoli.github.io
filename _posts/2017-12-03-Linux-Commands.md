@@ -1,7 +1,7 @@
 ---
 title: Linux Commands Summary
 date: 2017-12-03
-modify_date: 2021-11-09
+modify_date: 2022-05-30
 tags: Linux Utils
 key: Linux-Commands-2017-12-03
 ---
@@ -352,27 +352,6 @@ ls -1 | sed "s/被替换字符\(保留字符\)/mv & 新字符\1/" | sh -v
 ```bash
 dd if=/dev/zero of=test bs=1M count=100
 ```
-
-## 配置 sudo 用户
-
-### 语法
-
-```text
-USERS HOSTS=(RUNAS) [NOPASSWD:]COMMANDS
-```
-
-### 配置无密码用户
-
-让 `cloudera` 用户和所有属于 `wheel` 用户组的用户可以无密码运行任何命令
-
-```bash
-$ sudo vim /etc/sudoers.d/cloudera
-
-cloudera ALL=(ALL) NOPASSWD:ALL
-%wheel ALL=(ALL) NOPASSWD:ALL
-```
-
-查看 `man sudoers` 的 `EXAMPLE` 章节，学习更多例子
 
 ## Linux 下查看 cpu 个数及使用率
 

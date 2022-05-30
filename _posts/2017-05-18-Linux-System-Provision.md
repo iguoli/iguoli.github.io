@@ -1,7 +1,7 @@
 ---
 title: Linux System Provision
 date: 2017-05-18
-modify_date: 2021-11-06
+modify_date: 2022-05-30
 tags: Linux Provision
 key: Linux-System-Provision-2017-05-18
 ---
@@ -70,57 +70,76 @@ update-alternatives --list
 update-alternatives --get-selections
 ```
 
-- 注册 python 软链接
+- 将 python 3.8 版本加入到系统配置中
 
 ```bash
 # --install <generic name> <symlink> <alternative> <priority>
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 60
 ```
 
-- 显示命令的软链接信息
+- 显示系统中存在的 java 版本
 
 ```bash
 update-alternatives --display java
 ```
 
-- 配置命令的软链接
+- 设置系统默认使用的 java 版本
 
 ```bash
 update-alternatives --config java
 ```
 
--- 删除命令软链接
+- 设置系统默认使用的编辑器，例如选择 vim, nano
+
+```bash
+update-alternative --config editor
+```
+
+- 将 python 3.8 从系统配置中删除
 
 ```bash
 update-alternatives –remove python /usr/bin/python3.8
 ```
 
-## 设置用户 sudo 权限
+## 配置 sudo 用户
 
-##### Ubuntu
+### 语法
 
-更改系统默认编辑器为 vim
-
-```bash
-update-alternatives --config editor
+```text
+USERS HOSTS=(RUNAS) [NOPASSWD:]COMMANDS
 ```
+
+### 配置无密码用户
 
 使用 `sudo visudo` 命令会直接编辑系统默认配置，对于普通用户，更好的方法是在 `/etc/sudoers.d` 目录下单独添加配置文件，文件名可以使用用户名
 
 ```bash
 cd /etc/sudoers.d
-sudo visudo eric
+sudo visudo lee
 ```
 
 在该文件中添加如下内容
 
 ```conf
-# 不再需要用户 eric 输入密码
-Defaults:eric      !authenticate
+# 设置 sudoers options
+
+# 不再需要用户 lee 输入密码
+Defaults:lee      !authenticate
 
 # 输入密码后 30 分钟内不需要再次输入密码
 Defaults           timestamp_timeout=30
+
+# 设置 user specifications
+
+# 让用户 lee 可以无密码运行任何命令
+# 如果已经设置 Defaults:lee !authenticate，则无需再添加此配置
+lee ALL=(ALL) NOPASSWD:ALL
+
+# 所有属于 wheel 用户组的用户可以无密码运行任何命令
+%wheel ALL=(ALL) NOPASSWD:ALL
 ```
+
+查看 `man sudoers` 的 `EXAMPLE` 章节，学习更多例子。
 
 ## 设置包管理器代理
 
