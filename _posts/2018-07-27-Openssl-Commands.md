@@ -799,8 +799,8 @@ openssl pkcs7 -print_certs -in cert.p7b -out cert.pem
 ```bash
 openssl crl2pkcs7 -nocrl -certfile chained.pem | openssl pkcs7 -print_certs -noout -text
 
-# Only print issuer, subject and dates information
-openssl crl2pkcs7 -nocrl -certfile chained.pem | openssl pkcs7 -print_certs -noout -text | grep -P '(Issuer|Subject|Not Before|Not After\s):'
+# Only print subject, dates and subjectAltNames information
+openssl crl2pkcs7 -nocrl -certfile chained.pem | openssl pkcs7 -print_certs -noout -text | grep -P '(Subject|Not Before|Not After\s|DNS):'
 ```
 
 ## [openssl pkcs12](https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html)
