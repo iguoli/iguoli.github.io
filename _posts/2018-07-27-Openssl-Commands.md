@@ -1,8 +1,8 @@
 ---
 title: OpenSSL 常用命令
 date: 2018-07-27
-modify_date: 2021-07-25
-tags: SSL-TLS
+modify_date: 2022-05-30
+tags: SSL TLS
 key: Openssl-Commands-2018-07-27
 ---
 
@@ -797,7 +797,10 @@ openssl pkcs7 -print_certs -in cert.p7b -out cert.pem
 ### 打印单文件中的多证书信息
 
 ```bash
-openssl crl2pkcs7 -nocrl -certfile chained.pem | openssl pkcs7 -print_certs -noout
+openssl crl2pkcs7 -nocrl -certfile chained.pem | openssl pkcs7 -print_certs -noout -text
+
+# Only print issuer, subject and dates information
+openssl crl2pkcs7 -nocrl -certfile chained.pem | openssl pkcs7 -print_certs -noout -text | grep -P '(Issuer|Subject|Not Before|Not After\s):'
 ```
 
 ## [openssl pkcs12](https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html)
