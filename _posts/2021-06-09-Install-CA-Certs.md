@@ -2,7 +2,7 @@
 title: Install CA Certs
 date: 2021-06-09
 modify_date: 2021-06-09
-tags: SSL-TLS
+tags: SSL TLS
 key: Install-CA-Certs-2021-06-09
 ---
 
