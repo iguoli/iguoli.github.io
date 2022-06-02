@@ -372,6 +372,10 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
+## 安装 Temurin JDK
+
+[官方安装文档](https://blog.adoptium.net/2021/12/eclipse-temurin-linux-installers-available/)
+
 ## 安装 Vim
 
 ##### Ubuntu
