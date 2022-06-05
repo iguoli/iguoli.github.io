@@ -110,13 +110,44 @@ Bash 的所有内部命令都会在成功时返回 `0`，失败时返回 `非0`�
 
 ## [6.4 Bash 条件表达式][Bash-Conditional-Expressions]
 
-条件表达式由复合命令 `[[` 以及内部命令 `test` 和 `[` 使用。
+条件表达式由复合命令 `[[` 以及内部命令 `test` 和 `[` 使用，参考以下链接了解它们之前的区别。
 
-- 各类文件测度操作符: `-a`, `-b`, `-d`, `-e`, `-f`, ...
+- [What is the difference between test, \[ and \[\[ ?](https://mywiki.wooledge.org/BashFAQ/031)
+- [Bash Tests](https://mywiki.wooledge.org/BashGuide/Practices#Bash_Tests)
+- [What's the difference between [in Bash?](https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash)
 
-- 字符串比较操作符: `==`, `!=`, `>`, `<`
+简短总结一下就是:
 
-- 数值比较操作符: `-eq`, `-ne`, `-lt`, `-le`, `-gt`, `-ge`
+- `test` 实现了老式的，可移植的命令语法。在几乎所有的 shell 中 (除了最古老的 Bourne shell)，`[` 就是 `test` 的同义词，只是 `[` 需要参数 `]` 表示结尾。尽管所有现代 shell 都有 `[` 命令的内置实现，但系统依然有一个该名称的外部命令 `/bin/[`。POSIX 为 `[` 定义了必需的功能集，但几乎所有 shell 都对其提供了扩展。因此，如果你想要可移植的代码，应当注意不要使用这些扩展。
+
+- `[[` 是对 `test` (或者 `[`) 的增强，但它是 shell 语法中的**关键字**而不是一个命令。因其语法特性，你可以在其中使用 `&&` 和 `||` 进行布尔测试或者使用 `>` 和 `<` 进行字符串比较。`[` 无法做到这些是因为它是个普通命令，而 `&&`, `||`, `<`, `>` 不能作为命令行参数传递给它。如果编写 `sh` 兼容的脚本，那么仍然需要使用 `[`，如果使用了 `[[`，要确保脚本开头有 `#!/bin/bash` shebang 行。
+
+| Feature                    | new test `[[` | old test `[`      | Example                                                          |
+| -------------------------- | ------------- | ----------------- | ---------------------------------------------------------------- |
+| string comparison          | `>`           | `\> (*)`          | `[[ a > b ]] || echo "a does not come after b"`                  |
+|                            | `<`           | `\< (*)`          | `[[ az < za ]] && echo "az comes before za"`                     |
+|                            | `= (or ==)`   | `=`               | `[[ a = a ]] && echo "a equals a"`                               |
+|                            | `!=`          | `!=`              | `[[ a != b ]] && echo "a is not equal to b"`                     |
+| integer comparison         | `-gt`         | `-gt`             | `[[ 5 -gt 10 ]] || echo "5 is not bigger than 10"`               |
+|                            | `-lt`         | `-lt`             | `[[ 8 -lt 9 ]] && echo "8 is less than 9"`                       |
+|                            | `-ge`         | `-ge`             | `[[ 3 -ge 3 ]] && echo "3 is greater than or equal to 3"`        |
+|                            | `-le`         | `-le`             | `[[ 3 -le 8 ]] && echo "3 is less than or equal to 8"`           |
+|                            | `-eq`         | `-eq`             | `[[ 5 -eq 05 ]] && echo "5 equals 05"`                           |
+|                            | `-ne`         | `-ne`             | `[[ 6 -ne 20 ]] && echo "6 is not equal to 20"`                  |
+| conditional evaluation     | `&&`          | `-a (**)`         | `[[ -n $var && -f $var ]] && echo "$var is a file"`              |
+|                            | `\|\|`        | `-o (**)`         | `[[ -b $var || -c $var ]] && echo "$var is a device"`            |
+| expression grouping        | `(...)`       | `\( ... \)` (**)  | `[[ $var = img* && ($var = *.png || $var = *.jpg) ]] && "echo "$var starts with img and ends with .jpg or .png"` |
+| Pattern matching           | `= (or ==)`   | (not available)   | `[[ $name = a* ]] || echo "name does not start with an 'a': $name"`|
+| RegularExpression matching | `=~`          | (not available)   | `[[ $(date) =~ ^Fri\ ...\ 13 ]] && echo "It's Friday the 13th!"` |
+
+(*) This is an extension to the POSIX standard; some shells may have it, others may not.
+
+(**) The `-a` and `-o` operators, and `( ... )` grouping, are defined by POSIX but only for strictly limited cases, and are marked as deprecated. Use of these operators is discouraged; you should use multiple `[` commands instead:
+
+- `if [ "$a" = a ] && [ "$b" = b ]; then ...`
+- `if [ "$a" = a ] || { [ "$b" = b ] && [ "$c" = c ];}; then ...`
+
+各类文件测试操作符: `-a`, `-b`, `-d`, `-e`, `-f`, ...
 
 [Bash-Reference-Manual]: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
 [Shell-Commands]: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Commands
