@@ -374,7 +374,7 @@ lsb_release
 hostnamectl
 ```
 
-### Redhat or CentOS
+### RedHat or CentOS
 
 ```bash
 hostnamectl
@@ -387,6 +387,23 @@ cat /etc/centos-release
 # Redhat
 cat /etc/redhat-release
 ```
+
+### Distributions Relase file in `/etc`
+
+| Distributions | Relase file in `/etc`                              |
+| ------------- | -------------------------------------------------- |
+| Red Hat       | `/etc/redhat-release`, `/etc/redhat_version`       |
+| CentOS        | `/etc/centos-release`                              |
+| Fedora        | `/etc/fedora-release`                              |
+| New Debian    | `/etc/os-release`                                  |
+| Old Debian    | `/etc/debian_release`, `/etc/debian_version`       |
+| Novell SuSE   | `/etc/SuSE-release`                                |
+| Gentoo        | `/etc/gentoo-release`                              |
+| Solaris/Sparc | `/etc/release`                                     |
+| Slackware     | `/etc/slackware-release`, `/etc/slackware-version` |
+| Mandrake      | `/etc/mandrake-release`                            |
+| Yellow dog    | `/etc/yellowdog-release`                           |
+| Sun JDS       | `/etc/sun-release`                                 |
 
 ## Linux 下查看/添加/删除/修改用户
 
