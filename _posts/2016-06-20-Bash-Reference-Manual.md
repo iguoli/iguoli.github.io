@@ -110,11 +110,7 @@ Bash 的所有内部命令都会在成功时返回 `0`，失败时返回 `非0`�
 
 ## [6.4 Bash 条件表达式][Bash-Conditional-Expressions]
 
-条件表达式由复合命令 `[[` 以及内部命令 `test` 和 `[` 使用，参考以下链接了解它们之前的区别。
-
-- [What is the difference between test, \[ and \[\[ ?](https://mywiki.wooledge.org/BashFAQ/031)
-- [Bash Tests](https://mywiki.wooledge.org/BashGuide/Practices#Bash_Tests)
-- [What's the difference between [in Bash?](https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash)
+条件表达式由复合命令 `[[` 以及内部命令 `test` 和 `[` 使用。
 
 简短总结一下就是:
 
@@ -148,6 +144,12 @@ Bash 的所有内部命令都会在成功时返回 `0`，失败时返回 `非0`�
 - `if [ "$a" = a ] || { [ "$b" = b ] && [ "$c" = c ];}; then ...`
 
 各类文件测试操作符: `-a`, `-b`, `-d`, `-e`, `-f`, ...
+
+更多差异，可以参考以下链接:
+
+- [Bash FAQ - What is the difference between test, \[ and \[\[ ?](https://mywiki.wooledge.org/BashFAQ/031)
+- [Bash Practices - Bash Tests](https://mywiki.wooledge.org/BashGuide/Practices#Bash_Tests)
+- [Stack Overflow - What's the difference between \[in Bash?](https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash)
 
 [Bash-Reference-Manual]: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
 [Shell-Commands]: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Commands
