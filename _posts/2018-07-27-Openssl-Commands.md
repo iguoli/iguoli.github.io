@@ -977,17 +977,35 @@ keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
 
 ### JRE cacerts
 
-如果需要使用的 keystore 是 java 的 *cacerts*，`keytool` 的许多子命令都提供了 `-cacerts` 参数，其作用相当于 `-keystore $JAVA_HOME/jre/lib/security/cacerts`。
+从 JDK9 以后，如果命令中 keystore 是 java 的 *cacerts*，`keytool` 提供了 `-cacerts` 参数，其作用相当于 `-keystore /path/to/cacerts`。查询 `keytool` 官方文档以了解命令具体用法，以 JDK11 和 JDK8 为例:
 
-- 打印 JRE cacerts 密钥库
+- [Java Platform, Standard Edition Documentation](https://docs.oracle.com/en/java/javase/index.html)
+  - [JDK 11 Documentation](https://docs.oracle.com/en/java/javase/11/)
+    - [Tools Reference](https://docs.oracle.com/en/java/javase/11/tools/tools-and-command-reference.html)
+      - [keytool](https://docs.oracle.com/en/java/javase/11/tools/keytool.html)
+  - [JDK 8 Documentation](https://docs.oracle.com/javase/8/)
+    - [java SE Tools Reference for UNIX](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/index.html)
+      - [keytool](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html)
+    - [Java SE Tools Reference for Windows](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/index.html)
+      - [keytool](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/keytool.html)
+
+打印 JRE cacerts 密钥库
 
 ```bash
+# JDK8
+keytool -list -keytsotre $JAVA_HOME/jre/lib/security/cacerts -storepass changeit
+
+# JDK9 and later versions
 keytool -list -cacerts -storepass changeit
 ```
 
-- 导入证书到 JRE cacerts 密钥库
+导入证书到 JRE cacerts 密钥库
 
 ```bash
+# JDK8
+keytool -importcert -keytsotre $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -alias friendly_name -file cert.pem
+
+# JDK9 and later versions
 ketytool -importcert -cacerts -storepass changeit -alias friendly_name -file cert.pem
 ```
 
