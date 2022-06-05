@@ -951,21 +951,6 @@ keytool -list -keystore keystore.jks -storepass password -alias friendly_name -v
 keytool -list -keystore keystore.jks -storepass password -alias friendly_name -rfc
 ```
 
-- 打印 JRE cacerts 密钥库
-
-```bash
-keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass password
-```
-
-- 导入证书到JRE cacerts 密钥库
-
-  对于 `-importcert` 子命令，如果不提供 `-keystore` 参数，默认使用 JRE 的 cacerts
-{:.info}
-
-```bash
-ketytool -importcert -alias friendly_name -file cert.pem -storepass changeit
-```
-
 - 导入证书到指定密钥库
 
   - 导入新的受信任证书时，密钥库中不能存在相同的别名。
@@ -988,6 +973,22 @@ keytool -exportcert -keystore keystore.jks -storepass password -alias friendly_n
 
 ```bash
 keytool -delete -keystore keystore.jks -alias friendly_name -storepass password
+```
+
+### JRE cacerts
+
+如果需要使用的 keystore 是 java 的 *cacerts*，`keytool` 的许多子命令都提供了 `-cacerts` 参数，其作用相当于 `-keystore $JAVA_HOME/jre/lib/security/cacerts`。
+
+- 打印 JRE cacerts 密钥库
+
+```bash
+keytool -list -cacerts -storepass changeit
+```
+
+- 导入证书到 JRE cacerts 密钥库
+
+```bash
+ketytool -importcert -cacerts -storepass changeit -alias friendly_name -file cert.pem
 ```
 
 ## [openssl s_client]
