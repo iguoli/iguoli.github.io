@@ -364,23 +364,27 @@ $ top
 $ htop
 ```
 
-## Linux下显示系统版本
+## 查看系统的 Linux 发行版
+
+```bash
+hostnamectl
+
+cat /proc/version
+
+uname -a
+
+cat /etc/issue
+```
 
 ### Ubuntu
 
 ```bash
 lsb_release
-
-hostnamectl
 ```
 
 ### RedHat or CentOS
 
 ```bash
-hostnamectl
-
-cat /etc/issue
-
 # Centos
 cat /etc/centos-release
 
@@ -395,6 +399,7 @@ cat /etc/redhat-release
 | Red Hat       | `/etc/redhat-release`, `/etc/redhat_version`       |
 | CentOS        | `/etc/centos-release`                              |
 | Fedora        | `/etc/fedora-release`                              |
+| Ubuntu        | `/etc/os-release`                                  |
 | New Debian    | `/etc/os-release`                                  |
 | Old Debian    | `/etc/debian_release`, `/etc/debian_version`       |
 | Novell SuSE   | `/etc/SuSE-release`                                |
