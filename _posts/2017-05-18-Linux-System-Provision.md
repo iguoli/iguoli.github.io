@@ -165,20 +165,21 @@ sudo visudo lee
 
 在该文件中添加如下内容
 
-```conf
-# 设置 sudoers options
+##### sudoers options
 
-# 不再需要用户 lee 输入密码
-Defaults:lee      !authenticate
+```conf
+# 不再需要用户输入密码
+Defaults:john      !authenticate
 
 # 输入密码后 30 分钟内不需要再次输入密码
 Defaults           timestamp_timeout=30
+```
 
-# 设置 user specifications
+##### user specifications
 
-# 让用户 lee 可以无密码运行任何命令
-# 如果已经设置 Defaults:lee !authenticate，则无需再添加此配置
-lee ALL=(ALL) NOPASSWD:ALL
+```conf
+# 让用户可以无密码运行任何命令
+john ALL=(ALL) NOPASSWD:ALL
 
 # 所有属于 wheel 用户组的用户可以无密码运行任何命令
 %wheel ALL=(ALL) NOPASSWD:ALL
