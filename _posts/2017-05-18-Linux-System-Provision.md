@@ -84,9 +84,9 @@ cat /etc/centos-release
 cat /etc/redhat-release
 ```
 
-### Distributions Relase file in `/etc`
+### Distributions Release file in */etc*
 
-| Distributions | Relase file in `/etc`                              |
+| Distributions | Release file in `/etc`                             |
 | ------------- | -------------------------------------------------- |
 | Red Hat       | `/etc/redhat-release`, `/etc/redhat_version`       |
 | CentOS        | `/etc/centos-release`                              |
@@ -101,6 +101,7 @@ cat /etc/redhat-release
 | Mandrake      | `/etc/mandrake-release`                            |
 | Yellow dog    | `/etc/yellowdog-release`                           |
 | Sun JDS       | `/etc/sun-release`                                 |
+
 ## [update-alternatives](https://man7.org/linux/man-pages/man1/update-alternatives.1.html)
 
 `update-alternatives` 管理系统中的软链接，用于切换软件的不同版本，这些软链接放置于 `/etc/alternatives` 目录下。
