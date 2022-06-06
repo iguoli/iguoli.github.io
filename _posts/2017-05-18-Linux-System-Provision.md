@@ -160,10 +160,11 @@ USERS HOSTS=(RUNAS) [NOPASSWD:]COMMANDS
 
 ```bash
 cd /etc/sudoers.d
-sudo visudo lee
+
+sudo visudo john
 ```
 
-在该文件中添加如下内容
+#### sudoers 配置文件
 
 ##### sudoers options
 
