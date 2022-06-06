@@ -86,7 +86,7 @@ cat /etc/redhat-release
 
 ### Distributions Release file in */etc*
 
-| Distributions | Release file in `/etc`                             |
+| Distributions | Release file in /etc                             |
 | ------------- | -------------------------------------------------- |
 | Red Hat       | `/etc/redhat-release`, `/etc/redhat_version`       |
 | CentOS        | `/etc/centos-release`                              |
