@@ -56,6 +56,51 @@ ssh user@remote.net 'tar czf - /opt/app' > app.tar.gz
 - Bash: `BASH_ENV` 环境变量指定的文件
 - Zsh: `/etc/zshenv`, `~/.zshenv`
 
+## 查看系统的 Linux 发行版
+
+```bash
+hostnamectl
+
+cat /proc/version
+
+uname -a
+
+cat /etc/issue
+```
+
+### Ubuntu
+
+```bash
+lsb_release
+```
+
+### RedHat or CentOS
+
+```bash
+# Centos
+cat /etc/centos-release
+
+# Redhat
+cat /etc/redhat-release
+```
+
+### Distributions Relase file in `/etc`
+
+| Distributions | Relase file in `/etc`                              |
+| ------------- | -------------------------------------------------- |
+| Red Hat       | `/etc/redhat-release`, `/etc/redhat_version`       |
+| CentOS        | `/etc/centos-release`                              |
+| Fedora        | `/etc/fedora-release`                              |
+| Ubuntu        | `/etc/os-release`                                  |
+| New Debian    | `/etc/os-release`                                  |
+| Old Debian    | `/etc/debian_release`, `/etc/debian_version`       |
+| Novell SuSE   | `/etc/SuSE-release`                                |
+| Gentoo        | `/etc/gentoo-release`                              |
+| Solaris/Sparc | `/etc/release`                                     |
+| Slackware     | `/etc/slackware-release`, `/etc/slackware-version` |
+| Mandrake      | `/etc/mandrake-release`                            |
+| Yellow dog    | `/etc/yellowdog-release`                           |
+| Sun JDS       | `/etc/sun-release`                                 |
 ## [update-alternatives](https://man7.org/linux/man-pages/man1/update-alternatives.1.html)
 
 `update-alternatives` 管理系统中的软链接，用于切换软件的不同版本，这些软链接放置于 `/etc/alternatives` 目录下。
@@ -140,6 +185,78 @@ lee ALL=(ALL) NOPASSWD:ALL
 ```
 
 查看 `man sudoers` 的 `EXAMPLE` 章节，学习更多例子。
+
+## 用户及用户组操作
+
+### 查看用户组
+
+使用 `lid` 或 `libuser-lid` (较新的系统) 命令可以查看用户属于哪些组，或用户组包含哪些用户
+
+```bash
+# Ubuntu 系统安装 lid 或 libuser-lid
+sudo apt install -y libuser
+
+# 查看用户属于哪些组
+lid [user]
+
+# 查看 wheel 组中有哪些用户
+lid -g wheel
+```
+
+查看用户属于哪些组
+
+```bash
+groups [user]
+
+id [user]
+```
+
+### 将用户添加到用户组
+
+将用户 john 添加到 docker 用户组
+
+```bash
+# usermod -aG group user
+usermod -aG docker john
+```
+
+### 从用户组中删除用户
+
+从 docker 用户组中删除用户 john
+
+```bash
+# gpasswd -d user group
+gpasswd -d john docker
+```
+
+### 为系统添加新用户
+
+```bash
+# -m 生成用户目录，-G 添加用户到额外组
+useradd -m -G wheel,docker user
+
+# 设置用户密码
+passwd user
+```
+
+### 变更用户名
+
+下面一组命令用于变更用户名
+
+```bash
+usermod -l new-name old-name
+mv /home/old-name /home/new-name
+usermod -d /home/new-name new-name
+usermod -c “description” new-name
+groupmod -n new-group old-group
+```
+
+### 删除系统用户
+
+```bash
+# -r 会连同用户目录一起删除
+userdel -r user
+```
 
 ## 设置包管理器代理
 
