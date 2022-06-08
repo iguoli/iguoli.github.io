@@ -193,20 +193,31 @@ john ALL=(ALL) NOPASSWD:ALL
 
 ### 查看用户组
 
-使用 `lid` 或 `libuser-lid` (较新的系统) 命令可以查看用户属于哪些组，或用户组包含哪些用户
+使用 `lid` (RedHat/CentOS) 或 `libuser-lid` (Ubuntu) 命令可以查看用户属于哪些组，或用户组包含哪些用户
+
+**RedHat/CentOS**
 
 ```bash
-# Ubuntu 系统安装 lid 或 libuser-lid
+sudo yum install libuser
+
+lid [user]
+
+lid -g group
+```
+
+**Ubuntu**
+
+```bash
 sudo apt install -y libuser
 
 # 查看用户属于哪些组
-lid [user]
+libuser-lid [user]
 
 # 查看 wheel 组中有哪些用户
-lid -g wheel
+libuser-lid -g group
 ```
 
-查看用户属于哪些组
+现在两个命令只能查看用户属于哪些组
 
 ```bash
 groups [user]
