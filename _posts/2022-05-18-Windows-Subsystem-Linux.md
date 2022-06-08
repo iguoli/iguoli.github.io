@@ -6,32 +6,84 @@ tags: WSL Windows Linux
 key: Windows-Subsystem-Linux-2022-05-18
 ---
 
-## 查看可安装的 Linux 发行版本
+## 查看可安装的 Linux 发行版
 
 ```bash
 wsl --list --online
+
+# short
+wsl -l -o
 ```
 
-## 安装指定发行版本
+## 安装发行版
 
 ```bash
-wsl --install -d <Distro>
+wsl --install -d <distro>
+```
+
+### 安装 Fedora 发行版
+
+首先需要获取 **Fedora rootfs image**，可以从 [Fedora Container Base](https://koji.fedoraproject.org/koji/packageinfo?packageID=26387) 中下载最新版本的 xz 包，当前最新的包为
+
+- [Fedora-Container-Base-36-20220607.0](https://koji.fedoraproject.org/koji/buildinfo?buildID=1977370)
+
+解压 `Fedora-Container-Base-*.tar.xz` 文件，在最下层的文件夹中找到 `layer.tar` 文件，这个文件就是我们需要的 **rootfs image**，可以将其重命令为 `fedora-36-rootfs.tar` 并放在 Downloads 目录下。
+
+然后创建 fedora 的虚拟磁盘目录, 打开 Powershell 输入
+
+```sh
+mkdir $HOME\wsl\fedora
+```
+
+最后就可以安装 WSL Fedora 发行版了
+
+```sh
+wsl --import Fedora-36 $HOME\wsl\fedora $HOME\Downloads\fedora-36-rootfs.tar
+```
+
+<!--more-->
+
+### 设置默认启动的发行版
+
+如果安装了多个发行版，可以设置 Fedora-36 为默认启动系统
+
+```bash
+wsl --set-default-version Fedora-36
+
+# short
+wsl -s Fedora-36
+```
+
+### 设置默认登录用户
+
+[为系统添加新用户](https://iguoli.github.io/2017/05/18/Linux-System-Provision.html#为系统添加新用户)，并以该用户登录
+
+```bash
+wsl -d Fedora-36 -u user
+```
+
+在 `/etc/conf` 中添加配置，使得默认以该用户登录
+
+```ini
+[user]
+default=user
 ```
 
 ## 关机
 
 ```bash
-wsl --terminate <Distro>
-```
+wsl --terminate <distro>
 
-<!--more-->
+# short
+wsl -t <distro>
+```
 
 ## 删除安装的 Linux 发行版
 
 在 *System Settings*, *Add or remove programs* 可以找到已安装的 Linux 发行版，点击 *Uninstall* 即可。或者执行
 
 ```bash
-wsl --unregister <Distro>
+wsl --unregister <distro>
 ```
 
 ## 禁止 wsl 添加 Windows 的 PATH 路径
@@ -72,7 +124,7 @@ generateResolvConf=false
 保存后退出 wsl 并关闭系统
 
 ```bash
-wsl -t <Distro>
+wsl -t <distro>
 ```
 
 重新进入系统，`unlink /etc/resolv.conf`，这是因为 `/etc/resolv.conf` 文件一般是软链接到 `resolvconf` 生成的文件，最后重新创建 `/etc/resolv.conf` 文件并写入有效的 nameserver。
@@ -80,5 +132,5 @@ wsl -t <Distro>
 ```bash
 unlink /etc/resolv.conf
 
-echo nameserver 1.1.1.1
+echo nameserver 1.1.1.1 > /etc/resolv.conf
 ```
