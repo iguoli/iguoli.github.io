@@ -10,7 +10,7 @@ key: Setup-pyenv-2018-07-20
 
 - [使用 Homebrew 安装](https://github.com/pyenv/pyenv#homebrew-in-macos)
 
-```bash
+```sh
 brew update
 
 brew install pyenv
@@ -22,7 +22,7 @@ brew install pyenv-virtualenv
 
 - [使用 Git 安装](https://github.com/pyenv/pyenv#basic-github-checkout)
 
-```bash
+```sh
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
@@ -32,7 +32,7 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/py
 
 在 `~/.zshrc` 添加
 
-  ```bash
+  ```sh
   # pyenv
   export PYENV_ROOT="$HOME/.pyenv"
   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -47,13 +47,13 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/py
 1. 删除在 `~/.zshrc` 中的配置
 2. 删除 pyenv 的根目录，这将删除所有安装的 Python 版本
 
-   ```bash
+   ```sh
    rm -rf $(pyenv root)
    ```
 
    如果是 Homebrew 安装，还要执行
 
-   ```bash
+   ```sh
    brew uninstall pyenv
    ```
 
@@ -74,7 +74,7 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/py
 
 ### pyenv 命令
 
-```bash
+```sh
 # 查看可安装的Python版本
 pyenv install -l
 
@@ -108,7 +108,7 @@ pyenv commands
 
 ### 配置 pip
 
-```bash
+```sh
 mkdir ~/.pip
 
 cat <<EOF > ~/.pip/pip.conf
@@ -125,7 +125,7 @@ EOF
 
 ### pyenv virtualenv 命令
 
-```bash
+```sh
 
 # 激活virtualenv环境
 pyenv activate jupyter-lab

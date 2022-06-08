@@ -12,7 +12,7 @@ key: Nodejs-Installation-2019-07-10
 
 ### 解压安装包到 `/usr/local/lib/nodejs`
 
-```bash
+```sh
 VERSION=v10.16.0
 DISTRO=linux-x64
 sudo mkdir -p /usr/local/lib/nodejs
@@ -23,7 +23,7 @@ sudo tar -xvJf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs
 
 ### 在 `/usr/bin` 目录下创建软链接
 
-```bash
+```sh
 sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node /usr/bin/node
 
 sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm /usr/bin/npm
@@ -41,7 +41,7 @@ sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npx /usr/bin/npx
 
 得到类似于下面的输出
 
-```bash
+```sh
 $ node -v
 v10.16.0
 
@@ -66,7 +66,7 @@ $ npm version
 
 ### 在启动文件 `~/.profile (bash)` 或 `~/.zshenv (zsh)` 中设置环境变量
 
-```bash
+```sh
 # Nodejs
 VERSION=v10.16.0
 DISTRO=linux-x64
@@ -75,7 +75,7 @@ export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 
 ### 重新应用启动文件
 
-```bash
+```sh
 # bash
 source ~/.profile
 
@@ -85,7 +85,7 @@ source ~/.zshenv
 
 ## 配置 npm 国内镜像源
 
-```bash
+```sh
 # get current registry
 npm config get registry
 
@@ -104,7 +104,7 @@ registry=https://registry.npm.taobao.org
 
 使用 Homebrew 安装
 
-```bash
+```sh
 brew install nodejs
 ```
 
@@ -112,7 +112,7 @@ brew install nodejs
 
 使用 scoop 安装
 
-```bash
+```sh
 scoop install nodejs
 ```
 
@@ -122,13 +122,13 @@ scoop install nodejs
 
 ### Windows 安装与用法
 
-```bash
+```sh
 scoop install nvm
 ```
 
 列出可安装的版本
 
-```bash
+```sh
 nvm list available
 
 # "ls" is an alias for "list"
@@ -137,7 +137,7 @@ nvm ls available
 
 安装最新版本
 
-```bash
+```sh
 nvm install latest
 
 # "node" is an alias for the latest version
@@ -146,25 +146,25 @@ nvm install node
 
 安装最新长期支持 (LTS) 版本
 
-```bash
+```sh
 nvm install lts
 ```
 
 安装指定版本
 
-```bash
+```sh
 nvm install 18.1.0
 ```
 
 ### macOS 安装与用法
 
-```bash
+```sh
 brew install nvm
 ```
 
 依据 brew 安装后的提示，设置环境变量和自动补全
 
-```bash
+```sh
 $ vim ~/.zshrc
 
 # nvm
@@ -175,7 +175,7 @@ export NVM_DIR="$HOME/.nvm"
 
 列出所有可安装版本
 
-```bash
+```sh
 nvm ls-remote
 
 nvm ls-remote --lts
@@ -183,25 +183,25 @@ nvm ls-remote --lts
 
 列出已安装版本
 
-```bash
+```sh
 nvm ls
 ```
 
 安装最新版本
 
-```bash
+```sh
 nvm install node
 ```
 
 安装最新长期支持版本
 
-```bash
+```sh
 brew install --lts
 ```
 
 设置默认使用版本
 
-```bash
+```sh
 nvm alias default node
 
 nvm alias default 'lts/*'
@@ -209,13 +209,13 @@ nvm alias default 'lts/*'
 
 查看当前使用版本
 
-```bash
+```sh
 nvm current
 ```
 
 在当前 *shell* 使用指定版本
 
-```bash
+```sh
 nvm use node
 
 nvm use --lts
@@ -223,7 +223,7 @@ nvm use --lts
 
 使用系统自带版本或查看系统安装版本
 
-```bash
+```sh
 nvm use system
 
 nvm run system --version

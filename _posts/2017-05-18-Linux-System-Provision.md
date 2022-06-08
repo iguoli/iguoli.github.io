@@ -33,7 +33,7 @@ key: Linux-System-Provision-2017-05-18
 
 这种 shell 比较少见，一种情况是通过远程登录执行命令，将本地标准输入或标准输出传递给远程命令时会得到一个 **non-interactive login** shell。例如下面两个命令：
 
-```bash
+```sh
 # 在远程主机执行本地脚本
 ssh user@remote.net 'bash -s' < local-script.sh
 
@@ -58,7 +58,7 @@ ssh user@remote.net 'tar czf - /opt/app' > app.tar.gz
 
 ## 查看系统的 Linux 发行版
 
-```bash
+```sh
 hostnamectl
 
 cat /proc/version
@@ -70,13 +70,13 @@ cat /etc/issue
 
 ### Ubuntu
 
-```bash
+```sh
 lsb_release
 ```
 
 ### RedHat or CentOS
 
-```bash
+```sh
 # Centos
 cat /etc/centos-release
 
@@ -86,7 +86,7 @@ cat /etc/redhat-release
 
 ### Distributions Release file in */etc*
 
-| Distributions | Release file in /etc                             |
+| Distributions | Release file in /etc                               |
 | ------------- | -------------------------------------------------- |
 | Red Hat       | `/etc/redhat-release`, `/etc/redhat_version`       |
 | CentOS        | `/etc/centos-release`                              |
@@ -108,7 +108,7 @@ cat /etc/redhat-release
 
 - 列出系统当前管理的命令软链接
 
-```bash
+```sh
 # RedHat/CentOS
 update-alternatives --list
 
@@ -118,32 +118,32 @@ update-alternatives --get-selections
 
 - 将 python 3.8 版本加入到系统配置中
 
-```bash
+```sh
 # --install <generic name> <symlink> <alternative> <priority>
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 60
 ```
 
 - 显示系统中存在的 java 版本
 
-```bash
+```sh
 update-alternatives --display java
 ```
 
 - 设置系统默认使用的 java 版本
 
-```bash
+```sh
 update-alternatives --config java
 ```
 
 - 设置系统默认使用的编辑器，例如选择 vim, nano
 
-```bash
+```sh
 update-alternative --config editor
 ```
 
 - 将 python 3.8 从系统配置中删除
 
-```bash
+```sh
 update-alternatives –remove python /usr/bin/python3.8
 ```
 
@@ -159,7 +159,7 @@ USERS HOSTS=(RUNAS) [NOPASSWD:]COMMANDS
 
 使用 `sudo visudo` 命令会直接编辑系统默认配置，对于普通用户，更好的方法是在 `/etc/sudoers.d` 目录下单独添加配置文件，文件名可以使用用户名
 
-```bash
+```sh
 cd /etc/sudoers.d
 
 sudo visudo john
@@ -197,7 +197,7 @@ john ALL=(ALL) NOPASSWD:ALL
 
 **RedHat/CentOS**
 
-```bash
+```sh
 sudo yum install libuser
 
 lid [user]
@@ -207,7 +207,7 @@ lid -g group
 
 **Ubuntu**
 
-```bash
+```sh
 sudo apt install -y libuser
 
 # 查看用户属于哪些组
@@ -219,7 +219,7 @@ libuser-lid -g group
 
 下面两个命令只能查看用户属于哪些组
 
-```bash
+```sh
 groups [user]
 
 id [user]
@@ -229,7 +229,7 @@ id [user]
 
 将用户 john 添加到 docker 用户组
 
-```bash
+```sh
 # usermod -aG group user
 usermod -aG docker john
 ```
@@ -238,14 +238,14 @@ usermod -aG docker john
 
 从 docker 用户组中删除用户 john
 
-```bash
+```sh
 # gpasswd -d user group
 gpasswd -d john docker
 ```
 
 ### 为系统添加新用户
 
-```bash
+```sh
 # -m 生成用户目录，-G 添加用户到额外组
 useradd -m -G wheel,docker user
 
@@ -257,7 +257,7 @@ passwd user
 
 下面一组命令用于变更用户名
 
-```bash
+```sh
 usermod -l new-name old-name
 mv /home/old-name /home/new-name
 usermod -d /home/new-name new-name
@@ -267,7 +267,7 @@ groupmod -n new-group old-group
 
 ### 删除系统用户
 
-```bash
+```sh
 # -r 会连同用户目录一起删除
 userdel -r user
 ```
@@ -276,7 +276,7 @@ userdel -r user
 
 **Ubuntu APT**
 
-```bash
+```sh
 $ vim /etc/apt/apt.conf.d/proxy.conf
 
 Acquire {
@@ -293,13 +293,13 @@ Acquire {
 
 **Ubuntu**
 
-```bash
+```sh
 sudo apt install -y build-essential
 ```
 
 **CentOS 8**
 
-```bash
+```sh
 sudo yum groupinstall "Development Tools"
 ```
 
@@ -309,13 +309,13 @@ sudo yum groupinstall "Development Tools"
 
 用`getenforce`命令检查 SELinux 是否已禁用
 
-```bash
+```sh
 getenforce
 ```
 
 修改 `/etc/selinux/config` 配置文件，设置 SELinux 为 **disabled**
 
-```bash
+```sh
 vim /etc/selinux/config
 ```
 
@@ -323,7 +323,7 @@ vim /etc/selinux/config
 
 大部分终端命令都会识别以下环境变量来使用命令行代理，如果有特殊命令不识别，可以使用 **ProxyChains-NG** 命令。
 
-```bash
+```sh
 export http_proxy=http://127.0.0.1:7890
 export https_proxy=http://127.0.0.1:7890
 export all_proxy=socks5://127.0.0.1:7891
@@ -331,7 +331,7 @@ export all_proxy=socks5://127.0.0.1:7891
 
 取消命令行代理环境变量
 
-```bash
+```sh
 unset all_proxy http_proxy https_proxy
 ```
 
@@ -341,7 +341,7 @@ unset all_proxy http_proxy https_proxy
 
 从 PPA 安装[ppa:git-core/ppa](https://launchpad.net/~git-core/+archive/ubuntu/ppa)
 
-```bash
+```sh
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
 sudo apt install -y git
@@ -349,13 +349,13 @@ sudo apt install -y git
 
 **RedHat/CentOS**
 
-```bash
+```sh
 sudo yum install -y git
 ```
 
 ##### [从源代码安装](https://github.com/git/git/blob/master/INSTALL)
 
-```bash
+```sh
 cd
 sudo apt install -y build-essential autoconf asciidoc xsltproc
 curl -L https://github.com/git/git/archive/master.zip -o git.zip
@@ -369,7 +369,7 @@ sudo make install install-doc install-html
 
 ##### 配置
 
-```bash
+```sh
 git config --global user.name 'your name'
 git config --global user.email 'your@email.com'
 git config --global credential.helper 'cache --timeout=86400'
@@ -382,7 +382,7 @@ git config --global core.editor vim
 
 **Ubuntu**
 
-```bash
+```sh
 sudo apt install connect-proxy
 
 # See the locations of the package installed
@@ -391,7 +391,7 @@ dpkg -L connect-proxy
 
 **RedHat/CentOS**
 
-```bash
+```sh
 sudo yum install connect-proxy
 
 # See the locations of the package installed
@@ -400,7 +400,7 @@ rpm -ql connect-proxy
 
 ##### 配置
 
-```bash
+```sh
 $ vim ~/.ssh/config
 
 Host github.com
@@ -417,12 +417,12 @@ Host github.com
 
 **RedHat/CentOS**
 
-```bash
+```sh
 sudo yum install -y proxychains-ng
 ```
 ##### 源代码安装
 
-```bash
+```sh
 git clone https://github.com/rofl0r/proxychains-ng.git
 cd proxychains-ng
 ./configure --prefix=/usr --sysconfdir=/etc
@@ -442,7 +442,7 @@ socks5 127.0.0.1 7891
 
 添加别名
 
-```bash
+```sh
 alias pcs=proxychains4
 ```
 
@@ -450,13 +450,13 @@ alias pcs=proxychains4
 
 **RedHat/CentOS**
 
-```bash
+```sh
 sudo yum install -y zsh
 ```
 
 ##### [源代码安装](https://github.com/zsh-users/zsh/blob/master/INSTALL)
 
-```bash
+```sh
 # for Ubuntu system
 sudo apt install -y autoconf perl libncurses5-dev yodl
 # for CentOS 8 system
@@ -475,7 +475,7 @@ sudo make install
 
 > CentOS 8 没有安装 `chsh` 工具，该工具位于 `util-linux-user` 安装包内，需要手工安装。
 
-```bash
+```sh
 sudo yum install -y util-linux-user
 which zsh | sudo tee -a /etc/shells
 chsh -s "$(which zsh)"
@@ -485,7 +485,7 @@ chsh -s "$(which zsh)"
 
 ## 安装 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
-```bash
+```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
@@ -493,13 +493,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
-```bash
+```sh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
 [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
-```bash
+```sh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
@@ -511,19 +511,19 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 **Ubuntu**
 
-```bash
+```sh
 sudo apt install -y vim
 ```
 
 **RedHat/CentOS**
 
-```bash
+```sh
 sudo yum install -y vim
 ```
 
 ##### [源代码安装](https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source)
 
-```bash
+```sh
 sudo apt install libncurses5-dev libgnome2-dev libgnomeui-dev \
 libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
 libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
@@ -556,13 +556,13 @@ sudo update-alternatives --set vi /usr/bin/vim
 
 #### 安装 [vim-plug](https://github.com/junegunn/vim-plug)
 
-```bash
+```sh
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 #### 安装 [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) 插件
 
-```bash
+```sh
 sudo apt-get install build-essential cmake python-dev python3-dev
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py --clang-completer
@@ -573,7 +573,7 @@ cd ~/.vim/bundle/YouCompleteMe
 - 从[LLVM](http://releases.llvm.org/download.html)官网下载最新版本的 Clang 压缩包并解压到`~/llvm`
 - 编译 ycm_core 库
 
-```bash
+```sh
 cd ~
 mkdir ycm_build
 cd ycm_build
@@ -583,7 +583,7 @@ cmake --build . --target ycm_core
 
 ## 安装 [tmux](https://github.com/tmux/tmux)
 
-```bash
+```sh
 # for Ubuntu system
 sudo apt install -y libevent-dev libncurses5-dev autoconf automake pkg-config
 # for Redhat system
@@ -600,7 +600,7 @@ sudo make install
 
 ### 安装 [oh-my-tmux](https://github.com/gpakosz/.tmux)
 
-```bash
+```sh
 cd
 git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf .
@@ -611,7 +611,7 @@ cp ~/conf/.tmux.conf.local .
 
 **PIP**
 
-```bash
+```sh
 pip install pygments
 
 pygmentize hello.py
@@ -619,7 +619,7 @@ pygmentize hello.py
 
 **RedHat/CentOS**
 
-```bash
+```sh
 sudo yum install -y python3-pygments
 
 export LESSOPEN="|pygmentize -g -O style=colorful %s"
@@ -629,7 +629,7 @@ export LESSOPEN="|pygmentize -g -O style=colorful %s"
 
 Pygments 提供了[内建样式](https://pygments.org/styles/)，下面的命令列出已安装的样式
 
-```bash
+```sh
 pygmentize -L styles
 ```
 
@@ -639,13 +639,13 @@ pygmentize -L styles
 
 **Ubuntu**
 
-```bash
+```sh
 apt install grc
 ```
 
 **源码安装**
 
-```bash
+```sh
 git clone https://github.com/garabik/grc.git
 cd grc
 ./install.sh
@@ -657,7 +657,7 @@ source /etc/grc.zsh
 
 **自动设置常用命令别名**
 
-```bash
+```sh
 sed -e '$a\[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh' ~/.zshrc
 ```
 
@@ -667,7 +667,7 @@ sed -e '$a\[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh' ~/.zshrc
 
 [cheat]: https://github.com/cheat/cheat
 
-```bash
+```sh
 pip install cheat
 
 pip install howdoi
@@ -677,7 +677,7 @@ pip install howdoi
 
 [Powerline]: https://github.com/powerline/fonts
 
-```bash
+```sh
 # clone
 git clone https://github.com/powerline/fonts.git --depth=1
 # install

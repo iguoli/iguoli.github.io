@@ -10,7 +10,7 @@ key: Install-CA-Certs-2021-06-09
 
 Install the `ca-certificates` package
 
-```bash
+```sh
 yum install ca-certificates
 ```
 
@@ -18,30 +18,30 @@ yum install ca-certificates
 
 Enable the dynamic CA configuration feature
 
-```bash
+```sh
 update-ca-trust force-enable
 ```
 
 Copy ca file to `/etc/pki/ca-trust/source/anchors/`
 
-```bash
+```sh
 cp ca.pem /etc/pki/ca-trust/source/anchors/
 ```
 
 Run command
 
-```bash
+```sh
 update-ca-trust extract
 ```
 
 Check the CA cert is installed into `ca-bundle.crt`
 
-```bash
+```sh
 head /etc/pki/tls/certs/ca-bundle.crt
 ```
 
 ## Install CA certs to JDK
 
-```bash
+```sh
 keytool -importcert -alias friendly_name -file ca.pem -storepass changeit
 ```

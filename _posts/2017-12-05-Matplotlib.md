@@ -7,7 +7,7 @@ key: Matplotlib-2017-12-05
 
 # ipython 使用交互式绘图功能
 
-```bash
+```sh
 ipython --matplotlib
 ```
 

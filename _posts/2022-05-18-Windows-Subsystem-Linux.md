@@ -8,7 +8,7 @@ key: Windows-Subsystem-Linux-2022-05-18
 
 ## 查看可安装的 Linux 发行版
 
-```bash
+```sh
 wsl --list --online
 
 # short
@@ -17,7 +17,7 @@ wsl -l -o
 
 ## 安装发行版
 
-```bash
+```sh
 wsl --install -d <distro>
 ```
 
@@ -47,7 +47,7 @@ wsl --import Fedora-36 $HOME\wsl\fedora $HOME\Downloads\fedora-36-rootfs.tar
 
 如果安装了多个发行版，可以设置 Fedora-36 为默认启动系统
 
-```bash
+```sh
 wsl --set-default-version Fedora-36
 
 # short
@@ -58,7 +58,7 @@ wsl -s Fedora-36
 
 [为系统添加新用户](https://iguoli.github.io/2017/05/18/Linux-System-Provision.html#为系统添加新用户)，并以该用户登录
 
-```bash
+```sh
 wsl -d Fedora-36 -u user
 ```
 
@@ -71,7 +71,7 @@ default=user
 
 ## 关机
 
-```bash
+```sh
 wsl --terminate <distro>
 
 # short
@@ -82,7 +82,7 @@ wsl -t <distro>
 
 在 *System Settings*, *Add or remove programs* 可以找到已安装的 Linux 发行版，点击 *Uninstall* 即可。或者执行
 
-```bash
+```sh
 wsl --unregister <distro>
 ```
 
@@ -105,7 +105,7 @@ appendWindowsPath=false
 
 WSL 安装 distro 后，在 distro 系统内可以 ping 通 Windows 的主机 IP 地址，因此，可以在 Windows 上启动代理服务，并在 distro 中设置环境变量，即可访问外部网络。
 
-```bash
+```sh
 export http_proxy=http://host-ip:7890
 export https_proxy=http://host-ip:7890
 export all_proxy=socks5://host-ip:7891
@@ -123,13 +123,13 @@ generateResolvConf=false
 
 保存后退出 wsl 并关闭系统
 
-```bash
+```sh
 wsl -t <distro>
 ```
 
 重新进入系统，`unlink /etc/resolv.conf`，这是因为 `/etc/resolv.conf` 文件一般是软链接到 `resolvconf` 生成的文件，最后重新创建 `/etc/resolv.conf` 文件并写入有效的 nameserver。
 
-```bash
+```sh
 unlink /etc/resolv.conf
 
 echo nameserver 1.1.1.1 > /etc/resolv.conf

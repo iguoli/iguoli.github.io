@@ -55,7 +55,7 @@ b
 c
 ```
 
-```bash
+```sh
 paste num.txt char.txt
 ```
 
@@ -72,7 +72,7 @@ paste num.txt char.txt
 - `-s`: 将从输入中读取到的所有行合并为一行，如果指定多个输入，则每个输入各自一行
 - `-d`: 指定合并时使用的分隔符
 
-```bash
+```sh
 paste -s nub.txt char.txt
 ```
 
@@ -87,25 +87,25 @@ a b c
 
 用法1：将当前目录下的文件名按三列展示
 
-```bash
+```sh
 ls | paste - - -
 ```
 
 用法2：将单个文件的多行合并为一行
 
-```bash
+```sh
 paste -s myfile
 ```
 
 用法3：生成类似 PATH 环境变量的目录列表
 
-```bash
+```sh
 find / -name bin -type d | paste -s -d: -
 ```
 
 用法4：给输入中的每一行加上行号
 
-```bash
+```sh
 sed = char.txt | paste - -
 ```
 
@@ -113,7 +113,7 @@ sed = char.txt | paste - -
 
 ## Bash for loop
 
-```bash
+```sh
 #!/bin/bash
 for i in 1 2 3 4 5
 do
@@ -121,7 +121,7 @@ do
 done
 ```
 
-```bash
+```sh
 for output in $(Linux Command)
 do
     command1 on $output
@@ -138,13 +138,13 @@ done
 
 [How can I sort du -h output by size](https://serverfault.com/questions/62411/how-can-i-sort-du-h-output-by-size)
 
-```bash
+```sh
 du -sh * | sort -h
 ```
 
 ### 对数字排序
 
-```bash
+```sh
 sort -n
 ```
 
@@ -152,7 +152,7 @@ sort -n
 
 对类似于 `abc:10:def` 的文本，可以通过 `-t` 参数设定分隔符，使用 `-k` 参数来选择分隔后的列
 
-```bash
+```sh
 cat /etc/passwd | sort -n -t':' -k3
 ```
 
@@ -162,7 +162,7 @@ cat /etc/passwd | sort -n -t':' -k3
 
 ### 去重
 
-```bash
+```sh
 sort abc.txt | uniq
 
 sort -u abc.txt
@@ -170,7 +170,7 @@ sort -u abc.txt
 
 ### 查重
 
-```bash
+```sh
 # 打印所有行，在每行前显示重复个数
 sort abc.txt | uniq -c
 
@@ -184,13 +184,13 @@ sort abc.txt | uniq -cd
 
 如果是 bash 或 zsh，可以在使用 `&!`，比如在命令行打开 `gvim`
 
-```bash
+```sh
 gvim &!
 ```
 
 ## sudo and su
 
-```bash
+```sh
 sudo -H -u postgres psql db
 
 su - postgres -c 'psql db'
@@ -206,21 +206,21 @@ su - postgres -c 'psql db'
 - builtin (command is shell builtin)
 - file (command is disk file)
 
-```bash
+```sh
 $ type -t cd
 builtin
 ```
 
 `-p` 选项，打印所给命令的文件路径，只对外部命令有效
 
-```bash
+```sh
 $ type -p date
 /bin/date
 ```
 
 `-a` 选项，打印所给命令的所有信息，包含命令类型，文件路径等
 
-```bash
+```sh
 $ type -a ls
 ls is aliased to `ls --color=auto'
 ls is /bin/ls
@@ -230,19 +230,19 @@ ls is /bin/ls
 
 查看文件系统状态
 
-```bash
+```sh
 stat -f /home
 ```
 
 查看文件状态
 
-```bash
+```sh
 find /var/log/ -name '*.log' -type f | xargs stat --printf='%s\t%n\n'
 ```
 
 ## 网络相关命令
 
-```bash
+```sh
 # 通过主机域名查看别名或IP
 nslookup www.example.com
 
@@ -263,7 +263,7 @@ hostname -i
 unified 格式  
 `-u`、`-U NUM` 或 `--unified[=NUM]`
 
-```bash
+```sh
 # 默认显示3行上下文
 diff -u f1 f2
 
@@ -330,7 +330,7 @@ diff -U 2 f1 f2
 
 ### 使用`rename`命令
 
-```bash
+```sh
 $ rename -n -s markdown md *.markdown
 
 'New-Linux-Setup.markdown' would be renamed to 'New-Linux-Setup.md'
@@ -341,7 +341,7 @@ $ rename -n -s markdown md *.markdown
 
 ### 使用`ls -1`和`sed`命令
 
-```bash
+```sh
 ls -1 | sed "s/被替换字符\(保留字符\)/mv & 新字符\1/" | sh -v
 ```
 
@@ -349,13 +349,13 @@ ls -1 | sed "s/被替换字符\(保留字符\)/mv & 新字符\1/" | sh -v
 
 在当前目录下会生成一个100M的test文件，文件内容为全0（因从/dev/zero中读取，/dev/zero为0源）
 
-```bash
+```sh
 dd if=/dev/zero of=test bs=1M count=100
 ```
 
 ## Linux 下查看 cpu 个数及使用率
 
-```bash
+```sh
 $ lscpu
 
 $ top

@@ -10,13 +10,13 @@ key: Firewalld-2021-11-10
 
 ### 防火墙状态
 
-```bash
+```sh
 systemctl status firewalld
 ```
 
 ### 列出防火墙可设置的服务名
 
-```bash
+```sh
 firewall-cmd --get-services
 ```
 
@@ -24,7 +24,7 @@ firewall-cmd --get-services
 
 ### 允许 http, https 和 postgresql 数据库的网络访问
 
-```bash
+```sh
 firewall-cmd --add-service=http --add-service=https --add-service=postgresql --permanent
 ```
 
@@ -33,7 +33,7 @@ firewall-cmd --add-service=http --add-service=https --add-service=postgresql --p
 
 如果在当前运行环境应用了一些新配置，但没有使用 `--permanent`，可以使用 `--runtime-to-permanent` 参数将当前配置写入到配置文件，使其永久生效。
 
-```bash
+```sh
 firewalld-cmd --add-service=http
 
 firewalld-cmd --runtime-to-permanent
@@ -41,7 +41,7 @@ firewalld-cmd --runtime-to-permanent
 
 如果需要重新加载配置文件，可以使用 `--reload` 参数
 
-```bash
+```sh
 firewalld-cmd --add-service=http --permanent
 
 firewalld-cmd reload
@@ -49,24 +49,24 @@ firewalld-cmd reload
 
 ### 取消 http 访问
 
-```bash
+```sh
 firewall-cmd --remove-service=http --permanent
 ```
 
 ### 允许 8080 和 8800 端口的 TCP 访问
 
-```bash
+```sh
 firewall-cmd --add-port=8080/tcp --add-port=8800/tcp --permanent
 ```
 
 ### 取消 8800 端口的 TCP 访问
 
-```bash
+```sh
 firewall-cmd --remove-port=8800/tcp
 ```
 
 ### 显示默认 zone 的详细信息
 
-```bash
+```sh
 firewall-cmd --list-all
 ```

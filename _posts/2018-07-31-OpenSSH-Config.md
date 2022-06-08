@@ -10,7 +10,7 @@ key: OpenSSH-Config-2018-07-31
 
 参考手册页了解详细内容
 
-```bash
+```sh
 man 5 ssh_config
 ```
 
@@ -88,13 +88,13 @@ Host *
 oh-my-zsh 对 ssh 主机名的自动补全有时候会不正常，可以执行以下命令来解决
 {:.warning}
 
-```bash
+```sh
 zstyle ':completion:*:ssh:*' hosts off
 ```
 
 ## SSH Client端个人配置文件
 
-```bash
+```sh
 vim ~/.ssh/config
 ```
 
@@ -160,7 +160,7 @@ Host server
 
 对应的命令行方式是`-J`参数
 
-```bash
+```sh
 ssh -J user@jumphost1:22 fred@192.168.5.38
 ```
 
@@ -173,7 +173,7 @@ Host server
 
 对应的命令行方式是`-o ProxyCommand`参数
 
-```bash
+```sh
 ssh -o ProxyCommand="ssh -W %h:%p jumphost" server
 ```
 

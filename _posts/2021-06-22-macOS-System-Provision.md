@@ -22,7 +22,7 @@ key: macOS-System-Provision-2021-06-25
 
 - 下载 macOS 安装包
 
-```bash
+```sh
 git clone https://github.com/munki/macadmin-scripts.git
 cd macadmin-scripts
 ./installinstallmacos.py
@@ -36,19 +36,19 @@ cd macadmin-scripts
 
   - **Big Sur**
 
-    ```bash
+    ```sh
     sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/u_disk
     ```
 
   - **Catalina**
 
-    ```bash
+    ```sh
     sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/u_disk
     ```
 
   - **Mojave**
 
-    ```bash
+    ```sh
     sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/u_disk
     ```
 
@@ -89,14 +89,14 @@ cd macadmin-scripts
 
 - 设置终端显示的主机名
 
-```bash
+```sh
 sudo scutil --get HostName
 sudo scutil --set HostName Lis-Macmini
 ```
 
 - 设置局域网显示的主机名 (对应共享设置中的主机名)
 
-```bash
+```sh
 sudo scutil --get ComputerName
 sudo scutil --set ComputerName Lis-Macmini
 ```
@@ -105,7 +105,7 @@ sudo scutil --set ComputerName Lis-Macmini
 
 打开终端输入以下命令然后重启系统后生效。
 
-```bash
+```sh
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false
 ```
 
@@ -134,7 +134,7 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false
 
 关闭 SIP 后，执行以下命令
 
-```bash
+```sh
 sudo mount -uw / && killall Finder
 rm -rf '/System/Library/CoreServices/Menu Extras/ExpressCard.menu'
 touch '/System/Library/CoreServices/Menu Extras/ExpressCard.menu'
@@ -168,7 +168,7 @@ touch '/System/Library/CoreServices/Menu Extras/ExpressCard.menu'
 
 大部分终端命令都会识别以下环境变量来使用命令行代理，如果有特殊命令不识别，可以使用 **ProxyChains-NG** 命令。
 
-```bash
+```sh
 export http_proxy=http://127.0.0.1:7890
 export https_proxy=http://127.0.0.1:7890
 export all_proxy=socks5://127.0.0.1:7891
@@ -176,7 +176,7 @@ export all_proxy=socks5://127.0.0.1:7891
 
 取消命令行代理环境变量
 
-```bash
+```sh
 unset all_proxy http_proxy https_proxy
 ```
 
@@ -184,7 +184,7 @@ unset all_proxy http_proxy https_proxy
 
 XCode Command Line Tools 包含了 `git` 等系统常用的命令行工具。
 
-```bash
+```sh
 xcode-select --install
 ```
 
@@ -192,7 +192,7 @@ xcode-select --install
 
 参考之前的 [Homebrew](https://iguoli.github.io/2019/12/04/Homebrew.html) 说明
 
-```bash
+```sh
 /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
 
 # Set Homebrew-bottles mirror
@@ -201,7 +201,7 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
 #### 为 zsh 添加 Homebrew [自动补全](https://docs.brew.sh/Shell-Completion)
 
-```bash
+```sh
 cat << EOF >> ~/.zprofile
 # Add Homebrew autocompletion function to FPATH
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -220,19 +220,19 @@ chmod -R go-w "$(brew --prefix)/share"
 
 - 使用 Homebrew 安装
 
-```bash
+```sh
 brew install connect
 ```
 
 ### 安装 [ProxyChains-NG](https://github.com/rofl0r/proxychains-ng)
 
-```bash
+```sh
 brew install proxychains-ng
 
 alias pcs='proxychains4'
 ```
 
-```bash
+```sh
 $ vim $(brew --prefix)/etc/proxychains.conf
 
 [ProxyList] 
@@ -246,14 +246,14 @@ socks5  127.0.0.1 7891
 
 #### HTTP 和 HTTPS 协议代理
 
-```bash
+```sh
 git config --global http.proxy 'socks5://127.0.0.1:7891'
 git config --global https.proxy 'socks5://127.0.0.1:7891'
 ```
 
 #### SSH 和 Git 协议代理
 
-```bash
+```sh
 $ vim ~/.ssh/config
 Host github.com
     User git
@@ -263,7 +263,7 @@ Host github.com
 
 ### 配置 [zsh](https://github.com/ohmyzsh/ohmyzsh)
 
-```bash
+```sh
 echo $SHELL                           # 检查当前 shell
 which zsh                             # 检查 zsh 是否安装
 cat /etc/shells                       # 检查 zsh 是否已在 shell 列表
@@ -273,7 +273,7 @@ chsh -s "$(which zsh)"                # 变更启动 shell 为 zsh
 
 ### 安装 [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
-```bash
+```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -283,13 +283,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
-```bash
+```sh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
 [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
-```bash
+```sh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
@@ -297,7 +297,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 在 *iTerm2* -> *Preferences* -> *Profiles* -> *Text* 中，将 **Cursor** 风格改为 **Box** 后，在 zsh 中，不管是 vi command mode 还是 vi insert mode，光标始终是 **Box** 风格，而我希望在 vi insert mode 时光标是 **Vertical bar** 的风格，因此需要修改 oh-my-zsh 的 vi-mode 插件文件 `~/.oh-my-zsh/plugins/vi-mode/vi-mode.plugin.zsh`，将 `VI_MODE_SET_CURSOR` 设置为 true。
 
-```bash
+```sh
 $ vim ~/.oh-my-zsh/plugins/vi-mode/vi-mode.plugin.zsh
 
 typeset -g VI_MODE_SET_CURSOR=true
@@ -305,7 +305,7 @@ typeset -g VI_MODE_SET_CURSOR=true
 
 ### 安装 MacVim 替代系统自带 Vim
 
-```bash
+```sh
 brew install --cask macvim
 ```
 
@@ -313,7 +313,7 @@ MacVim 会在 `$(brew --prefix)/bin` 下创建 Vim 命令行程序的软链接�
 
 #### 安装 [vim-plug](https://github.com/junegunn/vim-plug)
 
-```bash
+```sh
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
@@ -338,7 +338,7 @@ endif
 
 - 或者使用 Homebrew 进行安装
 
-```bash
+```sh
 brew search jdk
 
 # 安装 AdoptOpenJDK
@@ -352,7 +352,7 @@ sudo ln -sfn $(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk /Library/Java/Ja
 
 在 `~/.zshrc` 中设置 `JAVA_HOME` 环境变量
 
-```bash
+```sh
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 ```
 
@@ -361,7 +361,7 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
 ### 安装 GNU 命令行工具
 
-```bash
+```sh
 brew install coreutils findutils gnu-sed grep
 
 export PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
@@ -378,7 +378,7 @@ export MANPATH="$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH"
 
 Pygments 是代码高亮工具，用于美化输出。
 
-```bash
+```sh
 brew install pygments
 
 export LESSOPEN="|$(brew --prefix)/bin/pygmentize -g -O style=solarized-dark %s"
@@ -388,7 +388,7 @@ export LESSOPEN="|$(brew --prefix)/bin/pygmentize -g -O style=solarized-dark %s"
 
 Pygments 提供了[内建样式](https://pygments.org/styles/)，下面的命令列出已安装的样式
 
-```bash
+```sh
 pygmentize -L styles
 ```
 
@@ -396,13 +396,13 @@ pygmentize -L styles
 
 `grc` 工具可以彩色化其它命令行工具的输出
 
-```bash
+```sh
 brew install grc
 ```
 
 ##### 自动设置常用命令别名
 
-```bash
+```sh
 sed -e '$a\[[ -s "$(brew --prefix)/etc/grc.zsh" ]] && source $(brew --prefix)/etc/grc.zsh' ~/.zshrc
 ```
 
@@ -432,6 +432,6 @@ sed -e '$a\[[ -s "$(brew --prefix)/etc/grc.zsh" ]] && source $(brew --prefix)/et
 
 - 添加命令行 [Command Line Reference](https://www.scootersoftware.com/v4help/index.html?command_line_reference.html)
 
-```bash
+```sh
 ln -s '/Applications/Beyond Compare.app/Contents/MacOS/bcomp' /usr/local/bin/
 ```

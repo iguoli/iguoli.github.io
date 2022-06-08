@@ -71,7 +71,7 @@ Time Zone Abbreviations
 
 在支持 `systemd` Linux系统上，使用 `timedatectl` 命令
 
-```bash
+```sh
 $ timedatectl
       Local time: Mon 2019-08-05 10:02:54 CST
   Universal time: Mon 2019-08-05 02:02:54 UTC
@@ -84,20 +84,20 @@ NTP synchronized: no
 
 使用 `tzselect` 命令查看可用的系统时区，该命令不会修改系统时区
 
-```bash
+```sh
 tzselect
 ```
 
 使用 `readlink` 命令查看 `/etc/localtime` 指向的时区文件
 
-```bash
+```sh
 $ readlink /etc/localtime
 /usr/share/zoneinfo/Asia/Shanghai
 ```
 
 查看 `/etc/timezone` 文件
 
-```bash
+```sh
 $ cat /etc/timezone
 Asia/Shanghai
 ```
@@ -106,31 +106,31 @@ Asia/Shanghai
 
 在支持 `systemd` Linux系统上，使用 `timedatectl set-timezone` 命令
 
-```bash
+```sh
 timedatectl set-timezone Asia/Shanghai
 ```
 
 直接修改 `/etc/localtime` 指向的时区文件
 
-```bash
+```sh
 ln -s -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 
 在 RedHat Linux 和 CentOS 系统上使用 `timeconfig` 命令
 
-```bash
+```sh
 timeconfig
 ```
 
 在 Debian/Ubuntu 等类似系统上使用 `dpkg-reconfigure` 工具
 
-```bash
+```sh
 dpkg-reconfigure tzdata
 ```
 
 在脚本中指定时区，使用 `TZ` 环境变量
 
-```bash
+```sh
 TZ='Asia/Shanghai'
 ```
 
@@ -142,13 +142,13 @@ TZ='Asia/Shanghai'
 
 给 `date` 命令设置 `TZ` 环境变量来显示指定时区的时间
 
-```bash
+```sh
 TZ=Asia/Shanghai date
 ```
 
 显示 RFC 5322 格式时间，例如 `Tue, 11 Jan 2022 12:30:20 +0800`
 
-```bash
+```sh
 date -R
 
 date --rfc-email
@@ -163,7 +163,7 @@ date --rfc-email
 > - `ns`
 >
 
-```bash
+```sh
 date --rfc-3339=s
 ```
 
@@ -178,7 +178,7 @@ date --rfc-3339=s
 > - `ns`
 >
 
-```bash
+```sh
 # 只显示日期
 date -I
 
@@ -194,13 +194,13 @@ TZ='Asia/Shanghai' date -Is
 
 显示自定义格式时间
 
-```bash
+```sh
 date +"%Y-%m-%d %H:%M:%S"
 ```
 
 显示 UTC 时间，例如 `2022-01-11 04:30:20`
 
-```bash
+```sh
 date -u
 
 date -u +"%Y-%m-%d %H:%M:%S"
@@ -220,37 +220,37 @@ date -u +"%Y-%m-%d %H:%M:%S"
 
 将美国芝加哥时间 (UTC -5) 早上4点转换为当前系统时间
 
-```bash
+```sh
 date -d 'TZ="America/Chicago" 4am'
 ```
 
 将美国东部时间转换为当前系统时间
 
-```bash
+```sh
 date -d '2022-01-10 20:29:03.947 EST'
 ```
 
 将美国东部时间转换为中国时间
 
-```bash
+```sh
 TZ='Asia/Shanghai' date -d '2022-01-10 20:29:03.947 EST'
 ```
 
 将美国东部时间转换为中国时间并以 ISO 8601 格式显示到秒
 
-```bash
+```sh
 TZ='Asia/Shanghai' date -d '2022-01-10 20:29:03.947 EST' -Is
 ```
 
 将 UTC 时间转换为中国时间并以 RFC 3339 格式显示到秒
 
-```bash
+```sh
 TZ='Asia/Shanghai' date -d '2022-01-10T20:29:03.947 UTC' --rfc-3339=s
 ```
 
 将 RFC 3339 格式 UTC -5 时区时间转换为中国时间并以 ISO 8601 格式显示到秒
 
-```bash
+```sh
 TZ='Asia/Shanghai' date -d '2022-01-10 22:38:02.162-05' -Is
 ```
 
@@ -258,13 +258,13 @@ TZ='Asia/Shanghai' date -d '2022-01-10 22:38:02.162-05' -Is
 
 在支持 `systemd` Linux系统上，使用 `timedatectl set-time` 命令
 
-```bash
+```sh
 timedatectl set-time '2019/08/05 12:55:00'
 ```
 
 使用 `date` 命令修改时间
 
-```bash
+```sh
 date -s '2019/08/05 13:52:00'
 
 # 单独修改日期

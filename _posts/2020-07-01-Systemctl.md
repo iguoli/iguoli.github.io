@@ -12,7 +12,7 @@ key: Systemctl-2020-07-01
 
 ### 列出当前内存中的 units
 
-```bash
+```sh
 systemctl list-units
 ```
 
@@ -22,7 +22,7 @@ systemctl list-units
 
 ### Unit 种类
 
-```bash
+```sh
 systemctl --type=help
 
 # equivalent to
@@ -31,7 +31,7 @@ systemctl -t help
 
 ### 列出系统服务类型 units
 
-```bash
+```sh
 systemctl list-units --type=service
 
 # equivalent to
@@ -44,13 +44,13 @@ systemctl --all -t service
 
 ### Unit 状态
 
-```bash
+```sh
 systemctl --state=help
 ```
 
 ### 列出某种状态的 units
 
-```bash
+```sh
 # State
 systemctl --state=active
 systemctl --state=inactive
@@ -66,7 +66,7 @@ systemctl --state=exited
 
 ### 检查一或多个 unit 状态
 
-```bash
+```sh
 # 检查 nginx 和 postgresql-9.6 是否是 active 状态
 systemctl is-active nginx postgresql-9.6
 
@@ -76,25 +76,25 @@ systemctl is-failed nginx
 
 ### 启动一或多个服务
 
-```bash
+```sh
 systemctl start nginx postgresql-9.6
 ```
 
 ### 停止一或多个服务
 
-```bash
+```sh
 systemctl stop nginx postgresql-9.6
 ```
 
 ### 查看一或多个服务状态
 
-```bash
+```sh
 systemctl status nginx postgresql-9.6
 ```
 
 ### 重载一或多个服务的配置文件
 
-```bash
+```sh
 systemctl reload nginx sshd
 ```
 
@@ -102,36 +102,36 @@ systemctl reload nginx sshd
 
 ### 列出系统已安装的 unit files
 
-```bash
+```sh
 systemctl list-unit-files
 ```
 
 ### 查看所有服务文件状态
 
-```bash
+```sh
 systemctl list-unit-files -t service
 ```
 
 ### 查看 postgresql 服务文件状态
 
-```bash
+```sh
 systemctl list-unit-files postgresql-9.6.service
 ```
 
 ### 启用服务
 
-```bash
+```sh
 systemctl enable postgresql-9.6
 ```
 
 ### 禁用服务
 
-```bash
+```sh
 systemctl disable postgresql-9.6
 ```
 
 ### 检查服务是否启用
 
-```bash
+```sh
 systemctl is-enabled postgresql-9.6
 ```

@@ -18,7 +18,7 @@ Bash 中使用 `echo` 输出颜色代码的格式
 
 例如：
 
-```bash
+```sh
 echo -e "\e[0;31mText\e[0m"
 
 # Color Variables
@@ -77,7 +77,7 @@ echo -e "${Red}Text${NC}"
 
 ### Color Variables
 
-```bash
+```sh
 # No Color
 NC='\033[0m'              # Text Reset
 
@@ -195,7 +195,7 @@ echo -e "${IGreen}Success${NC}"
 
 ### Verify environment
 
-```bash
+```sh
 echo $TERM
 
 tput colors
@@ -203,7 +203,7 @@ tput colors
 
 ### Example Code
 
-```bash
+```sh
 Red=$(tput setaf 1) Green=$(tput setaf 2) Yellow=$(tput setaf 3)
 Blue=$(tput setaf 4)
 R=$(tput rev) NC=$(tput sgr0)

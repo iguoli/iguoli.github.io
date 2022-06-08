@@ -12,7 +12,7 @@ key: Bash-Completion-2019-12-13
 
 ## SSH 服务器名称自动补全
 
-```bash
+```sh
 $ mkdir -p /etc/bash_completion.d
 
 # ssh 的自动补全代码 

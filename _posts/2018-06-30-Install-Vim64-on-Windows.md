@@ -22,7 +22,7 @@ key: Install-Vim64-on-Windows-2018-06-30
 
 6. 在 Git-Bash 下安装 Vundle
 
-```bash
+```sh
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
 

@@ -12,14 +12,14 @@ key: Setup-rbenv-2018-07-18
 
 ## [安装 rbenv](https://github.com/rbenv/rbenv#basic-github-checkout)
 
-```bash
+```sh
 # Clone rbenv into ~/.rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 ```
 
 ## 设置 rbenv 环境变量
 
-```bash
+```sh
 # Optionally, try to compile dynamic bash extension to speed up rbenv. Don't worry if it fails; rbenv will still work normally
 $ cd ~/.rbenv && src/configure && make -C src
 
@@ -33,7 +33,7 @@ $ curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-docto
 
 ## [安装 ruby-build 插件](https://github.com/rbenv/ruby-build#readme)
 
-```bash
+```sh
 # As an rbenv plugin
 mkdir -p "$(rbenv root)"/plugins
 git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
@@ -41,7 +41,7 @@ git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-b
 
 ## [安装 Ruby](https://github.com/rbenv/rbenv#installing-ruby-versions)
 
-```bash
+```sh
 # list all available versions
 rbenv install -l
 

@@ -14,7 +14,7 @@ PostgreSQL 交互式终端 `psql` 的使用，包括连接字符串，免密设�
 
 ### macOS 上安装 [psql]
 
-```bash
+```sh
 brew install libpq
 
 # libpq is keg-only, you can add its opt-path to the PATH
@@ -24,7 +24,7 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 
 ### [psql] 命令摘要
 
-```bash
+```sh
 psql [option...] [dbname [username]]
 
 General options:
@@ -38,7 +38,7 @@ General options:
 
 要连接到数据库，需要*目标数据库名称*，*服务器主机名*，*端口号*及*用户名*。可以通过命令行选项（分别为`-d`，`-h`，`-p`和`-U`）告知psql这些参数。
 
-```bash
+```sh
 psql -h HOSTNAME -U USERNAME -d DBNAME
 
 # 或
@@ -47,7 +47,7 @@ psql -h HOSTNAME DBNAME USERNAME
 
 通过设置环境变量 *PGDATABASE*，*PGHOST*，*PGPORT*，*PGUSER*可以避免每次输入这些信息。
 
-```bash
+```sh
 export PGHOST='192.168.10.10'
 export PGDATABASE='mydb'
 export PGUSER='myname'
@@ -69,7 +69,7 @@ psql
 
 前四个字段可以是具体的字符串或`*`，第一个匹配当前连接的密码会被使用。因此，应该把具体的条目放前面，把通配符多的条目放后面。在 Unix 系统上，还要注意文件的权限是`0600`
 
-```bash
+```sh
 $ vim ~/.pgpass
 # hostname:port:database:username:password
 192.168.10.10:5432:*:postgres:mypassword
@@ -86,7 +86,7 @@ You are connected to database "mydb" as user "postgres" on host "192.168.10.10" 
 
 另一种连接数据库的方式是使用[连接字符串(connection strings)][Connection Strings]，有 *Keyword/Value连接字符串* 和 *连接URI(Connection URI)* 两种格式。
 
-```bash
+```sh
 # keyword=value
 psql "host=localhost user=postgres dbname=mydb connect_timeout=10 sslmode=require"
 
@@ -127,7 +127,7 @@ postgresql://host1:123,host2:456/somedb?target_session_attrs=any&application_nam
 
 ### [psql] 常用命令
 
-```bash
+```sh
 # 连接数据库，执行命令，然后退出
 psql -c '\?'
 psql -c '\x' -c 'select * from table1'
@@ -474,7 +474,7 @@ Options controlling the restore:
 
 将数据库导出为 SQL-script 文件
 
-```bash
+```sh
 # 导出 mydb 数据库到 SQL-script 文件
 pg_dump -h localhost -p 5432 -U postgres mydb > db.sql
 
@@ -521,13 +521,13 @@ host    replication     all             0.0.0.0/0               trust # 允许�
 
 在本地备份为 tar.gz 包
 
-```bash
+```sh
 pg_basebackup -D backup -Ft -Xs -z -P
 ```
 
 在远程机器进行复制并启用
 
-```bash
+```sh
 service posgresql-9.4 stop
 
 mv /var/lib/pgsql/9.4/data /var/lib/pgsql/9.4/data.bak
@@ -541,7 +541,7 @@ service postgresql-9.4 start
 
 - 安装系统 AppStream Repo 中的 *postgresql module*
 
-```bash
+```sh
 yum module list 'postgresql*'
 
 yum module install postgresql:9.6
@@ -554,7 +554,7 @@ yum module install postgresql:9.6
 注意，安装官网 Repo 的 *postgresql-server* 安装包，需要先禁用系统 AppStream Repo 中的 *postgresql module stream*，否则将无法看到该包。
 {:.warning}
 
-```bash
+```sh
 # Install the repository RPM:
 sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
@@ -574,7 +574,7 @@ sudo systemctl start postgresql-9.6
 
 [archived-postgresql]: https://yum.postgresql.org/repopackages/
 
-```bash
+```sh
 # Create special repo config file
 cat << EOF > /etc/yum.repos.d/pgdg-94.repo
 [pgdg94]
@@ -603,7 +603,7 @@ sudo systemctl start postgresql-9.4
 
 如果已经安装过9.6版本，需要再次将9.4数据库升级到9.6，可以将9.6的data目录备份，然后使用 `/usr/pgsql-9.6/initdb` 新建data目录。
 
-```bash
+```sh
 mv /var/lib/pgsql/9.6/data{,.bak}
 
 /usr/pgsql-9.6/bin/initdb -D /var/lib/pgsql/9.6/data
@@ -611,7 +611,7 @@ mv /var/lib/pgsql/9.6/data{,.bak}
 
 ### 兼容性检查
 
-```bash
+```sh
 /usr/pgsql-9.6/bin/pg_upgrade --old-bindir=/usr/pgsql-9.4/bin/ --new-bindir=/usr/pgsql-9.6/bin/ --old-datadir=/var/lib/pgsql/9.4/data/ --new-datadir=/var/lib/pgsql/9.6/data/ --check
 ```
 
@@ -636,19 +636,19 @@ Checking for new cluster tablespace directories             ok
 
 停掉 9.4 的数据库
 
-```bash
+```sh
 service postgresql-9.4 stop
 ```
 
 开始升级
 
-```bash
+```sh
 /usr/pgsql-9.6/bin/pg_upgrade --old-bindir=/usr/pgsql-9.4/bin/ --new-bindir=/usr/pgsql-9.6/bin/ --old-datadir=/var/lib/pgsql/9.4/data/ --new-datadir=/var/lib/pgsql/9.6/data/
 ```
 
 启动 9.6 数据库
 
-```bash
+```sh
 service postgresql-9.6 start
 ```
 
@@ -710,7 +710,7 @@ primary_conninfo = 'host=192.168.33.10 port=5432 user=replica password=P@ssw0rd!
 
 在第二台机器安装好 postgresql 服务器，不要启动，为 postgres 用户建立 `.pgpass` 文件
 
-```bash
+```sh
 cat << EOF > ~/.pgpass
 192.168.33.10:5432:*:replica:P@ssw0rd!
 EOF
@@ -720,7 +720,7 @@ chmod 0600 ~/.pgpass
 
 使用 `pg_basebackup` 生成备库
 
-```bash
+```sh
 pg_basebackup -h 192.168.33.10 -U replica -D /var/lib/pgsql/9.4/data -Xs -P
 ```
 
@@ -728,7 +728,7 @@ pg_basebackup -h 192.168.33.10 -U replica -D /var/lib/pgsql/9.4/data -Xs -P
 
 1. 主/备库状态
 
-```bash
+```sh
 # version 9.4
 /usr/pgsql-9.4/bin/pg_controldata ${PGDATA}
 /usr/pgsql-9.4/bin/pg_controldata ${PGDATA} | grep state
@@ -763,13 +763,13 @@ select pg_is_in_recovery();
 
 1. 停止主库服务
 
-```bash
+```sh
 sudo service postgresql-9.4 stop
 ```
 
 2. 提升备库为主库
 
-```bash
+```sh
 sudo -i -u postgres /usr/pgsql-9.4/bin/pg_ctl promote -D /var/lib/pgsql/9.4/data
 ```
 
@@ -777,7 +777,7 @@ sudo -i -u postgres /usr/pgsql-9.4/bin/pg_ctl promote -D /var/lib/pgsql/9.4/data
 
 4. 启动原主库作为备库
 
-```bash
+```sh
 sudo service postgresql-9.4 start
 ```
 
@@ -796,7 +796,7 @@ select pg_create_restore_point('first_point');
 
 > **httpd_can_network_connect** (HTTPD Service):: Allow HTTPD scripts and modules to connect to the network.
 
-```bash
+```sh
 sudo setsebool -P httpd_can_network_connect_db on
 ```
 

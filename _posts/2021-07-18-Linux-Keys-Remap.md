@@ -10,13 +10,13 @@ key: Linux-Keys-Remap-2021-07-18
 
 **Archlinux**
 
-```bash
+```sh
 pacman -S interception-tools
 ```
 
 **Ubuntu**
 
-```bash
+```sh
 sudo add-apt-repository ppa:deafmute/interception
 sudo apt install interception-tools
 ```
@@ -29,20 +29,20 @@ sudo apt install interception-tools
 
 **Archlinux**
 
-```bash
+```sh
 pacman -S interception-caps2esc
 ```
 
 **Ubuntu**
 
-```bash
+```sh
 sudo add-apt-repository ppa:deafmute/interception
 sudo apt install interception-caps2esc
 ```
 
 ## 创建 **udevmon** 配置文件
 
-```bash
+```sh
 vim /etc/udevmon.yaml
 ```
 
@@ -55,7 +55,7 @@ vim /etc/udevmon.yaml
 
 ## 创建系统服务
 
-```bash
+```sh
 vim /etc/systemd/system/udevmon.service
 ```
 
@@ -70,7 +70,7 @@ ExecStart=/usr/bin/nice -n -20 /usr/bin/udevmon -c /etc/udevmon.yaml
 WantedBy=multi-user.target
 ```
 
-```bash
+```sh
 systemctl enable udevmon
 systemctl start udevmon
 ```

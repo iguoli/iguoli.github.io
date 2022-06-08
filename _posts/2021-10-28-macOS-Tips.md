@@ -10,7 +10,7 @@ key: macOS-Tips-2021-10-28
 
 经常在拖动图标到不同页面的时候发现启动台切换页面失效，会自动切回到第一页，在终端使用下面的命令可以重启控制台
 
-```bash
+```sh
 killall Dock
 ```
 
@@ -18,13 +18,13 @@ killall Dock
 
 所有系统信息
 
-```bash
+```sh
 osascript -e "system info"
 ```
 
 IP 地址
 
-```bash
+```sh
 osascript -e "IPv4 address of (system info)"
 ```
 
@@ -36,7 +36,7 @@ osascript -e "IPv4 address of (system info)"
 
 - 唤醒屏幕
 
-```bash
+```sh
 caffeinate -u -t2
 ```
 
@@ -44,12 +44,12 @@ caffeinate -u -t2
 
 - 关闭屏幕
 
-```bash
+```sh
 pmset displaysleepnow
 ```
 
 - 系统睡眠
 
-```bash
+```sh
 osascript -e 'tell application "System Events" to sleep'
 ```

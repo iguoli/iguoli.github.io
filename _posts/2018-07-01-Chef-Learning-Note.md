@@ -16,7 +16,7 @@ key: Chef-Learning-Note-2018-07-01
 
 ## 检查是否可以正确连接到 Chef Server
 
-```bash
+```sh
 $ cd ~/chef-repo
 $ ls ~/chef-repo/.chef
 username.pem
@@ -34,13 +34,13 @@ $ chef generate cookbook ~/chef-repo/cookbooks/your_cookbook_name
 
 ## 本地测试 Recipes
 
-```bash
+```sh
 chef-client --local-mode hello.rb
 ```
 
 ## 上传 cookbook 到 Chef server
 
-```bash
+```sh
 $ cd ~/chef-repo/
 $ knife cookbook upload learn_chef_httpd
 Uploading learn_chef_httpd [0.1.0]
@@ -53,7 +53,7 @@ learn_chef_httpd   0.1.0
 
 ## 启动 Node 关联到 Chef Server 并执行 Recipes
 
-```bash
+```sh
 $ cd ~/chef-repo
 $ knife bootstrap 192.168.88.11 --ssh-user vagrant --sudo --identify-file ~/.ssh/id_rsa --node-name node-centos --run-list 'recipe[learn_chef_httpd]'
 
@@ -84,7 +84,7 @@ Update your node's configuration
 
 ## 更新 cookbook 的版本等信息
 
-```bash
+```sh
 vim ~/chef-repo/cookbooks/learn_chef_httpd/metadata.rb
 ```
 
@@ -102,7 +102,7 @@ source_url 'https://github.com/learn-chef/learn_chef_httpd' if respond_to?(:sour
 
 ## 在 Node 上执更新后的 cookbook
 
-```bash
+```sh
 knife ssh 'name:node-centos' 'sudo chef-client' -x vagrant -i ~/.ssh/id_rsa -a ipaddress
 ```
 
@@ -110,7 +110,7 @@ knife ssh 'name:node-centos' 'sudo chef-client' -x vagrant -i ~/.ssh/id_rsa -a i
 
 Berkshelf is a tool that helps you resolve cookbook dependencies.
 
-```bash
+```sh
 $ cd ~/chef-repo
 $ vim Berksfile
 source 'https://supermarket.chef.io'
@@ -135,7 +135,7 @@ Uploaded chef-client (10.1.0) to: 'https://api.chef.io/organizations/learning201
 
 Roles enable you to focus on the function your node performs collectively rather than each of its individual components (its run-list, node attributes, and so on). For example, you might have a web server role, a database role, or a load balancer role. Here, you'll create a role named web to define your node's function as a web server.
 
-```bash
+```sh
 mkdir ~/chef-repo/roles
 vim ~/chef-repo-roles/web.json
 ```
@@ -162,7 +162,7 @@ vim ~/chef-repo-roles/web.json
 }
 ```
 
-```bash
+```sh
 knife role from file
 
 knife role list
@@ -176,7 +176,7 @@ knife node show node1-centos --run-list
 
 ## 启动 chef-client 执行 role
 
-```bash
+```sh
 knife ssh 'role:web' 'sudo chef-client' -x vagrant -a ipaddress
 ```
 
@@ -184,26 +184,26 @@ knife ssh 'role:web' 'sudo chef-client' -x vagrant -a ipaddress
 
 ### Delete the node from the Chef server
 
-```bash
+```sh
 knife node delete node-centos --yes
 knife client delete node-centos --yes
 ```
 
 ### Delete your cookbook from the Chef server
 
-```bash
+```sh
 knife cookbook delete learn_chef_httpd --all --yes
 ```
 
 ### Delete the role from the Chef server
 
-```bash
+```sh
 knife role delete web --yes
 ```
 
 ### Delete the RSA private key from your node
 
-```bash
+```sh
 sudo rm /etc/chef/client.pem
 ```
 
@@ -213,13 +213,13 @@ sudo rm /etc/chef/client.pem
 
 - `list`
 
-```bash
+```sh
 knife node list
 ```
 
 - `show`
 
-```bash
+```sh
 # To show basic information about a node, truncated and nicely formatted
 knife node show NODE_NAME
 
@@ -249,7 +249,7 @@ knife node show $host -r
 
   - Use the `run_list add` argument to add **run-list items (roles or recipes)** to a node.
 
-```bash
+```sh
 # Syntax
 knife node run_list add NODE_NAME RUN_LIST_ITEM
 
@@ -273,7 +273,7 @@ knife node run_list add $host 'role[NAME], recipe[COOKBOOK::RECIPE]'
 
 Use the `run_list remove` argument to remove **run-list items (roles or recipes)** from a node. 
 
-```bash
+```sh
 # Syntax
 knife node run_list remove NODE_NAME RUN_LIST_ITEM
 
@@ -288,14 +288,14 @@ knife node run_list remove $host 'recipe[COOKBOOK::RECIPE_NAME]'
 
 Use the `run_list set` argument to set the run-list for a node.
 
-```bash
+```sh
 # Syntax
 knife node run_list set NODE_NAME RUN_LIST_ITEM
 ```
 
 ### knife status
 
-```bash
+```sh
 knife status
 
 knife status | grep -P -i 'pattern'
@@ -303,7 +303,7 @@ knife status | grep -P -i 'pattern'
 
 ### knife runs
 
-```bash
+```sh
 # List running status for all hosts
 knife runs list
 
@@ -316,7 +316,7 @@ knife runs show $run_id
 
 ### knife role
 
-```bash
+```sh
 knife role list
 
 knife role show ROLE_NAME

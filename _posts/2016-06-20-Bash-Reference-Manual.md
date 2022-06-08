@@ -20,19 +20,19 @@ Bash 常用语法及相关概念
 
 ##### until
 
-```bash
+```sh
 until test-commands; do commands; done
 ```
 
 ##### while
 
-```bash
+```sh
 while test-commands; do commands; done
 ```
 
 ##### for
 
-```bash
+```sh
 for var in words; do pass ${var} to commands; done
 ```
 
@@ -40,7 +40,7 @@ for var in words; do pass ${var} to commands; done
 
 ##### if
 
-```bash
+```sh
 if test-commands; then
     commands;
 elif test-commands; then
@@ -56,7 +56,7 @@ if
 
 ##### (())
 
-```bash
+```sh
 ((arithmetic expression))
 ```
 
@@ -64,7 +64,7 @@ if
 
 ##### [[]]
 
-```bash
+```sh
 [[conditional expression]]
 ```
 
@@ -76,7 +76,7 @@ Bash 提供了两种方式来把一系列命令放在一起作为整体执行。
 
 ##### ()
 
-```bash
+```sh
 ( list )
 ```
 
@@ -84,7 +84,7 @@ Bash 提供了两种方式来把一系列命令放在一起作为整体执行。
 
 ##### {}
 
-```bash
+```sh
 { list; }
 ```
 
@@ -96,13 +96,13 @@ Bash 提供了两种方式来把一系列命令放在一起作为整体执行。
 
 命令替换用命令的输出取代命令本身。
 
-```bash
+```sh
 $(command)
 ```
 
 或
 
-```bash
+```sh
 `command`
 ```
 
@@ -110,7 +110,7 @@ $(command)
 
 算术扩展可以对算术表达式求值并替换成的求值的结果。
 
-```bash
+```sh
 $((arithmetic expression))
 ```
 
@@ -140,23 +140,23 @@ Bash 的所有内部命令都会在成功时返回 `0`，失败时返回 `非0`�
 
 - `[[` 是对 `test` (或者 `[`) 的增强，但它是 shell 语法中的**关键字**而不是一个命令。因其语法特性，你可以在其中使用 `&&` 和 `||` 进行布尔测试或者使用 `>` 和 `<` 进行字符串比较。`[` 无法做到这些是因为它是个普通命令，而 `&&`, `||`, `<`, `>` 不能作为命令行参数传递给它。如果编写 `sh` 兼容的脚本，那么仍然需要使用 `[`，如果使用了 `[[`，要确保脚本开头有 `#!/bin/bash` shebang 行。
 
-| Feature                    | new test `[[` | old test `[`      | Example                                                          |
-| -------------------------- | ------------- | ----------------- | ---------------------------------------------------------------- |
-| string comparison          | `>`           | `\> (*)`          | `[[ a > b ]] || echo "a does not come after b"`                  |
-|                            | `<`           | `\< (*)`          | `[[ az < za ]] && echo "az comes before za"`                     |
-|                            | `= (or ==)`   | `=`               | `[[ a = a ]] && echo "a equals a"`                               |
-|                            | `!=`          | `!=`              | `[[ a != b ]] && echo "a is not equal to b"`                     |
-| integer comparison         | `-gt`         | `-gt`             | `[[ 5 -gt 10 ]] || echo "5 is not bigger than 10"`               |
-|                            | `-lt`         | `-lt`             | `[[ 8 -lt 9 ]] && echo "8 is less than 9"`                       |
-|                            | `-ge`         | `-ge`             | `[[ 3 -ge 3 ]] && echo "3 is greater than or equal to 3"`        |
-|                            | `-le`         | `-le`             | `[[ 3 -le 8 ]] && echo "3 is less than or equal to 8"`           |
-|                            | `-eq`         | `-eq`             | `[[ 5 -eq 05 ]] && echo "5 equals 05"`                           |
-|                            | `-ne`         | `-ne`             | `[[ 6 -ne 20 ]] && echo "6 is not equal to 20"`                  |
-| conditional evaluation     | `&&`          | `-a (**)`         | `[[ -n $var && -f $var ]] && echo "$var is a file"`              |
-|                            | `\|\|`        | `-o (**)`         | `[[ -b $var || -c $var ]] && echo "$var is a device"`            |
-| expression grouping        | `(...)`       | `\( ... \)` (**)  | `[[ $var = img* && ($var = *.png || $var = *.jpg) ]] && "echo "$var starts with img and ends with .jpg or .png"` |
-| Pattern matching           | `= (or ==)`   | (not available)   | `[[ $name = a* ]] || echo "name does not start with an 'a': $name"`|
-| RegularExpression matching | `=~`          | (not available)   | `[[ $(date) =~ ^Fri\ ...\ 13 ]] && echo "It's Friday the 13th!"` |
+| Feature                    | new test `[[` | old test `[`     | Example                                                          |
+| -------------------------- | ------------- | ---------------- | ---------------------------------------------------------------- |
+| string comparison          | `>`           | `\> (*)`         | `[[ a > b ]]                                                     |  | echo "a does not come after b"`                                              |
+|                            | `<`           | `\< (*)`         | `[[ az < za ]] && echo "az comes before za"`                     |
+|                            | `= (or ==)`   | `=`              | `[[ a = a ]] && echo "a equals a"`                               |
+|                            | `!=`          | `!=`             | `[[ a != b ]] && echo "a is not equal to b"`                     |
+| integer comparison         | `-gt`         | `-gt`            | `[[ 5 -gt 10 ]]                                                  |  | echo "5 is not bigger than 10"`                                              |
+|                            | `-lt`         | `-lt`            | `[[ 8 -lt 9 ]] && echo "8 is less than 9"`                       |
+|                            | `-ge`         | `-ge`            | `[[ 3 -ge 3 ]] && echo "3 is greater than or equal to 3"`        |
+|                            | `-le`         | `-le`            | `[[ 3 -le 8 ]] && echo "3 is less than or equal to 8"`           |
+|                            | `-eq`         | `-eq`            | `[[ 5 -eq 05 ]] && echo "5 equals 05"`                           |
+|                            | `-ne`         | `-ne`            | `[[ 6 -ne 20 ]] && echo "6 is not equal to 20"`                  |
+| conditional evaluation     | `&&`          | `-a (**)`        | `[[ -n $var && -f $var ]] && echo "$var is a file"`              |
+|                            | `\|\|`        | `-o (**)`        | `[[ -b $var                                                      |  | -c $var ]] && echo "$var is a device"`                                       |
+| expression grouping        | `(...)`       | `\( ... \)` (**) | `[[ $var = img* && ($var = *.png                                 |  | $var = *.jpg) ]] && "echo "$var starts with img and ends with .jpg or .png"` |
+| Pattern matching           | `= (or ==)`   | (not available)  | `[[ $name = a* ]]                                                |  | echo "name does not start with an 'a': $name"`                               |
+| RegularExpression matching | `=~`          | (not available)  | `[[ $(date) =~ ^Fri\ ...\ 13 ]] && echo "It's Friday the 13th!"` |
 
 (*) This is an extension to the POSIX standard; some shells may have it, others may not.
 

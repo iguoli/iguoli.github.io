@@ -16,7 +16,7 @@ Github 提供了 [Transfer a repository](https://docs.github.com/en/rest/repos/r
 
 <!--more-->
 
-```bash
+```sh
 #!/usr/bin/env bash
 #
 # script name: transfer-repo.sh
@@ -43,6 +43,6 @@ for repo in $repos; do (git_repo_transfer $1 $2 "$repo"); done
 
 将要转移的仓库名写入 *repos.txt* 文件，一行一个，然后在命令行执行脚本
 
-```bash
+```sh
 ./transfer-repo.sh org-name new-org-name
 ```
