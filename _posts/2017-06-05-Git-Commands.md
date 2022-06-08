@@ -935,13 +935,11 @@ v1.1
 
 ### Git 标签类型
 
-- 轻量级标签 (lightweight)
-  指向特定提交对象 (commit object) 的引用
+- 轻量级标签 (lightweight tags): 指向特定提交对象 (commit object) 的引用
 
-- 含附注的标签 (annotated)
-  是一个标签对象 (tag object)，有自己的 SHA-1 信息，包含着标签的名字，电子邮件地址和日期，以及标签说明，一般建议使用含附注型的标签，以便保留相关信息。
+- 含附注的标签 (annotated tags) :是一个标签对象 (tag object)，有自己的 SHA-1 信息，包含着标签的名字，电子邮件地址和日期，以及标签说明，一般建议使用含附注型的标签，以便保留相关信息。
 
-### 含附注标签
+### 含附注标签 (annotated tags)
 
 创建含附注型标签
 
@@ -964,7 +962,7 @@ git tag -a v1.2 -m 'version 1.2' 9fceb02
 git show v1.4
 ```
 
-### 轻量级标签
+### 轻量级标签 (lightweight tags)
 
 轻量级标签实际上就是一个保存着对应提交对象的校验和信息的文件。创建轻量级标签不需要任何参数，直接给出标签名字即可
 
@@ -986,11 +984,23 @@ git push origin v1.5
 git push origin --tags
 ```
 
-同时推送 commits 和 tags
+#### 同时推送 commits 和 tag
 
 ```bash
 # git push --atomic <branch> <tag>
 git push --atomic master v1.5
+```
+
+还可以使用 `--follow-tags` 选项，不过其只推送 annotation tags，所有的 lightweight tags 不会被推送，并且只推送与要提交的 commits 相关联的那些标签。
+
+```bash
+git push --follow-tags
+```
+
+可以将 `--follow-tags` 设置成系统默认选项
+
+```bash
+git config --global push.followTags true
 ```
 
 ### 删除标签
