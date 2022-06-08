@@ -877,15 +877,18 @@ git branch -vv
 git fetch --all && git remote prune
 ```
 
-### 推送
+## 推送
+
+**repository**: 远程仓库，可以是 URL 或远程引用，默认为 **origin**；
+
+**refspecs**: `src:dest`, src 可以是分支名，也可以是任意SHA-1表达式 (参考 gitrevisions)，推送空的 src 可以从远程仓库删除对应的分支；
+
+**push.default**
+
+- simple:   推送本地当前分支到远程同名分支，如果没有同名远程分支，则推送中止。
+- matching: 推送本地所有分支到远程同名分支。
 
 ```bash
-# repository: 远程仓库，可以是URL或远程引用，默认为origin；
-# refspecs:   src:dest, src可以是分支名，也可以是任意SHA-1表达式(参考gitrevisions)
-#             推送空的src可以从远程仓库删除对应的分支
-# push.default
-#   simple:   推送本地当前分支到远程同名分支，如果没有同名远程分支，则推送中止。
-#   matching: 推送本地所有分支到远程同名分支。
 git push [options] [<repository> [<refspecs>...]]
 
 # 测试推送结果，但不真的推送
@@ -981,6 +984,13 @@ git push origin v1.5
 
 ```bash
 git push origin --tags
+```
+
+同时推送 commits 和 tags
+
+```bash
+# git push --atomic <branch> <tag>
+git push --atomic master v1.5
 ```
 
 ### 删除标签
