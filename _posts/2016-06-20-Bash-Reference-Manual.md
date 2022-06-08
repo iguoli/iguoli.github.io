@@ -20,13 +20,35 @@ Bash 常用语法及相关概念
 
 ##### until
 
+```bash
+until test-commands; do commands; done
+```
+
 ##### while
 
+```bash
+while test-commands; do commands; done
+```
+
 ##### for
+
+```bash
+for var in words; do pass ${var} to commands; done
+```
 
 #### [3.2.4.2 条件结构][Conditional-Constructs]
 
 ##### if
+
+```bash
+if test-commands; then
+    commands;
+elif test-commands; then
+    commands;
+else
+    commands;
+if
+```
 
 ##### case
 
