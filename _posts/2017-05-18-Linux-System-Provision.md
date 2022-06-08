@@ -217,7 +217,7 @@ libuser-lid [user]
 libuser-lid -g group
 ```
 
-现在两个命令只能查看用户属于哪些组
+下面两个命令只能查看用户属于哪些组
 
 ```bash
 groups [user]
@@ -274,7 +274,7 @@ userdel -r user
 
 ## 设置包管理器代理
 
-##### Ubuntu Apt
+**Ubuntu APT**
 
 ```bash
 $ vim /etc/apt/apt.conf.d/proxy.conf
@@ -285,19 +285,19 @@ Acquire {
 }
 ```
 
-##### CentOS Yum/Dnf
+**RedHat/CentOS Yum/Dnf**
 
 参考 [设置Yum仓库代理](https://iguoli.github.io/2016/08/02/DNF-YUM.html#设置-yum-仓库代理)
 
 ## 安装系统常用开发工具
 
-##### Ubuntu
+**Ubuntu**
 
 ```bash
 sudo apt install -y build-essential
 ```
 
-##### CentOS 8
+**CentOS 8**
 
 ```bash
 sudo yum groupinstall "Development Tools"
@@ -337,7 +337,7 @@ unset all_proxy http_proxy https_proxy
 
 ## 安装 [Git](https://github.com/git/git)
 
-##### Ubuntu
+**Ubuntu**
 
 从 PPA 安装[ppa:git-core/ppa](https://launchpad.net/~git-core/+archive/ubuntu/ppa)
 
@@ -347,7 +347,7 @@ sudo apt update
 sudo apt install -y git
 ```
 
-##### CentOS 8
+**RedHat/CentOS**
 
 ```bash
 sudo yum install -y git
@@ -380,7 +380,7 @@ git config --global core.editor vim
 
 ## 安装 [Connect](https://bitbucket.org/gotoh/connect/wiki/Home)
 
-##### Ubuntu
+**Ubuntu**
 
 ```bash
 sudo apt install connect-proxy
@@ -389,7 +389,7 @@ sudo apt install connect-proxy
 dpkg -L connect-proxy
 ```
 
-##### CentOS 8
+**RedHat/CentOS**
 
 ```bash
 sudo yum install connect-proxy
@@ -415,7 +415,7 @@ Host github.com
 
 注意: `proxychains` 只会代理 `TCP` 连接，所以如果使用 `proxychains4 ping www.google.com` 则不会生效，因为 `ping` 命令使用 `ICMP` 协议。
 
-##### CentOS 8 安装
+**RedHat/CentOS**
 
 ```bash
 sudo yum install -y proxychains-ng
@@ -448,7 +448,7 @@ alias pcs=proxychains4
 
 ## 安装 [zsh](https://github.com/zsh-users/zsh)
 
-##### CentOS 8
+**RedHat/CentOS**
 
 ```bash
 sudo yum install -y zsh
@@ -509,13 +509,13 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 ## 安装 Vim
 
-##### Ubuntu
+**Ubuntu**
 
 ```bash
 sudo apt install -y vim
 ```
 
-##### CentOS 8
+**RedHat/CentOS**
 
 ```bash
 sudo yum install -y vim
@@ -609,7 +609,7 @@ cp ~/conf/.tmux.conf.local .
 
 ## 安装 [Pygments](https://pygments.org)
 
-##### PIP
+**PIP**
 
 ```bash
 pip install pygments
@@ -617,7 +617,7 @@ pip install pygments
 pygmentize hello.py
 ```
 
-##### CentOS 8
+**RedHat/CentOS**
 
 ```bash
 sudo yum install -y python3-pygments
@@ -637,13 +637,13 @@ pygmentize -L styles
 
 `grc` 工具可以彩色化其它命令行工具的输出
 
-##### Ubuntu
+**Ubuntu**
 
 ```bash
 apt install grc
 ```
 
-##### 源码安装
+**源码安装**
 
 ```bash
 git clone https://github.com/garabik/grc.git
@@ -655,7 +655,7 @@ rm -rf grc
 source /etc/grc.zsh
 ```
 
-##### 自动设置常用命令别名
+**自动设置常用命令别名**
 
 ```bash
 sed -e '$a\[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh' ~/.zshrc
