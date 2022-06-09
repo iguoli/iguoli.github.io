@@ -89,9 +89,9 @@ grep -v nodocs /etc/dnf/dnf.conf | sudo tee /etc/dnf/dnf.conf
 sudo dnf install -y man man-pages
 ```
 
-这样之后由 `dnf install` 安装的包就会安装对应的手册页，但系统之前安装的包仍然没有手册页，比如 `man dnf` 就会显示找不到手册页，因此需要 `sudo dnf reinstall -y dnf` 重新安装才能看到它的手册页。
+之后由 `dnf install` 安装的包就会安装对应的手册页，但系统之前安装的包仍然没有手册页，比如 `man dnf` 就会显示找不到手册页，因此需要 `sudo dnf reinstall -y dnf` 重新安装才能看到它的手册页。
 
-使用下面的命令可以重新安装所有安装包
+使用下面的命令可以重新安装所有已存在的包
 
 ```sh
 for pkg in $(dnf repoquery --installed --qf "%{name}"); do sudo dnf reinstall -qy $pkg; done
