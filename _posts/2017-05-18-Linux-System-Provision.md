@@ -378,7 +378,7 @@ git config --global https.proxy socks5://127.0.0.1:7891
 git config --global core.editor vim
 ```
 
-## 安装 [Connect](https://bitbucket.org/gotoh/connect/wiki/Home)
+## 安装 connect-proxy
 
 **Ubuntu**
 
