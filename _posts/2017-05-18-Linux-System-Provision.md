@@ -503,9 +503,35 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
-## 安装 Temurin JDK
+## 安装 [Temurin](https://adoptium.net/) OpenJDK
 
-[官方安装文档](https://blog.adoptium.net/2021/12/eclipse-temurin-linux-installers-available/)
+[官方安装文档](https://adoptium.net/installation/linux)
+
+安装包使用如下命名格式，
+
+`temurin-<version>-jdk`
+
+例如：`temurin-17-jdk`, `temurin-8-jdk`
+
+首先，添加以下 RPM repo，如果用的是 Fedora，注意替换 `centos` 为 `fedora`
+
+```sh
+vim /etc/yum.repos.d/adoptium.repo
+```
+
+```conf
+[Adoptium]
+name=Adoptium
+baseurl=https://packages.adoptium.net/artifactory/rpm/centos/\$releasever/\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
+```
+
+```sh
+sudo yum update
+sudo yum install temurin-17-jdk
+```
 
 ## 安装 Vim
 
