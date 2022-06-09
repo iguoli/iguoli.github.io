@@ -560,6 +560,38 @@ sudo update-alternatives --set vi /usr/bin/vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
+在 `~/.vimrc` 中添加插件
+
+```vim
+" vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+Plug 'luochen1990/rainbow'                " 彩虹括号增强版
+Plug 'altercation/vim-colors-solarized'
+Plug 'sickill/vim-monokai'
+Plug 'morhetz/gruvbox'
+Plug 'dracula/vim'
+Plug 'Yggdroot/indentLine'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vimcn/vimcdoc'
+call plug#end()
+```
+
+执行下面的命令安装插件
+
+```sh
+vim +PlugStatus +qa
+```
+
 #### 安装 [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) 插件
 
 ```sh

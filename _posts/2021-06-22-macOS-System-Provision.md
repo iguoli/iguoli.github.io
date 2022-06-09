@@ -317,6 +317,38 @@ MacVim 会在 `$(brew --prefix)/bin` 下创建 Vim 命令行程序的软链接�
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
+在 `~/.vimrc` 中添加插件
+
+```vim
+" vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+Plug 'luochen1990/rainbow'                " 彩虹括号增强版
+Plug 'altercation/vim-colors-solarized'
+Plug 'sickill/vim-monokai'
+Plug 'morhetz/gruvbox'
+Plug 'dracula/vim'
+Plug 'Yggdroot/indentLine'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vimcn/vimcdoc'
+call plug#end()
+```
+
+执行下面的命令安装插件
+
+```sh
+vim +PlugStatus +qa
+```
+
 #### 修改 vim 光标风格
 
 同 zsh 中的 vi-mode 一样，iTerm2 下的 vim 也存在光标在不同模式下不能转换的问题，需要在 `.vimrc` 中加入以下设置
