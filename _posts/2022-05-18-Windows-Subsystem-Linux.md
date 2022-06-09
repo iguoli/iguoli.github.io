@@ -23,6 +23,10 @@ wsl --install -d <distro>
 
 ### 安装 Fedora 发行版
 
+以下内容参考自链接
+
+- [Install Fedora 36 or earlier on Windows Subsystem for Linux (WSL) ](https://dev.to/bowmanjd/install-fedora-on-windows-subsystem-for-linux-wsl-4b26)
+
 首先需要获取 **Fedora rootfs image**，可以从 [Fedora Container Base](https://koji.fedoraproject.org/koji/packageinfo?packageID=26387) 中下载最新版本的 xz 包，当前最新的包为
 
 - [Fedora-Container-Base-36-20220607.0](https://koji.fedoraproject.org/koji/buildinfo?buildID=1977370)
@@ -67,6 +71,50 @@ wsl -d Fedora-36 -u user
 ```ini
 [user]
 default=user
+```
+
+### Fedora 系统微调
+
+#### 安装 man pages
+
+因为我们使用的是精简版的 Fedora 系统，需要手工安装 man pages，首先需要关掉 `/etc/dnf/dnf.conf` 中的 `tsflags=nodocs` 选项。
+
+```sh
+grep -v nodocs /etc/dnf/dnf.conf | sudo tee /etc/dnf/dnf.conf
+```
+
+安装 `man` 和 `man-pages`
+
+```sh
+sudo dnf install -y man man-pages
+```
+
+这样之后由 `dnf install` 安装的包就会安装对应的手册页，但系统之前安装的包仍然没有手册页，比如 `man dnf` 就会显示找不到手册页，因此需要 `sudo dnf reinstall -y dnf` 重新安装才能看到它的手册页。
+
+使用下面的命令可以重新安装所有安装包
+
+```sh
+for pkg in $(dnf repoquery --installed --qf "%{name}"); do sudo dnf reinstall -qy $pkg; done
+```
+
+#### 设置 ping 命令
+
+`ping` 命令位于 `iputils` 安装包内，但安装后会发现 `ping` 命令没有返回结果，这是因为还需要给相应的 group IDs 权限才可以使用 `ping`.
+
+```sh
+sudo dnf install -y procps-ng iputils
+
+sudo sysctl -w net.ipv4.ping_group_range="0 2000"
+```
+
+第二条命令允许 **0 - 2000** 内的 group IDs 使用 `ping` 命令。通常第一个普通用户的 uid 和 gid 是 1000，可以使用 `getent group` 查看系统所有的 group IDs，或用 `id` 命令查看用户 uid 和 gid。
+
+#### 实用工具
+
+还有一些实用工具，比如 `iproute` 提供了 `ip` 命令，`findutils` 提供了 `find` 命令，`ncurses` 提供了终端常用的库
+
+```sh
+sudo dnf install -y iproute findutils ncurses
 ```
 
 ## 关机
