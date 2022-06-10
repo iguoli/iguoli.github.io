@@ -80,7 +80,7 @@ lsb_release
 # Centos
 cat /etc/centos-release
 
-# Redhat
+# RedHat
 cat /etc/redhat-release
 ```
 
@@ -642,7 +642,7 @@ cmake --build . --target ycm_core
 ```sh
 # for Ubuntu system
 sudo apt install -y libevent-dev libncurses5-dev autoconf automake pkg-config
-# for Redhat system
+# for RedHat system
 sudo yum install -y libevent-devel ncurses-devel
 
 $cd
