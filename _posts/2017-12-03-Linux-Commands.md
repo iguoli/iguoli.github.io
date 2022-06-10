@@ -35,6 +35,14 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+## dig
+
+使用 `@` 符号来指定要查询的 DNS 服务器，如果不指定 DNS 服务器，`dig` 会依次使用 `/etc/resolv.conf` 中的地址作为 DNS 服务器
+
+```sh
+dig www.youtube.com @1.1.1.1
+```
+
 ## paste
 
 `paste` 命令会将多个输入文件的对应行合并成一行，就像函数式编程中的 zip 函数一样，例如：
