@@ -162,7 +162,7 @@ USERS HOSTS=(RUNAS) [NOPASSWD:]COMMANDS
 ```sh
 cd /etc/sudoers.d
 
-sudo visudo john
+sudo visudo $USER
 ```
 
 #### sudoers 配置文件
@@ -171,17 +171,17 @@ sudo visudo john
 
 ```conf
 # 不再需要用户输入密码
-Defaults:john      !authenticate
+Defaults:username      !authenticate
 
 # 输入密码后 30 分钟内不需要再次输入密码
-Defaults           timestamp_timeout=30
+Defaults               timestamp_timeout=30
 ```
 
 ##### user specifications
 
 ```conf
 # 让用户可以无密码运行任何命令
-john ALL=(ALL) NOPASSWD:ALL
+username ALL=(ALL) NOPASSWD:ALL
 
 # 所有属于 wheel 用户组的用户可以无密码运行任何命令
 %wheel ALL=(ALL) NOPASSWD:ALL
@@ -200,9 +200,9 @@ john ALL=(ALL) NOPASSWD:ALL
 ```sh
 sudo yum install libuser
 
-lid [user]
+lid [$USER]
 
-lid -g group
+lid -g groupname
 ```
 
 **Ubuntu**
@@ -211,46 +211,44 @@ lid -g group
 sudo apt install -y libuser
 
 # 查看用户属于哪些组
-libuser-lid [user]
+libuser-lid [$USER]
 
 # 查看 wheel 组中有哪些用户
-libuser-lid -g group
+libuser-lid -g groupname
 ```
 
 下面两个命令只能查看用户属于哪些组
 
 ```sh
-groups [user]
+groups [$USER]
 
-id [user]
+id [$USER]
 ```
 
 ### 将用户添加到用户组
 
-将用户 john 添加到 docker 用户组
+将用户添加到 docker 用户组
 
 ```sh
-# usermod -aG group user
-usermod -aG docker john
+usermod -aG docker $USER
 ```
 
 ### 从用户组中删除用户
 
-从 docker 用户组中删除用户 john
+从 docker 用户组中删除用户
 
 ```sh
-# gpasswd -d user group
-gpasswd -d john docker
+gpasswd -d $USER docker
 ```
 
 ### 为系统添加新用户
 
 ```sh
 # -m 生成用户目录，-G 添加用户到额外组
-useradd -m -G wheel,docker user
+useradd -m -G wheel,docker $USER
 
 # 设置用户密码
-passwd user
+passwd $USER
 ```
 
 ### 变更用户名
@@ -269,7 +267,7 @@ groupmod -n new-group old-group
 
 ```sh
 # -r 会连同用户目录一起删除
-userdel -r user
+userdel -r $USER
 ```
 
 ## 设置包管理器代理
