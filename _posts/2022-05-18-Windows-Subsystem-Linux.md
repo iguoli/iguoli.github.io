@@ -42,6 +42,8 @@ wsl -t <distro>
 wsl --unregister <distro>
 ```
 
+<!--more-->
+
 ## 安装 Fedora 发行版
 
 以下内容参考自链接
@@ -65,8 +67,6 @@ mkdir $HOME\wsl\fedora
 ```sh
 wsl --import Fedora $HOME\wsl\fedora $HOME\Downloads\fedora-36-rootfs.tar
 ```
-
-<!--more-->
 
 ### 设置为默认启动
 
@@ -130,7 +130,6 @@ for pkg in $(dnf repoquery --installed --qf "%{name}"); do sudo dnf reinstall -q
 # append Windows path to $PATH variable; default is true
 appendWindowsPath=false
 ```
-
 
 #### 设置 ping 命令
 
