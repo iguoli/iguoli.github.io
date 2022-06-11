@@ -233,7 +233,7 @@ sudo usermod -aG docker $USER
 
 ### 共享 dockerd
 
-如果 WSL 中安装了多个 Linux 发行版，并且希望共用同一个 Docker socket，就需要设置相同的 `docker` 用户组，可以选择一个在 *1000 - 65534* 的数字作为用户组 ID，下面命令查看 1000 以上有哪些用户组
+如果 WSL 中安装了多个 Linux 发行版，并且希望共用同一个 Docker socket，就需要设置相同的 `docker` 用户组，可以选择一个在 *1000 - 65534* 之间的数字作为用户组 ID，下面命令查看 1000 以上有哪些用户组
 
 ```sh
 getent group | cut -d: -f3 | grep -E '^[0-9]{4}' | sort -g
