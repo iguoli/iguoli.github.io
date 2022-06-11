@@ -281,7 +281,7 @@ sudo vim /etc/docker/daemon.json
 WSL 使用的是自己的 init system，如果需要启动 dockerd，可以直接运行它
 
 ```sh
-sudo systemd
+sudo dockerd
 ```
 
 然后在另一个终端中测试 docker 是否正常
