@@ -282,6 +282,18 @@ WSL 使用的是自己的 init system，如果需要启动 dockerd，可以直�
 
 ```sh
 sudo dockerd
+
+# 后台运行
+sudo -b dockerd
+```
+
+如果 `docker pull` 需要使用代理，则在 docker daemon 启动时加入环境变量
+
+```sh
+HTTP_PROXY="HTTP_PROXY=http://127.0.0.1:7890"
+HTTPS_PROXY="HTTPS_PROXY=http://127.0.0.1:7890"
+
+sudo -b $HTTP_PROXY $HTTPS_PROXY dockerd
 ```
 
 然后在另一个终端中测试 docker 是否正常
@@ -304,6 +316,8 @@ DOCKER_SOCK="/mnt/wsl/shared-docker/docker.sock"
 创建启动脚本 `/usr/local/bin/docker-service` 以方便后台启动 `dockerd`
 
 ```sh
+HTTP_PROXY="HTTP_PROXY=http://127.0.0.1:7890"
+HTTPS_PROXY="HTTPS_PROXY=http://127.0.0.1:7890"
 DOCKER_DISTRO="Fedora"
 DOCKER_DIR=/mnt/wsl/shared-docker
 DOCKER_SOCK="$DOCKER_DIR/docker.sock"
@@ -311,6 +325,6 @@ export DOCKER_HOST="unix://$DOCKER_SOCK"
 if [ ! -S "$DOCKER_SOCK" ]; then
     mkdir -pm o=,ug=rwx "$DOCKER_DIR"
     chgrp docker "$DOCKER_DIR"
-    /mnt/c/Windows/System32/wsl.exe -d $DOCKER_DISTRO sh -c "nohup sudo -b dockerd < /dev/null > $DOCKER_DIR/dockerd.log 2>&1"
+    /mnt/c/Windows/System32/wsl.exe -d $DOCKER_DISTRO sh -c "nohup sudo -b $HTTP_PROXY $HTTPS_PROXY dockerd < /dev/null > $DOCKER_DIR/dockerd.log 2>&1"
 fi
 ```
