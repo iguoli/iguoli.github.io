@@ -1,7 +1,7 @@
 ---
-title: Windows Subsystem Linux
+title: Windows Subsystem Linux (WSL)
 date: 2022-05-18 
-modify_date: 2022-05-18 
+modify_date: 2022-06-12 
 tags: WSL Windows Linux
 key: Windows-Subsystem-Linux-2022-05-18
 ---
