@@ -99,13 +99,13 @@ zstyle ':completion:*:ssh:*' hosts off
 
 ### 禁止SHA-1算法
 
-> 现版本中，直接默认禁用使用 SHA-1 哈希算法的 RSA 签名。由于 SHA-1 哈希算法已经在密码学上被碰撞破坏（可以以少于5万美刀的成本创建前缀哈希冲突。）。
+> 现版本中，直接默认禁用使用 SHA-1 哈希算法的 RSA 签名。由于 SHA-1 哈希算法已经在密码学上被碰撞破坏（可以以少于5万美刀的成本创建前缀哈希冲突）。
 > 对于大多数用户来说，这种变化应该是不可见的，不需要替换 ssh-rsa 密钥。OpenSSH 7.2 版以后，OpenSSH 就已支持 RFC8332 RSA/SHA-256/512 签名，现有的 ssh-rsa 密钥将在可能的情况下自动使用更强的算法。
-> 当连接到尚未升级或没有密切跟踪 SSH 协议改进的旧版本时，可能会由于不兼容导致连接失败。对于这些情况，可能手动配置 `HostkeyAlgorithms` 和 `PubkeyAcceptedAlgorithms` 选项启用 RSA/SHA1 进行连接和用户身份验证。
+> 当连接到尚未升级或没有密切跟踪 SSH 协议改进的旧版本时，可能会由于不兼容导致连接失败。对于这些情况，可以手动配置 `HostkeyAlgorithms` 和 `PubkeyAcceptedAlgorithms` 选项启用 RSA/SHA1 进行连接和用户身份验证。
 
-可以在在用户 ssh 配置文件 `~/.ssh/config` 中的以下对单台目标主机启用 RSA/SHA1：
+可以在用户配置文件 `~/.ssh/config` 中对以下单台主机启用 RSA/SHA1：
 
-```conf
+```ssh
 Host old-host
     HostkeyAlgorithms +ssh-rsa
     PubkeyAcceptedAlgorithms +ssh-rsa
@@ -123,8 +123,8 @@ vim ~/.ssh/config
 ServerAliveInterval 30
 ServerAliveCountMax 10
 
-# Since OpenSSH 8.8, sha-1 hash (ssh-rsa) was disabled by default
-# Set below options to enable it
+# Since OpenSSH 8.8, sha-1 (ssh-rsa) hash algorithm was disabled by default
+# Set below options to enable it with caution
 HostKeyAlgorithms +ssh-rsa
 PubkeyAcceptedKeyTypes +ssh-rsa
 
