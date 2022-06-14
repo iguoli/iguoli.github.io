@@ -25,6 +25,8 @@ key: Linux-System-Provision-2017-05-18
 
 之后其它的 shell 都是由这个 login shell 或其子孙 fork 出来，这些子孙 shell 会继承 login shell 的许多设置 (例如环境变量，`umask` 等)。
 
+<!--more-->
+
 ### Interactive login shell
 
 当通过 text console 或 ssh 登录，或使用 `su -` 命令时，会得到一个 **interactive login** shell。当通过图形界面登录时 (例如 *X display manager*)，不会得到一个 login shell，而是得到一个 session manager 或 window manager.
@@ -300,8 +302,6 @@ sudo apt install -y build-essential
 ```sh
 sudo yum groupinstall "Development Tools"
 ```
-
-<!--more-->
 
 ## 关闭 SELinux
 
