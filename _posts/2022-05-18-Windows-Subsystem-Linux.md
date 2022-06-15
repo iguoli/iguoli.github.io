@@ -34,6 +34,8 @@ wsl --terminate <distro>
 wsl -t <distro>
 ```
 
+<!--more-->
+
 #### 删除安装的 Linux 发行版
 
 在 *System Settings*, *Add or remove programs* 可以找到已安装的 Linux 发行版，点击 *Uninstall* 即可。或者执行
@@ -42,7 +44,17 @@ wsl -t <distro>
 wsl --unregister <distro>
 ```
 
-<!--more-->
+### 从 Windows 访问 WSL 中的文件
+
+在 File Explorer 的地址栏中输入 `\\wsl$` 即可看到所有已安装的 WSL distros 的目录，可以将其添加到快速访问。
+
+另一种方法是在 `~/.zshrc` 或 `~/.bashrc` 添加 `alias`
+
+```sh
+alias open=/mnt/c/Windows/explorer.exe
+```
+
+这样，在 WSL 中输入 `open .` 即可打开当前目录。
 
 ## 安装 Fedora 发行版
 
