@@ -58,13 +58,13 @@ wsl --unregister <distro>
 
 然后创建 fedora 的虚拟磁盘目录, 打开 Powershell 输入
 
-```sh
+```powershell
 mkdir $HOME\wsl\fedora
 ```
 
 最后就可以安装 WSL Fedora 发行版了
 
-```sh
+```powershell
 wsl --import Fedora $HOME\wsl\fedora $HOME\Downloads\fedora-36-rootfs.tar
 ```
 
@@ -149,6 +149,27 @@ sudo sysctl -w net.ipv4.ping_group_range="0 2000"
 
 ```sh
 sudo dnf install -y iproute findutils ncurses
+```
+
+### 导出 Fedora
+
+安装 Fedora 并调整好系统后，如果不希望下次安装再来一遍，可以将已经调整好的系统导出保存，首先将系统安装过程中下载的安装包清理掉，缩减系统大小
+
+```sh
+sudo dnf clean all
+```
+
+然后退出 WSL 系统并将其导出为 tar 包
+
+```powershell
+wsl --export Fedora $HOME\Downloads\fedora-wsl.tar
+```
+
+下次需要安装新的 WSL 时就可以重新导入该文件
+
+```powershell
+mkdir $HOME\wsl\fedora
+wsl --import fedora $HOME\wsl\fedora $HOME\Downloads\fedora-wsl.tar
 ```
 
 ## WSL 网络
