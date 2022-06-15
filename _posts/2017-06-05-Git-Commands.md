@@ -263,7 +263,7 @@ git cat-file -p v1.1
 
 ### [Git 引用](https://git-scm.com/book/zh/v2/Git-内部原理-Git-引用)
 
-Git 对象的文件名是一个 SHA-1 值，不便于记忆，因此我们需要一个文件来保存 SHA-1 值，并给文件起一个简单的名字，然后用这个名字指针来替代原始的 SHA-1 值。在 Git 里，这样的文件被称为`引用 (references，或缩写为 refs)`，你可以在 `.git/refs` 目录下找到这类含有 SHA-1 值的文件。
+Git 对象的文件名是一个 SHA-1 值，不便于记忆，因此我们需要一个文件来保存 SHA-1 值，并给文件起一个简单的名字，然后用这个名字指针来替代原始的 SHA-1 值。在 Git 里，这样的文件被称为 **引用** (**references**，或缩写为 **refs**)，你可以在 `.git/refs` 目录下找到这类含有 SHA-1 值的文件。
 
 ```sh
 find .git/refs
