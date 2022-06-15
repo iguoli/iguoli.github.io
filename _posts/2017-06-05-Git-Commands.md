@@ -367,15 +367,15 @@ git verify-pack -v .git/objects/pack/pack-978e03944f5c581011e6998cd0e9e300009055
 git remote add origin https://github.com/schacon/simplegit-progit
 ```
 
-上述命令会在你的 `.git/config` 文件中添加一个小节，并在其中指定远程版本库的名称 (origin)、URL 和一个用于 `fetch` 操作的**引用规格 (refspec)**
+上述命令会在你的 `.git/config` 文件中添加一个小节，并在其中指定远程版本库的名称 (origin)、URL 和一个用于 fetch 操作的**引用规格 (refspec)**
 
-```sh
+```ini
 [remote "origin"]
    url = https://github.com/schacon/simplegit-progit
    fetch = +refs/heads/*:refs/remotes/origin/*
 ```
 
-<span style="color:red"><b>引用规格的格式</b></span> = `[+]<src>:<dst>`。`<src>` 代表远程仓库中引用；`<dst>` 代表远程引用在本地的位置；`+` 表示即使 Git 在不能快进的情况下也要强制更新引用。
+<span style="color:red"><b>引用规格的格式</b></span> = `[+]<src>:<dst>`。`<src>` 代表远程仓库中的引用；`<dst>` 代表远程引用在本地的位置；`+` 表示即使 Git 在不能快进的情况下也要强制更新引用。
 
 默认情况下，引用规格由 `git remote add` 命令自动生成，Git 获取服务器中 `refs/heads/` 下面的所有引用，并将它写入到本地的 `refs/remotes/origin/` 中。所以，如果服务器上有一个 master 分支，我们可以在本地通过下面这种方式来访问该分支上的提交记录:
 
