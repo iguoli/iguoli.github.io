@@ -86,7 +86,7 @@ git -c core.pager= log -1
 
 ### 匹配模式的格式
 
-```gitignore
+```sh
 # 所有目录下的所有 .gif 文件
 *.gif
 
@@ -135,17 +135,12 @@ pattern attr1 attr2 [attribute list...]
 
 可以根据需要将属性放入以下不同文件:
 
-- `$GIT_DIR/info/attributes` (仓库范围)  
-  只想影响特定仓库.
-
-- `.gitattributes` (网络范围)  
-  对属性进行版本管理并扩散到其它仓库 (比如所有用户都感兴趣的属性).
-
-- `core.attributesfile` (全局范围)  
-  影响特定用户的所有仓库，默认值是 `$XDG_CONFIG_HOME/git/attributes`，如果 `$XDG_CONFIG_HOME` 没有设置或为空，则使用 `$HOME/.config/git/attributes` 文件.
-
-- `$(prefix)/etc/gitattributes` (系统范围)  
-  影响系统所有用户.
+| 文件                          | 范围     | 作用 |
+| ----------------------------- | -------- | ---|
+| `$GIT_DIR/info/attributes`    | 仓库范围 | 只想影响特定仓库 |
+| `.gitattributes`              | 网络范围 | 对属性进行版本管理并扩散到其它仓库 (比如所有用户都感兴趣的属性) |
+| `core.attributesfile`         | 全局范围 | 影响特定用户的所有仓库，默认值是 `$XDG_CONFIG_HOME/git/attributes`，如果 `$XDG_CONFIG_HOME` 没有设置或为空，则使用 `$HOME/.config/git/attributes` 文件 |
+| `$(prefix)/etc/gitattributes` | 系统范围 | 影响系统所有用户 |
 
 ### [filter 属性](https://git-scm.com/book/zh/v2/自定义-Git-Git-属性)
 
@@ -186,11 +181,11 @@ git config --global filter.indent.smudge cat
 `git config` 从四个文件搜索配置项
 
 | 文件                          | 作用                                                                                                  |
-| ----------------------------- | ---------------------------------------------|
-| `GIT_DIR/config`              | 特定仓库配置文件，即本地范围 (*--local*) 配置文件  |
-| `~/.gitconfig`                | 特定用户配置文件，即全局范围 (*--global*) 配置文件 |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `GIT_DIR/config`              | 特定仓库配置文件，即本地范围 (*--local*) 配置文件                                                     |
+| `~/.gitconfig`                | 特定用户配置文件，即全局范围 (*--global*) 配置文件                                                    |
 | `$XDG_CONFIG_HOME/git/config` | 特定用户第二配置文件。如果 `$XDG_CONFIG_HOME` 没有设置或为空，则使用 `$HOME/.config/git/config` 文件. |
-| `$(prefix)/etc/gitconfig`     | 系统范围配置文件 |
+| `$(prefix)/etc/gitconfig`     | 系统范围配置文件                                                                                      |
 
 ## [Git 内部原理 - Git 对象](https://git-scm.com/book/zh/v2/Git-内部原理-Git-对象)
 
