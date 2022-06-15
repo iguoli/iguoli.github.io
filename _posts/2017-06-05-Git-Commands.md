@@ -86,7 +86,7 @@ git -c core.pager= log -1
 
 ### 匹配模式的格式
 
-```sh
+```gitignore
 # 所有目录下的所有 .gif 文件
 *.gif
 
@@ -183,19 +183,14 @@ git config --global filter.indent.smudge cat
 
 ## Git Config
 
-`git config` 从四个文搜索配置项
+`git config` 从四个文件搜索配置项
 
-- `GIT_DIR/config`  
-  特定仓库配置文件，即本地范围 (--local) 配置文件.
-
-- `~/.gitconfig`  
-  特定用户配置文件，即全局范围 (--global) 配置文件.
-
-- `$XDG_CONFIG_HOME/git/config`  
-  特定用户第二配置文件。`$XDG_CONFIG_HOME` 没有设置或为空，则使用 `$HOME/.config/git/config` 文件.
-
-- `$(prefix)/etc/gitconfig`  
-  系统范围配置文件.
+| 文件                          | 作用                                                                                                  |
+| ----------------------------- | ---------------------------------------------|
+| `GIT_DIR/config`              | 特定仓库配置文件，即本地范围 (*--local*) 配置文件  |
+| `~/.gitconfig`                | 特定用户配置文件，即全局范围 (*--global*) 配置文件 |
+| `$XDG_CONFIG_HOME/git/config` | 特定用户第二配置文件。如果 `$XDG_CONFIG_HOME` 没有设置或为空，则使用 `$HOME/.config/git/config` 文件. |
+| `$(prefix)/etc/gitconfig`     | 系统范围配置文件 |
 
 ## [Git 内部原理 - Git 对象](https://git-scm.com/book/zh/v2/Git-内部原理-Git-对象)
 
@@ -389,7 +384,7 @@ git log refs/remotes/origin/master
 
 可以使用 <span style="color:red"><b>命名空间 (或目录) </b></span>来对引用进行分类管理。假设你有一个 QA 团队，他们推送了一系列分支，同时你只想要获取 `master` 和 QA 团队的所有分支而不关心其他任何分支，那么可以使用如下配置:
 
-```sh
+```ini
 [remote "origin"]
    url = https://github.com/schacon/simplegit-progit
    fetch = +refs/heads/master:refs/remotes/origin/master
@@ -408,7 +403,7 @@ git push origin master:refs/heads/qa/master
 
 如果他们希望 Git 每次运行 `git push origin` 时都像上面这样推送，可以在他们的配置文件中添加一条 `push` 值:
 
-```sh
+```ini
 [remote "origin"]
    url = https://github.com/schacon/simplegit-progit
    fetch = +refs/heads/*:refs/remotes/origin/*
