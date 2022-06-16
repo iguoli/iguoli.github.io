@@ -1041,7 +1041,7 @@ Suppose origin has a few branches (`master (HEAD)`, `next`, `pu`, and `maint`), 
 
 - `git clone --bare origin-url` 克隆上游仓库的所有标签和本地分支，没有远程跟踪分支，上游仓库本身的所有远程分支和远程引用会被忽略掉.
 
-- `git clone --mirror origin-url` 完整克隆上游仓库，当前仓库的所有标签，分支和引用都与上游仓库完全一致，包括上游仓库的远程分支和远程引用等。使用 `git remote update` 会把上游仓库把的所有分支，标签及引用再次更新到当前仓库，相当于删掉仓库再重新克隆了一次，这就是 **mirror** 所要表达的含义.
+- `git clone --mirror origin-url` 完整克隆上游仓库，当前仓库的所有标签，分支和引用都与上游仓库完全一致，包括上游仓库的远程分支和远程引用等。使用 `git remote update` 会把上游仓库的所有分支，标签及引用再次更新到当前仓库，相当于删掉仓库再重新克隆了一次，这就是 **mirror** 所要表达的含义.
 
 ### [在 GitHub 上复制仓库](https://help.github.com/en/articles/duplicating-a-repository)
 
