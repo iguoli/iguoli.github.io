@@ -21,7 +21,7 @@ Github 提供了 [Transfer a repository](https://docs.github.com/en/rest/repos/r
 #
 # script name: transfer-repo.sh
 
-function git_repo_transfer() {
+function git_repo_transfer {
     org=$1
     new_org=$2
     repo=$3
@@ -29,7 +29,7 @@ function git_repo_transfer() {
         -u "<username>:<generated access token>" \
         -H "Content-Type: application/json" \
         -H "Accept: application/vnd.github.v3+json" \
-        -X POST https://github.dxc.com/api/v3/repos/$org/$repo/transfer \
+        -X POST https://github.company.com/api/v3/repos/$org/$repo/transfer \
         -d "{\"new_owner\":\"$new_org\"}"
 }
 
