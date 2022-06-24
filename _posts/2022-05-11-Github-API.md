@@ -46,3 +46,42 @@ for repo in $repos; do (git_repo_transfer $1 $2 "$repo"); done
 ```sh
 ./transfer-repo.sh org-name new-org-name
 ```
+
+## Create Repositories
+
+```sh
+#!/usr/bin/env bash
+
+function create_repo {
+    repo_name=$1
+    curl -L \
+        -u "<username>:<generated access token>" \
+        -H "Accept: application/vnd.github.v3+json" \
+        -X POST https://github.company.com/api/v3/orgs/RnD/repos \
+        -d "{\"name\":\"${repo_name}\",\"private\":true,\"team_id\":3126}"
+}
+
+repos=$(cat ./repos)
+echo $repos
+
+for repo in $repos; do create_repo ${repo}; done
+```
+
+## 在组织间 Clone Repositories
+
+```sh
+#!/usr/bin/env bash
+
+function clone_repo {
+    repo_name=$1
+
+    git clone --bare git@github.company.com:Engineering/${repo_name}.git \
+        && cd ${repo_name}.git \
+        && git push --mirror git@github.company.com:RnD/${repo_name}.git
+}
+
+repos=$(cat ./repos)
+echo $repos
+
+for repo in $repos; do clone_repo ${repo}; done
+```
