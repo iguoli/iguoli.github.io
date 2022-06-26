@@ -1234,6 +1234,7 @@ ssh -T git@github.com
 ## 有用链接
 
 [Oh Shit, Git!?!](https://ohshitgit.com/zh)
+[Git 飞行指南](https://github.com/k88hudson/git-flight-rules/blob/master/README_zh-CN.md)
 [git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)  
 [一张图看明白 Git 的四个区五种状态](http://imtuzi.com/post/git-four-areas-five-states.html)  
 [99%的时间在使用的 Git 命令](http://imtuzi.com/post/most-used-git-cmd.html)
