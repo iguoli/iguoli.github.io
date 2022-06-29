@@ -364,10 +364,26 @@ SELECT * FROM films ORDER BY date_prod DESC LIMIT 5;
 SELECT * FROM films WHERE date_prod > (now() - interval '10 years');
 ```
 
-#### 查询 jsonb
+### 查询 jsonb
 
 ```sql
 SELECT * FROM json_table WHERE json_data::TEXT LIKE '%String%' ORDER BY created LIMIT 10;
+```
+
+### IN 操作符
+
+语法
+
+```sql
+value in (value1, value2, ...)
+
+value in (SELECT columns FROM table_name)
+```
+
+例子
+
+```sql
+select id, name, age from table_name where id in ('001', '002', '003');
 ```
 
 ### Update
