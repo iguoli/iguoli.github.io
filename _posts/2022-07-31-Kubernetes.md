@@ -6,13 +6,14 @@ tags: Kubernetes
 key: Maven-2022-07-31
 ---
 
-## kubectl
+## 常用资源
 
 列出 kubectl 支持的所有 resources
 
 ```sh
 kubectl api-resources
 ```
+<!--more-->
 
 | NAME                            | SHORTNAMES | APIVERSION                           | NAMESPACED | KIND                           |
 | ------------------------------- | ---------- | ------------------------------------ | ---------- | ------------------------------ |
@@ -87,3 +88,11 @@ kubectl api-resources
 | csistoragecapacities            |            | storage.k8s.io/v1                    | true       | CSIStorageCapacity             |
 | storageclasses                  | sc         | storage.k8s.io/v1                    | false      | StorageClass                   |
 | volumeattachments               |            | storage.k8s.io/v1                    | false      | VolumeAttachment               |
+
+## 获取资源的详细描述
+
+```sh
+kubectl describe po/nginx
+
+kubectl describe -f nginx.yaml
+```
