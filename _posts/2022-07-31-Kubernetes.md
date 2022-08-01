@@ -15,79 +15,79 @@ kubectl api-resources
 ```
 <!--more-->
 
-| NAME                            | SHORTNAMES | APIVERSION                           | NAMESPACED | KIND                           |
-| ------------------------------- | ---------- | ------------------------------------ | ---------- | ------------------------------ |
-| bindings                        |            | v1                                   | true       | Binding                        |
-| componentstatuses               | cs         | v1                                   | false      | ComponentStatus                |
-| **configmaps**                      | cm         | v1                                   | true       | ConfigMap                      |
-| **endpoints**                       | ep         | v1                                   | true       | Endpoints                      |
-| **events**                          | ev         | v1                                   | true       | Event                          |
-| limitranges                     | limits     | v1                                   | true       | LimitRange                     |
-| **namespaces**                      | ns         | v1                                   | false      | Namespace                      |
-| **nodes**                           | no         | v1                                   | false      | Node                           |
-| persistentvolumeclaims          | pvc        | v1                                   | true       | PersistentVolumeClaim          |
-| **persistentvolumes**               | pv         | v1                                   | false      | PersistentVolume               |
-| **pods**                            | po         | v1                                   | true       | Pod                            |
-| podtemplates                    |            | v1                                   | true       | PodTemplate                    |
-| replicationcontrollers          | rc         | v1                                   | true       | ReplicationController          |
-| resourcequotas                  | quota      | v1                                   | true       | ResourceQuota                  |
-| **secrets**                         |            | v1                                   | true       | Secret                         |
-| serviceaccounts                 | sa         | v1                                   | true       | ServiceAccount                 |
-| **services**                        | svc        | v1                                   | true       | Service                        |
-| mutatingwebhookconfigurations   |            | admissionregistration.k8s.io/v1      | false      | MutatingWebhookConfiguration   |
-| validatingwebhookconfigurations |            | admissionregistration.k8s.io/v1      | false      | ValidatingWebhookConfiguration |
-| customresourcedefinitions       | crd,crds   | apiextensions.k8s.io/v1              | false      | CustomResourceDefinition       |
-| apiservices                     |            | apiregistration.k8s.io/v1            | false      | APIService                     |
-| controllerrevisions             |            | apps/v1                              | true       | ControllerRevision             |
-| **daemonsets**                      | ds         | apps/v1                              | true       | DaemonSet                      |
-| **deployments**                     | deploy     | apps/v1                              | true       | Deployment                     |
-| **replicasets**                     | rs         | apps/v1                              | true       | ReplicaSet                     |
-| **statefulsets**                    | sts        | apps/v1                              | true       | StatefulSet                    |
-| tokenreviews                    |            | authentication.k8s.io/v1             | false      | TokenReview                    |
-| localsubjectaccessreviews       |            | authorization.k8s.io/v1              | true       | LocalSubjectAccessReview       |
-| selfsubjectaccessreviews        |            | authorization.k8s.io/v1              | false      | SelfSubjectAccessReview        |
-| selfsubjectrulesreviews         |            | authorization.k8s.io/v1              | false      | SelfSubjectRulesReview         |
-| subjectaccessreviews            |            | authorization.k8s.io/v1              | false      | SubjectAccessReview            |
-| horizontalpodautoscalers        | hpa        | autoscaling/v2                       | true       | HorizontalPodAutoscaler        |
-| **cronjobs**                        | cj         | batch/v1                             | true       | CronJob                        |
-| **jobs**                            |            | batch/v1                             | true       | Job                            |
-| certificatesigningrequests      | csr        | certificates.k8s.io/v1               | false      | CertificateSigningRequest      |
-| leases                          |            | coordination.k8s.io/v1               | true       | Lease                          |
-| bgpconfigurations               |            | crd.projectcalico.org/v1             | false      | BGPConfiguration               |
-| bgppeers                        |            | crd.projectcalico.org/v1             | false      | BGPPeer                        |
-| blockaffinities                 |            | crd.projectcalico.org/v1             | false      | BlockAffinity                  |
-| clusterinformations             |            | crd.projectcalico.org/v1             | false      | ClusterInformation             |
-| felixconfigurations             |            | crd.projectcalico.org/v1             | false      | FelixConfiguration             |
-| globalnetworkpolicies           |            | crd.projectcalico.org/v1             | false      | GlobalNetworkPolicy            |
-| globalnetworksets               |            | crd.projectcalico.org/v1             | false      | GlobalNetworkSet               |
-| hostendpoints                   |            | crd.projectcalico.org/v1             | false      | HostEndpoint                   |
-| ipamblocks                      |            | crd.projectcalico.org/v1             | false      | IPAMBlock                      |
-| ipamconfigs                     |            | crd.projectcalico.org/v1             | false      | IPAMConfig                     |
-| ipamhandles                     |            | crd.projectcalico.org/v1             | false      | IPAMHandle                     |
-| ippools                         |            | crd.projectcalico.org/v1             | false      | IPPool                         |
-| kubecontrollersconfigurations   |            | crd.projectcalico.org/v1             | false      | KubeControllersConfiguration   |
-| networkpolicies                 |            | crd.projectcalico.org/v1             | true       | NetworkPolicy                  |
-| networksets                     |            | crd.projectcalico.org/v1             | true       | NetworkSet                     |
-| endpointslices                  |            | discovery.k8s.io/v1                  | true       | EndpointSlice                  |
-| events                          | ev         | events.k8s.io/v1                     | true       | Event                          |
-| flowschemas                     |            | flowcontrol.apiserver.k8s.io/v1beta2 | false      | FlowSchema                     |
-| prioritylevelconfigurations     |            | flowcontrol.apiserver.k8s.io/v1beta2 | false      | PriorityLevelConfiguration     |
-| ingressclasses                  |            | networking.k8s.io/v1                 | false      | IngressClass                   |
-| ingresses                       | ing        | networking.k8s.io/v1                 | true       | Ingress                        |
-| networkpolicies                 | netpol     | networking.k8s.io/v1                 | true       | NetworkPolicy                  |
-| runtimeclasses                  |            | node.k8s.io/v1                       | false      | RuntimeClass                   |
-| poddisruptionbudgets            | pdb        | policy/v1                            | true       | PodDisruptionBudget            |
-| podsecuritypolicies             | psp        | policy/v1beta1                       | false      | PodSecurityPolicy              |
-| clusterrolebindings             |            | rbac.authorization.k8s.io/v1         | false      | ClusterRoleBinding             |
-| clusterroles                    |            | rbac.authorization.k8s.io/v1         | false      | ClusterRole                    |
-| rolebindings                    |            | rbac.authorization.k8s.io/v1         | true       | RoleBinding                    |
-| roles                           |            | rbac.authorization.k8s.io/v1         | true       | Role                           |
-| priorityclasses                 | pc         | scheduling.k8s.io/v1                 | false      | PriorityClass                  |
-| csidrivers                      |            | storage.k8s.io/v1                    | false      | CSIDriver                      |
-| csinodes                        |            | storage.k8s.io/v1                    | false      | CSINode                        |
-| csistoragecapacities            |            | storage.k8s.io/v1                    | true       | CSIStorageCapacity             |
-| storageclasses                  | sc         | storage.k8s.io/v1                    | false      | StorageClass                   |
-| volumeattachments               |            | storage.k8s.io/v1                    | false      | VolumeAttachment               |
+| NAME                            | SHORTNAMES | NAMESPACED | KIND                           |
+| ------------------------------- | ---------- | ---------- | ------------------------------ |
+| bindings                        |            | true       | Binding                        |
+| componentstatuses               | cs         | false      | ComponentStatus                |
+| **configmaps**                  | cm         | true       | ConfigMap                      |
+| **endpoints**                   | ep         | true       | Endpoints                      |
+| **events**                      | ev         | true       | Event                          |
+| limitranges                     | limits     | true       | LimitRange                     |
+| **namespaces**                  | ns         | false      | Namespace                      |
+| **nodes**                       | no         | false      | Node                           |
+| persistentvolumeclaims          | pvc        | true       | PersistentVolumeClaim          |
+| **persistentvolumes**           | pv         | false      | PersistentVolume               |
+| **pods**                        | po         | true       | Pod                            |
+| podtemplates                    |            | true       | PodTemplate                    |
+| replicationcontrollers          | rc         | true       | ReplicationController          |
+| resourcequotas                  | quota      | true       | ResourceQuota                  |
+| **secrets**                     |            | true       | Secret                         |
+| serviceaccounts                 | sa         | true       | ServiceAccount                 |
+| **services**                    | svc        | true       | Service                        |
+| mutatingwebhookconfigurations   |            | false      | MutatingWebhookConfiguration   |
+| validatingwebhookconfigurations |            | false      | ValidatingWebhookConfiguration |
+| customresourcedefinitions       | crd,crds   | false      | CustomResourceDefinition       |
+| apiservices                     |            | false      | APIService                     |
+| controllerrevisions             |            | true       | ControllerRevision             |
+| **daemonsets**                  | ds         | true       | DaemonSet                      |
+| **deployments**                 | deploy     | true       | Deployment                     |
+| **replicasets**                 | rs         | true       | ReplicaSet                     |
+| **statefulsets**                | sts        | true       | StatefulSet                    |
+| tokenreviews                    |            | false      | TokenReview                    |
+| localsubjectaccessreviews       |            | true       | LocalSubjectAccessReview       |
+| selfsubjectaccessreviews        |            | false      | SelfSubjectAccessReview        |
+| selfsubjectrulesreviews         |            | false      | SelfSubjectRulesReview         |
+| subjectaccessreviews            |            | false      | SubjectAccessReview            |
+| horizontalpodautoscalers        | hpa        | true       | HorizontalPodAutoscaler        |
+| **cronjobs**                    | cj         | true       | CronJob                        |
+| **jobs**                        |            | true       | Job                            |
+| certificatesigningrequests      | csr        | false      | CertificateSigningRequest      |
+| leases                          |            | true       | Lease                          |
+| bgpconfigurations               |            | false      | BGPConfiguration               |
+| bgppeers                        |            | false      | BGPPeer                        |
+| blockaffinities                 |            | false      | BlockAffinity                  |
+| clusterinformations             |            | false      | ClusterInformation             |
+| felixconfigurations             |            | false      | FelixConfiguration             |
+| globalnetworkpolicies           |            | false      | GlobalNetworkPolicy            |
+| globalnetworksets               |            | false      | GlobalNetworkSet               |
+| hostendpoints                   |            | false      | HostEndpoint                   |
+| ipamblocks                      |            | false      | IPAMBlock                      |
+| ipamconfigs                     |            | false      | IPAMConfig                     |
+| ipamhandles                     |            | false      | IPAMHandle                     |
+| ippools                         |            | false      | IPPool                         |
+| kubecontrollersconfigurations   |            | false      | KubeControllersConfiguration   |
+| networkpolicies                 |            | true       | NetworkPolicy                  |
+| networksets                     |            | true       | NetworkSet                     |
+| endpointslices                  |            | true       | EndpointSlice                  |
+| events                          | ev         | true       | Event                          |
+| flowschemas                     |            | false      | FlowSchema                     |
+| prioritylevelconfigurations     |            | false      | PriorityLevelConfiguration     |
+| ingressclasses                  |            | false      | IngressClass                   |
+| ingresses                       | ing        | true       | Ingress                        |
+| networkpolicies                 | netpol     | true       | NetworkPolicy                  |
+| runtimeclasses                  |            | false      | RuntimeClass                   |
+| poddisruptionbudgets            | pdb        | true       | PodDisruptionBudget            |
+| podsecuritypolicies             | psp        | false      | PodSecurityPolicy              |
+| clusterrolebindings             |            | false      | ClusterRoleBinding             |
+| clusterroles                    |            | false      | ClusterRole                    |
+| rolebindings                    |            | true       | RoleBinding                    |
+| roles                           |            | true       | Role                           |
+| priorityclasses                 | pc         | false      | PriorityClass                  |
+| csidrivers                      |            | false      | CSIDriver                      |
+| csinodes                        |            | false      | CSINode                        |
+| csistoragecapacities            |            | true       | CSIStorageCapacity             |
+| storageclasses                  | sc         | false      | StorageClass                   |
+| volumeattachments               |            | false      | VolumeAttachment               |
 
 ## 获取资源的详细描述
 
@@ -96,3 +96,7 @@ kubectl describe po/nginx
 
 kubectl describe -f nginx.yaml
 ```
+
+## 常用参考链接
+
+[Kubernetes basics in 5 minutes](https://blog.devgenius.io/kubernetes-basics-in-5-minutes-491a6d67448d)
