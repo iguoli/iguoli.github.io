@@ -300,7 +300,14 @@ sudo apt install -y build-essential
 **CentOS 8**
 
 ```sh
-sudo yum groupinstall "Development Tools"
+# 查看
+sudo dnf groupinfo "Development Tools"
+
+# 安装
+sudo dnf group install "Development Tools"
+
+# 卸载
+sudo dnf group remove "Development Tools"
 ```
 
 ## 关闭 SELinux
