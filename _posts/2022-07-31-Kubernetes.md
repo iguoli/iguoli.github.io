@@ -6,9 +6,18 @@ tags: Kubernetes
 key: Maven-2022-07-31
 ---
 
-## 常用资源
+## Kubectl Cheat Sheet
 
-列出 kubectl 支持的所有 resources
+参考 [kubectl auto completion](https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/) 设置别名和自动补全。
+
+```sh
+echo 'source <(kubectl completion zsh)' >>~/.zshrc
+
+echo 'alias k=kubectl' >>~/.zshrc
+echo 'complete -o default -F __start_kubectl k' >>~/.zshrc
+```
+
+列出 kubectl 支持的所有对象
 
 ```sh
 kubectl api-resources
@@ -25,7 +34,7 @@ kubectl api-resources
 | limitranges                     | limits     | true       | LimitRange                     |
 | **namespaces**                  | ns         | false      | Namespace                      |
 | **nodes**                       | no         | false      | Node                           |
-| persistentvolumeclaims          | pvc        | true       | PersistentVolumeClaim          |
+| **persistentvolumeclaims**      | pvc        | true       | PersistentVolumeClaim          |
 | **persistentvolumes**           | pv         | false      | PersistentVolume               |
 | **pods**                        | po         | true       | Pod                            |
 | podtemplates                    |            | true       | PodTemplate                    |
@@ -73,7 +82,7 @@ kubectl api-resources
 | flowschemas                     |            | false      | FlowSchema                     |
 | prioritylevelconfigurations     |            | false      | PriorityLevelConfiguration     |
 | ingressclasses                  |            | false      | IngressClass                   |
-| ingresses                       | ing        | true       | Ingress                        |
+| **ingresses**                   | ing        | true       | Ingress                        |
 | networkpolicies                 | netpol     | true       | NetworkPolicy                  |
 | runtimeclasses                  |            | false      | RuntimeClass                   |
 | poddisruptionbudgets            | pdb        | true       | PodDisruptionBudget            |
@@ -89,12 +98,50 @@ kubectl api-resources
 | storageclasses                  | sc         | false      | StorageClass                   |
 | volumeattachments               |            | false      | VolumeAttachment               |
 
-## 获取资源的详细描述
+| 类别     | 名称                                                                                                                                                                                   |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 资源对象 | Pod、ReplicaSet、ReplicationController、Deployment、StatefulSet、DaemonSet、Job、CronJob、HorizontalPodAutoscaling、Node、Namespace、Service、Ingress、Label、CustomResourceDefinition |
+| 存储对象 | Volume、PersistentVolume、Secret、ConfigMap                                                                                                                                            |
+| 策略对象 | SecurityContext、ResourceQuota、LimitRange                                                                                                                                             |
+| 身份对象 | ServiceAccount、Role、ClusterRole                                                                                                                                                      |
+
+获取对象的详细描述
 
 ```sh
-kubectl describe po/nginx
+kubectl describe pods/nginx
 
 kubectl describe -f nginx.yaml
+```
+
+使用标签筛选对象
+
+```sh
+kubectl get pods -l app=nginx
+kubectl get services -l app=nginx
+```
+
+为 Pod 应用新标签
+
+```sh
+kubectl label pod $POD_NAME
+```
+
+查看 Pod 日志
+
+```sh
+kubectl logs $POD_NAME
+```
+
+在 Pod 中执行命令
+
+```sh
+kubectl exec $POD_NAME env
+```
+
+进入 Pod 容器中
+
+```sh
+kubectl exec -it $POD_NAME sh
 ```
 
 ## Kubernetes 对象
