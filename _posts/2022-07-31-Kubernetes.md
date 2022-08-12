@@ -1,9 +1,9 @@
 ---
-title: Kubernetes Cheat Sheet
+title: Kubernetes 笔记
 date: 2022-07-31
 modify_date: 2022-07-31
 tags: Kubernetes
-key: Maven-2022-07-31
+key: Kubernetes-2022-07-31
 ---
 
 ## Kubectl Cheat Sheet
