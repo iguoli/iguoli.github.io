@@ -17,6 +17,10 @@ echo 'alias k=kubectl' >>~/.zshrc
 echo 'complete -o default -F __start_kubectl k' >>~/.zshrc
 ```
 
+如果使用 `oh-my-zsh`，可以直接使用 `kubectl` 自动补全插件
+
+---
+
 列出 kubectl 支持的所有对象
 
 ```sh
@@ -27,71 +31,29 @@ kubectl api-resources
 | NAME                            | SHORTNAMES | NAMESPACED | KIND                           |
 | ------------------------------- | ---------- | ---------- | ------------------------------ |
 | bindings                        |            | true       | Binding                        |
-| componentstatuses               | cs         | false      | ComponentStatus                |
 | **configmaps**                  | cm         | true       | ConfigMap                      |
 | **endpoints**                   | ep         | true       | Endpoints                      |
 | **events**                      | ev         | true       | Event                          |
-| limitranges                     | limits     | true       | LimitRange                     |
 | **namespaces**                  | ns         | false      | Namespace                      |
 | **nodes**                       | no         | false      | Node                           |
 | **persistentvolumeclaims**      | pvc        | true       | PersistentVolumeClaim          |
 | **persistentvolumes**           | pv         | false      | PersistentVolume               |
 | **pods**                        | po         | true       | Pod                            |
-| podtemplates                    |            | true       | PodTemplate                    |
 | replicationcontrollers          | rc         | true       | ReplicationController          |
-| resourcequotas                  | quota      | true       | ResourceQuota                  |
 | **secrets**                     |            | true       | Secret                         |
 | serviceaccounts                 | sa         | true       | ServiceAccount                 |
 | **services**                    | svc        | true       | Service                        |
-| mutatingwebhookconfigurations   |            | false      | MutatingWebhookConfiguration   |
-| validatingwebhookconfigurations |            | false      | ValidatingWebhookConfiguration |
-| customresourcedefinitions       | crd,crds   | false      | CustomResourceDefinition       |
 | apiservices                     |            | false      | APIService                     |
-| controllerrevisions             |            | true       | ControllerRevision             |
 | **daemonsets**                  | ds         | true       | DaemonSet                      |
 | **deployments**                 | deploy     | true       | Deployment                     |
 | **replicasets**                 | rs         | true       | ReplicaSet                     |
 | **statefulsets**                | sts        | true       | StatefulSet                    |
 | tokenreviews                    |            | false      | TokenReview                    |
-| localsubjectaccessreviews       |            | true       | LocalSubjectAccessReview       |
-| selfsubjectaccessreviews        |            | false      | SelfSubjectAccessReview        |
-| selfsubjectrulesreviews         |            | false      | SelfSubjectRulesReview         |
-| subjectaccessreviews            |            | false      | SubjectAccessReview            |
-| horizontalpodautoscalers        | hpa        | true       | HorizontalPodAutoscaler        |
 | **cronjobs**                    | cj         | true       | CronJob                        |
 | **jobs**                        |            | true       | Job                            |
-| certificatesigningrequests      | csr        | false      | CertificateSigningRequest      |
-| leases                          |            | true       | Lease                          |
-| bgpconfigurations               |            | false      | BGPConfiguration               |
-| bgppeers                        |            | false      | BGPPeer                        |
-| blockaffinities                 |            | false      | BlockAffinity                  |
-| clusterinformations             |            | false      | ClusterInformation             |
-| felixconfigurations             |            | false      | FelixConfiguration             |
-| globalnetworkpolicies           |            | false      | GlobalNetworkPolicy            |
-| globalnetworksets               |            | false      | GlobalNetworkSet               |
-| hostendpoints                   |            | false      | HostEndpoint                   |
-| ipamblocks                      |            | false      | IPAMBlock                      |
-| ipamconfigs                     |            | false      | IPAMConfig                     |
-| ipamhandles                     |            | false      | IPAMHandle                     |
-| ippools                         |            | false      | IPPool                         |
-| kubecontrollersconfigurations   |            | false      | KubeControllersConfiguration   |
-| networkpolicies                 |            | true       | NetworkPolicy                  |
-| networksets                     |            | true       | NetworkSet                     |
-| endpointslices                  |            | true       | EndpointSlice                  |
-| events                          | ev         | true       | Event                          |
-| flowschemas                     |            | false      | FlowSchema                     |
-| prioritylevelconfigurations     |            | false      | PriorityLevelConfiguration     |
 | ingressclasses                  |            | false      | IngressClass                   |
 | **ingresses**                   | ing        | true       | Ingress                        |
-| networkpolicies                 | netpol     | true       | NetworkPolicy                  |
-| runtimeclasses                  |            | false      | RuntimeClass                   |
-| poddisruptionbudgets            | pdb        | true       | PodDisruptionBudget            |
-| podsecuritypolicies             | psp        | false      | PodSecurityPolicy              |
-| clusterrolebindings             |            | false      | ClusterRoleBinding             |
-| clusterroles                    |            | false      | ClusterRole                    |
-| rolebindings                    |            | true       | RoleBinding                    |
 | roles                           |            | true       | Role                           |
-| priorityclasses                 | pc         | false      | PriorityClass                  |
 | csidrivers                      |            | false      | CSIDriver                      |
 | csinodes                        |            | false      | CSINode                        |
 | csistoragecapacities            |            | true       | CSIStorageCapacity             |
@@ -142,6 +104,36 @@ kubectl exec $POD_NAME env
 
 ```sh
 kubectl exec -it $POD_NAME sh
+```
+
+### Namespace
+
+创建名为 *Dev* 的 Namespace
+
+```sh
+kubectl create namespace Dev
+```
+
+查询 Namespace 中的资源
+
+```sh
+# short format
+kubectl get deploy -n Dev
+
+# long format
+kubectl get deploy --namespace=Dev
+```
+
+将当前 Namespace 设置为 *Dev*
+
+```sh
+kubectl config set-context --current --namespace=Dev
+```
+
+查看当前 Namespace
+
+```sh
+kubectl config view | grep namespace
 ```
 
 ## Kubernetes 对象
