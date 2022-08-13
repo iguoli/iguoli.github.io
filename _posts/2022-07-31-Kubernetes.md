@@ -19,7 +19,7 @@ echo 'complete -o default -F __start_kubectl k' >>~/.zshrc
 
 如果使用 `oh-my-zsh`，可以直接使用 `kubectl` 自动补全插件
 
----
+<!--more-->
 
 列出 kubectl 支持的所有对象
 
@@ -54,11 +54,6 @@ kubectl api-resources
 | ingressclasses                  |            | false      | IngressClass                   |
 | **ingresses**                   | ing        | true       | Ingress                        |
 | roles                           |            | true       | Role                           |
-| csidrivers                      |            | false      | CSIDriver                      |
-| csinodes                        |            | false      | CSINode                        |
-| csistoragecapacities            |            | true       | CSIStorageCapacity             |
-| storageclasses                  | sc         | false      | StorageClass                   |
-| volumeattachments               |            | false      | VolumeAttachment               |
 
 | 类别     | 名称                                                                                                                                                                                   |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -134,6 +129,12 @@ kubectl config set-context --current --namespace=Dev
 
 ```sh
 kubectl config view | grep namespace
+```
+
+删除 Namespace，需要注意，这会删除该命名空间下的所有内容
+
+```sh
+kubectl delete namespace Dev
 ```
 
 ## Kubernetes 对象
