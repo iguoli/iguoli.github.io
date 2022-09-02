@@ -1,12 +1,15 @@
 ---
-title: Kubernetes 笔记
+title: Kubernetes and Openshift
 date: 2022-07-31
 modify_date: 2022-07-31
-tags: Kubernetes
+tags: Kubernetes Openshift
 key: Kubernetes-2022-07-31
 ---
 
-## Kubectl Cheat Sheet
+## Kubectl and OC command Cheat Sheet
+
+以下命令，如无特别说明，均可以使用 `oc` 替换 `kubectl`
+{:.info}
 
 参考 [kubectl auto completion](https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/) 设置别名和自动补全。
 
@@ -17,7 +20,7 @@ echo 'alias k=kubectl' >>~/.zshrc
 echo 'complete -o default -F __start_kubectl k' >>~/.zshrc
 ```
 
-如果使用 `oh-my-zsh`，可以直接使用 `kubectl` 自动补全插件
+如果使用 `oh-my-zsh`，可以直接使用 `kubectl` 和 `oc` 自动补全插件
 
 <!--more-->
 
@@ -28,32 +31,32 @@ kubectl api-resources
 ```
 <!--more-->
 
-| NAME                            | SHORTNAMES | NAMESPACED | KIND                           |
-| ------------------------------- | ---------- | ---------- | ------------------------------ |
-| bindings                        |            | true       | Binding                        |
-| **configmaps**                  | cm         | true       | ConfigMap                      |
-| **endpoints**                   | ep         | true       | Endpoints                      |
-| **events**                      | ev         | true       | Event                          |
-| **namespaces**                  | ns         | false      | Namespace                      |
-| **nodes**                       | no         | false      | Node                           |
-| **persistentvolumeclaims**      | pvc        | true       | PersistentVolumeClaim          |
-| **persistentvolumes**           | pv         | false      | PersistentVolume               |
-| **pods**                        | po         | true       | Pod                            |
-| replicationcontrollers          | rc         | true       | ReplicationController          |
-| **secrets**                     |            | true       | Secret                         |
-| serviceaccounts                 | sa         | true       | ServiceAccount                 |
-| **services**                    | svc        | true       | Service                        |
-| apiservices                     |            | false      | APIService                     |
-| **daemonsets**                  | ds         | true       | DaemonSet                      |
-| **deployments**                 | deploy     | true       | Deployment                     |
-| **replicasets**                 | rs         | true       | ReplicaSet                     |
-| **statefulsets**                | sts        | true       | StatefulSet                    |
-| tokenreviews                    |            | false      | TokenReview                    |
-| **cronjobs**                    | cj         | true       | CronJob                        |
-| **jobs**                        |            | true       | Job                            |
-| ingressclasses                  |            | false      | IngressClass                   |
-| **ingresses**                   | ing        | true       | Ingress                        |
-| roles                           |            | true       | Role                           |
+| NAME                       | SHORTNAMES | NAMESPACED | KIND                  |
+| -------------------------- | ---------- | ---------- | --------------------- |
+| bindings                   |            | true       | Binding               |
+| **configmaps**             | cm         | true       | ConfigMap             |
+| **endpoints**              | ep         | true       | Endpoints             |
+| **events**                 | ev         | true       | Event                 |
+| **namespaces**             | ns         | false      | Namespace             |
+| **nodes**                  | no         | false      | Node                  |
+| **persistentvolumeclaims** | pvc        | true       | PersistentVolumeClaim |
+| **persistentvolumes**      | pv         | false      | PersistentVolume      |
+| **pods**                   | po         | true       | Pod                   |
+| replicationcontrollers     | rc         | true       | ReplicationController |
+| **secrets**                |            | true       | Secret                |
+| serviceaccounts            | sa         | true       | ServiceAccount        |
+| **services**               | svc        | true       | Service               |
+| apiservices                |            | false      | APIService            |
+| **daemonsets**             | ds         | true       | DaemonSet             |
+| **deployments**            | deploy     | true       | Deployment            |
+| **replicasets**            | rs         | true       | ReplicaSet            |
+| **statefulsets**           | sts        | true       | StatefulSet           |
+| tokenreviews               |            | false      | TokenReview           |
+| **cronjobs**               | cj         | true       | CronJob               |
+| **jobs**                   |            | true       | Job                   |
+| ingressclasses             |            | false      | IngressClass          |
+| **ingresses**              | ing        | true       | Ingress               |
+| roles                      |            | true       | Role                  |
 
 | 类别     | 名称                                                                                                                                                                                   |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -61,6 +64,12 @@ kubectl api-resources
 | 存储对象 | Volume、PersistentVolume、Secret、ConfigMap                                                                                                                                            |
 | 策略对象 | SecurityContext、ResourceQuota、LimitRange                                                                                                                                             |
 | 身份对象 | ServiceAccount、Role、ClusterRole                                                                                                                                                      |
+
+### 查看当前集群信息
+
+```sh
+kubectl config view
+```
 
 获取对象的详细描述
 
@@ -99,6 +108,19 @@ kubectl exec $POD_NAME env
 
 ```sh
 kubectl exec -it $POD_NAME sh
+```
+
+删除所有 Pods, Secrets, ConfigMaps
+
+```sh
+kubectl delete --all pods
+
+kubectl delete --all secrets
+
+kubectl delete --all cm
+
+# 删除 Dev namespace 中的所有 deployment
+kubectl delete -all deployments --namespace=Dev
 ```
 
 ### Namespace
