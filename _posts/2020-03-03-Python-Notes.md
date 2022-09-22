@@ -111,3 +111,13 @@ from .spam import name
 - 相对导入只能用于包内的模块文件。如果模块文件作为脚本直接运行，作为顶层脚本，它不再属于任何包，因此会报没有父级包的错误信息: <span style="color:red">ImportError: attempted relative import with no known parent package</span>。应该通过从包的外部执行一个顶层脚本来调用该包下的模块，或者从包的外部以模块来运行，类似于这样的代码 `python -m dir.test`。
 
 - 相对导入只适用于 `from` 语句，不适用于 `import` 语句。
+
+## [单下划线与双下划线开头的变量](https://stackoverflow.com/questions/1301346/what-is-the-meaning-of-single-and-double-underscore-before-an-object-name)
+
+Single underscore
+
+> `_single_leading_underscore`: weak "internal use" indicator. E.g. `from M import *` does not import objects whose name starts with an underscore.
+
+Double underscore
+
+> Any identifier of the form `__spam` (at least two leading underscores, at most one trailing underscore) is textually replaced with `_classname__spam`, where `classname` is the current class name with leading underscore(s) stripped. This mangling is done without regard to the syntactic position of the identifier, so it can be used to define class-private instance and class variables, methods, variables stored in globals, and even variables stored in instances. private to this class on instances of other classes.
