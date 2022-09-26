@@ -146,6 +146,19 @@ TZ='Asia/Shanghai'
 TZ=Asia/Shanghai date
 ```
 
+显示格式为 'YYYY-MM-DD hh:mm:ss' 时间
+
+```sh
+# 显示格式为 'YYYY-MM-DD hh:mm:ss' 时间，时区为系统默认时区
+date '+%F %T'
+
+# 显示格式为 'YYYY-MM-DD hh:mm:ss timezone' 时间
+date '+%F %T %Z'
+
+# 显示格式为 'YYYY-MM-DD hh:mm:ss timezone' 的 UTC 时间
+date '+%F %T %Z' -u
+```
+
 显示 RFC 5322 格式时间，例如 `Tue, 11 Jan 2022 12:30:20 +0800`
 
 ```sh
@@ -215,7 +228,11 @@ date -u +"%Y-%m-%d %H:%M:%S"
 打印 timestamp
 
 ```sh
+# Seconds since UNIX epoch
 date +%s
+
+# Nanoseconds since UNIX epoch
+date +%s.%N
 ```
 
 ### 时间转换
