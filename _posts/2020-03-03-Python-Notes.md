@@ -197,10 +197,15 @@ dt = datetime.now(ZoneInfo('Asia/Tokyo'));
 ```python
 from datetime import datetime
 
+# 感知型 datetime 对象，其 tz=UTC
 dt = datetime.now(timezone.utc)
 
+# 简单型 datetime 对象，其 tz=None
 dt = datetime.utcnow()
 ```
+
+**警告**: 由于简单型 `datetime` 对象会被许多 `datetime` 方法当作本地时间来处理，最好是使用感知型 `datetime` 对象来表示 UTC 时间。 因此，创建表示当前 UTC 时间的对象的推荐方式是通过调用 `datetime.now(timezone.utc)`。
+{:.warning}
 
 如需要获取当前时间的时间戳，可以使用 `time` 模块的 `time` 函数来得到
 
@@ -209,3 +214,21 @@ import time
 
 time.time()
 ```
+
+### 将时间戳转换为时间
+
+```python
+from datetime import datetime
+
+# 转换为系统本地时间，datetime 对象为简单型，tz=None
+datetime.fromtimestamp(time.time())
+
+# 转换为 UTC 时间，datetime 对象为感知型，tz=UTC
+datetime.fromtimestamp(time.time(), timezone.utc)
+
+# 转换为 UTC 时间，datetime 对象为简单型，tz=None
+datetime.utcfromtimestamp(time.time())
+```
+
+**警告**: 由于简单型 `datetime` 对象会被许多 `datetime` 方法当作本地时间来处理，最好是使用感知型日期时间对象来表示 UTC 时间。 因此，创建表示特定 UTC 时间戳的 `datetime` 对象的推荐方式是通过调用 `datetime.fromtimestamp(timestamp, tz=timezone.utc)`。
+{:.warning}
