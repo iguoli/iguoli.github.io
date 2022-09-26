@@ -201,9 +201,21 @@ date +"%Y-%m-%d %H:%M:%S"
 显示 UTC 时间，例如 `2022-01-11 04:30:20`
 
 ```sh
+# long term
+date --utc
+
+# short term
 date -u
 
+date -u -R
+
 date -u +"%Y-%m-%d %H:%M:%S"
+```
+
+打印 timestamp
+
+```sh
+date +%s
 ```
 
 ### 时间转换
@@ -217,6 +229,17 @@ date -u +"%Y-%m-%d %H:%M:%S"
 > An empty string indicates the beginning of the day.  The date string format
 > is more complex than is easily documented here but is fully described in the
 > info documentation.
+
+将 timestamp 转换成指定格式的时间
+
+```sh
+# 转换为系统当前格式时间
+date -d '@1664174673'
+
+date -d '@1664174673' -R
+
+date -d '@1664174673' -R -u
+```
 
 将美国芝加哥时间 (UTC -5) 早上4点转换为当前系统时间
 
