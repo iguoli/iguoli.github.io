@@ -121,3 +121,91 @@ Single underscore
 Double underscore
 
 > Any identifier of the form `__spam` (at least two leading underscores, at most one trailing underscore) is textually replaced with `_classname__spam`, where `classname` is the current class name with leading underscore(s) stripped. This mangling is done without regard to the syntactic position of the identifier, so it can be used to define class-private instance and class variables, methods, variables stored in globals, and even variables stored in instances. private to this class on instances of other classes.
+
+## Datetime
+
+[datetime](https://docs.python.org/zh-cn/3/library/datetime.html) 模块是处理日期和时间的标准库。
+
+`datetime` 模块包含一个同名的 `datetime` 类，可用于获取当前日期和时间。
+
+```python
+from datetime import datetime
+
+print(datetime.now())
+```
+
+### 本地时间
+
+本地时间是指系统设定时区的时间，在支持 `systemd` 的 Linux 系统上，使用 `timedatectl` 命令可以查看到系统的本地时间，UTC时间，时区等信息
+
+```sh
+$ timedatectl
+      Local time: Mon 2019-08-05 10:02:54 CST
+  Universal time: Mon 2019-08-05 02:02:54 UTC
+        RTC time: Sun 2019-08-04 08:11:38
+       Time zone: Asia/Shanghai (CST, +0800)
+ Network time on: yes
+NTP synchronized: no
+ RTC in local TZ: no
+```
+
+也可以通过 `cat /etc/timezone` 命令获取系统设定的时区。
+
+Python 中的 `zoneinfo` 模块来获得当前支持 timezone 信息。
+
+```python
+import zoneinfo
+
+zoneinfo.available_timezones()
+```
+
+`datetime.now()` 返回的即是系统当前的本地时间，返回对象类型为 `datetime`。
+
+`datetime` 对象带有一个时区属性 `tzinfo`，但是默认为 `None`。 `datetime` 表示的时间需要时区信息才能确定一个特定的时间，否则只能视为不知具体时区本地时间，因此需要设置 `tzinfo` 属性来为其添加对应的时区。
+
+```python
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
+
+# 生成本地时间，即北京时间，UTC+8
+dt = datetime.now();
+# output: datetime.datetime(2022, 9, 26, 23, 40, 34, 103802)
+
+# 因为 dt 默认的 tzinfo 是 None，因此需要将其改为与系统一致的时区
+dt.replace(tzinfo=ZoneInfo('Asia/Shanghai'))
+```
+
+也可以在调用 `datetime.now()` 函数时为其直接指定时区，此时生成的 `datetime` 即为带时区的正确时间
+
+```python
+from datetime import datetime
+
+# UTC 时间
+dt = datetime.now(timezone.utc);
+
+# 北京时间
+dt = datetime.now(ZoneInfo('Asia/Shanghai'));
+
+# 东京时间
+dt = datetime.now(ZoneInfo('Asia/Tokyo'));
+```
+
+### UTC 时间
+
+在处理时间时，最好使用 UTC 时间来进行处理，最后再将其转换为不同时区的时间。
+
+```python
+from datetime import datetime
+
+dt = datetime.now(timezone.utc)
+
+dt = datetime.utcnow()
+```
+
+如需要获取当前时间的时间戳，可以使用 `time` 模块的 `time` 函数来得到
+
+```python
+import time
+
+time.time()
+```

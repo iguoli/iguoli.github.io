@@ -6,6 +6,10 @@ tags: Linux Date
 key: Linux-Datetime-2017-12-02
 ---
 
+## [Unix timestamp](https://zh.wikipedia.org/wiki/UNIX时间)
+
+**Unix timestamp** 又称为 **Unix time**,  **POSIX time**。是指从 **Unix epoch** *1970年1月1日 00:00:00 UTC+00:00* 时刻开始，到现在**经过的总秒数**。一般可通过命令 `date +%s` 来获得。
+
 ## 时区
 
 [Time Zone Abbreviations – Worldwide List][1]
