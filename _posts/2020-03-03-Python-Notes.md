@@ -151,7 +151,7 @@ NTP synchronized: no
 
 也可以通过 `cat /etc/timezone` 命令获取系统设定的时区。
 
-Python 中的 `zoneinfo` 模块来获得当前支持 timezone 信息。
+Python 中的 `zoneinfo` 模块可以获得当前支持的 timezone 信息。
 
 ```python
 import zoneinfo
@@ -161,7 +161,7 @@ zoneinfo.available_timezones()
 
 `datetime.now()` 返回的即是系统当前的本地时间，返回对象类型为 `datetime`。
 
-`datetime` 对象带有一个时区属性 `tzinfo`，但是默认为 `None`。 `datetime` 表示的时间需要时区信息才能确定一个特定的时间，否则只能视为不知具体时区本地时间，因此需要设置 `tzinfo` 属性来为其添加对应的时区。
+`datetime` 对象带有一个时区属性 `tzinfo`，但是默认为 `None`。 `datetime` 表示的时间需要时区信息才能表示一个特定的时间，否则只能视为不知具体时区的本地时间，因此需要设置 `tzinfo` 属性来为其添加对应的时区。
 
 ```python
 from datetime import datetime, timezone
