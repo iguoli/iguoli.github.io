@@ -63,8 +63,10 @@ Lists files in the directory specified by path. The `hadoop mfs -ls` command cor
 - Whether audit is enabled (A) or disabled (U) for each file
 
 ```sh
-hadoop mfs -getace [-R] <path>
+hadoop mfs -getace [-R] <file-path>
 ```
+
+`-getace` only works on files.
 
 Returns the permissions -- POSIX mode bits and ACEs -- for the given file or (recursively) for the directory. Recursion is enabled only if `-R` is specified; if `-R` is not specified, this parameter returns the permissions only for the given directory. Here:
 
