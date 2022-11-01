@@ -19,6 +19,8 @@ hadoop fs <args>
 - [`hadoop fs`](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html) command guide
 - [`hadoop`](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/CommandsManual.html) command guide
 
+<!--more-->
+
 ```sh
 hadoop dfs <args>
 ```
