@@ -93,3 +93,14 @@ hadoop mfs -getace [-R] <path>
 | Directory | addchild    | w               |
 | Directory | deletechild | w               |
 | Directory | lookupdir   | x               |
+
+注意：使用 `chmod` 更改 POSIX 模式位不会更改相应的 ACE 设置，并且可能会导致权限冲突。
+{:.warning}
+
+可以在目录上同时设置文件和目录 ACE，但只有目录 ACE 用于确定对目录的访问。目录上的文件 ACE 用作该目录下新文件的默认 ACE 设置。
+
+默认情况下，当在父目录上设置 ACE 时：
+
+- 该父目录下现有文件和子目录的权限保持不变。
+- 该父目录下的新建文件继承父目录的文件 ACE 和相应的 POSIX 模式位。否则，新建文件将使用默认 ACE，即空字符串 (`""`)，表示没有人有权读、写或执行该文件，POSIX 模式位以传统方式在文件上设置。
+- 该父目录下的新建子目录从父目录继承目录和文件 ACE 以及相应的 POSIX 模式位。
