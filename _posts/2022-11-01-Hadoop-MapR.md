@@ -14,7 +14,7 @@ key: Hadoop-MapR-2022-11-01
 hadoop fs <args>
 ```
 
-`fs` relates to a generic file system which can point to any file systems like local, HDFS etc. So this can be used when you are dealing with different file systems such as Local FS, (S)FTP, S3, and others.
+`fs` 处理通用文件系统相关操作，它可以指向任何文件系统，因此，当处理不同的文件系统时，如 Local FS、HDFS、(S)FTP、S3 等，可以使用它。
 
 - [`hadoop fs`](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html) command guide
 - [`hadoop`](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/CommandsManual.html) command guide
@@ -25,15 +25,13 @@ hadoop fs <args>
 hadoop dfs <args>
 ```
 
-`dfs` is very specific to HDFS. would work for operation relates to HDFS. **This has been deprecated and we should use `hdfs dfs` instead**.
+`dfs` 特定于 HDFS，适用于与 HDFS 相关的操作。该命令已被弃用，应该使用 `hdfs dfs` 代替。
 
 ```sh
 hdfs dfs <args>
 ```
 
-same as 2nd i.e would work for all the operations related to HDFS and is the recommended command instead of `hadoop dfs`.
-
-So even if you use `hadoop dfs` , it will look locate hdfs and delegate that command to `hdfs dfs`.
+与 `hadoop dfs` 相同，即适用于与 HDFS 相关的所有操作，并且是推荐的命令。因此，即使使用 `hadoop dfs`，系统也会查找 hdfs 并将命令委托给 `hdfs dfs`。
 
 - [`hdfs`](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html) command guide
 
@@ -43,7 +41,7 @@ So even if you use `hadoop dfs` , it will look locate hdfs and delegate that com
 hadoop mfs <args>
 ```
 
-The `hadoop mfs` command displays directory information and contents, creates symbolic links and hard links, sets, gets, and removes Access Control Expressions (ACE) on files and directories, and sets compression and chunk size on a directory.
+`hadoop mfs` 命令可以显示目录信息和内容，创建符号链接和硬链接，设置、获取和删除文件和目录的访问控制表达式 (**Access Control Expression, ACE**)，设置目录的压缩选项和块大小。
 
 - [`hadoop mfs`](https://docs.datafabric.hpe.com/70/ReferenceGuide/hadoop-mfs.html) command guide
 
@@ -53,24 +51,21 @@ The `hadoop mfs` command displays directory information and contents, creates sy
 hadoop mfs -ls <path>
 ```
 
-Lists files in the directory specified by path. The `hadoop mfs -ls` command corresponds to the standard `hadoop fs -ls` command, but provides the following additional information:
+列出由 `<path>` 指定的目录中的文件。 `hadoop mfs -ls` 命令对应于标准 `hadoop fs -ls` 命令，但提供了以下附加信息：
 
 - Volume indicator `v` before POSIX mode bits
-- Chunks used for each file
-- Server where each chunk resides
-- Whether compression is enabled for each file
-- Whether encryption is enabled for each file
-- Whether audit is enabled (A) or disabled (U) for each file
+- 每个文件使用的块
+- 每个块所在的服务器
+- 是否为每个文件启用压缩
+- 是否为每个文件启用加密
+- 是否为每个文件启用 (A) 或禁用 (U) 审核
+
+如果指定的路径是卷 (Volume)，则在 POSIX 模式位之前的给出的文件类型是 `v`。
+
+如果给定文件或目录设置了 ACE 和 POSIX 模式位，则模式位最后会有一个加号 (`+`)，如果文件或目录上的 ACE 为空字符串，则没有加号。
 
 ```sh
-hadoop mfs -getace [-R] <file-path>
+hadoop mfs -getace [-R] <path>
 ```
 
-`-getace` only works on files.
-
-Returns the permissions -- POSIX mode bits and ACEs -- for the given file or (recursively) for the directory. Recursion is enabled only if `-R` is specified; if `-R` is not specified, this parameter returns the permissions only for the given directory. Here:
-
-- `[-R]` — (Optional) Enables recursion allowing you to perform the operation in subdirectories as well.
-- path — (Required) Specifies the path to the file or directory.
-
-If one or more ACEs are available for the file or directory, a plus sign (+), which indicates that both ACEs and POSIX mode bits are set for the given file or directory, is returned. If the ACE on the file or directory is an empty string, the plus sign is not returned.
+返回给定文件或目录的访问权限，包括 POSIX 模式位和 ACE。当指定了 `-R` 时启用递归。
