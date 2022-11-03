@@ -81,3 +81,15 @@ hadoop mfs -getace [-R] <path>
 - 如果 ACE 和 POSIX 模式位均未设置，则拒绝访问。
 
 文件或目录的 owner (以及 mapr 和 root 用户) 可以使用 `hadoop mfs` 命令设置、修改和删除该文件或目录的 ACE。
+
+设置 ACE 后，默认情况下也会设置相应的 POSIX 模式位。**Owner** 和 **owning group** 的 POSIX 模式位会通过相应的 ACE 推导得出。仅当给出 `"p"` 作为 ACE 的值时，才会设置 **others** 的 POSIX 模式位。
+
+| Type      | ACE         | POSIX Mode Bits |
+| --------- | ----------- | --------------- |
+| File      | readfile    | r               |
+| File      | writefile   | w               |
+| File      | executefile | x               |
+| Directory | readdir     | r               |
+| Directory | addchild    | w               |
+| Directory | deletechild | w               |
+| Directory | lookupdir   | x               |
