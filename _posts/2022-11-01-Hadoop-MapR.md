@@ -69,3 +69,15 @@ hadoop mfs -getace [-R] <path>
 ```
 
 返回给定文件或目录的访问权限，包括 POSIX 模式位和 ACE。当指定了 `-R` 时启用递归。
+
+## [管理 MapR 文件和目录的 ACE](https://docs.datafabric.hpe.com/70/SecurityGuide/copy_FileDirACE.html)
+
+**Access Control Expression (ACE)** 允许为用户、组和角色的组合定义对文件和目录的访问控制 (白名单和黑名单)。如果未设置 ACE，则 POSIX 模式位用于控制对文件或目录的访问。
+
+当设置 ACE 时，MapR 会设置或重置相应的 POSIX 模式位以匹配 ACE 授予的访问权限。
+
+- 如果同时设置了 ACE 和 POSIX 模式位，则使用 ACE 或 POSIX 模式位授予访问权限。
+- 如果未设置 ACE，则使用 POSIX 模式位授予访问权限。
+- 如果 ACE 和 POSIX 模式位均未设置，则拒绝访问。
+
+文件或目录的 owner (以及 mapr 和 root 用户) 可以使用 `hadoop mfs` 命令设置、修改和删除该文件或目录的 ACE。
