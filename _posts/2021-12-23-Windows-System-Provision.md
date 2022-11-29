@@ -10,6 +10,16 @@ key: Windows-System-Provision-2021-06-25
 
 ## 安装 [scoop](https://scoop.sh/)
 
+### 安装字体
+
+```sh
+scoop bucket add nerd-fonts
+
+scoop install FiraCode
+scoop install Inconsolata-NF
+scoop install Inconsolata-NF-Mono
+```
+
 <!--more-->
 
 在 PowerShell 中查看 `PATH` 环境变量
