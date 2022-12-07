@@ -165,14 +165,12 @@ peter hostA=(root) /usr/bin/passwd
 
 查看 `man sudoers` 的 `EXAMPLE` 章节，学习更多例子。
 
-### 配置无密码用户
+### 为特定用户配置 sudo
 
 使用 `sudo visudo` 命令会直接编辑系统默认配置，对于普通用户，更好的方法是在 `/etc/sudoers.d` 目录下单独添加配置文件，文件名可以使用用户名
 
 ```sh
-cd /etc/sudoers.d
-
-sudo visudo $USER
+sudo visudo /etc/sudoers.d/$USER
 ```
 
 #### sudoers 配置文件
