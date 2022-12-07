@@ -157,9 +157,7 @@ update-alternatives –remove python /usr/bin/python3.8
 USERS HOSTS=(RUNAS) [NOPASSWD:]COMMANDS
 ```
 
-例如
-
-允许用户 peter 以 root 用户身份在 hostA 主机上执行 `/usr/bin/passwd` 命令
+例如，允许用户 peter 以 root 用户身份在 hostA 主机上执行 `/usr/bin/passwd` 命令
 
 ```sh
 peter hostA=(root) /usr/bin/passwd
