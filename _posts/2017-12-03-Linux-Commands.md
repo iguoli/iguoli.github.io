@@ -198,8 +198,18 @@ gvim &!
 
 ## sudo and su
 
+切换到 `postgres` 用户。
+
 ```sh
-sudo -H -u postgres psql db
+sudo -iu postgres
+
+su - postgres
+```
+
+使用 `postgres` 用户执行命令
+
+```sh
+sudo -u postgres psql db
 
 su - postgres -c 'psql db'
 ```
