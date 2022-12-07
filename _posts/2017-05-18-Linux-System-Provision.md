@@ -149,13 +149,23 @@ update-alternative --config editor
 update-alternatives –remove python /usr/bin/python3.8
 ```
 
-## 配置 sudo 用户
+## 配置 sudo
 
 ### 语法
 
 ```text
 USERS HOSTS=(RUNAS) [NOPASSWD:]COMMANDS
 ```
+
+例如
+
+允许用户 peter 以 root 用户身份在 hostA 主机上执行 `/usr/bin/passwd` 命令
+
+```sh
+peter hostA=(root) /usr/bin/passwd
+```
+
+查看 `man sudoers` 的 `EXAMPLE` 章节，学习更多例子。
 
 ### 配置无密码用户
 
@@ -189,7 +199,27 @@ username ALL=(ALL) NOPASSWD:ALL
 %wheel ALL=(ALL) NOPASSWD:ALL
 ```
 
-查看 `man sudoers` 的 `EXAMPLE` 章节，学习更多例子。
+### 使用 sudo
+
+切换到不同用户
+
+```sh
+# root user
+sudo -i
+
+# foo user
+sudo -i -u foo
+```
+
+以不同用户执行命令
+
+```sh
+# run pwd command as root user
+sudo pwd
+
+# run pwd command as foo user
+sudo -u foo pwd
+```
 
 ## 用户及用户组操作
 
