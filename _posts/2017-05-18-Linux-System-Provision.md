@@ -230,7 +230,9 @@ groupmod -n new-group old-group
 userdel -r $USER
 ```
 
-## 设置包管理器代理
+## 设置包管理器
+
+### 设置代理
 
 **Ubuntu APT**
 
@@ -246,6 +248,16 @@ Acquire {
 **RedHat/CentOS Yum/Dnf**
 
 参考 [设置Yum仓库代理](https://iguoli.github.io/2016/08/02/DNF-YUM.html#设置-yum-仓库代理)
+
+```sh
+sudo dnf config-manager --setopt=proxy=http://127.0.0.1:7890 --save
+```
+
+### 加速安装包下载
+
+```sh
+sudo dnf config-manager --setopt=max_parallel_downloads=5 --setopt=fastestmirror=true --save
+```
 
 ## 安装系统常用开发工具
 
