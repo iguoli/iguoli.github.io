@@ -1,7 +1,7 @@
 ---
 title: Git 常用命令
 date: 2017-06-05
-modify_date: 2021-04-17
+modify_date: 2022-12-10
 tags: Git
 key: Git-Commands-2017-06-05
 ---
@@ -55,6 +55,14 @@ git -c pager.log= log -1
 
 # 或关闭所有输出的分页器
 git -c core.pager= log -1
+```
+
+### Git clone 时设置 git config
+
+有时，不需要为 Git 设置全局代理，而只为要 clone 的仓库设置代理，可以使用以下方式执行 `git clone`
+
+```sh
+git clone -c https.proxy socks5h://localhost:1080 https://github.com/user/repo.git
 ```
 
 ## gitignore 文件
