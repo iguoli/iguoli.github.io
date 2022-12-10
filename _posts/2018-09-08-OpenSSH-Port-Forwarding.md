@@ -117,6 +117,22 @@ ssh -L 8080:localhost:80 -J jumphost1,jumphost2 machine2
 ssh -L 8080:localhost:80 machine2
 ```
 
+## 使用 AutoSSH 保证隧道断线重连
+
+安装 autossh
+
+```sh
+sudo dnf install -y autossh
+```
+
+使用 `autossh` 建立 ssh 隧道
+
+```sh
+autossh -M 9090 -Nf -L 8080:localhost:80 remotehost
+
+autossh -M 1090 -Nf -D 1080 remotehost
+```
+
 ## [在已建立的连接中添加或删除隧道]
 
 可以使用转义字符（`~`）在已建立的 SSH 连接上添加或删除常规隧道、反向隧道或 SOCKS 代理。可以查看 [ssh(1)] 手册页了解关于转义字符的内容。
