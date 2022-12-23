@@ -65,7 +65,7 @@ less +F /var/log/syslog
 sudo dmesg | less +F
 ```
 
-在 less 中还可以像 vim 一样标记位置，使用 <kbd>m</kbd> 标记位置，使用 <kbd>'</kbd> 恢复位置。同时，在 less 中还可以使用 <kbd>v</kbd> 键打开系统默认的编辑器。
+在 less 中还可以像 vim 一样标记位置，使用 <kbd>m</kbd> 键标记位置，使用 <kbd>'</kbd> 键恢复位置。同时，在 less 中还可以使用 <kbd>v</kbd> 键打开系统默认的编辑器。
 
 ## dig
 
