@@ -35,6 +35,38 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+## less
+
+`-p` 选项，使用 search pattern 打开文件
+
+```sh
+less -pPattern file
+```
+
+`-s` 选项，打开文件时删除重复的空行
+
+```sh
+less -s file
+```
+
+`-N` 选项，显示行号
+
+```sh
+less -N file
+```
+
+`+F` (forward) 选项是 less 中的实时监控模式。`+F` 选项使 less 显示实时添加到文件中的最新消息或行。`+` 标志表示将选项视为在 less 中使用。如果文件已经在 less 中打开，请按 <kbd>F</kbd> 键进入前进模式。
+
+> F, Scroll  forward, and keep trying to read when the end of file is reached.  Normally this command would be used when already at the end of the file.  It is a way to monitor the tail of a file which is growing while it is being viewed.  (The behavior is similar  to  the  "tail -f" command.)  To stop waiting for more data, enter the interrupt character (usually ^C).  On some systems you can also use ^X.
+
+```sh
+less +F /var/log/syslog
+
+sudo dmesg | less +F
+```
+
+在 less 中还可以像 vim 一样标记位置，使用 <kbd>m</kbd> 标记位置，使用 <kbd>'</kbd> 恢复位置。同时，在 less 中还可以使用 <kbd>v</kbd> 键打开系统默认的编辑器。
+
 ## dig
 
 使用 `@` 符号来指定要查询的 DNS 服务器，如果不指定 DNS 服务器，`dig` 会依次使用 `/etc/resolv.conf` 中的地址作为 DNS 服务器
