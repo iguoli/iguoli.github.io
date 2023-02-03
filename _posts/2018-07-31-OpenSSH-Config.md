@@ -92,6 +92,31 @@ oh-my-zsh 对 ssh 主机名的自动补全有时候会不正常，可以执行�
 zstyle ':completion:*:ssh:*' hosts off
 ```
 
+## 服务端配置文件
+
+`Match` 关键字会引入条件块。如果 `Match` 所在行上的所有条件都满足，则该行之后出现的关键字将覆盖配置文件全局部分中设置的关键字，直到另一个 `Match` 行出现或到文件末尾。如果关键字出现在满足条件的多个 `Match` 块中，则第一个满足条件的 `Match` 块中的关键字被应用。
+
+`Match` 的参数是一个或多个条件模式或使用 `ALL` 匹配所有条件。可用的条件是 `User`, `Group`, `Host`, `LocalAddress`, `LocalPort`, `RDomain`, and `Address` (`RDomain` 代表接收连接的 rdomain(4))。多个条件模式由逗号 (`,`) 分隔，并且可以使用 `ssh_config(5)` 的 *PATTERNS* 部分中描述的通配符和否定运算符。
+
+`Address` 条件模式可以包含以 CIDR 地址/掩码格式匹配的地址，例如 `192.0.2.0/24` 或 `2001:db8::/32`。请注意，提供的掩码长度必须与地址一致 - 为地址指定太长的掩码长度或在地址的主机部分中设置了位的掩码长度是错误的。 例如，分别为 192.0.2.0/33 和 192.0.2.0/8。
+
+只能在 `Match` 块中使用关键字的子集。可用的关键字子集是
+
+| Keyword                     | Keyword                         | Keyword                         | Keyword                    | Keyword                  |
+| --------------------------- | ------------------------------- | ------------------------------- | -------------------------- | ------------------------ |
+| AcceptEnv                   | AllowAgentForwarding            | AllowGroups                     | AllowStreamLocalForwarding | AllowTcpForwarding       |
+| AllowUsers                  | AuthenticationMethods           | AuthorizedKeysCommand           | AuthorizedKeysCommandUser  | AuthorizedKeysFile       |
+| AuthorizedPrincipalsCommand | AuthorizedPrincipalsCommandUser | AuthorizedPrincipalsFile        | Banner                     | CASignatureAlgorithms    |
+| ChrootDirectory             | ClientAliveCountMax             | ClientAliveInterval             | DenyGroups                 | DenyUsers                |
+| DisableForwarding           | ExposeAuthInfo                  | ForceCommand                    | GatewayPorts               | GSSAPIAuthentication     |
+| HostbasedAcceptedAlgorithms | HostbasedAuthentication         | HostbasedUsesNameFromPacketOnly | IgnoreRhosts               | Include                  |
+| IPQoS                       | KbdInteractiveAuthentication    | KerberosAuthentication          | LogLevel                   | MaxAuthTries             |
+| MaxSessions                 | PasswordAuthentication          | PermitEmptyPasswords            | PermitListen               | PermitOpen               |
+| PermitRootLogin             | PermitTTY                       | PermitTunnel                    | PermitUserRC               | PubkeyAcceptedAlgorithms |
+| PubkeyAuthentication        | PubkeyAuthOptions               | RekeyLimit                      | RevokedKeys                | RDomain                  |
+| SetEnv                      | StreamLocalBindMask             | StreamLocalBindUnlink           | TrustedUserCAKeys          | X11DisplayOffset         |
+| X11Forwarding               | X11UseLocalhost                 |                                 |                            |
+
 ## OpenSSH 8.8
 
 - [OpenSSH 8.8 release note](https://www.openssh.com/txt/release-8.8)
@@ -255,6 +280,7 @@ Host forward-5432
 ## 参考文档
 
 [OpenSSH](https://en.wikibooks.org/wiki/OpenSSH)
+[sshd_config(5) — Linux manual page](https://man7.org/linux/man-pages/man5/sshd_config.5.html)
 [SSH Jump Host](https://wiki.gentoo.org/wiki/SSH_jump_host)
 
 [主机跳转]: https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Proxies_and_Jump_Hosts 
