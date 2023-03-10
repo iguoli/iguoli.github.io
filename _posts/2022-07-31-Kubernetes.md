@@ -31,40 +31,6 @@ kubectl api-resources
 ```
 <!--more-->
 
-| NAME                       | SHORTNAMES | NAMESPACED | KIND                  |
-| -------------------------- | ---------- | ---------- | --------------------- |
-| bindings                   |            | true       | Binding               |
-| **configmaps**             | cm         | true       | ConfigMap             |
-| **endpoints**              | ep         | true       | Endpoints             |
-| **events**                 | ev         | true       | Event                 |
-| **namespaces**             | ns         | false      | Namespace             |
-| **nodes**                  | no         | false      | Node                  |
-| **persistentvolumeclaims** | pvc        | true       | PersistentVolumeClaim |
-| **persistentvolumes**      | pv         | false      | PersistentVolume      |
-| **pods**                   | po         | true       | Pod                   |
-| replicationcontrollers     | rc         | true       | ReplicationController |
-| **secrets**                |            | true       | Secret                |
-| serviceaccounts            | sa         | true       | ServiceAccount        |
-| **services**               | svc        | true       | Service               |
-| apiservices                |            | false      | APIService            |
-| **daemonsets**             | ds         | true       | DaemonSet             |
-| **deployments**            | deploy     | true       | Deployment            |
-| **replicasets**            | rs         | true       | ReplicaSet            |
-| **statefulsets**           | sts        | true       | StatefulSet           |
-| tokenreviews               |            | false      | TokenReview           |
-| **cronjobs**               | cj         | true       | CronJob               |
-| **jobs**                   |            | true       | Job                   |
-| ingressclasses             |            | false      | IngressClass          |
-| **ingresses**              | ing        | true       | Ingress               |
-| roles                      |            | true       | Role                  |
-
-| 类别     | 名称                                                                                                                                                                                   |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 资源对象 | Pod、ReplicaSet、ReplicationController、Deployment、StatefulSet、DaemonSet、Job、CronJob、HorizontalPodAutoscaling、Node、Namespace、Service、Ingress、Label、CustomResourceDefinition |
-| 存储对象 | Volume、PersistentVolume、Secret、ConfigMap                                                                                                                                            |
-| 策略对象 | SecurityContext、ResourceQuota、LimitRange                                                                                                                                             |
-| 身份对象 | ServiceAccount、Role、ClusterRole                                                                                                                                                      |
-
 ### 查看当前集群信息
 
 ```sh
@@ -85,6 +51,25 @@ kubectl describe -f nginx.yaml
 kubectl get pods -l app=nginx
 kubectl get services -l app=nginx
 ```
+
+使用字段来筛选对象
+
+```sh
+kubectl get pods --field-selector='status.phase=Failed'
+kubectl get pods --field-selector='status.phase!=Succeeded'
+```
+
+可用的 `status.phase` 的值有
+
+- `Pending`: The Pod has been accepted by the Kubernetes system, but one or more of its containers is not yet running.
+
+- `Running`: All of the Pod's containers have been created, and at least one container is still running.
+
+- `Succeeded`: All of the Pod's containers have completed their execution successfully, and the Pod has not been configured to restart.
+
+- `Failed`: At least one of the Pod's containers has exited with an error, and the Pod has not been configured to restart.
+
+- `Unknown`: The state of the Pod could not be obtained, typically because of an error communicating with the Kubernetes API server.
 
 为 Pod 应用新标签
 
@@ -108,6 +93,16 @@ kubectl exec $POD_NAME env
 
 ```sh
 kubectl exec -it $POD_NAME sh
+```
+
+删除状态为 `Error` 的 pods
+
+```sh
+kubectl delete pods --filed-selector='status.phase=Failed' -n <namespace>
+
+kubectl get pods | awk '$3=="Error" {print $1}' | xargs oc delete pods
+
+kubectl delete pod $(kubectl get pods | awk '$3 == "Error" {print $1}') -n <namespace>
 ```
 
 删除所有 Pods, Secrets, ConfigMaps
