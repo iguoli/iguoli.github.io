@@ -598,6 +598,12 @@ git diff HEAD -- ./test
 # 比较两个commit对象
 git diff HEAD HEAD^
 git diff HEAD origin/master
+
+# 仅列出有变更的文件名
+git diff --name-only HEAD^ HEAD
+
+# 仅对两个 commit 对象中的某个文件进入比较
+git diff HEAD^ HEAD -- ./path/to/file
 ```
 
 ## [重置揭密](https://git-scm.com/book/zh/v2/Git-工具-重置揭密)
