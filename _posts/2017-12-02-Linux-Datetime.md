@@ -140,7 +140,7 @@ TZ='Asia/Shanghai'
 
 ## 系统时间
 
-### 查看时间
+### 查看当前时间
 
 [man date](http://man7.org/linux/man-pages/man1/date.1.html)
 
@@ -153,7 +153,7 @@ TZ=Asia/Shanghai date
 显示格式为 'YYYY-MM-DD hh:mm:ss' 时间
 
 ```sh
-# 显示格式为 'YYYY-MM-DD hh:mm:ss' 时间，时区为系统默认时区
+# 显示格式为 'YYYY-MM-DD hh:mm:ss' 时间，使用系统默认时区
 date '+%F %T'
 
 # 显示格式为 'YYYY-MM-DD hh:mm:ss timezone' 时间
@@ -163,7 +163,7 @@ date '+%F %T %Z'
 date '+%F %T %Z' -u
 ```
 
-显示 RFC 5322 格式时间，例如 `Tue, 11 Jan 2022 12:30:20 +0800`
+`-R`参数，显示 RFC 5322 格式时间，例如 `Tue, 11 Jan 2022 12:30:20 +0800`
 
 ```sh
 date -R
@@ -171,7 +171,7 @@ date -R
 date --rfc-email
 ```
 
-显示 RFC 3339 格式时间，例如 `2022-01-11 12:30:20+08:00`
+`--rfc-3339=FMT` 参数，显示 RFC 3339 格式时间，例如 `2022-01-11 12:30:20+08:00`
 
 > --rfc-3339=FMT 有效的时间参数为
 >
@@ -184,7 +184,7 @@ date --rfc-email
 date --rfc-3339=s
 ```
 
-显示 ISO 8601 格式时间，例如 `2022-01-11T12:30:20+08:00`
+`-I, --iso-8601` 参数，显示 ISO 8601 格式时间，例如 `2022-01-11T12:30:20+08:00`
 > `-I[FMT], --iso-8601[=FMT]`. `-I` 默认只显示到日期，相当于 `-Id` 或 `-Idate`，
 > 该参数的有效时间参数为
 >
@@ -215,21 +215,19 @@ TZ='Asia/Shanghai' date -Is
 date +"%Y-%m-%d %H:%M:%S"
 ```
 
-显示 UTC 时间，例如 `2022-01-11 04:30:20`
+`-u, --utc` 参数，显示 UTC 时间，例如 `2022-01-11 04:30:20`
 
 ```sh
-# long term
-date --utc
-
-# short term
 date -u
 
+# 显示 --rfc-email 格式的 UTC 时间
 date -u -R
 
+# 显示自定义格式的 UTC 时间
 date -u +"%Y-%m-%d %H:%M:%S"
 ```
 
-打印 timestamp
+打印以 Unix epoch 计算的 timestamp
 
 ```sh
 # Seconds since UNIX epoch
@@ -257,8 +255,10 @@ date +%s.%N
 # 转换为系统当前格式时间
 date -d '@1664174673'
 
+# 转换为 --rfc-email 格式时间
 date -d '@1664174673' -R
 
+# 转换为 --rfc-email 格式的 UTC 时间
 date -d '@1664174673' -R -u
 ```
 
@@ -295,7 +295,16 @@ TZ='Asia/Shanghai' date -d '2022-01-10T20:29:03.947 UTC' --rfc-3339=s
 将 RFC 3339 格式 UTC -5 时区时间转换为中国时间并以 ISO 8601 格式显示到秒
 
 ```sh
-TZ='Asia/Shanghai' date -d '2022-01-10 22:38:02.162-05' -Is
+TZ='Asia/Shanghai' date -d '2022-01-10 22:38:02.162 -05' -Is
+```
+
+将中国时间转换为 UTC 时间
+
+```sh
+date -d '2023-04-07 00:00:00 +8' -u
+
+# 或 
+date -d 'TZ="Asia/Shanghai" 2023-04-07 00:00:00 +8' -u
 ```
 
 ### 设置系统时间
