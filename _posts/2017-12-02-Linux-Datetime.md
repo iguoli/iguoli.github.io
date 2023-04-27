@@ -249,7 +249,7 @@ date +%s.%N
 > is more complex than is easily documented here but is fully described in the
 > info documentation.
 
-将 timestamp 转换成指定格式的时间
+将 Unix Time (timestamp) 转换成指定格式的时间
 
 ```sh
 # 转换为系统当前格式时间
@@ -260,6 +260,12 @@ date -d '@1664174673' -R
 
 # 转换为 --rfc-email 格式的 UTC 时间
 date -d '@1664174673' -R -u
+```
+
+Unix Time 一般是 10 个数字，表示到秒，13 个数字的表示到毫秒，`date -d` 只能转换 10 个数字的 Unix Time，可以使用 `cut` 命令截取前 10 位数，`-c` 表示按字符选择
+
+```sh
+date -d @$(echo 1664174673000 | cut -c 1-10)
 ```
 
 将美国芝加哥时间 (UTC -5) 早上4点转换为当前系统时间

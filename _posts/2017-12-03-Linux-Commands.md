@@ -35,6 +35,16 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+
+## cut
+
+去掉一串数字的最后3个字符, `-c, --characters` 表示按字符选择，`-4` 表示选择从第一个字符到倒数第四个字符，也就是不包含最后三个字符。这个命令可以用于去掉 timestamp 中的最后3个表示纳秒的字符。 
+
+```sh
+# 输出 "1234"
+echo 1234567 | cut -c -4
+```
+
 ## less
 
 `-p` 选项，使用 search pattern 打开文件
