@@ -755,7 +755,7 @@ git checkout master
 git merge hotfix
 ```
 
-删除 hotfix 分支
+删除 hotfix 分支（仅删除本地分支）
 
 ```sh
 git branch -d hotfix
@@ -835,7 +835,7 @@ git fetch --all
 git fetch --all --prune
 ```
 
-删除远程跟踪分支
+删除远程跟踪分支（远程仓库中的对应分支依然存在）
 
 ```sh
 git branch -r -d origin/features
@@ -869,6 +869,26 @@ git branch -u origin/dev
 
 ```sh
 git branch -vv
+```
+
+### 删除分支
+
+删除本地分支
+
+```sh
+git branch -d hotfix
+```
+
+删除远程分支
+
+```sh
+git branch -r -d origin/hotfix
+```
+
+删除远程仓库中的分支，这一操作会同时删除掉本地仓库中的远程分支
+
+```sh
+git push origh :hotfix
 ```
 
 ### Git Prune, Git Fetch --prune, Git Remote Prune 的区别
