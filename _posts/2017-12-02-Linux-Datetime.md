@@ -1,7 +1,7 @@
 ---
 title: Linux datetime
 date: 2017-12-02
-modify_date: 2022-01-11
+modify_date: 2023-06-02
 tags: Linux Date
 key: Linux-Datetime-2017-12-02
 ---
@@ -249,10 +249,17 @@ date +%s.%N
 > is more complex than is easily documented here but is fully described in the
 > info documentation.
 
-将 Unix Time (timestamp) 转换成指定格式的时间
+将 Unix Time (timestamp) 转换成指定格式的时间。注意：`date` 只能处理以 **seconds** 为单位的 unix time，所以如果给出的的毫秒级的时间，则需要先将毫秒转换成秒，再用 `date` 命令处理
 
 ```sh
+milliseconds=1685687187705
+
+seconds=$(($milliseconds/1000))
+
 # 转换为系统当前格式时间
+date -d "@$seconds"
+date -d "@$((milliseconds/1000))"
+
 date -d '@1664174673'
 
 # 转换为 --rfc-email 格式时间
