@@ -1,15 +1,15 @@
 ---
-title: Kubernetes and Openshift
+title: Openshift
 date: 2022-07-31
-modify_date: 2022-07-31
-tags: Kubernetes Openshift
-key: Kubernetes-2022-07-31
+modify_date: 2023-06-06
+tags: Openshift Kubernetes
+key: Openshift-2022-07-31
 ---
 
-## Kubectl and OC command Cheat Sheet
-
-以下命令，如无特别说明，均可以使用 `oc` 替换 `kubectl`
+以下命令，如无特别说明，均可以使用 `kubectl` 替换 `oc`
 {:.info}
+
+## kubectl 命令自动补全
 
 参考 [kubectl auto completion](https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/) 设置别名和自动补全。
 
@@ -24,39 +24,41 @@ echo 'complete -o default -F __start_kubectl k' >>~/.zshrc
 
 <!--more-->
 
-列出 kubectl 支持的所有对象
+## OC command Cheat Sheet
+
+列出 oc 支持的所有对象
 
 ```sh
-kubectl api-resources
+oc api-resources
 ```
 <!--more-->
 
 ### 查看当前集群信息
 
 ```sh
-kubectl config view
+oc config view
 ```
 
 获取对象的详细描述
 
 ```sh
-kubectl describe pods/nginx
+oc describe pods/nginx
 
-kubectl describe -f nginx.yaml
+oc describe -f nginx.yaml
 ```
 
 使用标签筛选对象
 
 ```sh
-kubectl get pods -l app=nginx
-kubectl get services -l app=nginx
+oc get pods -l app=nginx
+oc get services -l app=nginx
 ```
 
 使用字段来筛选对象
 
 ```sh
-kubectl get pods --field-selector='status.phase=Failed'
-kubectl get pods --field-selector='status.phase!=Succeeded'
+oc get pods --field-selector='status.phase=Failed'
+oc get pods --field-selector='status.phase!=Succeeded'
 ```
 
 可用的 `status.phase` 的值有
@@ -74,48 +76,58 @@ kubectl get pods --field-selector='status.phase!=Succeeded'
 为 Pod 应用新标签
 
 ```sh
-kubectl label pod $POD_NAME
+oc label pod $POD_NAME
 ```
 
 查看 Pod 日志
 
 ```sh
-kubectl logs $POD_NAME
+oc logs $POD_NAME
 ```
 
 在 Pod 中执行命令
 
 ```sh
-kubectl exec $POD_NAME env
+oc exec $POD_NAME env
 ```
 
 进入 Pod 容器中
 
 ```sh
-kubectl exec -it $POD_NAME sh
+oc exec -it $POD_NAME sh
 ```
 
-删除状态为 `Error` 的 pods
+删除状态为 `Error` 或不是 `Running|Completed|Creating` 的 pods
 
 ```sh
-kubectl delete pods --filed-selector='status.phase=Failed' -n <namespace>
+oc delete pods --filed-selector='status.phase=Failed' -n <namespace>
 
-kubectl get pods | awk '$3=="Error" {print $1}' | xargs oc delete pods
+oc get pods -n <namespace> | awk '$3=="Error" {print $1}' | xargs oc delete pods -n <namespace>
 
-kubectl delete pod $(kubectl get pods | awk '$3 == "Error" {print $1}') -n <namespace>
+oc get pods -n <namespace> | awk '$3!~"(Running|Completed|Creating)" {print $1}' | xargs oc delete pods -n <namespace>
+
+oc delete pod $(oc get pods | awk '$3=="Error" {print $1}') -n <namespace>
+```
+
+删除 Terminating 不掉的 pods
+
+```sh
+oc delete pod <pod-name> --grace-period=0 --force -n <namespace>
+
+oc get pods -n <namespace> | awk '/Terminating/ {print $1}' | xargs oc delete pods --grace-period=0 --force -n <namespace>
 ```
 
 删除所有 Pods, Secrets, ConfigMaps
 
 ```sh
-kubectl delete --all pods
+oc delete --all pods
 
-kubectl delete --all secrets
+oc delete --all secrets
 
-kubectl delete --all cm
+oc delete --all cm
 
 # 删除 Dev namespace 中的所有 deployment
-kubectl delete -all deployments --namespace=Dev
+oc delete -all deployments --namespace=Dev
 ```
 
 ### Namespace
@@ -123,35 +135,35 @@ kubectl delete -all deployments --namespace=Dev
 创建名为 *Dev* 的 Namespace
 
 ```sh
-kubectl create namespace Dev
+oc create namespace Dev
 ```
 
 查询 Namespace 中的资源
 
 ```sh
 # short format
-kubectl get deploy -n Dev
+oc get deploy -n Dev
 
 # long format
-kubectl get deploy --namespace=Dev
+oc get deploy --namespace=Dev
 ```
 
 将当前 Namespace 设置为 *Dev*
 
 ```sh
-kubectl config set-context --current --namespace=Dev
+oc config set-context --current --namespace=Dev
 ```
 
 查看当前 Namespace
 
 ```sh
-kubectl config view | grep namespace
+oc config view | grep namespace
 ```
 
 删除 Namespace，需要注意，这会删除该命名空间下的所有内容
 
 ```sh
-kubectl delete namespace Dev
+oc delete namespace Dev
 ```
 
 ## Kubernetes 对象
@@ -170,7 +182,7 @@ Kubernetes 控制平面的目标就是保证对象的当前状态与期望状态
 
 创建 Kubernetes 对象时，必须提供对象的 spec，用来描述该对象的期望状态， 以及关于对象的一些基本信息 (例如名称)。
 
-Kubernetes API 接收 JSON 格式的对象信息。`kubectl` 则可以接收 YAML 格式的对象信息。`kubectl` 在向 Kubernetes API 发起请求时，将这些信息转换成 JSON 格式。
+Kubernetes API 接收 JSON 格式的对象信息。`oc` 则可以接收 YAML 格式的对象信息。`oc` 在向 Kubernetes API 发起请求时，将这些信息转换成 JSON 格式。
 
 这里有一个 `.yaml` 示例文件，展示了 Kubernetes Deployment 的必需字段和对象 spec：
 
@@ -198,10 +210,10 @@ spec:
         - containerPort: 80
 ```
 
-然后通过 `kubectl` 命令行来创建该 Deployment 对象
+然后通过 `oc` 命令行来创建该 Deployment 对象
 
 ```sh
-kubectl apply -f nginx.yaml
+oc apply -f nginx.yaml
 ```
 
 ### 必需字段
