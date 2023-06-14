@@ -1,6 +1,7 @@
 ---
 title: 正则表达式比较(Regex - BREs, EREs, PCRE)
 date: 2019-12-25
+modify_date: 2023-06-14
 tags: Regex
 key: Regex-Cheatsheet-2019-12-25
 ---
@@ -13,15 +14,17 @@ Many programs use regular expression to find & replace text. However, they tend 
 
 You can probably expect most modern software and programming  languages to be using some variation of the Perl flavor, "PCRE"; however command-line tools (grep, less, ...) will often use the POSIX flavor  (sometimes with an extended variant, e.g. `egrep` or `sed -r`). ViM also comes with its own syntax (a superset of what Vi accepts).
 
-This cheatsheet lists the respective [syntax of each flavor](https://remram44.github.io/regex-cheatsheet/regex.html#syntax), and the [software that uses it](https://remram44.github.io/regex-cheatsheet/regex.html#programs).
+This cheatsheet lists the respective [syntax of each flavor](#syntax), and the [software that uses it](#programs).
 
-If you spot errors or missing data, or just want to make this prettier/more accurate, don't hesitate to open an [issue](https://github.com/remram44/regex-cheatsheet/issues/new) or a [pull request](https://github.com/remram44/regex-cheatsheet/compare/).
+_Extended Regular Expression_ 有时可以通过命令行标志 `-E` 与 Unix 实用程序一起使用。其他 Unix 实用程序，如 `awk`，默认使用 [ERE]。
+
+[ERE] 与 [BRE][ERE] 的主要区别在于删除了一些反斜杠：\\{...\\} 变为 {...} 并且 \\(...\\) 变为 (...)。
 
 <!--more-->
 
 ## Syntax
 
-| What                                                | [Perl][PCRE]/PCRE                                      | [Python's `re`][PythonRE]             | POSIX (BRE)                        | POSIX extended (ERE)           | ViM                                      |
+| What                                                | [Perl][PCRE]/PCRE                                      | [Python's `re`][PythonRE]             | POSIX ([BRE][ERE])                        | POSIX extended ([ERE])           | ViM                                      |
 | --------------------------------------------------- | ------------------------------------------------------ | ------------------------------------- | ---------------------------------- | ------------------------------ | ---------------------------------------- |
 | Basics                                              |                                                        |                                       |                                    |                                |                                          |
 | Custom character class                              | `[...]`                                                | `[...]`                               | `[...]`                            | `[...]`                        | `[...]`                                  |
@@ -109,3 +112,4 @@ If you spot errors or missing data, or just want to make this prettier/more accu
 
 [PCRE]: http://perldoc.perl.org/perlre.html
 [PythonRE]: https://docs.python.org/library/re.html
+[ERE]: https://en.wikibooks.org/wiki/Regular_Expressions/POSIX-Extended_Regular_Expressions
