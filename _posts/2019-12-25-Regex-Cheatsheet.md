@@ -18,7 +18,7 @@ This cheatsheet lists the respective [syntax of each flavor](#syntax), and the [
 
 _Extended Regular Expression_ 有时可以通过命令行标志 `-E` 与 Unix 实用程序一起使用。其他 Unix 实用程序，如 `awk`，默认使用 [ERE]。
 
-[ERE] 与 [BRE][ERE] 的主要区别在于删除了一些反斜杠：\\{...\\} 变为 {...} 并且 \\(...\\) 变为 (...)。
+[ERE] 与 [BRE][ERE] 的主要区别在于删除了一些反斜杠：`\{...\}` 变为 `{...}` 并且 `\(...\)` 变为 `(...)`。
 
 <!--more-->
 
