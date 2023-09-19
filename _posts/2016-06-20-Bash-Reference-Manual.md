@@ -36,6 +36,23 @@ while test-commands; do commands; done
 for var in words; do pass ${var} to commands; done
 ```
 
+```sh
+#!/bin/bash
+for i in 1 2 3 4 5
+do
+   echo "Welcome $i times"
+done
+```
+
+```sh
+for output in $(Linux Command)
+do
+    command1 on $output
+    command2 on $output
+    commandN
+done
+```
+
 #### [3.2.4.2 条件结构][Conditional-Constructs]
 
 ##### if
