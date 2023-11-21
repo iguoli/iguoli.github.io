@@ -891,6 +891,14 @@ git branch -r -d origin/hotfix
 git push origh :hotfix
 ```
 
+### 列出包含某个commit的所有分支
+
+```sh
+git branch --contains <commit>
+```
+
+相关命令: [列出包含某个commit的所有标签](#列出包含某个commit的所有标签)
+
 ### Git Prune, Git Fetch --prune, Git Remote Prune 的区别
 
 `git prune` 命令是一个内部清理程序，用于清除无法访问或"孤立"的 Git 对象。无法访问的对象是任何引用都无法到达的对象，任何无法通过分支或标记访问的提交都被视为无法访问。`git prune` 一般不直接执行，它被认为是垃圾收集命令，是 `git gc` 命令的子命令。
@@ -937,7 +945,7 @@ git push origin :remote-branch
 git push origin :/refs/tags/v1.1
 ```
 
-## [打标签](https://git-scm.com/book/zh/v2/Git-基础-打标签)
+## [标签](https://git-scm.com/book/zh/v2/Git-基础-打标签)
 
 ### 列出已有标签
 
@@ -1039,6 +1047,24 @@ git tag -d v1.4-lw
 
 ```sh
 git push origin :refs/tags/v1.4-lw
+```
+
+### 列出包含某个commit的所有标签
+
+[How to list all tags that contain a commit?](https://stackoverflow.com/questions/7923091/how-to-list-all-tags-that-contain-a-commit)
+
+```sh
+git tag --contains <commit>
+```
+
+相关命令 [列出包含某个commit的所有分支](#列出包含某个commit的所有分支)
+
+### 列出指向某个commit的所有标签
+
+[How to list all tags pointing to a specific commit in git](https://stackoverflow.com/questions/4545370/how-to-list-all-tags-pointing-to-a-specific-commit-in-git)
+
+```sh
+git tag --points-at <commit>
 ```
 
 ## [在服务器上搭建 Git](https://git-scm.com/book/zh/v2/服务器上的-Git-在服务器上搭建-Git)
