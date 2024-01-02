@@ -439,7 +439,7 @@ Git 会不定时地自动运行一个叫做 "`auto gc`" 的命令，这个命令
 $ git gc
 $ cat .git/packed-refs
 # pack-refs with: peeled fully-peeled
-cac0cab538b970a37ea1e769cbbde608743bc96d refs/heads/experiment
+cac0cab538b970a37ea1e769cbbde608743bc96d refs/heads/features
 ab1afef80fac8e34258ff41fc1b867c702daa24b refs/heads/master
 cac0cab538b970a37ea1e769cbbde608743bc96d refs/tags/v1.0
 9585191f37f7b0fb9444f35a9bf50de191beadc2 refs/tags/v1.1
@@ -536,37 +536,37 @@ I = F^   = B^3^    = A^^3^
 J = F^2  = B^3^2   = A^^3^2
 ```
 
-### 提交区间
+### [提交区间](https://git-scm.com/book/zh/v2/Git-工具-选择修订版本)
 
 #### 双点
 
-最常用的提交区间语法是**双点**。这种语法可以让 Git 选出在一个分支中而不在另一个分支中的提交。比如，你想要查看 experiment 分支中还有哪些提交尚未被合并入 master 分支。你可以使用 `master..experiment` 来让 Git 显示 <span style="color:red">"在 experiment 分支中而不在 master 分支中的提交"</span>。
+最常用的提交区间语法是**双点**。这种语法可以让 Git 选出在一个分支中而不在另一个分支中的提交。比如，你想要查看 features 分支中还有哪些提交尚未被合并入 master 分支。你可以使用 `master..features` 来让 Git 显示 <span style="color:red">"在 features 分支中而不在 master 分支中的提交"</span>。
 
 ```sh
-git log master..experiment
+git log master..features
 ```
 
-你也可以反过来查看在 master 分支中而不在 experiment 分支中的提交
+你也可以反过来查看在 master 分支中而不在 features 分支中的提交，可用来检查将与 master 分支中的哪些提交合并
 
 ```sh
-git log experiment..master
+git log features..master
 ```
 
 #### 多点
 
-Git 允许你在任意引用前加上 ^ 字符或者 --not 来指明你不希望提交被包含其中的分支。因此下列3个命令是等价的:
+Git 允许你在任意引用前加上 `^` 字符或者 `--not` 来指明你不希望提交被包含其中的分支。因此下列3个命令是等价的:
 
 ```sh
-git log refA..refB
-git log refB ^refA
-git log refB --not refA
+git log master..features
+git log features ^master
+git log features --not master
 ```
 
-你可以在查询中指定超过两个的引用，这是双点语法无法实现的。比如，你想查看所有被 refA 或 refB 包含的但是不被 refC 包含的提交，你可以输入下面中的任意一个命令
+你可以在查询中指定超过两个的引用，这是双点语法无法实现的。比如，你想查看所有被 hotfix-1 或 hotfix-2 包含的但是不被 master 包含的提交，你可以输入下面中的任意一个命令
 
 ```sh
-git log refA refB ^refC
-git log refA refB --not refC
+git log hotfix-1 hotfix-2 ^master
+git log hotfix-1 hotfix-2 --not master
 ```
 
 #### 三点
@@ -574,10 +574,29 @@ git log refA refB --not refC
 这个语法可以选择出被两个引用中的一个包含但又不被两者同时包含的提交。`--left-right` 参数会显示每个提交到底处于哪一侧的分支。
 
 ```sh
-git log --left-right master...experiment
+git log --left-right master...features
 ```
 
 ![double dots vs. triple dots](/assets/images/git-command/double-triple-dots.png)
+
+## [提交日志](https://git-scm.com/docs/git-log)
+
+`git log` - 显示提交日志。
+
+列出给定提交和其父提交链，但排除前面带有 `^` 的提交和其父提交链。默认按时间倒序输出。
+
+可以将其视为集合操作。从给出的任何提交及其可到达的提交形成一个集合，然后从该集合中减去前面用 `^` 给出的提交及其可到达的提交。剩余的提交就是所需要显示的结果。可以使用各种其他选项和路径参数来进一步限制结果。
+
+```sh
+git log features ^master
+```
+
+前面提到的双点符号 `..` 是上面命令的简写，所以下面的命令是等价的
+
+```sh
+git log features ^master
+git log master..features
+```
 
 ## 差异比较
 
