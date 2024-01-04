@@ -598,6 +598,12 @@ git log features ^master
 git log master..features
 ```
 
+### 在提交日志中查找字符串
+
+```sh
+git log --grep='string'
+```
+
 ## 差异比较
 
 ```sh
