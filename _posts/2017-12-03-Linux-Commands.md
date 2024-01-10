@@ -35,6 +35,42 @@ key: Linux-Commands-2017-12-03
 [09]: http://man7.org/linux/man-pages/index.html
 [10]: http://linux.51yip.com
 
+## 删除变量中所有的空格，换行符，制表符等
+
+```sh
+echo $a
+```
+
+```
+ 1
+2   3
+4
+
+```
+
+使用 `tr` 命令
+
+```sh
+echo $a | tr -d '[:space:]' # output 1234%
+```
+
+使用 `bash parameter expansion`
+
+| Parameter Expansion            | Description                                                |
+| ------------------------------ | ---------------------------------------------------------- |
+| `${parameter/pattern/string}`  | only the first match is replaced.                          |
+| `${parameter//pattern/string}` | all matches of pattern are replaced with string.           |
+| `${parameter/#pattern/string}` | match at the beginning of the expanded value of parameter. |
+| `${parameter/%pattern/string}` | match at the end of the expanded value of parameter.       |
+
+If string is *null*, matches of pattern are deleted and the `/` following pattern may be omitted. 
+
+```sh
+echo ${a//[[:space:]]/} # output 1234
+
+# '/' may be omitted if string is null 
+echo ${a//[[:space:]]} # output 1234
+```
 
 ## cut
 
