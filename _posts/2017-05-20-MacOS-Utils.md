@@ -83,6 +83,16 @@ export MANPATH="/usr/local/opt/file-formula/share/man/man1:$MANPATH"
 dircolors > ~/.dircolors
 ```
 
+如果有报错则尝试以下方法
+
+```sh
+dircolors -p > ~/.dircolors
+
+alias l='ls -lhF --time-style=long-iso --color=auto'
+alias ll='ls -lhF --time-style=long-iso --color=auto'
+alias la='ls -lhAF --time-style=long-iso --color=auto'
+```
+
 ## 使用 grc 命令让其它命令彩色化输出
 
 ```sh
