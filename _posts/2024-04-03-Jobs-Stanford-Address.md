@@ -18,6 +18,8 @@ Thank you!
 
 I am honored to be with you today at your <u>commencement</u> (_nous_，**kəˈmensmənt**, 学位授予典礼；毕业典礼) from one of the finest universities in the world. Truth be told, I never graduated from college, and this is the closest I've ever gotten to a college graduation. Today I want to tell you three stories from my life. That's it. No big deal. Just three stories.
 
+<!--more-->
+
 我今天很荣幸能和你们一起参加毕业典礼，斯坦福大学是世界上最好的大学之一。我从来没有从大学中毕业。说实话,今天也许是在我的生命中离大学毕业最近的一天了。今天我想向你们讲述我生活中的三个故事。不是什么大不了的事情,只是三个故事而已。
 
 [1] The first story is about connecting the dots.
