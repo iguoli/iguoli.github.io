@@ -24,17 +24,17 @@ I <u>dropped out</u> (_phrasal verb_，退学，辍学) of Reed College after th
 
 我在Reed大学读了六个月之后就退学了,但是在十八个月以后——我真正的作出退学决定之前,我还经常去学校。我为什么要退学呢？
 
-It started before I was born. My <u>biological</u> (_adj._，**ˌbaɪəˈlɑːdʒɪkl**，生物学的) mother was a young, unwed college graduate student, and she decided to put me up for adoption. She felt very strongly that I should be adopted by college graduates, so everything was all set for me to be adopted at birth by a lawyer and his wife. Except that when I popped out they decided at the last minute that they really wanted a girl.
+It started before I was born. My <u>biological</u> (_adj._，**ˌbaɪəˈlɑːdʒɪkl**，生物学的) mother was a young, unwed college graduate student, and she decided to <u>put me up for adoption</u> (让...被领养). She felt very strongly that I should be adopted by college graduates, so everything was all <u>set for</u> (为...做好准备) me to be adopted at birth by a lawyer and his wife. Except that when I <u>popped out</u> (出生) they decided at the last minute that they really wanted a girl.
 
 故事从我出生的时候讲起。我的亲生母亲是一个年轻的,没有结婚的大学研究生。她决定让别人收养我, 她十分想让我被大学毕业生收养。所以在我出生的时候，她已经做好了一切的准备工作，能使得我被一个律师和他的妻子所收养。但是她没有料到,当我出生之后, 律师夫妇突然决定他们想要一个女孩。
 
-So my parents, who were on a waiting list, got a call in the middle of the night asking: "We have an unexpected baby boy; do you want him？" They said: "Of course." My biological mother later found out that my mother had never graduated from college and that my father had never graduated from high school. She refused to sign the final adoption papers. She only relented a few months later when my parents promised that I would go to college. This was a start in my life.
+So my parents, who were on a waiting list, got a call in the middle of the night asking: "We have an unexpected baby boy; do you want him？" They said: "Of course." My biological mother found out later that my mother had never graduated from college and that my father had never graduated from high school. She refused to sign the final adoption papers. She only <u>relented</u> (_verb_，**rɪˈlentɪd**，松口，让步) a few months later when my parents promised that I would go to college. This was a start in my life.
 
 所以我的生养父母(他们还在我亲生父母的观察名单上)突然在半夜接到了一个电话:“我们现在这儿有一个不小心生出来的男婴,你们想要他吗？”他们回答道:“当然!”但是我亲生母亲随后发现，我的养母从来没有上过大学,我的父亲甚至从没有读过高中。她拒绝签这个收养合同。几个月以后,当我的父母答应她一定要让我上大学的时候,她才勉强同意。这是我人生的开始。
 
-And 17 years later I did go to college. But I naively chose a college that was almost as expensive as Stanford, and all of my working-class parents' savings were being spent on my college tuition. After six months, I couldn't see the value in it. I had no idea what I wanted to do with my life and no idea how college was going to help me figure it out.
+And 17 years later I did go to college. But I naively chose a college that was almost as expensive as Stanford, and all of my <u>working-class</u> (工人阶级，工薪阶层) parents' <u>savings</u> (_noun_，复数，存款，积蓄) were being spent on my college tuition. After six months, I couldn't see the value in it. I had no idea what I wanted to do with my life and no idea how college was going to help me <u>figure it out</u> (弄懂，搞明白).
 
-在十七岁那年,我真的上了大学。但是我很愚蠢的选择了一个几乎和你们斯坦福大学一样贵的学校, 我父母还处于蓝领阶层，他们几乎把所有积蓄都花在了我的学费上面。在六个月后, 我已经看不到其中的价值所在。我不知道我想要在生命中做什么,我也不知道大学能帮助我找到怎样的答案。
+在十七岁那年,我真的上了大学。但是我很愚蠢的选择了一个几乎和你们斯坦福大学一样贵的学校, 我父母还处于蓝领阶层，他们几乎把所有积蓄都花在了我的学费上面。在六个月后, 我已经看不到其中的价值所在。我不知道在我生命中我想要做什么，也不知道大学将如何能帮我弄明白。
 
 And here I was spending all of the money my parents had saved their entire life. So I decided to drop out and trust that it would all work out OK. It was pretty scary at the time, but looking back it was one of the best decisions I ever made. The minute I dropped out I could stop taking the required classes that didn't interest me, and begin dropping in on the ones that looked far more interesting.
 
