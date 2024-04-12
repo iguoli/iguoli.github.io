@@ -322,24 +322,29 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 ```vim
 " vim-plug
 call plug#begin('~/.vim/plugged')
+" Utilities
+Plug 'Exafunction/codeium.vim'
 Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
+Plug 'schickling/vim-bufonly'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 Plug 'luochen1990/rainbow'                " 彩虹括号增强版
-Plug 'altercation/vim-colors-solarized'
-Plug 'sickill/vim-monokai'
-Plug 'morhetz/gruvbox'
-Plug 'dracula/vim'
-Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
+" Themes
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'dracula/vim'
+" Program enhancement
+Plug 'Yggdroot/indentLine'
+Plug 'tell-k/vim-autopep8'
+Plug 'scrooloose/syntastic'
 Plug 'vimcn/vimcdoc'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 ```
 
