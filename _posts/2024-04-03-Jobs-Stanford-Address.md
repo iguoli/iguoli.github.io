@@ -36,7 +36,7 @@ And 17 years later I did go to college. But I naively chose a college that was a
 
 在十七岁那年,我真的上了大学。但是我很愚蠢的选择了一个几乎和你们斯坦福大学一样贵的学校, 我父母还处于蓝领阶层，他们几乎把所有积蓄都花在了我的学费上面。在六个月后, 我已经看不到其中的价值所在。我不知道在我生命中我想要做什么，也不知道大学将如何能帮我弄明白。
 
-And here I was spending all of the money my parents had saved their entire life. So I decided to drop out and trust that it would all work out OK. It was pretty scary at the time, but looking back it was one of the best decisions I ever made. The minute I dropped out I could stop taking the required classes that didn't interest me, and begin dropping in on the ones that looked far more interesting.
+And here I was spending all of the money my parents had saved their entire life. So I decided to drop out and trust that it would all <u>work out</u> (结果好；解决) OK. It was pretty scary at the time, but looking back it was one of the best decisions I ever made. The minute I dropped out I could stop taking the required classes that didn't interest me, and begin dropping in on the ones that looked far more interesting.
 
 而我在这里上学，几乎花光了父母一辈子的积蓄。所以我决定退学,并且相信一切都会好起来的。当时我十分害怕, 但是现在回想一下，退学是我做过最正确的决定之一。退学的那一刻起, 我终于可以不必去读那些令我提不起丝毫兴趣的课程了，我可以去听那些看起来更有趣的课程。
 
