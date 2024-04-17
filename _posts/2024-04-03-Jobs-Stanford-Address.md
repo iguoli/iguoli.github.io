@@ -80,21 +80,21 @@ I was a very public failure, and I even thought about running away from the vall
 
 我是一个非常公开的失败者，我甚至想过逃离硅谷。但我慢慢地开始明白一些事情——我仍然热爱我所做的事情。苹果公司的事态发展并没有改变这一点。我被拒绝了，但我仍然爱着。所以我决定重新开始。
 
-I didn't see it then, but it turned out that getting fired from Apple was the best thing that could have ever happened to me. The heaviness of being successful was replaced by the lightness of being a beginner again, less sure about everything. It freed me to enter one of the most creative periods of my life.
+I didn't see it then, but it <u>turned out</u> (_phrasal verb_，证明是) that getting fired from Apple was the best thing that could have ever happened to me. The <u>heaviness</u> (_noun_，**ˈhevinəs**，沉重感) of being successful was replaced by the lightness (轻松感) of being a beginner again, less sure about everything. It freed (_past simple_，**friːd**，释放，使摆脱) me to enter one of the most creative periods of my life.
 
-我当时没有觉察, 但是事后证明, 从苹果公司被炒是我这辈子发生的最棒的事情。因为，作为一个成功者的沉重感觉被作为一个创业者的轻松感觉所重新代替: 对任何事情都不那么特别看重。这让我觉得如此自由, 进入了我生命中最有创造力的一个阶段。
+当时我并没有意识到，但结果证明，被苹果公司解雇是我一生中可能发生的最好的事情。成功带给我的沉重感被重新成为新手的轻松感所替代，对一切不再那么确定。这让我进入了我一生中最有创造力的时期之一。
 
 During the next five years, I started a company named NeXT, another company named Pixar, and fell in love with an amazing woman who would become my wife. Pixar went on to create the worlds first computer animated feature film, Toy Story, and is now the most successful animation studio in the world.
 
-在接下来的五年里, 我创立了一个名叫NeXT的公司, 还有一个叫Pixar的公司, 然后和一个后来成为我妻子的优雅女人相识。Pixar 制作了世界上第一个用电脑制作的动画电影——“玩具总动员”,Pixar现在也是世界上最成功的电脑制作工作室。
+在接下来的五年里，我创立了一个名叫NeXT的公司，还有一个叫Pixar的公司，然后和一个后来成为我妻子的优雅女人相识。Pixar 制作了世界上第一个用电脑制作的动画电影——“玩具总动员”，Pixar现在也是世界上最成功的电脑制作工作室。
 
 In a remarkable turn of events, Apple bought NeXT, I returned to Apple, and the technology we developed at NeXT is at the heart of Apple's current renaissance. And Laurene and I have a wonderful family together.
 
-在后来的一系列运转中,Apple收购了NeXT, 然后我又回到了Apple公司。我们在NeXT发展的技术在Apple的复兴之中发挥了关键的作用。我还和Laurence 一起建立了一个幸福的家庭。
+在后来的一系列运转中，Apple收购了NeXT，然后我又回到了Apple公司。我们在NeXT发展的技术在Apple的复兴之中发挥了关键的作用。我还和Laurence 一起建立了一个幸福的家庭。
 
 I'm pretty sure none of this would have happened if I hadn't been fired from Apple. It was awful tasting medicine, but I guess the patient needed it. Sometimes life hits you in the head with a brick. Don't lose faith. I'm convinced that the only thing that kept me going was that I loved what I did. You've got to find what you love. And that is as true for your work as it is for your lovers. Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it. And, like any great relationship, it just gets better and better as the years roll on. So keep looking until you find it. Don't settle.
 
-我可以非常肯定,如果我不被Apple开除的话, 这其中一件事情也不会发生的。这个良药的味道实在是太苦了,但是我想病人需要这个药。有时候生活会给你迎头一击，不要灰心丧气。我坚信，唯一可以让我坚持下去的，就是我对自己事业的热爱。你必须去寻找自己所爱，无论是工作还是爱情，都是如此。工作是生活中很主要的部分，真正获得满足感，就必须做你相信是有价值的工作。要做有价值的事业，你就必须热爱你做的事业，如果你还没找到，千万不要放弃，要继续寻找，只要倾听你的心声，当你真的发现时你就会感到，就像任何伟大的感情关系一样，岁月的更迭只会让这份情愈发深刻，所以千万不要放弃，要继续寻找。
+我可以非常肯定，如果我不被Apple开除的话，这其中一件事情也不会发生的。这个良药的味道实在是太苦了，但是我想病人需要这个药。有时候生活会给你迎头一击，不要灰心丧气。我坚信，唯一可以让我坚持下去的，就是我对自己事业的热爱。你必须去寻找自己所爱，无论是工作还是爱情，都是如此。工作是生活中很主要的部分，真正获得满足感，就必须做你相信是有价值的工作。要做有价值的事业，你就必须热爱你做的事业，如果你还没找到，千万不要放弃，要继续寻找，只要倾听你的心声，当你真的发现时你就会感到，就像任何伟大的感情关系一样，岁月的更迭只会让这份情愈发深刻，所以千万不要放弃，要继续寻找。
 
 [3] My third story is about death.
 
@@ -102,7 +102,7 @@ I'm pretty sure none of this would have happened if I hadn't been fired from App
 
 When I was 17, I read a quote that went something like: "If you live each day as if it was your last, someday you'll most certainly be right." It made an impression on me, and since then, for the past 33 years, I have looked in the mirror every morning and asked myself: "If today were the last day of my life, would I want to do what I am about to do today？" And whenever the answer has been "No" for too many days in a row, I know I need to change something.
 
-当我十七岁的时候, 我读到了一句话:“如果你把每一天都当作生命中最后一天去生活的话,那么有一天你会发现你是正确的。”这句话给我留下了深刻的印象。从那时开始,过了33 年,我在每天早晨都会对着镜子问自己:“如果今天是我生命中的最后一天, 你会不会完成你今天想做的事情呢？”当答案连续很多次被给予“不是”的时候, 我知道自己需要改变某些事情了。
+当我十七岁的时候，我读到了一句话:“如果你把每一天都当作生命中最后一天去生活的话，那么有一天你会发现你是正确的。”这句话给我留下了深刻的印象。从那时开始，过了33 年，我在每天早晨都会对着镜子问自己:“如果今天是我生命中的最后一天，你会不会完成你今天想做的事情呢？”当答案连续很多次被给予“不是”的时候，我知道自己需要改变某些事情了。
 
 Remembering that I'll be dead soon is the most important tool I've ever encountered to help me make the big choices in life. Because almost everything – all external expectations, all pride, all fear of embarrassment or failure - these things just fall away in the face of death, leaving only what is truly important. Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose. You are already naked. There is no reason not to follow your heart.
 
@@ -110,19 +110,19 @@ Remembering that I'll be dead soon is the most important tool I've ever encounte
 
 About a year ago I was diagnosed with cancer. I had a scan at 7:30 in the morning, and it clearly showed a tumor on my pancreas. I didn't even know what a pancreas was. The doctors told me this was almost certainly a type of cancer that is incurable, and that I should expect to live no longer than three to six months. My doctor advised me to go home and get my affairs in order, which is doctor's code for prepare to die. It means to try to tell your kids everything you thought you'd have the next 10 years to tell them in just a few months. It means to make sure everything is buttoned up so that it will be as easy as possible for your family. It means to say your goodbyes.
 
-大概一年以前, 我被诊断出癌症。我在早晨七点半做了一个检查, 检查清楚的显示在我的胰腺有一个肿瘤。我当时都不知道胰腺是什么东西。医生告诉我那很可能是一种无法治愈的癌症, 我还有三到六个月的时间活在这个世界上。我的医生叫我回家, 然后整理好我的一切, 那就是医生准备死亡的程序。那意味着你将要把未来十年对你小孩说的话在几个月里面说完.;那意味着把每件事情都搞定, 让你的家人会尽可能轻松的生活;那意味着你要说“再见了”。
+大概一年以前，我被诊断出癌症。我在早晨七点半做了一个检查，检查清楚的显示在我的胰腺有一个肿瘤。我当时都不知道胰腺是什么东西。医生告诉我那很可能是一种无法治愈的癌症，我还有三到六个月的时间活在这个世界上。我的医生叫我回家，然后整理好我的一切，那就是医生准备死亡的程序。那意味着你将要把未来十年对你小孩说的话在几个月里面说完.;那意味着把每件事情都搞定，让你的家人会尽可能轻松的生活;那意味着你要说“再见了”。
 
 I lived with that diagnosis all day. Later that evening I had a biopsy, where they stuck an endoscope down my throat, through my stomach and into my intestines, put a needle into my pancreas and got a few cells from the tumor. I was sedated, but my wife, who was there, told me that when they viewed the cells under a microscope the doctors started crying because it turned out to be a very rare form of pancreatic cancer that is curable with surgery. I had the surgery and I'm fine now.
 
-我整天和那个诊断书一起生活。后来有一天早上我作了一个活切片检查，医生将一个内窥镜从我的喉咙伸进去,通过我的胃, 然后进入我的肠子, 用一根针在我的胰腺上的肿瘤上取了几个细胞。我当时很镇静,因为我被注射了镇定剂。但是我的妻子在那里, 后来告诉我，当医生在显微镜地下观察这些细胞的时候他们开始尖叫, 因为这些细胞最后竟然是一种非常罕见的可以用手术治愈的胰腺癌症。我做了这个手术, 现在我痊愈了。
+我整天和那个诊断书一起生活。后来有一天早上我作了一个活切片检查，医生将一个内窥镜从我的喉咙伸进去，通过我的胃，然后进入我的肠子，用一根针在我的胰腺上的肿瘤上取了几个细胞。我当时很镇静，因为我被注射了镇定剂。但是我的妻子在那里，后来告诉我，当医生在显微镜地下观察这些细胞的时候他们开始尖叫，因为这些细胞最后竟然是一种非常罕见的可以用手术治愈的胰腺癌症。我做了这个手术，现在我痊愈了。
 
 This was the closest I've been to facing death, and I hope its the closest I get for a few more decades. Having lived through it, I can now say this to you with a bit more certainty than when death was a useful but purely intellectual concept:
 
-那是我最接近死亡的时候, 我还希望这也是以后的几十年最接近的一次。从死亡线上又活了过来, 死亡对我来说，只是一个有用但是纯粹是知识上的概念的时候，我可以更肯定一点地对你们说：
+那是我最接近死亡的时候，我还希望这也是以后的几十年最接近的一次。从死亡线上又活了过来，死亡对我来说，只是一个有用但是纯粹是知识上的概念的时候，我可以更肯定一点地对你们说：
 
 No one wants to die. Even people who want to go to heaven don't want to die to get there. And yet death is the destination we all share. No one has ever escaped it. And that is as it should be, because Death is very likely the single best invention of Life. It is Life's change agent. It clears out the old to make way for the new. Right now the new is you, but someday not too long from now, you will gradually become the old and be cleared away. Sorry to be so dramatic, but it is quite true.
 
-没有人愿意死, 即使人们想上天堂, 人们也不会为了去那里而死。但是死亡是我们每个人共同的终点。从来没有人能够逃脱它。也应该如此。 因为死亡就是生命中最好的一个发明。它将旧的清除以便给新的让路。你们现在是新的, 但是从现在开始不久以后, 你们将会逐渐的变成旧的然后被清除。我很抱歉这很戏剧性, 但是这十分的真实。
+没有人愿意死，即使人们想上天堂，人们也不会为了去那里而死。但是死亡是我们每个人共同的终点。从来没有人能够逃脱它。也应该如此。 因为死亡就是生命中最好的一个发明。它将旧的清除以便给新的让路。你们现在是新的，但是从现在开始不久以后，你们将会逐渐的变成旧的然后被清除。我很抱歉这很戏剧性，但是这十分的真实。
 
 Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma - which is living with the results of other people's thinking. Don't let the noise of other's opinions drown out your own inner voice. And most important, have the courage to follow your heart and intuition. They somehow already know what you truly want to become. Everything else is secondary.
 
