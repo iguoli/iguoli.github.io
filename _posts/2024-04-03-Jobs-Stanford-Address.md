@@ -1,84 +1,84 @@
 ---
-title: 乔布斯斯坦福大学演讲
+title: 乔布斯2005斯坦福大学演讲
 date: 2024-04-03
-modify_date: 2024-04-03
+modify_date: 2024-04-17
 tags: English
 key: SteveJobs-Stanford-Address-2024-04-03
 ---
 
 I am honored to be with you today for your <u>commencement</u> 【_nous_，**kəˈmensmənt**, 学位授予典礼；毕业典礼】 from one of the finest universities in the world. Truth be told, I never graduated from college, and this is the closest I've ever gotten to a college graduation. Today I want to tell you three stories from my life. That's it. No big deal. Just three stories.
 
-我今天很荣幸能和你们一起参加毕业典礼，斯坦福大学是世界上最好的大学之一。我从来没有从大学中毕业。说实话,今天也许是在我的生命中离大学毕业最近的一天了。今天我想向你们讲述我生活中的三个故事。不是什么大不了的事情,只是三个故事而已。
+我今天很荣幸能和你们一起参加毕业典礼，斯坦福大学是世界上最好的大学之一。我从来没有从大学中毕业。说实话，今天也许是在我的生命中离大学毕业最近的一天了。今天我想向你们讲述我生活中的三个故事。不是什么大不了的事情，只是三个故事而已。
 
 <!--more-->
 
-The first story is about connecting the dots.
+[1] The first story is about connecting the dots.
 
 第一个故事是关于如何把生命中的点点滴滴串连起来。
 
 I <u>dropped out</u> (_phrasal verb_，退学，辍学) of Reed College after the first 6 months, but then stayed around as a <u>drop-in</u> (_adj._，旁听生，非正式的参与) for another 18 months or so before I really quit. So why did I drop out？
 
-我在Reed大学读了六个月之后就退学了,但是在十八个月以后——我真正的作出退学决定之前,我还经常去学校。我为什么要退学呢？
+我在Reed大学读了六个月之后就退学了，但是在十八个月以后——我真正的作出退学决定之前，我还经常去学校。我为什么要退学呢？
 
 It started before I was born. My <u>biological</u> (_adj._，**ˌbaɪəˈlɑːdʒɪkl**，生物学的) mother was a young, unwed graduate student, and she decided to <u>put me up for adoption</u> (让...被领养). She felt very strongly that I should be adopted by college graduates, so everything <u>was all set for</u> (为...做好准备) me to be adopted at birth by a lawyer and his wife. Except that when I <u>popped out</u> (出生) they decided at the last minute that they really wanted a girl.
 
-故事从我出生的时候讲起。我的亲生母亲是一个年轻的,没有结婚的大学研究生。她决定让别人收养我, 她十分想让我被大学毕业生收养。所以在我出生的时候，她已经做好了一切的准备工作，能使得我被一个律师和他的妻子所收养。但是她没有料到,当我出生之后, 律师夫妇突然决定他们想要一个女孩。
+故事从我出生的时候讲起。我的亲生母亲是一个年轻的，没有结婚的大学研究生。她决定让别人收养我，她十分想让我被大学毕业生收养。所以在我出生的时候，她已经做好了一切的准备工作，能使得我被一个律师和他的妻子所收养。但是她没有料到，当我出生之后，律师夫妇突然决定他们想要一个女孩。
 
 So my parents, who were on a waiting list, got a call in the middle of the night asking: "We got an unexpected baby boy; do you want him？" They said: "Of course." My biological mother found out later that my mother had never graduated from college and that my father had never graduated from high school. She refused to sign the final adoption papers. She only <u>relented</u> (_verb_，**rɪˈlentɪd**，松口，让步) a few months later when my parents promised that I would go to college. This was a start in my life.
 
-所以我的生养父母(他们还在我亲生父母的观察名单上)突然在半夜接到了一个电话:“我们现在这儿有一个不小心生出来的男婴,你们想要他吗？”他们回答道:“当然!”但是我亲生母亲随后发现，我的养母从来没有上过大学,我的父亲甚至从没有读过高中。她拒绝签这个收养合同。几个月以后,当我的父母答应她一定要让我上大学的时候,她才勉强同意。这是我人生的开始。
+所以我的生养父母(他们还在我亲生父母的观察名单上)突然在半夜接到了一个电话:“我们现在这儿有一个不小心生出来的男婴，你们想要他吗？”他们回答道:“当然!”但是我亲生母亲随后发现，我的养母从来没有上过大学，我的父亲甚至从没有读过高中。她拒绝签这个收养合同。几个月以后，当我的父母答应她一定要让我上大学的时候，她才勉强同意。这是我人生的开始。
 
 And 17 years later I did go to college. But I naively chose a college that was almost as expensive as Stanford, and all of my <u>working-class</u> (工人阶级，工薪阶层) parents' <u>savings</u> (_noun_，复数，存款，积蓄) were being spent on my college tuition. After 6 months, I couldn't see the value in it. I had no idea what I wanted to do with my life and no idea how college was going to help me <u>figure it out</u> (弄懂，搞明白).
 
-在十七岁那年,我真的上了大学。但是我很愚蠢的选择了一个几乎和你们斯坦福大学一样贵的学校, 我父母还处于蓝领阶层，他们几乎把所有积蓄都花在了我的学费上面。在六个月后, 我已经看不到其中的价值所在。我不知道在我生命中我想要做什么，也不知道大学将如何能帮我弄明白。
+在十七岁那年，我真的上了大学。但是我很愚蠢的选择了一个几乎和你们斯坦福大学一样贵的学校，我父母还处于蓝领阶层，他们几乎把所有积蓄都花在了我的学费上面。在六个月后，我已经看不到其中的价值所在。我不知道在我生命中我想要做什么，也不知道大学将如何能帮我弄明白。
 
 And here I was spending all of the money my parents had saved their entire life. So I decided to drop out and trust that it would all work out OK. It was pretty scary at the time, but looking back it was one of the best decisions I ever made. The minute I dropped out I could stop taking the required classes that didn't interest me, and begin dropping in on the ones that looked far more interesting.
 
-而我在这里上学，几乎花光了父母一辈子的积蓄。所以我决定退学,并且相信一切都会好起来的。当时我十分害怕, 但是现在回想一下，退学是我做过最正确的决定之一。退学的那一刻起, 我终于可以不必去读那些令我提不起丝毫兴趣的课程了，我可以去听那些看起来更有趣的课程。
+而我在这里上学，几乎花光了父母一辈子的积蓄。所以我决定退学，并且相信一切都会好起来的。当时我十分害怕，但是现在回想一下，退学是我做过最正确的决定之一。退学的那一刻起，我终于可以不必去读那些令我提不起丝毫兴趣的课程了，我可以去听那些看起来更有趣的课程。
 
 It wasn't all romantic. I didn't have a dorm room, so I slept on the floor in friends' rooms, I returned coke bottles for the 5 cents <u>deposits</u> (_noun_，**dɪˈpɑːzɪt**，押金) to buy food with, and I would walk the 7 miles across town every Sunday night to get one good meal a week at the Hare Krishna temple. I loved it. And much of what I stumbled into by following my curiosity and intuition turned out to be priceless later on. Let me give you one example:
 
-但是这并不是那么浪漫。我失去了我的宿舍,所以我只能在朋友房间的地板上面睡觉,我去捡5美分的可乐瓶子，仅仅为了填饱肚子, 在星期天的晚上,我需要走七英里的路程，穿过这个城市到Hare Krishna寺庙,只是为了能吃上饭——这个星期唯一一顿好一点的饭。但是我喜欢这样。我跟着我的直觉和好奇心走, 遇到的很多东西,此后被证明是无价之宝。让我给你们举一个例子吧：
+但是这并不是那么浪漫。我失去了我的宿舍，所以我只能在朋友房间的地板上面睡觉，我去捡5美分的可乐瓶子，仅仅为了填饱肚子，在星期天的晚上，我需要走七英里的路程，穿过这个城市到Hare Krishna寺庙，只是为了能吃上饭——这个星期唯一一顿好一点的饭。但是我喜欢这样。我跟着我的直觉和好奇心走，遇到的很多东西，此后被证明是无价之宝。让我给你们举一个例子吧：
 
 Reed College at that time offered perhaps the best <u>calligraphy</u> (_noun_，**kəˈlɪɡrəfi**，书法，美术字) instruction in the country. Throughout the campus, every poster, every label on every drawer, was beautifully <u>hand calligraphed</u> (_verb_，**ˈkælɪgrɑːf**，_adj._，**ˈkælɪgrɑːft**，手写体). Because I had dropped out and didn't have to take the normal classes, I decided to take a calligraphy class to learn how to do this.
 
-Reed大学在那时提供也许是全美最好的书法教学。在这个大学里面的每个海报, 每个抽屉的标签上面全都是漂亮的手写美术字。因为我退学了, 没有受到正规的训练, 所以我决定去参加这个课程，去学学怎样写出漂亮的美术字。
+Reed大学在那时提供也许是全美最好的书法教学。在这个大学里面的每个海报，每个抽屉的标签上面全都是漂亮的手写美术字。因为我退学了，没有受到正规的训练，所以我决定去参加这个课程，去学学怎样写出漂亮的美术字。
 
 I learned about <u>serif</u> (**ˈserɪf**，衬线) and <u>sans serif</u> (无衬线) <u>typefaces</u> (_印刷用的_ 字体), about <u>varying</u> (_verb_，**ˈveri**，改变) the amount of space between different letter combinations, about what makes great <u>typography</u> (_noun_，**taɪˈpɑːɡrəfi**，排版，印刷) great. It was beautiful, historical, artistically <u>subtle</u> (_adj._，**ˈsʌtl**，微妙的，不明显的) in a way that science can't capture, and I found it <u>fascinating</u> (_adj._，**ˈfæsɪneɪtɪŋ**，迷人的).
 
-我学到了 serif 和 san serif 字体, 我学会了怎么样在不同的字母组合之中改变空格的长度, 还有怎么样才能作出最棒的印刷式样。那是一种科学永远不能捕捉到的、美丽的、真实的艺术精妙, 我发现那实在是太美妙了。
+我学到了 serif 和 san serif 字体，我学会了怎么样在不同的字母组合之中改变空格的长度，还有怎么样才能作出最棒的印刷式样。那是一种科学永远不能捕捉到的、美丽的、真实的艺术精妙，我发现那实在是太美妙了。
 
-None of this had even a hope of any practical application in my life. But ten years later, when we were designing the first Macintosh computer, it all came back to me. And we designed it all into the Mac. It was the first computer with beautiful typography. If I had never dropped in on that single course in college, the Mac would have never had multiple typefaces or proportionally spaced fonts.
+None of this had even a hope of any practical application in my life. But ten years later, when we were designing the first Macintosh computer, it all came back to me. And we designed it all into the Mac. It was the first computer with beautiful typography. If I had never dropped in on that single course in college, the Mac would have never had multiple typefaces or <u>proportionally</u> (_adv._，**prəˈpɔːrʃənli**，成比例的) spaced fonts.
 
-当时看来，这些东西好像对我的人生来说没有任何实用价值，但是十年之后,当我们在设计第一台Macintosh电脑的时候,它一下子浮现了出来。我们将这些东西全部设计进了Mac。那是第一台使用了漂亮的印刷字体的电脑。
+这些都没有希望在我的生活中得到任何实际应用，但是十年之后，当我们在设计第一台 Macintosh 电脑的时候，它一下子浮现了出来。我们将这一切都设计到了 Mac 中。这是第一台具有漂亮字体的计算机。如果我在大学时从未旁听过这一门课程，那么 Mac 就不会拥有多种字体或按比例间隔的字体。
 
-And since Windows just copied the Mac, its likely that no personal computer would have them. If I had never dropped out, I would have never dropped in on this calligraphy class, and personal computers might not have the wonderful typography that they do. Of course it was impossible to connect the dots looking forward when I was in college. But it was very, very clear looking backwards ten years later.
+And since Windows just copied the Mac, its likely that no personal computer would have them. If I had never dropped out, I would have never dropped in on this calligraphy class, and personal computers might not have the wonderful typography that they do. Of course it was impossible to connect the dots looking forward when I was in college. But it was very, very clear looking backwards 10 years later.
 
-如果我当时没有退学, 就不会有机会去参加这个我感兴趣的美术字课程, Mac就不会有这么多丰富的字体，以及赏心悦目的字体间距。那么现在个人电脑就不会有现在这么美妙的字型了。如果我没有退学，没有旁听这门书法课，也许所有电脑都不会有如此美丽的印刷体。当然在大学的时候，我不可能预见到它们之间的联系,但是当我十年后回顾这一切的时候,一切都非常明了。
+如果我当时没有退学，就不会有机会去参加这个我感兴趣的美术字课程，Mac就不会有这么多丰富的字体，以及赏心悦目的字体间距。那么现在个人电脑就不会有现在这么美妙的字型了。如果我没有退学，没有旁听这门书法课，也许所有电脑都不会有如此美丽的印刷体。当然在大学的时候，我不可能预见到它们之间的联系，但是当我十年后回顾这一切的时候，一切都非常明了。
 
-Again, you can't connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something - your gut, destiny, life, karma, whatever. This approach has never let me down, and it has made all the difference in my life.
+Again, you can't connect the dots looking forward, you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something - your <u>gut</u> (_noun_，**ɡʌt**，直觉，本能), <u>destiny</u> (命运), life, <u>karma</u> (_noun_，**ˈkɑːrmə**，因果，业力), whatever. Because believing that the dots will connect down the road, it'll give you the confidence to follow your heart, even when it leads you off the <u>well-worn</u> (_adj._，**ˌwel ˈwɔːrn**，破旧的，使用很久的) path and that will make all the difference.
 
-再次强调，没人可以未卜先知，事与事间的因和果，往往只在回首时显现。你得相信，因和果会在未来生活中联系起来。人总要有些信仰才行，直觉也好，命运也罢，因果轮回，不管什么，去相信因与果的联系，会给你信心去跟从自己的意愿，哪怕离经叛道，也绝不止步，只有这样，才能有所成就。
+再一次，你无法将未来的点滴连接起来，你只能在回顾过去时将它们连起来。所以你必须相信这些点会在你的未来以某种方式连接起来。你必须相信一些东西 — 你的直觉，命运，生活，业力，不论什么。因为相信这些点会在路的尽头连接起来，这会给你信心去追随你的内心，即使它把你引向已知的路线之外，这将使一切变得不同。
 
 [2] My second story is about love and loss.
 
 我的第二个故事是关于爱和损失的。
 
-I was lucky – I found what I loved to do early in life. Woz and I started Apple in my parents garage when I was 20. We worked hard, and in 10 years Apple had grown from just the two of us in a garage into a billion company with over 4000 employees. We had just released our finest creation - the Macintosh - a year earlier, and I had just turned 30.
+I was lucky – I found what I loved to do early in life. Woz and I started Apple in my parents garage when I was 20. We worked hard, and in 10 years Apple had grown from just the two of us in a garage into a $2 billion company with over 4000 employees. We had just released our finest creation - the Macintosh - a year earlier, and I had just turned 30.
 
-我非常幸运, 因为我在很早的时候就找到了我钟爱的东西。Woz和我在二十岁的时候就在父母的车库里面开创了苹果公司。我们工作得很努力, 十年之后, 这个公司从那两个车库中的穷光蛋发展到了超过四千名的雇员、价值超过二十亿的大公司。在公司成立的第九年,我们刚刚发布了最好的产品,那就是 Macintosh。我也快要到三十岁了。
+我非常幸运，因为我在很早的时候就找到了我钟爱的东西。Woz和我在二十岁的时候就在父母的车库里面开创了苹果公司。我们工作得很努力，十年之后，这个公司从那两个车库中的穷光蛋发展到了超过四千名的雇员、价值超过二十亿的大公司。在公司成立的第九年，我们刚刚发布了最好的产品，那就是 Macintosh。我也快要到三十岁了。
 
-And then I got fired. How can you get fired from a company you started？ Well, as Apple grew we hired someone who I thought was very talented to run the company with me, and for the first year or so things went well. But then our visions of the future began to diverge and eventually we had a falling out. When we did, our Board of Directors sided with him. So at 30 I was out. And very publicly out. What had been the focus of my entire adult life was gone, and it was devastating.
+And then I got fired. How can you get fired from a company you started？ Well, as Apple grew we hired someone who I thought was very talented to run the company with me, and for the first year or so things went well. But then our visions of the future began to <u>diverge</u> (_verb_，**daɪˈvɜːrdʒ**，分歧) and eventually we had a <u>falling out</u> (_noun_，激烈的争吵，闹翻). When we did, our <u>Board of Directors</u> (董事会) sided with him. So at 30 I was out. And very publicly out. What had been the focus of my entire adult life was gone, and it was <u>devastating</u> (_adj._，**ˈdevəsteɪtɪŋ**，毁灭性的).
 
-在那一年, 我被炒了鱿鱼。你怎么可能被你自己创立的公司炒了鱿鱼呢？ 嗯,在苹果快速成长的时候，我们雇用了一个很有天分的家伙和我一起管理这个公司, 在最初的几年,公司运转的很好。但是后来我们对未来的看法发生了分歧, 最终我们吵了起来。当争吵不可开交的时候, 董事会站在了他的那一边。所以在三十岁的时候, 我被炒了。在这么多人的眼皮下我被炒了。在而立之年，我生命的全部支柱离自己远去, 这真是毁灭性的打击。
+在那一年，我被炒了鱿鱼。你怎么可能被你自己创立的公司炒了鱿鱼呢？ 嗯，在苹果快速成长的时候，我们雇用了一个很有天分的家伙和我一起管理这个公司，在最初的几年，公司运转的很好。但是后来我们对未来的看法发生了分歧，最终我们吵了起来。当争吵不可开交的时候，董事会站在了他的那一边。所以在三十岁的时候，我被炒了。在这么多人的眼皮下我被炒了。在而立之年，我生命的全部支柱离自己远去，这真是毁灭性的打击。
 
-I really didn't know what to do for a few months. I felt that I had let the previous generation of entrepreneurs down - that I had dropped the baton as it was being passed to me. I met with David Packard and Bob Noyce and tried to apologize for screwing up so badly.
+I really didn't know what to do for a few months. I felt that I had let the previous generation of <u>entrepreneurs</u> (__noun_，**ˌɑːntrəprəˈnɜːr**，企业家) down - that I had dropped the <u>baton</u> (_noun_，**bəˈtɑːn**，接力棒) as it was being passed to me. I met with David Packard and Bob Noyce and tried to apologize for <u>screwing up</u> (把...揉成一团) so badly.
 
-在最初的几个月里，我真是不知道该做些什么。我把从前的创业激情给丢了, 我觉得自己让与我一同创业的人都很沮丧。我和David Pack和Bob Boyce见面，并试图向他们道歉。
+这几个月我真的不知道该做什么。我觉得我让上一代企业家失望了 — 当接力棒传给我时，我把它掉了。我去见了 David Packard 和 Bob Noyce，试图为把事情搞砸了而道歉。
 
-I was a very public failure, and I even thought about running away from the valley. But something slowly began to dawn on me – I still loved what I did. The turn of events at Apple had not changed that one bit. I had been rejected, but I was still in love. And so I decided to start over.
+I was a very public failure, and I even thought about running away from the valley. But something slowly began to <u>dawn</u> (_verb_，**dɔːn**，开始明白) on me – I still loved what I did. The <u>turn of events</u> (事态的变化或发展) at Apple had not changed that one bit. I had been rejected, but I was still in love. And so I decided to start over (_phrasal verb_，重新开始).
 
-我把事情弄得糟糕透顶了。但是我渐渐发现了曙光, 我仍然喜爱我从事的这些东西。苹果公司发生的这些事情丝毫的没有改变这些, 一点也没有。我被驱逐了,但是我仍然钟爱它。所以我决定从头再来。
+我是一个非常公开的失败者，我甚至想过逃离硅谷。但我慢慢地开始明白一些事情——我仍然热爱我所做的事情。苹果公司的事态发展并没有改变这一点。我被拒绝了，但我仍然爱着。所以我决定重新开始。
 
 I didn't see it then, but it turned out that getting fired from Apple was the best thing that could have ever happened to me. The heaviness of being successful was replaced by the lightness of being a beginner again, less sure about everything. It freed me to enter one of the most creative periods of my life.
 
