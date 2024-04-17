@@ -36,17 +36,17 @@ And here I was spending all of the money my parents had saved their entire life.
 
 而我在这里上学，几乎花光了父母一辈子的积蓄。所以我决定退学,并且相信一切都会好起来的。当时我十分害怕, 但是现在回想一下，退学是我做过最正确的决定之一。退学的那一刻起, 我终于可以不必去读那些令我提不起丝毫兴趣的课程了，我可以去听那些看起来更有趣的课程。
 
-It wasn't all romantic. I didn't have a dorm room, so I slept on the floor in friends' rooms, I returned coke bottles for the 5 cents deposits (_noun_，**dɪˈpɑːzɪt**，押金) to buy food with, and I would walk the 7 miles across town every Sunday night to get one good meal a week at the Hare Krishna temple. I loved it. And much of what I stumbled into by following my curiosity and intuition turned out to be priceless later on. Let me give you one example:
+It wasn't all romantic. I didn't have a dorm room, so I slept on the floor in friends' rooms, I returned coke bottles for the 5 cents <u>deposits</u> (_noun_，**dɪˈpɑːzɪt**，押金) to buy food with, and I would walk the 7 miles across town every Sunday night to get one good meal a week at the Hare Krishna temple. I loved it. And much of what I stumbled into by following my curiosity and intuition turned out to be priceless later on. Let me give you one example:
 
 但是这并不是那么浪漫。我失去了我的宿舍,所以我只能在朋友房间的地板上面睡觉,我去捡5美分的可乐瓶子，仅仅为了填饱肚子, 在星期天的晚上,我需要走七英里的路程，穿过这个城市到Hare Krishna寺庙,只是为了能吃上饭——这个星期唯一一顿好一点的饭。但是我喜欢这样。我跟着我的直觉和好奇心走, 遇到的很多东西,此后被证明是无价之宝。让我给你们举一个例子吧：
 
-Reed College at that time offered perhaps the best calligraphy (_noun_，**kəˈlɪɡrəfi**，书法，美术字) instruction in the country. Throughout the campus, every poster, every label on every drawer, was beautifully <u>hand calligraphed</u> (_verb_，**ˈkælɪgrɑːf**，_adj._，**ˈkælɪgrɑːft**，手写体). Because I had dropped out and didn't have to take the normal classes, I decided to take a calligraphy class to learn how to do this.
+Reed College at that time offered perhaps the best <u>calligraphy</u> (_noun_，**kəˈlɪɡrəfi**，书法，美术字) instruction in the country. Throughout the campus, every poster, every label on every drawer, was beautifully <u>hand calligraphed</u> (_verb_，**ˈkælɪgrɑːf**，_adj._，**ˈkælɪgrɑːft**，手写体). Because I had dropped out and didn't have to take the normal classes, I decided to take a calligraphy class to learn how to do this.
 
 Reed大学在那时提供也许是全美最好的书法教学。在这个大学里面的每个海报, 每个抽屉的标签上面全都是漂亮的手写美术字。因为我退学了, 没有受到正规的训练, 所以我决定去参加这个课程，去学学怎样写出漂亮的美术字。
 
-I learned about serif (**ˈserɪf**，衬线字体) and sans serif (无衬线字体) typefaces, about varying the amount of space between different letter combinations, about what makes great typography great. It was beautiful, historical, artistically subtle in a way that science can't capture, and I found it fascinating.
+I learned about <u>serif</u> (**ˈserɪf**，衬线) and <u>sans serif</u> (无衬线) <u>typefaces</u> (_印刷用的_ 字体), about <u>varying</u> (_verb_，**ˈveri**，改变) the amount of space between different letter combinations, about what makes great <u>typography</u> (_noun_，**taɪˈpɑːɡrəfi**，排版，印刷) great. It was beautiful, historical, artistically <u>subtle</u> (_adj._，**ˈsʌtl**，微妙的，不明显的) in a way that science can't capture, and I found it <u>fascinating</u> (_adj._，**ˈfæsɪneɪtɪŋ**，迷人的).
 
-我学到了serif 和san serif字体, 我学会了怎么样在不同的字母组合之中改变空格的长度, 还有怎么样才能作出最棒的印刷式样。那是一种科学永远不能捕捉到的、美丽的、真实的艺术精妙, 我发现那实在是太美妙了。
+我学到了 serif 和 san serif 字体, 我学会了怎么样在不同的字母组合之中改变空格的长度, 还有怎么样才能作出最棒的印刷式样。那是一种科学永远不能捕捉到的、美丽的、真实的艺术精妙, 我发现那实在是太美妙了。
 
 None of this had even a hope of any practical application in my life. But ten years later, when we were designing the first Macintosh computer, it all came back to me. And we designed it all into the Mac. It was the first computer with beautiful typography. If I had never dropped in on that single course in college, the Mac would have never had multiple typefaces or proportionally spaced fonts.
 
