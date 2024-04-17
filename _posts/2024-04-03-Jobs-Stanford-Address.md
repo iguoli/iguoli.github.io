@@ -6,17 +6,13 @@ tags: English
 key: SteveJobs-Stanford-Address-2024-04-03
 ---
 
-本演讲稿参考自知乎文章 [乔布斯斯坦福大学演讲全文-中英对照版](https://zhuanlan.zhihu.com/p/408761347)，我在此基础上对一些单词或词组做了单独释义，以下为正文。
-
----
-
-I am honored to be with you today at your <u>commencement</u> 【_nous_，**kəˈmensmənt**, 学位授予典礼；毕业典礼】 from one of the finest universities in the world. Truth be told, I never graduated from college, and this is the closest I've ever gotten to a college graduation. Today I want to tell you three stories from my life. That's it. No big deal. Just three stories.
-
-<!--more-->
+I am honored to be with you today for your <u>commencement</u> 【_nous_，**kəˈmensmənt**, 学位授予典礼；毕业典礼】 from one of the finest universities in the world. Truth be told, I never graduated from college, and this is the closest I've ever gotten to a college graduation. Today I want to tell you three stories from my life. That's it. No big deal. Just three stories.
 
 我今天很荣幸能和你们一起参加毕业典礼，斯坦福大学是世界上最好的大学之一。我从来没有从大学中毕业。说实话,今天也许是在我的生命中离大学毕业最近的一天了。今天我想向你们讲述我生活中的三个故事。不是什么大不了的事情,只是三个故事而已。
 
-[1] The first story is about connecting the dots.
+<!--more-->
+
+The first story is about connecting the dots.
 
 第一个故事是关于如何把生命中的点点滴滴串连起来。
 
@@ -24,15 +20,15 @@ I <u>dropped out</u> (_phrasal verb_，退学，辍学) of Reed College after th
 
 我在Reed大学读了六个月之后就退学了,但是在十八个月以后——我真正的作出退学决定之前,我还经常去学校。我为什么要退学呢？
 
-It started before I was born. My <u>biological</u> (_adj._，**ˌbaɪəˈlɑːdʒɪkl**，生物学的) mother was a young, unwed college graduate student, and she decided to <u>put me up for adoption</u> (让...被领养). She felt very strongly that I should be adopted by college graduates, so everything was all <u>set for</u> (为...做好准备) me to be adopted at birth by a lawyer and his wife. Except that when I <u>popped out</u> (出生) they decided at the last minute that they really wanted a girl.
+It started before I was born. My <u>biological</u> (_adj._，**ˌbaɪəˈlɑːdʒɪkl**，生物学的) mother was a young, unwed graduate student, and she decided to <u>put me up for adoption</u> (让...被领养). She felt very strongly that I should be adopted by college graduates, so everything <u>was all set for</u> (为...做好准备) me to be adopted at birth by a lawyer and his wife. Except that when I <u>popped out</u> (出生) they decided at the last minute that they really wanted a girl.
 
 故事从我出生的时候讲起。我的亲生母亲是一个年轻的,没有结婚的大学研究生。她决定让别人收养我, 她十分想让我被大学毕业生收养。所以在我出生的时候，她已经做好了一切的准备工作，能使得我被一个律师和他的妻子所收养。但是她没有料到,当我出生之后, 律师夫妇突然决定他们想要一个女孩。
 
-So my parents, who were on a waiting list, got a call in the middle of the night asking: "We have an unexpected baby boy; do you want him？" They said: "Of course." My biological mother found out later that my mother had never graduated from college and that my father had never graduated from high school. She refused to sign the final adoption papers. She only <u>relented</u> (_verb_，**rɪˈlentɪd**，松口，让步) a few months later when my parents promised that I would go to college. This was a start in my life.
+So my parents, who were on a waiting list, got a call in the middle of the night asking: "We got an unexpected baby boy; do you want him？" They said: "Of course." My biological mother found out later that my mother had never graduated from college and that my father had never graduated from high school. She refused to sign the final adoption papers. She only <u>relented</u> (_verb_，**rɪˈlentɪd**，松口，让步) a few months later when my parents promised that I would go to college. This was a start in my life.
 
 所以我的生养父母(他们还在我亲生父母的观察名单上)突然在半夜接到了一个电话:“我们现在这儿有一个不小心生出来的男婴,你们想要他吗？”他们回答道:“当然!”但是我亲生母亲随后发现，我的养母从来没有上过大学,我的父亲甚至从没有读过高中。她拒绝签这个收养合同。几个月以后,当我的父母答应她一定要让我上大学的时候,她才勉强同意。这是我人生的开始。
 
-And 17 years later I did go to college. But I naively chose a college that was almost as expensive as Stanford, and all of my <u>working-class</u> (工人阶级，工薪阶层) parents' <u>savings</u> (_noun_，复数，存款，积蓄) were being spent on my college tuition. After six months, I couldn't see the value in it. I had no idea what I wanted to do with my life and no idea how college was going to help me <u>figure it out</u> (弄懂，搞明白).
+And 17 years later I did go to college. But I naively chose a college that was almost as expensive as Stanford, and all of my <u>working-class</u> (工人阶级，工薪阶层) parents' <u>savings</u> (_noun_，复数，存款，积蓄) were being spent on my college tuition. After 6 months, I couldn't see the value in it. I had no idea what I wanted to do with my life and no idea how college was going to help me <u>figure it out</u> (弄懂，搞明白).
 
 在十七岁那年,我真的上了大学。但是我很愚蠢的选择了一个几乎和你们斯坦福大学一样贵的学校, 我父母还处于蓝领阶层，他们几乎把所有积蓄都花在了我的学费上面。在六个月后, 我已经看不到其中的价值所在。我不知道在我生命中我想要做什么，也不知道大学将如何能帮我弄明白。
 
@@ -40,17 +36,17 @@ And here I was spending all of the money my parents had saved their entire life.
 
 而我在这里上学，几乎花光了父母一辈子的积蓄。所以我决定退学,并且相信一切都会好起来的。当时我十分害怕, 但是现在回想一下，退学是我做过最正确的决定之一。退学的那一刻起, 我终于可以不必去读那些令我提不起丝毫兴趣的课程了，我可以去听那些看起来更有趣的课程。
 
-It wasn't all romantic. I didn't have a dorm room, so I slept on the floor in friends' rooms, I returned coke bottles for the 5¢ deposits to buy food with, and I would walk the 7 miles across town every Sunday night to get one good meal a week at the Hare Krishna temple. I loved it. And much of what I stumbled into by following my curiosity and intuition turned out to be priceless later on. Let me give you one example:
+It wasn't all romantic. I didn't have a dorm room, so I slept on the floor in friends' rooms, I returned coke bottles for the 5 cents deposits (_noun_，**dɪˈpɑːzɪt**，押金) to buy food with, and I would walk the 7 miles across town every Sunday night to get one good meal a week at the Hare Krishna temple. I loved it. And much of what I stumbled into by following my curiosity and intuition turned out to be priceless later on. Let me give you one example:
 
-但是这并不是那么浪漫。我失去了我的宿舍,所以我只能在朋友房间的地板上面睡觉,我去捡5美分的可乐瓶子，仅仅为了填饱肚子, 在星期天的晚上,我需要走七英里的路程，穿过这个城市到Hare Krishna寺庙(注：位于纽约Brooklyn下城),只是为了能吃上饭——这个星期唯一一顿好一点的饭。但是我喜欢这样。我跟着我的直觉和好奇心走, 遇到的很多东西,此后被证明是无价之宝。让我给你们举一个例子吧：
+但是这并不是那么浪漫。我失去了我的宿舍,所以我只能在朋友房间的地板上面睡觉,我去捡5美分的可乐瓶子，仅仅为了填饱肚子, 在星期天的晚上,我需要走七英里的路程，穿过这个城市到Hare Krishna寺庙,只是为了能吃上饭——这个星期唯一一顿好一点的饭。但是我喜欢这样。我跟着我的直觉和好奇心走, 遇到的很多东西,此后被证明是无价之宝。让我给你们举一个例子吧：
 
-Reed College at that time offered perhaps the best calligraphy instruction in the country. Throughout the campus every poster, every label on every drawer, was beautifully hand calligraphed. Because I had dropped out and didn't have to take the normal classes, I decided to take a calligraphy class to learn how to do this.
+Reed College at that time offered perhaps the best calligraphy (_noun_，**kəˈlɪɡrəfi**，书法，美术字) instruction in the country. Throughout the campus, every poster, every label on every drawer, was beautifully <u>hand calligraphed</u> (_verb_，**ˈkælɪgrɑːf**，_adj._，**ˈkælɪgrɑːft**，手写体). Because I had dropped out and didn't have to take the normal classes, I decided to take a calligraphy class to learn how to do this.
 
-Reed大学在那时提供也许是全美最好的美术字课程。在这个大学里面的每个海报, 每个抽屉的标签上面全都是漂亮的美术字。因为我退学了, 没有受到正规的训练, 所以我决定去参加这个课程，去学学怎样写出漂亮的美术字。
+Reed大学在那时提供也许是全美最好的书法教学。在这个大学里面的每个海报, 每个抽屉的标签上面全都是漂亮的手写美术字。因为我退学了, 没有受到正规的训练, 所以我决定去参加这个课程，去学学怎样写出漂亮的美术字。
 
-I learned about serif and san serif typefaces, about varying the amount of space between different letter combinations, about what makes great typography great. It was beautiful, historical, artistically subtle in a way that science can't capture, and I found it fascinating.
+I learned about serif (**ˈserɪf**，衬线字体) and sans serif (无衬线字体) typefaces, about varying the amount of space between different letter combinations, about what makes great typography great. It was beautiful, historical, artistically subtle in a way that science can't capture, and I found it fascinating.
 
-我学到了san serif 和serif字体, 我学会了怎么样在不同的字母组合之中改变空格的长度, 还有怎么样才能作出最棒的印刷式样。那是一种科学永远不能捕捉到的、美丽的、真实的艺术精妙, 我发现那实在是太美妙了。
+我学到了serif 和san serif字体, 我学会了怎么样在不同的字母组合之中改变空格的长度, 还有怎么样才能作出最棒的印刷式样。那是一种科学永远不能捕捉到的、美丽的、真实的艺术精妙, 我发现那实在是太美妙了。
 
 None of this had even a hope of any practical application in my life. But ten years later, when we were designing the first Macintosh computer, it all came back to me. And we designed it all into the Mac. It was the first computer with beautiful typography. If I had never dropped in on that single course in college, the Mac would have never had multiple typefaces or proportionally spaced fonts.
 
