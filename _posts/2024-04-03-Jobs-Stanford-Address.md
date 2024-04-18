@@ -36,9 +36,9 @@ And here I was spending all of the money my parents had saved their entire life.
 
 而我在这里上学，几乎花光了父母一辈子的积蓄。所以我决定退学，并且相信一切都会好起来的。当时我十分害怕，但是现在回想一下，退学是我做过最正确的决定之一。退学的那一刻起，我终于可以不必去读那些令我提不起丝毫兴趣的课程了，我可以去听那些看起来更有趣的课程。
 
-It wasn't all romantic. I didn't have a dorm room, so I slept on the floor in friends' rooms, I returned coke bottles for the 5 cents <u>deposits</u> (_noun_，**dɪˈpɑːzɪt**，押金) to buy food with, and I would walk the 7 miles across town every Sunday night to get one good meal a week at the Hare Krishna temple. I loved it. And much of what I stumbled into by following my curiosity and intuition turned out to be priceless later on. Let me give you one example:
+It wasn't all romantic. I didn't have a dorm room, so I slept on the floor in friends' rooms, I returned coke bottles for the 5 cents <u>deposits</u> (_noun_，**dɪˈpɑːzɪt**，押金) to buy food with, and I would walk the 7 miles across town every Sunday night to get one good meal a week at the Hare Krishna temple. I loved it. And much of what I <u>stumbled into</u> (偶然发现) by following my curiosity and intuition turned out to be priceless later on. Let me give you one example:
 
-但是这并不是那么浪漫。我失去了我的宿舍，所以我只能在朋友房间的地板上面睡觉，我去捡5美分的可乐瓶子，仅仅为了填饱肚子，在星期天的晚上，我需要走七英里的路程，穿过这个城市到Hare Krishna寺庙，只是为了能吃上饭——这个星期唯一一顿好一点的饭。但是我喜欢这样。我跟着我的直觉和好奇心走，遇到的很多东西，此后被证明是无价之宝。让我给你们举一个例子吧：
+但是这并不是那么浪漫。我失去了我的宿舍，所以我只能在朋友房间的地板上面睡觉，我去捡5美分的可乐瓶子，仅仅为了填饱肚子，在星期天的晚上，我需要走七英里的路程，穿过这个城市到Hare Krishna寺庙，只是为了能吃上饭——这个星期唯一一顿好一点的饭。但是我喜欢这样。我跟随自己的好奇心和直觉而偶然发现的很多东西后来都被证明是无价的。让我给你们举一个例子吧：
 
 Reed College at that time offered perhaps the best <u>calligraphy</u> (_noun_，**kəˈlɪɡrəfi**，书法，美术字) instruction in the country. Throughout the campus, every poster, every label on every drawer, was beautifully <u>hand calligraphed</u> (_verb_，**ˈkælɪgrɑːf**，_adj._，**ˈkælɪgrɑːft**，手写体). Because I had dropped out and didn't have to take the normal classes, I decided to take a calligraphy class to learn how to do this.
 
@@ -76,7 +76,7 @@ I really didn't know what to do for a few months. I felt that I had let the prev
 
 这几个月我真的不知道该做什么。我觉得我让上一代企业家失望了 — 当接力棒传给我时，我把它掉了。我去见了 David Packard 和 Bob Noyce，试图为把事情搞砸了而道歉。
 
-I was a very public failure, and I even thought about running away from the valley. But something slowly began to <u>dawn</u> (_verb_，**dɔːn**，开始明白) on me – I still loved what I did. The <u>turn of events</u> (事态的变化或发展) at Apple had not changed that one bit. I had been rejected, but I was still in love. And so I decided to start over (_phrasal verb_，重新开始).
+I was a very public failure, and I even thought about running away from the valley. But something slowly began to <u>dawn (_verb_，**dɔːn**) on me</u> (_dawn on sb._，某人开始明白，醒悟) – I still loved what I did. The <u>turn of events</u> (事态的变化或发展) at Apple had not changed that one bit. I had been rejected, but I was still in love. And so I decided to start over (_phrasal verb_，重新开始).
 
 我是一个非常公开的失败者，我甚至想过逃离硅谷。但我慢慢地开始明白一些事情——我仍然热爱我所做的事情。苹果公司的事态发展并没有改变这一点。我被拒绝了，但我仍然爱着。所以我决定重新开始。
 
@@ -84,25 +84,25 @@ I didn't see it then, but it <u>turned out</u> (_phrasal verb_，证明是) that
 
 当时我并没有意识到，但结果证明，被苹果公司解雇是我一生中可能发生的最好的事情。成功带给我的沉重感被重新成为新手的轻松感所替代，对一切不再那么确定。这让我进入了我一生中最有创造力的时期之一。
 
-During the next five years, I started a company named NeXT, another company named Pixar, and fell in love with an amazing woman who would become my wife. Pixar went on to create the worlds first computer animated feature film, Toy Story, and is now the most successful animation studio in the world.
+During the next five years, I started a company named NeXT, another company named Pixar, and fell in love with an amazing woman who would become my wife. Pixar went on to create the world's first computer animated feature film, Toy Story, and is now the most successful animation studio in the world.
 
 在接下来的五年里，我创立了一个名叫NeXT的公司，还有一个叫Pixar的公司，然后和一个后来成为我妻子的优雅女人相识。Pixar 制作了世界上第一个用电脑制作的动画电影——“玩具总动员”，Pixar现在也是世界上最成功的电脑制作工作室。
 
-In a remarkable turn of events, Apple bought NeXT, I returned to Apple, and the technology we developed at NeXT is at the heart of Apple's current renaissance. And Laurene and I have a wonderful family together.
+In a <u>remarkable</u> (_adj._，**rɪˈmɑːrkəbl**，引人注目的) turn of events, Apple bought NeXT, I returned to Apple, and the technology we developed at NeXT is at the heart of Apple's current <u>renaissance</u> (_noun_，**ˈrenəsɑːns**，文艺复兴). And Laurene and I have a wonderful family together.
 
-在后来的一系列运转中，Apple收购了NeXT，然后我又回到了Apple公司。我们在NeXT发展的技术在Apple的复兴之中发挥了关键的作用。我还和Laurence 一起建立了一个幸福的家庭。
+事情发生了引人注目的转变，苹果收购了 NeXT，我又回到了苹果，而我们在 NeXT 开发的技术是苹果当前复兴的核心。劳伦和我有一个美好的家庭。
 
-I'm pretty sure none of this would have happened if I hadn't been fired from Apple. It was awful tasting medicine, but I guess the patient needed it. Sometimes life hits you in the head with a brick. Don't lose faith. I'm convinced that the only thing that kept me going was that I loved what I did. You've got to find what you love. And that is as true for your work as it is for your lovers. Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it. And, like any great relationship, it just gets better and better as the years roll on. So keep looking until you find it. Don't settle.
+I'm pretty sure none of this would have happened if I hadn't been fired from Apple. It was <u>awful</u> (_adj._，**ˈɔːfl**，很坏的，糟透的) tasting medicine, but I guess the patient needed it. Sometimes life hits you in the head with a brick. Don't lose faith. I'm <u>convinced</u> (_adj._，**kənˈvɪnst**，坚信，深信，确信) that the only thing that kept me going was that I loved what I did. You've got to find what you love. And that is as true for your work as it is for your lovers. Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle (妥协). As with all matters of the heart, you'll know when you find it. And, like any great relationship, it just gets better and better as the years <u>roll on</u> (_时间的_ 流逝). So keep looking until you find it. Don't settle.
 
-我可以非常肯定，如果我不被Apple开除的话，这其中一件事情也不会发生的。这个良药的味道实在是太苦了，但是我想病人需要这个药。有时候生活会给你迎头一击，不要灰心丧气。我坚信，唯一可以让我坚持下去的，就是我对自己事业的热爱。你必须去寻找自己所爱，无论是工作还是爱情，都是如此。工作是生活中很主要的部分，真正获得满足感，就必须做你相信是有价值的工作。要做有价值的事业，你就必须热爱你做的事业，如果你还没找到，千万不要放弃，要继续寻找，只要倾听你的心声，当你真的发现时你就会感到，就像任何伟大的感情关系一样，岁月的更迭只会让这份情愈发深刻，所以千万不要放弃，要继续寻找。
+我很确定如果我没有被苹果公司解雇，这一切都不会发生。这药味道很糟糕，但我想病人需要它。有时候，生活会给你当头一棒。不要失去信心。我坚信，唯一让我坚持下去的就是我热爱我所做的事情。你必须找到你所爱的。对于你的工作和你的爱人来说都是如此。你的工作将占据你生活的很大一部分，唯一能让你真正满足的，就是去做你认为伟大的工作。而做伟大的工作的唯一方式就是热爱你所做的事情。如果您还没有找到，请继续寻找。不要妥协。就像所有与内心有关的事情一样，当你找到它时你就会知道。而且，就像任何伟大的关系一样，随着时间的推移，这种关系会变得越来越好。所以继续寻找，直到找到为止。不要妥协。
 
 [3] My third story is about death.
 
 我的第三个故事是关于死亡的。
 
-When I was 17, I read a quote that went something like: "If you live each day as if it was your last, someday you'll most certainly be right." It made an impression on me, and since then, for the past 33 years, I have looked in the mirror every morning and asked myself: "If today were the last day of my life, would I want to do what I am about to do today？" And whenever the answer has been "No" for too many days in a row, I know I need to change something.
+When I was 17, I read a quote that <u>went something like</u> (大致是这样): "If you live each day as if it was your last, someday you'll most certainly be right." It made an impression on me, and since then, for the past 33 years, I have looked in the mirror every morning and asked myself: "If today were the last day of my life, would I want to do what I am about to do today？" And whenever the answer has been "No" for too many days <u>in a row</u> (连续的，接连不断地), I know I need to change something.
 
-当我十七岁的时候，我读到了一句话:“如果你把每一天都当作生命中最后一天去生活的话，那么有一天你会发现你是正确的。”这句话给我留下了深刻的印象。从那时开始，过了33 年，我在每天早晨都会对着镜子问自己:“如果今天是我生命中的最后一天，你会不会完成你今天想做的事情呢？”当答案连续很多次被给予“不是”的时候，我知道自己需要改变某些事情了。
+当我17岁的时候，我读到一句这样的话："如果你把每一天都当作最后一天去度过，总有一天你会是对的。"这句话给我留下了深刻的印象，自那时起，过去的33年里，我每天早晨照镜子的时候，都会问自己："如果今天是我生命中的最后一天，我是否愿意去做我今天打算去做的事份？"每当连续太多天都回答“不”时，我就知道我需要改变一些事情。
 
 Remembering that I'll be dead soon is the most important tool I've ever encountered to help me make the big choices in life. Because almost everything – all external expectations, all pride, all fear of embarrassment or failure - these things just fall away in the face of death, leaving only what is truly important. Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose. You are already naked. There is no reason not to follow your heart.
 
