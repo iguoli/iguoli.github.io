@@ -76,7 +76,7 @@ I really didn't know what to do for a few months. I felt that I had let the prev
 
 这几个月我真的不知道该做什么。我觉得我让上一代企业家失望了 — 当接力棒传给我时，我把它掉了。我去见了 David Packard 和 Bob Noyce，试图为把事情搞砸了而道歉。
 
-I was a very public failure, and I even thought about running away from the valley. But something slowly began to <u>dawn (_verb_，**dɔːn**) on me</u> (_dawn on sb._，某人开始明白，醒悟) – I still loved what I did. The <u>turn of events</u> (事态的变化或发展) at Apple had not changed that one bit. I had been rejected, but I was still in love. And so I decided to start over (_phrasal verb_，重新开始).
+I was a very public failure, and I even thought about running away from the valley. But something slowly began to <u>dawn (_verb_，**dɔːn**) on me</u> (_dawn on sb._，某人开始明白，醒悟) – I still loved what I did. The <u>turn of events</u> (事态的变化或发展) at Apple had not changed that one bit. I had been rejected, but I was still in love. And so I decided to <u>start over</u> (_phrasal verb_，重新开始).
 
 我是一个非常公开的失败者，我甚至想过逃离硅谷。但我慢慢地开始明白一些事情——我仍然热爱我所做的事情。苹果公司的事态发展并没有改变这一点。我被拒绝了，但我仍然爱着。所以我决定重新开始。
 
@@ -100,17 +100,17 @@ I'm pretty sure none of this would have happened if I hadn't been fired from App
 
 我的第三个故事是关于死亡的。
 
-When I was 17, I read a quote that <u>went something like</u> (大致是这样): "If you live each day as if it was your last, someday you'll most certainly be right." It made an impression on me, and since then, for the past 33 years, I have looked in the mirror every morning and asked myself: "If today were the last day of my life, would I want to do what I am about to do today？" And whenever the answer has been "No" for too many days <u>in a row</u> (连续的，接连不断地), I know I need to change something.
+When I was 17, I read a quote that <u>went something like</u> (大致是这样): "If you live each day as if it was your last, someday you'll most certainly be right." It <u>made an impression on me</u> (_make an impression on sb._，给某人留下印象), and since then, for the past 33 years, I have looked in the mirror every morning and asked myself: "If today were the last day of my life, would I want to do what I am about to do today？" And whenever the answer has been "No" for too many days <u>in a row</u> (连续的，接连不断地), I know I need to change something.
 
 当我17岁的时候，我读到一句这样的话："如果你把每一天都当作最后一天去度过，总有一天你会是对的。"这句话给我留下了深刻的印象，自那时起，过去的33年里，我每天早晨照镜子的时候，都会问自己："如果今天是我生命中的最后一天，我是否愿意去做我今天打算去做的事份？"每当连续太多天都回答“不”时，我就知道我需要改变一些事情。
 
-Remembering that I'll be dead soon is the most important tool I've ever encountered to help me make the big choices in life. Because almost everything – all external expectations, all pride, all fear of embarrassment or failure - these things just fall away in the face of death, leaving only what is truly important. Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose. You are already naked. There is no reason not to follow your heart.
+Remembering that I'll be dead soon is the most important tool I've ever encountered to help me make the big choices in life. Because almost everything – all external expectations, all pride, all fear of <u>embarrassment</u> (__noun_，**ɪmˈbærəsmənt**，难堪) or failure - these things just <u>fall away</u>【_phrasal verb_，（逐渐）消失】in the face of death, leaving only what is truly important. Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose. You are already <u>naked</u> (_adj._，**ˈneɪkɪd**，赤裸的). There is no reason not to follow your heart.
 
-提醒自己人的生命有限，令我一生都受益非常，令我能在人生重大问题上做出抉择。因为一切的一切，一切追求，一切荣耀，一切惶恐，一些挫折，在死亡面前都会显得微不足道 ，剩下的才是最重要的事情。记住自己总会死去是避免自己被种种担心所羁绊的最好方法，既然将一无所有，还有什么理由不追随自己的内心。
+记住我将很快死去，这是我遇到过的最重要的工具，可以帮助我做出人生中的重大选择。因为一切的一切，一切追求，一切荣耀，一切对尴尬或失败的恐惧，这些东西在面对死亡时都会消失，只留下那些真正重要的东西。记住你将会死去，这是我知道的避免陷入认为自己有什么可以失去的思维陷阱的最好方法。你已经一无所有。没有理由不去追随你的心。
 
-About a year ago I was diagnosed with cancer. I had a scan at 7:30 in the morning, and it clearly showed a tumor on my pancreas. I didn't even know what a pancreas was. The doctors told me this was almost certainly a type of cancer that is incurable, and that I should expect to live no longer than three to six months. My doctor advised me to go home and get my affairs in order, which is doctor's code for prepare to die. It means to try to tell your kids everything you thought you'd have the next 10 years to tell them in just a few months. It means to make sure everything is buttoned up so that it will be as easy as possible for your family. It means to say your goodbyes.
+About a year ago I was diagnosed with cancer. I had a scan at 7:30 in the morning, and it clearly showed a <u>tumor</u> (__noun_，**ˈtuːmər**，肿瘤) on my </u>pancreas</u> (_noun_，**ˈpæŋkriəs**，胰腺). I didn't even know what a pancreas was. The doctors told me this was almost certainly a type of cancer that is <u>incurable</u> (_adj._，**ɪnˈkjʊrəbl**，不可治愈的), and that I should expect to live no longer than three to six months. My doctor advised me to go home and get my affairs in order, which is doctor's code for prepare to die. It means to try to tell your kids everything you thought you'd have the next 10 years to tell them in just a few months. It means to make sure everything is buttoned up so that it will be as easy as possible for your family. It means to say your goodbyes.
 
-大概一年以前，我被诊断出癌症。我在早晨七点半做了一个检查，检查清楚的显示在我的胰腺有一个肿瘤。我当时都不知道胰腺是什么东西。医生告诉我那很可能是一种无法治愈的癌症，我还有三到六个月的时间活在这个世界上。我的医生叫我回家，然后整理好我的一切，那就是医生准备死亡的程序。那意味着你将要把未来十年对你小孩说的话在几个月里面说完.;那意味着把每件事情都搞定，让你的家人会尽可能轻松的生活;那意味着你要说“再见了”。
+大约一年前我被诊断出患有癌症。我早上7:30做了一次扫描，并清楚地看到我的胰腺上有一个肿瘤。我甚至不知道什么是胰腺。医生告诉我这几乎肯定是一种无法治愈的癌症，并且我预计的生命期限不会超过三到六个月。我的医生建议我回家，开始整理自己的事务，这是医生的暗语，意味着准备去死。这意味着尝试在短短几个月内告诉你的孩子你认为在接下来的十年里你会告诉他们的一切。这意味着确保一切事务都处理好，这样对你的家人来说会尽可能的容易。意味着说再见。
 
 I lived with that diagnosis all day. Later that evening I had a biopsy, where they stuck an endoscope down my throat, through my stomach and into my intestines, put a needle into my pancreas and got a few cells from the tumor. I was sedated, but my wife, who was there, told me that when they viewed the cells under a microscope the doctors started crying because it turned out to be a very rare form of pancreatic cancer that is curable with surgery. I had the surgery and I'm fine now.
 
