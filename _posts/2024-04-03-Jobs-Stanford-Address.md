@@ -124,13 +124,14 @@ No one wants to die. Even people who want to go to heaven don't want to die to g
 
 没有人愿意死。即使是想去天堂的人，也不希望通过死亡去那里。然而，死亡是我们所有人共同的终点。没有人能逃脱它。这也理应如此，因为死亡很可能是生命最好的发明。它是生命的改变者。它清除旧的，为新的让路。现在新的是你，但不久的将来，你会慢慢变老，然后被清除。很抱歉我这么戏剧化，但这确实是真的。
 
-Your time is limited, so don't waste it living someone else's life. Don't be trapped by <u>dogma</u>【_noun_，**ˈdɔːɡmə**，教条】- which is living with the results of other people's thinking. Don't let the noise of other's opinions <u>drown【_verb_，**/draʊn**】out</u>【淹没】your own inner voice. And most important, have the courage to follow your heart and intuition. They somehow already know what you truly want to become. Everything else is secondary.
+Your time is limited, so don't waste it living someone else's life. Don't be trapped by <u>dogma</u>【_noun_，**ˈdɔːɡmə**，教条】- which is living with the results of other people's thinking. Don't let the noise of other's opinions <u>drown out</u>【淹没】your own inner voice. And most important, have the courage to follow your heart and intuition. They somehow already know what you truly want to become. Everything else is secondary.
 
 人生有限，所以不要把时间浪费在过别人的生活上。不要被教条所困 — 这就是活在别人思考的结果中。不要让别人的意见淹没了你内心的声音。最重要的是，要有勇气追随自己的内心和直觉。他们不知何故已经知道你真正想成为什么。其他一切都是次要的。
 
 When I was young, there was an amazing publication called The Whole Earth Catalog, which was one of the bibles of my generation. It was created by a fellow named Stewart Brand not far from here in Menlo Park, and he brought it to life with his poetic touch. This was in the late 1960's, before personal computers and desktop publishing, so it was all made with typewriters, scissors, and polaroid cameras. It was sort of like Google in paperback form, 35 years before Google came along: it was idealistic, and overflowing with neat tools and great notions.
 
 当我还年轻的时候，有一本令人惊叹的出版物叫做《全球目录》，那是我们这一代人的圣经之一。它是由一位名叫 Stewart Brand 的人在距离这里不远的 Menlo Park 创造的，并且他用他的诗意手法赋予了它生命。那是在20世纪60年代末期，还没有个人计算机和桌面出版，所以全部都是用打字机，剪刀和宝丽来相机制作的。它有点像纸质版的谷歌，比谷歌出现早了35年：它是理想主义的，充满了整洁的工具和伟大的想法。
+
 Stewart and his team put out several issues of The Whole Earth Catalog, and then when it had run its course, they put out a final issue. It was the mid-1970s, and I was your age. On the back cover of their final issue was a photograph of an early morning country road, the kind you might find yourself hitchhiking on if you were so adventurous. Beneath it were the words: "Stay Hungry. Stay Foolish." It was their farewell message as they signed off. Stay Hungry. Stay Foolish. And I have always wished that for myself. And now, as you graduate to begin anew, I wish that for you.
 
 Stay Hungry. Stay Foolish.
