@@ -76,7 +76,7 @@ I really didn't know what to do for a few months. I felt that I had let the prev
 
 这几个月我真的不知道该做什么。我觉得我让上一代企业家失望了 — 当接力棒传给我时，我把它掉了。我去见了 David Packard 和 Bob Noyce，试图为把事情搞砸了而道歉。
 
-I was a very public failure, and I even thought about running away from the valley. But something slowly began to <u>dawn【_verb_，**dɔːn**】on me</u>【_dawn on sb._，某人开始明白，醒悟】– I still loved what I did. The <u>turn of events</u>【事态的变化或发展】at Apple had not changed that one bit. I had been rejected, but I was still in love. And so I decided to <u>start over</u>【_phrasal verb_，重新开始】.
+I was a very public failure, and I even thought about running away from the valley. But something slowly began to <u>dawn on me</u>【_verb_，**dɔːn**，_dawn on sb._，某人开始明白，醒悟】– I still loved what I did. The <u>turn of events</u>【事态的变化或发展】at Apple had not changed that one bit. I had been rejected, but I was still in love. And so I decided to <u>start over</u>【_phrasal verb_，重新开始】.
 
 我是一个非常公开的失败者，我甚至想过逃离硅谷。但我慢慢地开始明白一些事情——我仍然热爱我所做的事情。苹果公司的事态发展并没有改变这一点。我被拒绝了，但我仍然爱着。所以我决定重新开始。
 
@@ -108,7 +108,7 @@ Remembering that I'll be dead soon is the most important tool I've ever encounte
 
 记住我将很快死去，这是我遇到过的最重要的工具，可以帮助我做出人生中的重大选择。因为一切的一切，一切追求，一切荣耀，一切对尴尬或失败的恐惧，这些东西在面对死亡时都会消失，只留下那些真正重要的东西。记住你将会死去，这是我知道的避免陷入认为自己有什么可以失去的思维陷阱的最好方法。你已经一无所有。没有理由不去追随你的心。
 
-About a year ago I was diagnosed with cancer. I had a scan at 7:30 in the morning, and it clearly showed a <u>tumor</u>【_noun_，**ˈtuːmər**，肿瘤】on my </u>pancreas</u>【_noun_，**ˈpæŋkriəs**，胰，胰腺】. I didn't even know what a pancreas was. The doctors told me this was almost certainly a type of cancer that is <u>incurable</u>【_adj._，**ɪnˈkjʊrəbl**，不可治愈的】, and that I should expect to live no longer than three to six months. My doctor advised me to go home and get my affairs in order, which is doctor's code for prepare to die. It means to try to tell your kids everything you thought you'd have the next 10 years to tell them in just a few months. It means to make sure everything is buttoned up so that it will be as easy as possible for your family. It means to say your goodbyes.
+About a year ago I was diagnosed with cancer. I had a scan at 7:30 in the morning, and it clearly showed a <u>tumor</u>【_noun_，**ˈtuːmər**，肿瘤】on my <u>pancreas</u>【_noun_，**ˈpæŋkriəs**，胰，胰腺】. I didn't even know what a pancreas was. The doctors told me this was almost certainly a type of cancer that is <u>incurable</u>【_adj._，**ɪnˈkjʊrəbl**，不可治愈的】, and that I should expect to live no longer than three to six months. My doctor advised me to go home and get my affairs in order, which is doctor's code for prepare to die. It means to try to tell your kids everything you thought you'd have the next 10 years to tell them in just a few months. It means to make sure everything is buttoned up so that it will be as easy as possible for your family. It means to say your goodbyes.
 
 大约一年前我被诊断出患有癌症。我早上7:30做了一次扫描，并清楚地看到我的胰腺上有一个肿瘤。我甚至不知道什么是胰腺。医生告诉我这几乎肯定是一种无法治愈的癌症，并且我预计的生命期限不会超过三到六个月。我的医生建议我回家，开始整理自己的事务，这是医生的暗语，意味着准备去死。这意味着尝试在短短几个月内告诉你的孩子你认为在接下来的十年里你会告诉他们的一切。这意味着确保一切事务都处理好，这样对你的家人来说会尽可能的容易。意味着说再见。
 
