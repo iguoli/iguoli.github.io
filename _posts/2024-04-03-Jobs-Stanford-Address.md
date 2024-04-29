@@ -36,7 +36,7 @@ And here I was spending all of the money my parents had saved their entire life.
 
 而我在这里上学，几乎花光了父母一辈子的积蓄。所以我决定退学，并且相信一切都会好起来的。当时我十分害怕，但是现在回想一下，退学是我做过最正确的决定之一。退学的那一刻起，我终于可以不必去读那些令我提不起丝毫兴趣的课程了，我可以去听那些看起来更有趣的课程。
 
-It wasn't all romantic. I didn't have a dorm room, so I slept on the floor in friends' rooms, I returned coke bottles for the 5 cents <u>deposits</u>【_noun_，**dɪˈpɑːzɪt**，押金】to buy food with, and I would walk the 7 miles across town every Sunday night to get one good meal a week at the Hare Krishna temple. I loved it. And much of what I <u>stumbled into</u>【偶然发现】by following my curiosity and intuition turned out to be priceless later on. Let me give you one example:
+It wasn't all romantic. I didn't have a dorm room, so I slept on the floor in friends' rooms, I returned coke bottles for the 5 cent <u>deposits</u>【_noun_，**dɪˈpɑːzɪt**，押金】to buy food with, and I would walk the 7 miles across town every Sunday night to get one good meal a week at the Hare Krishna temple. I loved it. And much of what I <u>stumbled into</u>【偶然发现】by following my curiosity and intuition turned out to be priceless later on. Let me give you one example:
 
 但是这并不是那么浪漫。我失去了我的宿舍，所以我只能在朋友房间的地板上面睡觉，我去捡5美分的可乐瓶子，仅仅为了填饱肚子，在星期天的晚上，我需要走七英里的路程，穿过这个城市到Hare Krishna寺庙，只是为了能吃上饭——这个星期唯一一顿好一点的饭。但是我喜欢这样。我跟随自己的好奇心和直觉而偶然发现的很多东西后来都被证明是无价的。让我给你们举一个例子吧：
 
