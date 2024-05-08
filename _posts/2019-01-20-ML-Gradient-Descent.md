@@ -34,6 +34,8 @@ $$
 
 ![directional_derivative](/assets/images/machine-learning/directional_derivative.png)
 
+上图所示，函数在点 $P$ 沿着方向 $l$ 的 **方向导数** 表示为 $\frac{\partial{z}}{\partial{l}}|_P$，即沿着方向 $l$ 通过点 $P$ 的直线 $MN$ 对应函数曲面 $f$ 的斜率。计算方法是取 $P$ 点处于曲面函数的值 $f(P)$，然后在方向 $l$ 上取一个极小的距离 $\rho$ 得到点 $P'$，计算 $P'$ 点处函数的值 $f(P')$，求得 $f(P')-f(P)$ 的差值 $\Delta{z}$，然后将该差值除以 $\rho$，当 $\rho$ 趋近于 $0$ 时，得到的极限值就是该方向上的方向导数。
+
 **梯度** 是函数 $f(x,y)$ 在点 $P(x,y)$ 处方向导数取得最大值的方向，是一个向量，梯度定义为：
 
 $$
