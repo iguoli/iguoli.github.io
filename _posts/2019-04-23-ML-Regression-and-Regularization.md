@@ -1,6 +1,7 @@
 ---
 title: 机器学习 - 线性回归、逻辑回归与正则化
-date: 2024-05-08
+date: 2019-04-23
+modify_date: 2024-05-08
 tags: Machine-Learning
 key: ML-Regression-and-Regularization-2019-04-23
 ---
