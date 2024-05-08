@@ -1,16 +1,30 @@
 ---
 title: 机器学习 - 线性回归、逻辑回归与正则化
-date: 2019-04-23
+date: 2024-05-08
 tags: Machine-Learning
 key: ML-Regression-and-Regularization-2019-04-23
 ---
+
+## 基本概念
+
+假设函数 (_Hypothesis Function_): 它是用于从输入变量到输出变量映射的函数。在有监督学习中，这个函数的形式通常是由训练数据中学习得到的，这就是为什么叫 **机器学习**，所有训练出来的权重参数，都是用来逼进这个函数，我们希望通过这个学习出来的假设函数，可以从新的数据预测出想要的结果。
+
+代价函数 (_Loss Function_)：描述的是单个训练样本的预测值与真实值之间的误差。损失函数是关于单一训练样本的函数，它度量了一个样本的预测值与实际值的差异。例如，在回归任务中常用的损失函数是平方损失函数 $L(\theta)=(h_\theta(x)-y)^2$，其中是 $h_\theta(x)$ 预测值， $y$ 是真实值。
 
 ## 线性回归(_Linear Regression_)
 
 假设函数(_Hypothesis Function_): 线性函数
 
 $$
-h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2x_2 + \cdots + \theta_nx_n = \theta^Tx \text{ (单个样本)}
+h_\theta(x)
+= \theta_1x_1 + \theta_2x_2 + \cdots + \theta_nx_n + b
+= [\theta_1 \  \theta_2 \ \dots \ \theta_n] \begin{bmatrix}
+    x_1 \\
+    x_2 \\
+    \vdots \\
+    x_n
+\end{bmatrix} + b
+= \theta^Tx+b \text{ (单个样本)}
 $$
 
 $$
@@ -22,12 +36,30 @@ h_\theta(x)
         h_\theta(x^{(m)})
     \end{bmatrix}
 = \begin{bmatrix}
-        \theta_0 + \theta_1x^{(1)}_1 + \theta_2x^{(1)}_2 + \dots + \theta_nx^{(1)}_n \\
-        \theta_0 + \theta_1x^{(2)}_1 + \theta_2x^{(2)}_2 + \dots + \theta_nx^{(2)}_n \\
+        \theta_1x^{(1)}_1 + \theta_2x^{(1)}_2 + \dots + \theta_nx^{(1)}_n + b \\
+        \theta_1x^{(2)}_1 + \theta_2x^{(2)}_2 + \dots + \theta_nx^{(2)}_n + b \\
         \vdots \\
-        \theta_0 + \theta_1x^{(m)}_1 + \theta_2x^{(m)}_2 + \dots + \theta_nx^{(m)}_n \\
+        \theta_1x^{(m)}_1 + \theta_2x^{(m)}_2 + \dots + \theta_nx^{(m)}_n + b \\
     \end{bmatrix}
-= X\theta \text{ (多个样本)}
+= \begin{bmatrix}
+   x^{(1)}_1 \ x^{(1)}_2  \ \dots \ x^{(1)}_n \\
+   x^{(2)}_1 \ x^{(2)}_2  \ \dots \ x^{(2)}_n \\
+   \vdots \\
+   x^{(m)}_1 \ x^{(m)}_2  \ \dots \ x^{(m)}_n \\
+\end{bmatrix}
+\begin{bmatrix}
+    \theta_1 \\
+    \theta_2 \\
+    \vdots \\
+    \theta_n
+\end{bmatrix} +
+\begin{bmatrix}
+    b \\
+    b \\
+    \vdots \\
+    b
+\end{bmatrix}
+= X\theta + b \text{ (多个样本)}
 $$
 
 <!--more-->
