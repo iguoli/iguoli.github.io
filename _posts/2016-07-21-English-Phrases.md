@@ -1,9 +1,9 @@
 ---
-title: 英语常用短语
+title: English Common Used Phrases
 date: 2016-07-21
 modify_date: 2019-09-13
 tags: English
-key: English-Learning-2016-07-21
+key: English-Phrases-2016-07-21
 ---
 
 常用短语及单词。
