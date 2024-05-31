@@ -29,3 +29,8 @@ For example, in the word "receive," the "**c**" is followed by the "**ei"** comb
 - **过去分词作形容词**：用来描述名词，表示完成、受影响或经历了某事。例如："a broken vase"（一个破碎的花瓶）、"an excited crowd"（一群兴奋的人群）。
 - **被动语态**：当动作的执行者不是句子的主语时。例如："The book was written by George."（这本书是乔治写的。）
 - **现在完成时**：表示过去某个时间开始，持续到现在或对现在有影响的动作或状态。例如："I have finished my homework."（我已经完成了我的作业。）
+
+## Bored 和 Boring
+
+- "Bored"形容一个人感到无聊，觉得没有兴趣、不感兴奋或不被娱乐到。例如：“我在会议上感到很无聊。”
+- "Boring"形容某事让人感到无聊，它指代的是那件事情本身缺乏趣味、引人入胜或刺激。例如：“这部电影真无聊。”
