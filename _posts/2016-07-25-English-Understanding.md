@@ -14,6 +14,8 @@ A common spelling rule in English for the sequence of "i" and "e" is often state
 
 For example, in the word "receive," the "**c**" is followed by the "**ei"** combination. On the other hand, in the word "retrieve", since there is no "c" before it, you should use "**ie**."
 
+<!--more-->
+
 ## 动词的 "-ing" 和 "-ed" 形式
 
 在日常英语对话中，动词的"-ing"形式通常用在几种情况下：

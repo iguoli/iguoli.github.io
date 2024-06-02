@@ -8,8 +8,6 @@ key: English-Phrases-2016-07-21
 
 常用短语及单词。
 
-<!--more-->
-
 ### 十个常用口语
 
 1. Hey, How's it going? Pretty good.  
@@ -21,25 +19,13 @@ key: English-Phrases-2016-07-21
 3. I'm not sure.  
    I'm no<span style="color:red">'</span> <span style="color:red">shur</span>.
 
-4. I don't know.  
-   I <span style="color:red">dunno</span>.
-
-5. It's a hot one today. Yep, sure is.  
-   It's a ho<span style="color:red">'</span> one t<span style="color:red">'</span>day.
-
-6. You gotta try it.  
+4. You gotta try it.  
    You go<span style="color:red">dd</span>a try i<span style="color:red">'</span>.
 
-7. Thanks! I appreciate it.  
+5. Thanks! I appreciate it.  
    I a-<span style="color:red">prish</span>-e-a<span style="color:red">'</span>e i<span style="color:red">'</span>.
 
-8. No problem.  
-   No pro<span style="color:red">bl</span>em.
-
-9.  See you latter!  
-   See y<span style="color:red">a</span> la<span style="color:red">d</span>er!
-
-11. Let's go.
+<!--more-->
 
 ### Your feelings or thoughts about sb/sth, rather than a fact 意见；想法；看法:
 
