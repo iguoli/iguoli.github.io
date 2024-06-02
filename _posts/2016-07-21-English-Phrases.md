@@ -8,7 +8,7 @@ key: English-Phrases-2016-07-21
 
 常用短语及单词。
 
-### 十个常用口语
+### 常用口语
 
 1. Hey, How's it going? Pretty good.  
    How<span style="color:red">z</span>it goin<span style="color:red">'</span>? Pri<span style="color:red">dd</span>y g<span style="color:red">oo</span>d.
