@@ -20,11 +20,17 @@ scoop install Inconsolata-NF
 scoop install Inconsolata-NF-Mono
 ```
 
+### 安装 GNU 工具包
+
+```sh
+scoop install coreutils
+```
+
 <!--more-->
 
 在 PowerShell 中查看 `PATH` 环境变量
 
-```sh
+```powershell
 $env:path
 
 $env:path.Split(';')

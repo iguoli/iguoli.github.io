@@ -25,6 +25,6 @@ netstat -tupln
 
 ## Windows
 
-```cmd
-netstat -an | grep 'LISTENING'
+```powershell
+netstat -an | grep LISTENING
 ```
