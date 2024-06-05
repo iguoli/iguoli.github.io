@@ -676,20 +676,45 @@ select version();
 
 ## 流复制
 
-### 创建流复制用户
+### 前提
+
+主/备数据库信息
+
+|           | IP Address    |
+| --------- | ------------- |
+| Master DB | 192.168.33.10 |
+| Slave DB  | 192.168.33.20 |
+
+主库需要设置配置文件
+
+- `postgresql.conf`
+- `pg_hba.conf`
+
+备库需要设置配置文件
+
+- `recovery.conf`
+- `.pg_pass`
+
+如果需要做主从切换，可以在主备数据库上都配置好这四个文件。
+
+注：`recovery.conf` 文件在备库上是 `recovery.conf`，在主库上配置为 `recovery.done`。
+
+### 主库设置
+
+#### 创建流复制用户
 
 ```sql
 CREATE USER replica WITH REPLICATION LOGIN PASSWORD 'P@ssw0rd!';
 ```
 
-### 数据库配置查询命令
+#### 数据库配置查询命令
 
 ```sql
 show config_file;
 show hba_file;
 ```
 
-### postgresql.conf
+#### 配置 postgresql.conf
 
 ```ini
 listen_addresses = '*'
@@ -703,28 +728,31 @@ wal_keep_segments = 32
 hot_standby       = on
 ```
 
-### [pg_hba.conf]
+#### 配置 [pg_hba.conf]
 
 | TYPE  | DATABASE    | USER    | ADDRESS          | AUTH-METHOD |
 | ----- | ----------- | ------- | ---------------- | ----------- |
 | local | all         | all     |                  | peer        |
 | host  | all         | all     | 127.0.0.1/32     | trust       |
 | host  | all         | all     | 192.168.33.0/24  | md5         |
-| host  | replication | replica | 192.168.33.10/32 | md5         |
+| host  | replication | replica | 192.168.33.20/32 | md5         |
 
 配置修改后，可以使用 `/usr/pgsql-9.4/bin/pg_ctl reload` 命令使配置生效而不重启数据库。
 
-### [recovery.conf]
+### 备库设置
+
+#### 配置 [recovery.conf]
 
 ```ini
 recovery_target_timeline = 'latest'
 standby_mode = 'on'
+# 连接到主库的IP和端口，主库上的用户 replica 和其密码
 primary_conninfo = 'host=192.168.33.10 port=5432 user=replica password=P@ssw0rd!'
 ```
 
-### 备库设置
+#### 配置 pgpass
 
-在第二台机器安装好 postgresql 服务器，不要启动，为 postgres 用户建立 `.pgpass` 文件
+创建 `.pgpass` 文件，设置主库IP、端口、用户、密码，以便免密连接主库。
 
 ```sh
 cat << EOF > ~/.pgpass
@@ -734,9 +762,11 @@ EOF
 chmod 0600 ~/.pgpass
 ```
 
-使用 `pg_basebackup` 生成备库
+使用 `pg_basebackup` 生成备库，这一步会同步主库的 `data` 目录到备库，因此对于备库来讲，需要先将原来的 `data` 目录删除或备份到其它地方。
 
 ```sh
+rm -rf /var/lib/pgsql/9.4/data
+
 pg_basebackup -h 192.168.33.10 -U replica -D /var/lib/pgsql/9.4/data -Xs -P
 ```
 
