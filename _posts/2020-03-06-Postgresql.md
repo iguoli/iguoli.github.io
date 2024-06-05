@@ -762,12 +762,18 @@ EOF
 chmod 0600 ~/.pgpass
 ```
 
-使用 `pg_basebackup` 生成备库，这一步会同步主库的 `data` 目录到备库，因此对于备库来讲，需要先将原来的 `data` 目录删除或备份到其它地方。
+#### 在备库启动流复制
+
+在备库使用 `pg_basebackup` 命令进行流复制，该命令会同步主库的 `data` 目录到备库，因此对于备库来讲，需要先将原来的 `data` 目录删除或备份到其它地方。
 
 ```sh
+service posgresql-9.4 stop
+
 rm -rf /var/lib/pgsql/9.4/data
 
 pg_basebackup -h 192.168.33.10 -U replica -D /var/lib/pgsql/9.4/data -Xs -P
+
+service posgresql-9.4 start
 ```
 
 ### 查看数据库状态
