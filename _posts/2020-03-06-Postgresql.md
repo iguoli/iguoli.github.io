@@ -730,12 +730,12 @@ hot_standby       = on
 
 #### 配置 [pg_hba.conf]
 
-| TYPE  | DATABASE    | USER    | ADDRESS          | AUTH-METHOD |
-| ----- | ----------- | ------- | ---------------- | ----------- |
-| local | all         | all     |                  | peer        |
-| host  | all         | all     | 127.0.0.1/32     | trust       |
-| host  | all         | all     | 192.168.33.0/24  | md5         |
-| host  | replication | replica | 192.168.33.20/32 | md5         |
+| TYPE     | DATABASE        | USER        | ADDRESS              | AUTH-METHOD |
+| -------- | --------------- | ----------- | -------------------- | ----------- |
+| local    | all             | all         |                      | peer        |
+| host     | all             | all         | 127.0.0.1/32         | trust       |
+| host     | all             | all         | 192.168.33.0/24      | md5         |
+| **host** | **replication** | **replica** | **192.168.33.20/32** | **md5**     |
 
 配置修改后，可以使用 `/usr/pgsql-9.4/bin/pg_ctl reload` 命令使配置生效而不重启数据库。
 
