@@ -676,6 +676,8 @@ select version();
 
 ## 流复制
 
+部分参考 [postgresql-9.6 主从复制（流复制）](https://www.cnblogs.com/wzh19820101/p/14777908.html)
+
 ### 前提
 
 主/备数据库信息
@@ -741,6 +743,24 @@ hot_standby       = on
 
 ### 备库设置
 
+#### 在备库启动流复制
+
+主库配置好后，在备库使用 `pg_basebackup` 命令做一次基准备份，该命令会同步主库的 `data` 目录到备库，因此对于备库来讲，
+
+- 如果是新的数据库安装，不需要使用 `initdb` 命令初始化数据库
+- 如果已经创建了 `data` 目录，需要先将原来的 `data` 目录删除或备份到其它地方
+
+```sh
+service posgresql-9.4 stop
+
+rm -rf /var/lib/pgsql/9.4/data
+
+# -R 表示会在备份结束后自动生成recovery.conf文件，这样就避免了手动创建。
+pg_basebackup -h 192.168.33.10 -U replica -D /var/lib/pgsql/9.4/data -Xs -P -R
+
+service posgresql-9.4 start
+```
+
 #### 配置 [recovery.conf]
 
 ```ini
@@ -760,20 +780,6 @@ cat << EOF > ~/.pgpass
 EOF
 
 chmod 0600 ~/.pgpass
-```
-
-#### 在备库启动流复制
-
-在备库使用 `pg_basebackup` 命令进行流复制，该命令会同步主库的 `data` 目录到备库，因此对于备库来讲，需要先将原来的 `data` 目录删除或备份到其它地方。
-
-```sh
-service posgresql-9.4 stop
-
-rm -rf /var/lib/pgsql/9.4/data
-
-pg_basebackup -h 192.168.33.10 -U replica -D /var/lib/pgsql/9.4/data -Xs -P
-
-service posgresql-9.4 start
 ```
 
 ### 查看数据库状态
