@@ -1,8 +1,8 @@
 ---
-title: 高等代数知识点
+title: 数学知识点
 date: 2024-05-08
 tags: Math Machine-Learning
-key: Gradient-2024-05-08
+key: Math-Knowledge-Points-2024-05-08
 ---
 
 ## 三角函数
@@ -19,7 +19,11 @@ key: Gradient-2024-05-08
 
 ### [单位圆](https://zh.wikipedia.org/wiki/单位圆)
 
-在数学中，单位圆 (Unit circle) 是指半径为单位长度的圆，通常为欧几里得平面直角坐标系中圆心为 $(0, 0)$ 、半径为 1 的圆。设 $(x, y)$ 是单位圆上的一个点，那么
+在数学中，单位圆 (Unit circle) 是指半径为单位长度的圆，通常为欧几里得平面直角坐标系中圆心为 $(0, 0)$ 、半径为 1 的圆。
+
+![单位圆](/assets/images/math/unit_circle.png){:height="128px" width="128px"} ![单位圆坐标点](/assets/images/math/unit_circle_angles.png){:height="128px" width="128px"}
+
+设 $(x, y)$ 是单位圆上的一个点，那么
 
 $$
 \begin{align*}
