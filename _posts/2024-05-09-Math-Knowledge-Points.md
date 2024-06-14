@@ -21,18 +21,18 @@ key: Math-Knowledge-Points-2024-05-08
 
 在数学中，单位圆 (Unit circle) 是指半径为单位长度的圆，通常为欧几里得平面直角坐标系中圆心为 $(0, 0)$ 、半径为 1 的圆。
 
-![单位圆](/assets/images/math/unit_circle.png){:height="128px" width="128px"} ![单位圆坐标点](/assets/images/math/unit_circle_angles.png){:height="128px" width="128px"}
+![单位圆](/assets/images/math/unit_circle.png){:height="256px" width="256px"} ![单位圆坐标点](/assets/images/math/unit_circle_angles.png){:height="256px" width="256px"}
 
 设 $(x, y)$ 是单位圆上的一个点，那么
 
 $$
 \begin{align*}
-  \cos{\theta} = x \\
-  \sin{\theta} = y
+  \cos{t} = x \\
+  \sin{t} = y
 \end{align*}
 $$
 
-点 $(x, y)$ 可以由 $(\cos{\theta}, \sin{\theta})$ 来表示。
+点 $(x, y)$ 可以由 $(\cos{t}, \sin{t})$ 来表示。
 
 ## 单位向量
 
