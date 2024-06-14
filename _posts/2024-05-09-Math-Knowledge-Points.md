@@ -27,8 +27,8 @@ key: Math-Knowledge-Points-2024-05-08
 
 $$
 \begin{align*}
-  \cos{t} = x \\
-  \sin{t} = y
+  \cos{t} = \frac{x}{1} = x \\
+  \sin{t} = \frac{y}{1} = y
 \end{align*}
 $$
 
