@@ -21,7 +21,7 @@ key: Math-Knowledge-Points-2024-05-08
 
 在数学中，单位圆 (Unit circle) 是指半径为单位长度的圆，通常为欧几里得平面直角坐标系中圆心为 $(0, 0)$ 、半径为 1 的圆。
 
-![单位圆](/assets/images/math/unit_circle.png){:height="256px" width="256px"} ![单位圆坐标点](/assets/images/math/unit_circle_angles.png){:height="256px" width="256px"}
+![单位圆](/assets/images/math/unit_circle.png){:height="256px" width="256px"} ![单位圆坐标点](/assets/images/math/unit_circle_angles.png){:height="512px" width="512px"}
 
 设 $(x, y)$ 是单位圆上的一个点，那么
 
