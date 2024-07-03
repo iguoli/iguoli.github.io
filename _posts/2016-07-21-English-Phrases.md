@@ -1,7 +1,7 @@
 ---
 title: English Common Used Phrases
 date: 2016-07-21
-modify_date: 2019-09-13
+modify_date: 2024-07-03
 tags: English
 key: English-Phrases-2016-07-21
 ---
@@ -345,3 +345,13 @@ more informal, used in speaking
 
 - Having said she wasn't hungry, she then proceeded to order a three-course meal.
   她先说不饿，接着却要了一份三道菜的大餐。
+
+### Ramp Up and Ramp down
+
+在 IT 运维项目中，**ramp up** 通常指的是逐步增加或提升某个方面的能力、资源、业务量等。
+
+例如，新系统上线时，可能需要逐步增加服务器的处理能力以应对不断增长的用户访问量，这就是 **ramp up** 服务器的性能。再比如，项目初期，团队成员可能需要逐步熟悉新的技术和流程，这个熟悉和适应的过程也可以被称为 **ramp up**。
+
+**ramp down** 则相反，它意味着逐步减少或降低某个方面的能力、资源、业务量等。
+
+比如说，某个产品即将退役，相关的维护资源和支持力度会逐步减少，这就是 **ramp down**。又比如，当某个业务的需求逐渐降低，相应的服务器资源分配也会逐渐减少，这也是 **ramp down** 的一种表现。
