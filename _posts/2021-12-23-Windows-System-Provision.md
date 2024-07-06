@@ -8,9 +8,25 @@ key: Windows-System-Provision-2021-06-25
 
 ## 安装 [Windows Terminal](https://github.com/microsoft/terminal)
 
+### 安装 Dracula 主题
+
+[Windows Terminal Dracula color scheme](https://draculatheme.com/windows-terminal)
+
 ## 安装 [scoop](https://scoop.sh/)
 
+### 安装 Git
+
+```sh
+scoop install git
+```
+
+<!--more-->
+
 ### 安装字体
+
+- 安装 CamingoCode Nerd Font
+
+- 安装 FiraCode 等字体
 
 ```sh
 scoop bucket add nerd-fonts
@@ -26,8 +42,6 @@ scoop install Inconsolata-NF-Mono
 scoop install coreutils
 ```
 
-<!--more-->
-
 在 PowerShell 中查看 `PATH` 环境变量
 
 ```powershell
@@ -37,6 +51,10 @@ $env:path.Split(';')
 ```
 
 ## 安装 Windows [PowerToys](https://github.com/microsoft/PowerToys)
+
+## 安装 [NeoVim](https://neovim.io/)
+
+## 安装 [fzf](https://junegunn.github.io/fzf/)
 
 ## 安装 [Dual-Key-Remap](https://github.com/ililim/dual-key-remap)
 

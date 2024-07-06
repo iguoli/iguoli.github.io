@@ -42,10 +42,10 @@ git help -g
 
 传递配置参数给 Git 命令。覆盖配置文件中的参数值，`<name>` 的格式与 `git config` 命令中的格式相同。
 
-- `git -c foo.bar`  
+- `git -c foo.bar`
   配置参数不带等号 `=`，则设置 `foo.bar` 为 `true`
 
-- `git -c foo.bar=`  
+- `git -c foo.bar=`
   配置参数带等号 `=` 但没有值，则设置 `foo.bar` 为空字符串，布尔类型的 (`git config --type=bool`) 转换为 `false`.
 
 例如，关闭 `git log` 输出时的分页器 (默认是 `less`)
@@ -127,16 +127,16 @@ pattern attr1 attr2 [attribute list...]
 
 属性有四种状态:
 
-- **Set**  
+- **Set**
   在属性列表中列出属性名，路径就会设置相应的属性为 `true`.
 
-- **Unset**  
+- **Unset**
   在属性列表中的属性名前加上 `-`，路径就会设置相应的属性为 `false`.
 
-- **Set to a value**  
+- **Set to a value**
   在属性列表中的属性名后跟一个 `=` 和对应的属性值，路径就会设置相应的属性为该属性值.
 
-- **Unspecified**  
+- **Unspecified**
   无法说明路径有还是没有属性.
 
 路径的模式匹配规则与 `.gitignore` 文件中的规则相同.
@@ -194,6 +194,12 @@ git config --global filter.indent.smudge cat
 | `~/.gitconfig`                | 特定用户配置文件，即全局范围 (*--global*) 配置文件                                                    |
 | `$XDG_CONFIG_HOME/git/config` | 特定用户第二配置文件。如果 `$XDG_CONFIG_HOME` 没有设置或为空，则使用 `$HOME/.config/git/config` 文件. |
 | `$(prefix)/etc/gitconfig`     | 系统范围配置文件                                                                                      |
+
+查看当前系统 `git config` 读取路径以及作用范围可以使用命令
+
+```sh
+git config --list --show-origin --show-scope
+```
 
 ## [Git 内部原理 - Git 对象](https://git-scm.com/book/zh/v2/Git-内部原理-Git-对象)
 
