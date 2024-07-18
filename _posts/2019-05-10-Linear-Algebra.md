@@ -86,9 +86,9 @@ $$
 
 #### 线性组合张成的集合
 
-线性代数一个主要思想是研究可以表示为某一 <span style="color:red"><b>固定向量集合</b></span> $\{\mathbf{v_1,v_2,\cdots,v_p}\}$ 的线性组合的所有向量。
+线性代数一个主要思想是研究可以表示为某一 <span style="color:red"><b>固定向量集合</b></span> $\\{\mathbf{v_1,v_2,\cdots,v_p}\\}$ 的线性组合的所有向量。
 
-**定义** $\quad$ 若 $\{\mathbf{v_1,v_2,\cdots,v_p}\}$ 是 $\Bbb R^n$ 中的向量，则 $\{\mathbf{v_1,v_2,\cdots,v_p}\}$ 的所有线性组合所成的**集合**用记号 $\mathbf{Span}\\{\mathbf{v_1,v_2,\cdots,v_p}\\}$ 表示，称为由 $\{\mathbf{v_1,v_2,\cdots,v_p}\}$ **生成(或张成)的 $\Bbb R^n$ 子集**。也就是说，$\mathbf{Span}\\{\mathbf{v_1,v_2,\cdots,v_p}\\}$ 是所有
+**定义** $\quad$ 若 $\\{\mathbf{v_1,v_2,\cdots,v_p}\\}$ 是 $\Bbb R^n$ 中的向量，则 $\\{\mathbf{v_1,v_2,\cdots,v_p}\\}$ 的所有线性组合所成的**集合**用记号 $\mathbf{Span}\\{\mathbf{v_1,v_2,\cdots,v_p}\\}$ 表示，称为由 $\\{\mathbf{v_1,v_2,\cdots,v_p}\\}$ **生成(或张成)的 $\Bbb R^n$ 子集**。也就是说，$\mathbf{Span}\\{\mathbf{v_1,v_2,\cdots,v_p}\\}$ 是所有
 $$
 c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \cdots + c_p\mathbf{v}_p
 $$
