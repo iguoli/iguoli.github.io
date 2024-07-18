@@ -82,7 +82,11 @@ $$
 
 由 $\mathbb{R}^n$ 到 $\Bbb R^m$ 的一个变换(或称**函数**、**映射**) $T$ 记为 $\Bbb R^n \to \Bbb R^m$。对 $\Bbb R^n$ 中的每个 $x$，$T(x)$ 由 $A(x)$ 计算得到，对应的矩阵变换记为 $x \to Ax$。矩阵 $A$ 也称为线性变换 $T$ 的**标准矩阵**。
 
-### 线性组合张成的集合
+### 1.3 向量方程
+
+#### 线性组合张成的集合
+
+线性代数一个主要思想是研究可以表示为某一 <span style="color:red"><b>固定向量集合</b></span> $\mathbf{v_1,v_2,\cdots,v_p}$ 的线性组合的所有向量。
 
 **定义** $\quad$ 若 $\mathbf{v_1,v_2,\cdots,v_p}$ 是 $\Bbb R^n$ 中的向量，则 $\mathbf{v_1,v_2,\cdots,v_p}$ 的所有线性组合所成的**集合**用记号 $\mathbf{Span}\\{\mathbf{v_1,v_2,\cdots,v_p}\\}$ 表示，称为由 $\mathbf{v_1,v_2,\cdots,v_p}$ **生成(或张成)的 $\Bbb R^n$ 子集**。也就是说，$\mathbf{Span}\\{\mathbf{v_1,v_2,\cdots,v_p}\\}$ 是所有
 $$
@@ -110,7 +114,7 @@ $$
 | 系数矩阵 $A$ 在每一行都有主元位置              |                                                  | 增广矩阵最右列存在主元，即存在如下形式<br>$\mathbf{[0 \cdots 0 \; b] \; (b\ne0)}$ |
 |                                                |                                                  | $\mathbf b$ 不属于 $\mathbf{Span}\\{\mathbf{a_1, a_2, \cdots, a_n\\}}$            |
 | 齐次方程 $Ax=0$ 仅有平凡解                     | 齐次方程 $Ax=0$ 有非平凡解                       | 方程 $Ax$ 无解                                                                    |
-| 映射 $T: \Bbb R^n \to \Bbb R^m$ 是单射(一对一) | 映射 $T: \Bbb R^n \to \Bbb R^m$ 是满射但不是单射 | 映射 $T$ 没有将 $\Bbb R^n$ 映射到 $\Bbb R^m$ 上                                 |
+| 映射 $T: \Bbb R^n \to \Bbb R^m$ 是单射(一对一) | 映射 $T: \Bbb R^n \to \Bbb R^m$ 是满射但不是单射 | 映射 $T$ 没有将 $\Bbb R^n$ 映射到 $\Bbb R^m$ 上                                   |
 
 自由变量，矩阵的列数量大于行数量
 
