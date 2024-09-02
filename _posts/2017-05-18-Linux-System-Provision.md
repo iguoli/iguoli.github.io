@@ -140,7 +140,7 @@ update-alternatives --config java
 - 设置系统默认使用的编辑器，例如选择 vim, nano
 
 ```sh
-update-alternative --config editor
+update-alternatives --config editor
 ```
 
 - 将 python 3.8 从系统配置中删除
