@@ -91,6 +91,15 @@ wsl --set-default-version Fedora
 wsl -s Fedora
 ```
 
+### 启用 systemd
+
+编辑 `/etc/wsl.conf` (没有该文件就创建一个)
+
+```ini
+[boot]
+systemd=true
+```
+
 ### 设置默认登录用户
 
 Fedora 系统安装好后，是以 root 用户登录，我们可以[为系统添加新用户](https://iguoli.github.io/2017/05/18/Linux-System-Provision.html#为系统添加新用户)，并以该用户登录
