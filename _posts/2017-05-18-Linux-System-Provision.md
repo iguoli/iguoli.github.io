@@ -146,7 +146,7 @@ update-alternatives --config editor
 - 将 python 3.8 从系统配置中删除
 
 ```sh
-update-alternatives –remove python /usr/bin/python3.8
+update-alternatives –-remove python /usr/bin/python3.8
 ```
 
 ## 用户及用户组操作
@@ -349,8 +349,8 @@ sudo make install install-doc install-html
 git config --global user.name 'your name'
 git config --global user.email 'your@email.com'
 git config --global credential.helper 'cache --timeout=86400'
-git config --global http.proxy socks5://127.0.0.1:7891
-git config --global https.proxy socks5://127.0.0.1:7891
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy http://127.0.0.1:7890
 git config --global core.editor nvim
 ```
 
@@ -383,43 +383,6 @@ Host github.com
     User git
     # -S for socks5 proxy, -H for http proxy
     ProxyCommand connect-proxy -H 127.0.0.1:7890 %h %p
-```
-
-## 安装 [Proxychains-ng](https://github.com/rofl0r/proxychains-ng)
-
-`proxychains` 用于在命令行中为单个命令提供代理服务，这样可以在不启用全局代理的同时让某些命令通过代理连接。
-
-注意: `proxychains` 只会代理 `TCP` 连接，所以如果使用 `proxychains4 ping www.google.com` 则不会生效，因为 `ping` 命令使用 `ICMP` 协议。
-
-**RedHat/CentOS**
-
-```sh
-sudo yum install -y proxychains-ng
-```
-##### 源代码安装
-
-```sh
-git clone https://github.com/rofl0r/proxychains-ng.git
-cd proxychains-ng
-./configure --prefix=/usr --sysconfdir=/etc
-make
-sudo make install
-sudo make install-config (installs proxychains.conf)
-```
-
-##### 配置
-
-在配置文件 [`/etc/proxychains.conf`](https://github.com/rofl0r/proxychains-ng/blob/master/src/proxychains.conf) 中的 `[ProxyList]` 中加入代理，通常只需要启用一个代理即可，多个代理会形成代理链。
-
-```ini
-[ProxyList]
-socks5 127.0.0.1 7891
-```
-
-添加别名
-
-```sh
-alias pcs=proxychains4
 ```
 
 ## 安装 [zsh](https://github.com/zsh-users/zsh)
@@ -495,36 +458,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
-## 安装 [Temurin](https://adoptium.net/) OpenJDK
-
-[官方安装文档](https://adoptium.net/installation/linux)
-
-安装包使用如下命名格式，
-
-`temurin-<version>-jdk`
-
-例如：`temurin-17-jdk`, `temurin-8-jdk`
-
-首先，添加以下 RPM repo，如果用的是 Fedora，注意替换 `centos` 为 `fedora`
-
-```sh
-vim /etc/yum.repos.d/adoptium.repo
-```
-
-```conf
-[Adoptium]
-name=Adoptium
-baseurl=https://packages.adoptium.net/artifactory/rpm/centos/\$releasever/\$basearch
-enabled=1
-gpgcheck=1
-gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
-```
-
-```sh
-sudo yum update
-sudo yum install temurin-17-jdk
-```
-
 ## 安装 [Pygments](https://pygments.org)
 
 **PIP**
@@ -577,6 +510,73 @@ source /etc/grc.zsh
 
 ```sh
 sed -e '$a\[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh' ~/.zshrc
+```
+
+## 安装 [Proxychains-ng](https://github.com/rofl0r/proxychains-ng)
+
+`proxychains` 用于在命令行中为单个命令提供代理服务，这样可以在不启用全局代理的同时让某些命令通过代理连接。
+
+注意: `proxychains` 只会代理 `TCP` 连接，所以如果使用 `proxychains4 ping www.google.com` 则不会生效，因为 `ping` 命令使用 `ICMP` 协议。
+
+**RedHat/CentOS**
+
+```sh
+sudo yum install -y proxychains-ng
+```
+##### 源代码安装
+
+```sh
+git clone https://github.com/rofl0r/proxychains-ng.git
+cd proxychains-ng
+./configure --prefix=/usr --sysconfdir=/etc
+make
+sudo make install
+sudo make install-config (installs proxychains.conf)
+```
+
+##### 配置
+
+在配置文件 [`/etc/proxychains.conf`](https://github.com/rofl0r/proxychains-ng/blob/master/src/proxychains.conf) 中的 `[ProxyList]` 中加入代理，通常只需要启用一个代理即可，多个代理会形成代理链。
+
+```ini
+[ProxyList]
+socks5 127.0.0.1 7891
+```
+
+添加别名
+
+```sh
+alias pcs=proxychains4
+```
+
+## 安装 [Temurin](https://adoptium.net/) OpenJDK
+
+[官方安装文档](https://adoptium.net/installation/linux)
+
+安装包使用如下命名格式，
+
+`temurin-<version>-jdk`
+
+例如：`temurin-17-jdk`, `temurin-8-jdk`
+
+首先，添加以下 RPM repo，如果用的是 Fedora，注意替换 `centos` 为 `fedora`
+
+```sh
+vim /etc/yum.repos.d/adoptium.repo
+```
+
+```conf
+[Adoptium]
+name=Adoptium
+baseurl=https://packages.adoptium.net/artifactory/rpm/centos/\$releasever/\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
+```
+
+```sh
+sudo yum update
+sudo yum install temurin-17-jdk
 ```
 
 ## 安装 [Powerline] fonts
