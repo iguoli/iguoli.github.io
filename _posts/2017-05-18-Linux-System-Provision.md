@@ -299,9 +299,10 @@ vim /etc/selinux/config
 大部分终端命令都会识别以下环境变量来使用命令行代理，如果有特殊命令不识别，可以使用 **ProxyChains-NG** 命令。
 
 ```sh
-export http_proxy=http://127.0.0.1:7890
-export https_proxy=http://127.0.0.1:7890
-export all_proxy=socks5://127.0.0.1:7891
+export proxy_ip_port=127.0.0.1:7890
+export http_proxy=http://$proxy_ip_port
+export https_proxy=http://$proxy_ip_port
+export all_proxy=socks5://$proxy_ip_port
 ```
 
 取消命令行代理环境变量
@@ -350,7 +351,7 @@ git config --global user.email 'your@email.com'
 git config --global credential.helper 'cache --timeout=86400'
 git config --global http.proxy socks5://127.0.0.1:7891
 git config --global https.proxy socks5://127.0.0.1:7891
-git config --global core.editor vim
+git config --global core.editor nvim
 ```
 
 ## 安装 connect-proxy
@@ -381,7 +382,7 @@ $ vim ~/.ssh/config
 Host github.com
     User git
     # -S for socks5 proxy, -H for http proxy
-    ProxyCommand connect-proxy -S 127.0.0.1:7891 %h %p
+    ProxyCommand connect-proxy -H 127.0.0.1:7890 %h %p
 ```
 
 ## 安装 [Proxychains-ng](https://github.com/rofl0r/proxychains-ng)
@@ -508,138 +509,6 @@ sudo yum update
 sudo yum install temurin-17-jdk
 ```
 
-## 安装 Vim
-
-**Ubuntu**
-
-```sh
-sudo apt install -y vim
-```
-
-**RedHat/CentOS**
-
-```sh
-sudo yum install -y vim
-```
-
-##### [源代码安装](https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source)
-
-```sh
-sudo apt install libncurses5-dev libgnome2-dev libgnomeui-dev \
-libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
-libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-python3-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev git
-
-sudo apt remove vim vim-runtime gvim
-cd ~
-git clone https://github.com/vim/vim.git
-cd vim
-
-./configure --with-features=huge \
-            --enable-multibyte \
-            --enable-rubyinterp=yes \
-            --enable-python3interp=yes \
-            --with-python3-config-dir=$(python3-config --configdir) \
-            --enable-perlinterp=yes \
-            --enable-luainterp=yes \
-            --enable-gui=gtk2 \
-            --enable-cscope \
-            --prefix=/usr/local
-
-make VIMRUNTIMEDIR=/usr/share/vim/vim80 # check the vim version before running
-
-sudo make install
-sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
-sudo update-alternatives --set editor /usr/bin/vim
-sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
-sudo update-alternatives --set vi /usr/bin/vim
-```
-
-#### 安装 [vim-plug](https://github.com/junegunn/vim-plug)
-
-```sh
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
-在 `~/.vimrc` 中添加插件
-
-```vim
-" vim-plug
-call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
-Plug 'luochen1990/rainbow'                " 彩虹括号增强版
-Plug 'altercation/vim-colors-solarized'
-Plug 'sickill/vim-monokai'
-Plug 'morhetz/gruvbox'
-Plug 'dracula/vim'
-Plug 'Yggdroot/indentLine'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdcommenter'
-Plug 'vimcn/vimcdoc'
-call plug#end()
-```
-
-执行下面的命令安装插件
-
-```sh
-vim +PlugStatus +qa
-```
-
-#### 安装 [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) 插件
-
-```sh
-sudo apt-get install build-essential cmake python-dev python3-dev
-cd ~/.vim/bundle/YouCompleteMe
-./install.py --clang-completer
-```
-
-如果 VIM 里显示 YCM 启动不成功，有可能是 YCM 安装脚本自动下载的 LLVM 版本不对，可以参考[Full Installation Guide](https://github.com/Valloric/YouCompleteMe#full-installation-guide)，自己手动安装
-
-- 从[LLVM](http://releases.llvm.org/download.html)官网下载最新版本的 Clang 压缩包并解压到`~/llvm`
-- 编译 ycm_core 库
-
-```sh
-cd ~
-mkdir ycm_build
-cd ycm_build
-cmake -G "Unix Makefiles" . -DPATH_TO_LLVM_ROOT=~/llvm ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
-cmake --build . --target ycm_core
-```
-
-## 安装 [tmux](https://github.com/tmux/tmux)
-
-```sh
-# for Ubuntu system
-sudo apt install -y libevent-dev libncurses5-dev autoconf automake pkg-config
-# for RedHat system
-sudo yum install -y libevent-devel ncurses-devel
-
-$cd
-git clone https://github.com/tmux/tmux.git
-cd tmux
-sh autogen.sh
-./configure
-make
-sudo make install
-```
-
-### 安装 [oh-my-tmux](https://github.com/gpakosz/.tmux)
-
-```sh
-cd
-git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf .
-cp ~/conf/.tmux.conf.local .
-```
-
 ## 安装 [Pygments](https://pygments.org)
 
 **PIP**
@@ -692,18 +561,6 @@ source /etc/grc.zsh
 
 ```sh
 sed -e '$a\[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh' ~/.zshrc
-```
-
-## 安装代码片段查询工具 [howdoi] 和 [cheat]
-
-[howdoi]: https://github.com/gleitz/howdoi
-
-[cheat]: https://github.com/cheat/cheat
-
-```sh
-pip install cheat
-
-pip install howdoi
 ```
 
 ## 安装 [Powerline] fonts
