@@ -479,6 +479,22 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
+## 安装 [Neovim](https://github.com/neovim/neovim)
+
+```sh
+sudo dnf install -y neovim
+
+git clone git@github.com:iguoli/nvim-config.git ~/.config/nvim
+```
+
+## 安装 [fzf](https://github.com/junegunn/fzf)
+
+```sh
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
+~/.fzf/install
+```
+
 ## 安装 [Temurin](https://adoptium.net/) OpenJDK
 
 [官方安装文档](https://adoptium.net/installation/linux)
