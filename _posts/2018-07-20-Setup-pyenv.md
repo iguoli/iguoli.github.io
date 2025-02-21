@@ -1,7 +1,7 @@
 ---
 title:  pyenv - Python 版本管理工具
 date: 2018-07-20
-modify_date: 2021-12-14
+modify_date: 2025-02-21
 tags: Python
 key: Setup-pyenv-2018-07-20
 ---
@@ -35,11 +35,11 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/py
   ```sh
   # pyenv
   export PYENV_ROOT="$HOME/.pyenv"
-  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-  command -v pyenv >/dev/null && eval "$(pyenv init -)"
+  type pyenv >& /dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  type pyenv >& /dev/null && eval "$(pyenv init -)"
 
   # pyenv-virtualenv
-  command -v pyenv-virtualenv >/dev/null && eval "$(pyenv virtualenv-init -)"
+  type pyenv >& /dev/null && eval "$(pyenv virtualenv-init -)"
   ```
 
 ## 卸载 pyenv
