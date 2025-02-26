@@ -152,18 +152,6 @@ for pkg in $(dnf repoquery --installed --qf "%{name}"); do sudo dnf reinstall -q
 appendWindowsPath=false
 ```
 
-#### 设置 ping 命令
-
-`ping` 命令位于 `iputils` 安装包内，安装后会发现直接使用 `ping` 命令的话没有返回结果，这是因为还需要给相应的 group IDs 权限才可以使用 `ping`.
-
-```sh
-sudo dnf install -y procps-ng iputils
-
-sudo sysctl -w net.ipv4.ping_group_range="0 2000"
-```
-
-第二条命令允许 **0 - 2000** 内的 group IDs 使用 `ping` 命令。通常第一个普通用户的 uid 和 gid 是 1000，可以使用 `getent group` 查看系统所有的 group IDs，或用 `id` 命令查看用户 uid 和 gid。
-
 #### 实用工具
 
 还有一些实用工具，比如 `iproute` 提供了 `ip` 命令，`findutils` 提供了 `find` 命令，`ncurses` 提供了终端常用的库
@@ -191,6 +179,19 @@ wsl --export Fedora $HOME\Downloads\fedora-wsl.tar
 ```powershell
 mkdir $HOME\wsl\fedora
 wsl --import fedora $HOME\wsl\fedora $HOME\Downloads\fedora-wsl.tar
+```
+
+## 在 WSL 中升级 Fedora 系统版本
+
+```sh
+sudo dnf upgrade --refresh
+sudo dnf clean all
+sudo dnf install dnf-plugin-system-upgrade
+sudo dnf system-upgrade download --releasever=41
+export UPGRADE_WITHOUT_REBOOT=1
+sudo dnf system-upgrade reboot
+sudo dnf system-upgrade upgrade
+cat /etc/os-release
 ```
 
 ## WSL 网络
