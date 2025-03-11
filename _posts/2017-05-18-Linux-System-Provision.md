@@ -299,7 +299,7 @@ vim /etc/selinux/config
 大部分终端命令都会识别以下环境变量来使用命令行代理，如果有特殊命令不识别，可以使用 **ProxyChains-NG** 命令。
 
 ```sh
-export proxy_ip_port=127.0.0.1:7890
+export proxy_ip_port=localhost:7890
 export http_proxy=http://$proxy_ip_port
 export https_proxy=http://$proxy_ip_port
 export all_proxy=socks5://$proxy_ip_port
@@ -315,11 +315,7 @@ unset all_proxy http_proxy https_proxy
 
 **Ubuntu**
 
-从 PPA 安装[ppa:git-core/ppa](https://launchpad.net/~git-core/+archive/ubuntu/ppa)
-
 ```sh
-sudo add-apt-repository ppa:git-core/ppa
-sudo apt update
 sudo apt install -y git
 ```
 
