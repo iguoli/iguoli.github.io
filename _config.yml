@@ -44,7 +44,7 @@ author:
   twitter   : # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
   weibo     : # "user_id"   the last part of your profile url, e.g. https://www.weibo.com/user_id/profile?...
   googleplus: # "user_id"   the last part of your profile url, e.g. https://plus.google.com/u/0/user_id
-  telegram  : iguoli
+  telegram  : #
   medium    : # "user_name" the last part of your profile url, e.g. https://medium.com/user_name
   zhihu     : # "user_name" the last part of your profile url, e.g. https://www.zhihu.com/people/user_name
   douban    : # "user_name" the last part of your profile url, e.g. https://www.douban.com/people/user_name
@@ -118,36 +118,12 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: # false (default), "disqus", "gitalk", "valine", "custom"
-
-  ## Disqus
-  disqus:
-    shortname: # the Disqus shortname for the site
-
-  ## Gitalk
-  # please refer to https://github.com/gitalk/gitalk for more info.
-  gitalk:
-    clientID    : 65b0312df62aadc36049
-    clientSecret: 31141042ead1e9ecf3f3de5e1618333b1bfdc084
-    repository  : iguoli.github.io
-    owner       : iguoli
-    admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
-      - iguoli
-
-  ## Valine
-  # please refer to https://valine.js.org/en/ for more info.
-  valine:
-    app_id      : # LeanCloud App id
-    app_key     : # LeanCloud App key
-    placeholder : # Prompt information
-    visitor     : # false (default)
-    meta        : # "[nick, mail, link]" (default) nickname, E-mail, Personal-site
-
+  provider: false # false (default), "disqus", "gitalk", "valine", "custom"
 
 ## => Pageview
 ##############################
 pageview:
-  provider: leancloud # false (default), "leancloud", "custom"
+  provider: false # false (default), "leancloud", "custom"
 
   ## Leancloud
   leancloud:
