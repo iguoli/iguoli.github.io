@@ -19,6 +19,8 @@ kubectl get pods --all-namespaces --field-selector status.phase!=Running
 kubectl port-forward service/<service-name> 8080:80
 ```
 
+<!--more-->
+
 ## Helm 命令
 
 Manage the releases of the charts that are deployed on the Kubernetes cluster. Examples:
@@ -39,7 +41,7 @@ helm get values my-elasticsearch -n elk
 
 # upgrade or install the named release of the chart in a namespace
 # and use the values from the values.yaml file
-helm upgrade my-elasticsearch elastic/elasticsearch -n elk --create-namespace -f values.yaml
+helm upgrade -i my-elasticsearch elastic/elasticsearch -n elk --create-namespace -f values.yaml
 
 # uninstall the named release of the chart in a namespace
 # aliases: uninstall, del, delete
