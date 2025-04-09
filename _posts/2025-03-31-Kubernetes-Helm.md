@@ -37,7 +37,7 @@ helm ls -A
 helm status my-elasticsearch -n elk
 
 # download the values of the named release
-helm get values my-elasticsearch -n elk
+helm get values my-elasticsearch -n elk > values.yaml
 
 # upgrade or install the named release of the chart in a namespace
 # and use the values from the values.yaml file
