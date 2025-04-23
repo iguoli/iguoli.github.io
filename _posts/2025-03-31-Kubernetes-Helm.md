@@ -41,7 +41,7 @@ helm get values my-elasticsearch -n elk > values.yaml
 
 # upgrade or install the named release of the chart in a namespace
 # and use the values from the values.yaml file
-helm upgrade -i my-elasticsearch elastic/elasticsearch -n elk --create-namespace -f values.yaml
+helm upgrade --install my-elasticsearch elastic/elasticsearch -n elk --create-namespace -f values.yaml
 
 # uninstall the named release of the chart in a namespace
 # aliases: uninstall, del, delete
