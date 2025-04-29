@@ -69,9 +69,9 @@ output.elasticsearch:
   indices:
   - index: "filebeat_biz_nonprod"
     when.or:
-    - equals.kubernetes.container.name: "fedlearner-gateway"
-    - equals.kubernetes.container.name: "fedlearner-apm-server"
-    - equals.kubernetes.container.name: "fedlearner-web-console-v2"
+    - equals.kubernetes.container.name: "my-gateway"
+    - equals.kubernetes.container.name: "my-apm-server"
+    - equals.kubernetes.container.name: "my-web-console-v2"
   - index: "filebeat_nonbiz_nonprod"
 ```
 
