@@ -5,6 +5,7 @@ modify_date: 2025-04-29
 tags: Kubernetes DevOps
 key: Filebeat-config-2025-04-29
 ---
+
 ## 1. Background
 
 The pods' logs on AKS are collected by filebeat which is deployed as a DaemonSet on each node. The logs will be classified into different indices (business and non-business) based on the container name, and then rolled over to a new index when the index size exceeds 10GB or 1 day. The business logs are stored in Elasticsearch for 30 days, while the non-business logs are stored for 7 days.
