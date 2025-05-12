@@ -67,12 +67,12 @@ output.elasticsearch:
   hosts: ["http://elasticsearch.elk.svc.cluster.local:9200"]
 
   indices:
-  - index: "filebeat_biz_nonprod"
+  - index: "filebeat_biz"
     when.or:
     - equals.kubernetes.container.name: "my-gateway"
     - equals.kubernetes.container.name: "my-apm-server"
     - equals.kubernetes.container.name: "my-web-console-v2"
-  - index: "filebeat_nonbiz_nonprod"
+  - index: "filebeat_nonbiz"
 ```
 
 ### 2.2. ILM Policy
@@ -139,11 +139,11 @@ output.elasticsearch:
 
 ```json
 {
-  "index_patterns": ["filebeat_biz_nonprod-*"],
+  "index_patterns": ["filebeat_biz-*"],
   "template": {
     "settings": {
       "index.lifecycle.name": "filebeat-biz-30d-ilm-policy",
-      "index.lifecycle.rollover_alias": "filebeat_biz_nonprod"
+      "index.lifecycle.rollover_alias": "filebeat_biz"
     },
     "aliases": {}
   },
@@ -157,11 +157,11 @@ output.elasticsearch:
 
 ```json
 {
-  "index_patterns": ["filebeat_nonbiz_nonprod-*"],
+  "index_patterns": ["filebeat_nonbiz-*"],
   "template": {
     "settings": {
       "index.lifecycle.name": "filebeat-nonbiz-7d-ilm-policy",
-      "index.lifecycle.rollover_alias": "filebeat_nonbiz_nonprod"
+      "index.lifecycle.rollover_alias": "filebeat_nonbiz"
     },
     "aliases": {}
   },
@@ -173,14 +173,14 @@ output.elasticsearch:
 
 #### 2.4.1. Create business initial index and rollover alias
 
-- `PUT <filebeat_biz_nonprod-{now/d{yyyy.MM.dd|+08:00}}-000001>`
+- `PUT <filebeat_biz-{now/d{yyyy.MM.dd|+08:00}}-000001>`
 
-- URL Encoded: `PUT %3Cfilebeat_biz_nonprod-%7Bnow%2Fd%7Byyyy.MM.dd%7C%2B08%3A00%7D%7D-000001%3E`
+- URL Encoded: `PUT %3Cfilebeat_biz-%7Bnow%2Fd%7Byyyy.MM.dd%7C%2B08%3A00%7D%7D-000001%3E`
 
 ```json
 {
   "aliases": {
-    "filebeat_biz_nonprod": {
+    "filebeat_biz": {
       "is_write_index": true
     }
   }
@@ -191,7 +191,7 @@ output.elasticsearch:
 
 1. **创建了初始索引**
 
-   索引名是动态的，比如今天执行的话，就是：filebeat_biz_nonprod-2025.04.28-000001
+   索引名是动态的，比如今天执行的话，就是：filebeat_biz-2025.04.28-000001
 
 2. **创建并绑定了 alias** `filebeat-biz-nonprod`
 
@@ -199,14 +199,14 @@ output.elasticsearch:
 
 #### 2.4.2. Create non-business initial index and rollover alias
 
-- `PUT <filebeat_nonbiz_nonprod-{now/d{yyyy.MM.dd|+08:00}}-000001>`
+- `PUT <filebeat_nonbiz-{now/d{yyyy.MM.dd|+08:00}}-000001>`
 
-- URL Encoded: `PUT %3Cfilebeat_nonbiz_nonprod-%7Bnow%2Fd%7Byyyy.MM.dd%7C%2B08%3A00%7D%7D-000001%3E`
+- URL Encoded: `PUT %3Cfilebeat_nonbiz-%7Bnow%2Fd%7Byyyy.MM.dd%7C%2B08%3A00%7D%7D-000001%3E`
 
 ```json
 {
   "aliases": {
-    "filebeat_nonbiz_nonprod": {
+    "filebeat_nonbiz": {
       "is_write_index": true
     }
   }
@@ -215,8 +215,14 @@ output.elasticsearch:
 
 - PUT _ilm/policy：新建生命周期策略（控制 rollover 和保留天数）。
 
-- PUT _index_template：设置索引模板，任何新建的匹配 pattern（比如 filebeat_biz_nonprod-*）的索引，自动套用 ILM策略、shard数、副本数、alias。
+- PUT _index_template：设置索引模板，任何新建的匹配 pattern（比如 filebeat_biz-*）的索引，自动套用 ILM策略、shard数、副本数、alias。
 
 - PUT `<dynamic-index-name>`：用 Elasticsearch 动态表达式 `<...>` 生成带日期的索引名，PUT 时要包含尖括号 `<...>`，这是动态索引的语法。
 
 - `"is_write_index": true`：告诉 alias，当前索引是写入的地方。
+
+#### 2.4.3 Rollover the alias manually if needed
+
+- `POST /filebeat_biz/_rollover`
+
+- `POST /filebeat_nonbiz/_rollover`
