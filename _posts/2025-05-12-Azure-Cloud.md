@@ -24,6 +24,8 @@ Get available Azure cloud
 az cloud list -o table
 ```
 
+<!--more-->
+
 Switch to Azure China cloud
 
 ```bash
