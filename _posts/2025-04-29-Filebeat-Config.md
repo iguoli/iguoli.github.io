@@ -80,7 +80,7 @@ output.elasticsearch:
 
 #### 2.2.1. Create business ILM policy
 
-`PUT _ilm/policy/filebeat-biz-30d-ilm-policy`
+`PUT /_ilm/policy/filebeat-biz-30d-ilm-policy`
 
 ```json
 {
@@ -107,7 +107,7 @@ output.elasticsearch:
 
 #### 2.2.2. Create non-business ILM policy
 
-`PUT _ilm/policy/filebeat-nonbiz-7d-ilm-policy`
+`PUT /_ilm/policy/filebeat-nonbiz-7d-ilm-policy`
 
 ```json
 {
@@ -136,7 +136,7 @@ output.elasticsearch:
 
 #### 2.3.1. Create business index template
 
-`PUT _index_template/filebeat-biz-index-template`
+`PUT /_index_template/filebeat-biz-index-template`
 
 ```json
 {
@@ -154,7 +154,7 @@ output.elasticsearch:
 
 #### 2.3.2. Create non-business index template
 
-`PUT _index_template/filebeat-nonbiz-index-template`
+`PUT /_index_template/filebeat-nonbiz-index-template`
 
 ```json
 {
@@ -174,9 +174,9 @@ output.elasticsearch:
 
 #### 2.4.1. Create business initial index and rollover alias
 
-- `PUT <filebeat_biz-{now/d{yyyy.MM.dd|+08:00}}-000001>`
+- `PUT /<filebeat_biz-{now/d{yyyy.MM.dd|+08:00}}-000001>`
 
-- URL Encoded: `PUT %3Cfilebeat_biz-%7Bnow%2Fd%7Byyyy.MM.dd%7C%2B08%3A00%7D%7D-000001%3E`
+- URL Encoded: `PUT /%3Cfilebeat_biz-%7Bnow%2Fd%7Byyyy.MM.dd%7C%2B08%3A00%7D%7D-000001%3E`
 
 ```json
 {
@@ -200,9 +200,9 @@ output.elasticsearch:
 
 #### 2.4.2. Create non-business initial index and rollover alias
 
-- `PUT <filebeat_nonbiz-{now/d{yyyy.MM.dd|+08:00}}-000001>`
+- `PUT /<filebeat_nonbiz-{now/d{yyyy.MM.dd|+08:00}}-000001>`
 
-- URL Encoded: `PUT %3Cfilebeat_nonbiz-%7Bnow%2Fd%7Byyyy.MM.dd%7C%2B08%3A00%7D%7D-000001%3E`
+- URL Encoded: `PUT /%3Cfilebeat_nonbiz-%7Bnow%2Fd%7Byyyy.MM.dd%7C%2B08%3A00%7D%7D-000001%3E`
 
 ```json
 {

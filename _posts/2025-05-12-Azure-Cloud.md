@@ -14,9 +14,11 @@ key: Azure-Cloud-2025-05-12
 - [How to install the Azure CLI - CN](https://learn.microsoft.com/zh-cn/cli/azure/install-azure-cli?view=azure-cli-latest)
 
 
-### Azure CLI Commands
+## Azure CLI Commands
 
 - [Azure CLI reference](https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest)
+
+### Azure login
 
 Get available Azure cloud
 
@@ -55,6 +57,8 @@ az account list-locations --query "[].{Name:name}" -o table
 az account list-locations --query "[].{Name:name, DisplayName:displayName, PhysicalLocation:metadata.physicalLocation}" -o table
 ```
 
+### Azure resource info
+
 Get available Azure resource groups:
 
 ```bash
@@ -75,6 +79,18 @@ az vm list-skus --resource-type virtualMachines -l chinanorth3 -o table
 az postgres flexible-server list-skus -l chinanorth3 -o table
 
 az mysql flexible-server list-skus -l chinanorth3 -o table
+```
+
+### Azure resource operations
+
+#### VM operations
+
+```bash
+# Get VM list
+az vm list -o table
+
+# Get VM details
+az vm list -d -o table
 ```
 
 Get Azure Redis Cache:
