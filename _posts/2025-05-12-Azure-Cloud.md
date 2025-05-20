@@ -91,6 +91,9 @@ az vm list -o table
 
 # Get VM details
 az vm list -d -o table
+
+# Get unattended VM disk list
+az disk list --query "[?managedBy==null].{Location:location, ResourceGroup:resourceGroup, Name:name, DiskSizeGB:diskSizeGB, DiskState:diskState}" -o table
 ```
 
 Get Azure Redis Cache:
