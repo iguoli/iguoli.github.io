@@ -47,3 +47,47 @@ resources:
     cpu: "200m"
     memory: "512Mi"
 ```
+
+### Kubernetes Secret
+
+#### Prepare the Certificate and Key
+
+- tls.crt
+- tls.key
+
+#### Create a TLS Secret
+
+Create a secret in the same namespace as your Ingress:
+
+```bash
+kubectl create secret tls my-tls-secret \
+  --cert=./tls.crt \
+  --key=./tls.key \
+  -n default
+```
+
+#### Reference the Secret in the Ingress
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  namespace: default
+spec:
+  tls:
+    - hosts:
+        - example.com
+      secretName: my-tls-secret
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-service
+                port:
+                  number: 80
+```
