@@ -269,8 +269,6 @@ graph TD
    - 隔离 Service（稳定虚拟IP）和 Pod（动态实体）
    - 实现零中断的滚动更新
 
----
-
 ### Endpoint 工作原理详解
 
 #### 自动创建过程
@@ -316,8 +314,6 @@ subsets:
   - port: 8080       # 服务端口
     protocol: TCP
 ```
-
----
 
 ### 实际工作场景
 
@@ -375,8 +371,6 @@ Endpoint 自动调整流量权重：
 2. 添加 2个 v2.0 Pod → 15%流量到新版本
 3. 逐步减少 v1.0 Pod 数量
 
----
-
 ### Endpoint 与相关组件关系
 
 | 组件 | 交互方式 | 关键作用 |
@@ -386,8 +380,6 @@ Endpoint 自动调整流量权重：
 | **Service** | 共享相同名称 | 提供虚拟 IP 到实际 Pod 的映射 |
 | **kubelet** | 报告 Pod IP | 提供 Endpoint 的原始数据 |
 | **EndpointSlice** | 新版本的 Endpoint | 解决大规模集群性能问题 |
-
----
 
 ### 高级特性：EndpointSlice
 
@@ -408,8 +400,6 @@ graph TB
 - 每个 EndpointSlice 包含最多 100 个端点
 - 并行处理提升性能
 - 支持拓扑感知路由
-
----
 
 ### 关键操作命令
 
@@ -436,8 +426,6 @@ graph TB
    kubectl get endpointslice
    kubectl describe endpointslice <name>
    ```
-
----
 
 ### 常见问题解决方案
 
