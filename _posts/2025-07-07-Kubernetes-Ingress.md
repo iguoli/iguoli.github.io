@@ -192,3 +192,10 @@ spec:
 |                        | `--election-id` flag                                                  | `ingress-controller-internal`   |
 | **Ingress Resource**   | `spec.ingressClassName`                                               | `internal-nginx`                |
 |                        | legacy annotation: `metadata.annotations.kubernetes.io/ingress.class` | `internal-nginx`                |
+
+```mermaid
+flowchart LR
+    A[IngressClass] -->|"1\. 定义<br>控制器类型"| B[Ingress Controller]
+    C[Ingress] -->|"2\. 通过<br>ingressClassName 引用"| A
+    B -->|"3\. 监听并<br>实施规则"| C
+```
