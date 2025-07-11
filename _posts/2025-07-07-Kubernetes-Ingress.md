@@ -181,13 +181,14 @@ spec:
 
 ### Ingress Class Binding: Modern & Legacy Fields Overview
 
-| Component              | Key Field / Arg                                                             | Value expected                     |
-|------------------------|-----------------------------------------------------------------------------|------------------------------------|
-| **IngressClass**       | `metadata.name`                                                             | `internal-nginx`                   |
-|                        | `spec.controller`                                                           | `k8s.io/internal-ingress-nginx`    |
-|                        | annotation `ingressclass.kubernetes.io/is-default-class` (optional)         | `"true"` for default class         |
-| **Ingress Controller** | `--controller-class` flag                                                   | `k8s.io/internal-ingress-nginx`    |
-|                        | `--ingress-class` flag                                                      | `internal-nginx`                   |
-|                        | `--election-id` flag                                                        | e.g. `ingress-controller-internal` |
-| **Ingress Resource**   | `spec.ingressClassName`                                                     | `internal-nginx`                   |
-|                        | legacy annotation: `metadata.annotations.`**`kubernetes.io/ingress.class`** | `internal-nginx`                   |
+| Component              | Key Field / Arg                                                       | Value Expected                  |
+|------------------------|-----------------------------------------------------------------------|---------------------------------|
+| **IngressClass**       | `metadata.name`                                                       | `internal-nginx`                |
+|                        | `spec.controller`                                                     | `k8s.io/internal-ingress-nginx` |
+|                        | `ingressclass.kubernetes.io/is-default-class` annotation              | `"true"` (optional)             |
+| **Ingress Controller** | `metadata.name`                                                       | `nginx-internal-controller`     |
+|                        | `--controller-class` flag                                             | `k8s.io/internal-ingress-nginx` |
+|                        | `--ingress-class` flag                                                | `internal-nginx`                |
+|                        | `--election-id` flag                                                  | `ingress-controller-internal`   |
+| **Ingress Resource**   | `spec.ingressClassName`                                               | `internal-nginx`                |
+|                        | legacy annotation: `metadata.annotations.kubernetes.io/ingress.class` | `internal-nginx`                |
