@@ -1,9 +1,9 @@
 ---
-title: Azure Cloud DevOps
+title: Azure Cloud - CLI Commands
 date: 2025-05-12
 modify_date: 2025-05-12
-tags: Azure Cloud DevOps
-key: Azure-Cloud-2025-05-12
+tags: Azure Cloud
+key: Azure-Cloud-CLI-2025-05-12
 ---
 
 ## Azure CLI
