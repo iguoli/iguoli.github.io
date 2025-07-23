@@ -27,8 +27,6 @@ key: Azure-Cloud-Storage-Overview-2025-05-12
 * Machine learning datasets
 * Data lake (see ADLS Gen2)
 
----
-
 ### 2. **Azure Data Lake Storage Gen2 (ADLS Gen2)**
 
 > **Purpose**: Big data analytics storage built on top of Blob Storage.
@@ -45,8 +43,6 @@ key: Azure-Cloud-Storage-Overview-2025-05-12
 * Big data analytics
 * Enterprise data lakes
 * Storing raw/processed data for AI/ML pipelines
-
----
 
 ### 3. **Azure Files (File Shares)**
 
@@ -65,8 +61,6 @@ key: Azure-Cloud-Storage-Overview-2025-05-12
 * Shared configuration files across VMs/containers
 * Application-level file storage
 * Hosting FSLogix user profiles for Azure Virtual Desktop
-
----
 
 ### 4. **Azure Disks (Managed Disks)**
 
@@ -91,8 +85,6 @@ key: Azure-Cloud-Storage-Overview-2025-05-12
 * High-performance applications
 * Stateful workloads in AKS
 
----
-
 ### 5. **Azure Table Storage (NoSQL Key-Value Store)**
 
 > **Purpose**: Schema-less NoSQL storage for structured, non-relational data.
@@ -111,8 +103,6 @@ key: Azure-Cloud-Storage-Overview-2025-05-12
 * User profile data
 * Shopping cart or session data
 
----
-
 ### 6. **Azure Queue Storage**
 
 > **Purpose**: Messaging system for decoupling application components.
@@ -130,8 +120,6 @@ key: Azure-Cloud-Storage-Overview-2025-05-12
 * Order/task/event handling pipelines
 * Background jobs, queue-triggered functions
 * Scaling microservices
-
----
 
 ### 7. **Archive and Backup Storage**
 
@@ -155,8 +143,6 @@ key: Azure-Cloud-Storage-Overview-2025-05-12
 * Legacy data archival
 * DR strategy with Vaults
 
----
-
 ### Summary Comparison Table:
 
 | Storage Type   | Data Model   | Access Protocol    | Best For                    | Performance Tiers        |
@@ -168,3 +154,37 @@ key: Azure-Cloud-Storage-Overview-2025-05-12
 | Table Storage  | Key-Value    | REST/SDK           | Logs, metadata, NoSQL apps  | N/A                      |
 | Queue Storage  | Messaging    | REST/SDK           | Decoupling services         | N/A                      |
 | Backup/Archive | All types    | Azure Portal/SDK   | Long-term storage           | Vault, Archive Blob      |
+
+Great question. All the storage types mentioned in the Azure Storage Layer belong to one or more **Azure services**, either under **Azure Storage** or specialized services.
+
+Here’s a clear mapping between **storage types** and the actual **Azure service names** you’ll find in the portal or when provisioning resources:
+
+## 📦 **Mapping: Storage Types → Azure Service Names**
+
+| **Storage Type**             | **Azure Service Name** (in Portal/API)              | **Remarks**                              |
+| ---------------------------- | --------------------------------------------------- | ---------------------------------------- |
+| ✅ **Blob Storage**           | **Storage Account** *(General-purpose v2)*          | Tiered object storage (Hot/Cool/Archive) |
+| ✅ **Data Lake Storage Gen2** | **Storage Account** *(with hierarchical namespace)* | Same as Blob but with Data Lake features |
+| ✅ **Azure Files**            | **Storage Account** *(General-purpose v2)*          | File share via SMB/NFS                   |
+| ✅ **Azure Disks**            | **Managed Disks**                                   | Resource attached to VMs                 |
+| ✅ **Table Storage**          | **Storage Account**                                 | NoSQL key-value storage                  |
+| ✅ **Queue Storage**          | **Storage Account**                                 | Basic messaging for apps                 |
+| ✅ **Backup Storage**         | **Recovery Services Vault**                         | Backups for VMs, SQL, files, etc.        |
+| ✅ **Archive Blob**           | **Storage Account** *(Blob Tier = Archive)*         | Archive tier in Blob service             |
+
+### 🔹 Service Categories in Azure Portal
+
+| **Azure Portal Category**   | **Contains These Storage Types**                                        |
+| --------------------------- | ----------------------------------------------------------------------- |
+| **Storage Account**         | Blob, File, Table, Queue, Data Lake Gen2                                |
+| **Managed Disks**           | Azure Disks                                                             |
+| **Recovery Services Vault** | Backup & Recovery-related storage                                       |
+| **Azure NetApp Files**      | (Optional) High-performance enterprise file storage (not covered above) |
+| **Azure Backup**            | Uses **Recovery Services Vault** to store VM/File backups               |
+
+### ✅ Real-World Examples:
+
+* Provisioning **Blob, File, Table, Queue, or ADLS Gen2** storage? → You create a **Storage Account**.
+* Want to store VM disks or snapshots? → Use **Managed Disks**.
+* Need backup/DR services for VMs and databases? → Use **Recovery Services Vault** (under Azure Backup).
+* Need low-cost long-term storage? → Use **Blob Storage** with **Archive** access tier.
