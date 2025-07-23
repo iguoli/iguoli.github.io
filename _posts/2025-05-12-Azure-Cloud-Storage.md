@@ -27,6 +27,8 @@ key: Azure-Cloud-Storage-Overview-2025-05-12
 * Machine learning datasets
 * Data lake (see ADLS Gen2)
 
+<!--more-->
+
 ### 2. **Azure Data Lake Storage Gen2 (ADLS Gen2)**
 
 > **Purpose**: Big data analytics storage built on top of Blob Storage.
