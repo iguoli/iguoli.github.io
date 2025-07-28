@@ -81,6 +81,23 @@ az postgres flexible-server list-skus -l chinanorth3 -o table
 az mysql flexible-server list-skus -l chinanorth3 -o table
 ```
 
+### Set Azure CLI default values
+
+The Azure CLI lets you set default values so you don't have to repeat them each time you run a command.
+
+Run `az configure` to set the default location and resource group you want to use. 
+
+```bash
+az configure --defaults location="China North 3"
+az configure --defaults group="learn-b84f7eeb-0d9e-4c80-a1d5-81440806ceb5"
+```
+
+List the current defaults:
+
+```bash
+az configure --list-defaults
+```
+
 ### Azure resource operations
 
 #### VM operations
