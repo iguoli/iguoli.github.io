@@ -25,7 +25,7 @@ Azure **Application Gateway** is a Layer 7 (application layer) **HTTP/HTTPS load
 | **Cookie-Based Affinity (Session Stickiness)** | Ensures a client stays on the same backend server using a gateway-managed cookie          |
 | **Custom Probes**                              | Health checks with flexible configuration (e.g., path, status code, interval)             |
 
-### 🚀 Application Gateway SKUs & Feature Differences
+### Application Gateway SKUs
 
 | SKU                    | Key Differences                                                 |
 | ---------------------- | --------------------------------------------------------------- |
@@ -33,7 +33,7 @@ Azure **Application Gateway** is a Layer 7 (application layer) **HTTP/HTTPS load
 | **WAF v2**             | Same as Standard v2 but includes Web Application Firewall       |
 | **Standard (classic)** | Legacy SKU, lacks advanced features like autoscaling, rewriting |
 
-### Overall diagram
+### Overall Diagram
 
 ```mermaid
 graph TD
