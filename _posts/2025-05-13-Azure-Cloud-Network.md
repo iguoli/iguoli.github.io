@@ -60,29 +60,3 @@ A **subnet** is a **subdivision of a VNet**. It allows you to **segment the VNet
 * Apply **NSGs at the subnet** level to enforce segmentation.
 * Reserve a **GatewaySubnet** (named exactly) if using VPN or ExpressRoute.
 * **Avoid overlapping address spaces** when peering or connecting VNets.
-
-## Azure application gateway
-
-### Multiple domains hosting (多域名托管)
-
-```mermaid
-graph TD
-  subgraph DNS
-    www["www.contoso.com (CNAME)"]
-    api["api.contoso.com (CNAME)"]
-  end
-
-  www --> gateway["Azure Application Gateway (myappgw.eastus.cloudapp.azure.com)"]
-  api --> gateway["Azure Application Gateway (myappgw.eastus.cloudapp.azure.com)"]
-
-  subgraph Application Gateway
-    gateway --> listener1["Listener: www.contoso.com"]
-    gateway --> listener2["Listener: api.contoso.com"]
-
-    listener1 --> rule1["Rule:<br>Host = www.contoso.com"]
-    listener2 --> rule2["Rule:<br>Host = api.contoso.com"]
-
-    rule1 --> frontend["Frontend Web App<br>(Backend Pool A)"]
-    rule2 --> apiBackend["API Service<br>(Backend Pool B)"]
-  end
-```
