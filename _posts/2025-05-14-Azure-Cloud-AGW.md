@@ -57,7 +57,7 @@ graph TD
 ```mermaid
 graph TD
   subgraph DNS
-    www["www.contoso.com (CNAME)"]
+    www["portal.contoso.com (CNAME)"]
     api["api.contoso.com (CNAME)"]
     kibana["kibana.contoso.com (CNAME)"]
     gateway["myappgw.eastus.cloudapp.azure.com<br>(Gateway canonical name)"]
@@ -71,11 +71,11 @@ graph TD
   subgraph Application Gateway
     agw["Azure Application Gateway"]
 
-    listener1["Listener<br>- Host: www.contoso.com<br>- Port: 443<br>- Protocol: HTTPS<br>- SSL Certificate"]
+    listener1["Listener<br>- Host: portal.contoso.com<br>- Port: 443<br>- Protocol: HTTPS<br>- SSL Certificate"]
     listener2["Listener<br>- Host: api.contoso.com<br>..."]
     listener3["Listener<br>- Host: kibana.contoso.com<br>..."]
 
-    agw --> |"Host-based routing<br>(www.contoso.com)"| listener1
+    agw --> |"Host-based routing<br>(portal.contoso.com)"| listener1
     agw --> |"Host-based routing<br>(api.contoso.com)"| listener2
     agw --> |"Host-based routing<br>(kibana.contoso.com)"| listener3
 
@@ -102,7 +102,7 @@ graph TD
 
   subgraph AKS[Azure Kubernetes Service]
     ingressController["Ingress Controller<br>(Nginx, AGIC, etc.)"]
-    ingress1["Ingress<br>www.contoso.com"]
+    ingress1["Ingress<br>portal.contoso.com"]
     ingress2["Ingress<br>api.contoso.com"]
 
     ingressController --> ingress1
