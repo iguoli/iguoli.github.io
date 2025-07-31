@@ -68,7 +68,7 @@ A **subnet** is a **subdivision of a VNet**. It allows you to **segment the VNet
 ```mermaid
 graph TD
   subgraph DNS
-    www["www\.contoso.com (CNAME)"]
+    www["www.contoso.com (CNAME)"]
     api["api.contoso.com (CNAME)"]
   end
 
@@ -76,11 +76,11 @@ graph TD
   api --> gateway["Azure Application Gateway (myappgw.eastus.cloudapp.azure.com)"]
 
   subgraph Application Gateway
-    gateway --> listener1["Listener: www\.contoso.com"]
+    gateway --> listener1["Listener: www.contoso.com"]
     gateway --> listener2["Listener: api.contoso.com"]
 
-    listener1 --> rule1["Rule:<br>Host = www\.contoso.com"]
-    listener2 --> rule2["Rule:<br>Host = api\.contoso.com"]
+    listener1 --> rule1["Rule:<br>Host = www.contoso.com"]
+    listener2 --> rule2["Rule:<br>Host = api.contoso.com"]
 
     rule1 --> frontend["Frontend Web App<br>(Backend Pool A)"]
     rule2 --> apiBackend["API Service<br>(Backend Pool B)"]
