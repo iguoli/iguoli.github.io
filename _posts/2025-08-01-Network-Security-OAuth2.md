@@ -80,6 +80,7 @@ sequenceDiagram
    Adds parameters like `openid` scope and `nonce` for security.
 
 **OAuth 2.0 vs. OIDC**:
+
 | Feature           | OAuth 2.0        | OpenID Connect (OIDC)            |
 |-------------------|------------------|----------------------------------|
 | **Purpose**       | Authorization    | Authentication + Identity        |
