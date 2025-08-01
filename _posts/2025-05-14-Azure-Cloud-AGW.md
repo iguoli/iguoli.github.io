@@ -4,6 +4,7 @@ date: 2025-05-14
 modify_date: 2025-05-14
 tags: Azure Cloud
 key: Azure-Cloud-AGW-2025-05-14
+mermaid: true
 ---
 
 ## Azure application gateway

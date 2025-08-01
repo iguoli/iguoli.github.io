@@ -4,6 +4,7 @@ date: 2025-07-06
 modify_date: 2025-07-06
 tags: Kubernetes DevOps
 key: Kubernetes-Service-2025-07-06
+mermaid: true
 ---
 
 ## Kubernetes Service 理解

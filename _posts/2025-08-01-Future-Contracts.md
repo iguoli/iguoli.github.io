@@ -4,6 +4,7 @@ date: 2025-08-01
 modify_date: 2025-08-01
 tags: Financial
 key: Futures-Contracts-2025-08-01
+mermaid: true
 ---
 
 ## Futures Contracts

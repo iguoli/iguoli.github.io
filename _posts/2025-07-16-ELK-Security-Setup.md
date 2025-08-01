@@ -4,6 +4,7 @@ date: 2025-07-16
 modify_date: 2025-07-16
 tags: ELK ElasticSearch Kibana
 key: ELK-Security-Setup-2025-07-16
+mermaid: true
 ---
 
 # Minimal Security Setup for Elastic Stack

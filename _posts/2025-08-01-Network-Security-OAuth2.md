@@ -4,6 +4,7 @@ date: 2025-08-01
 modify_date: 2025-08-01
 tags: Network Security
 key: Network-Security-OAuth-2025-08-01
+mermaid: true
 ---
 
 ## OAUTH 2.0 Overview
