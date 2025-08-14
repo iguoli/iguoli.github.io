@@ -9,6 +9,8 @@ mermaid: true
 
 在 Kubernetes 中，Ingress 架构的精髓正是通过**单一入口点**管理所有入站流量，避免了为每个服务单独创建 LoadBalancer 的复杂性和成本。
 
+<!--more-->
+
 ```mermaid
 graph TD
     %% 外部访问层
@@ -41,8 +43,6 @@ graph TD
     class G,H service;
     class I,J pod;
 ```
-
-<!--more-->
 
 ### 工作流程详解
 

@@ -13,6 +13,8 @@ mermaid: true
 
 Service 与 Pod 的关系是 Kubernetes 网络模型的核心，通过**标签选择器(Label Selector)** 建立动态关联：
 
+<!--more-->
+
 ```mermaid
 graph LR
     Service -->|Label Selector| Pod1
@@ -25,8 +27,6 @@ graph LR
         Pod3[Pod] -->|Labels<br>app=frontend<br>env=prod| LabelSet
     end
 ```
-
-<!--more-->
 
 #### 关键机制：
 
