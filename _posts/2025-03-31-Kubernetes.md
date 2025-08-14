@@ -8,6 +8,16 @@ key: Kubernetes-2025-03-31
 
 ## Kubernetes 命令
 
+### config 命令
+
+合并 kube config 文件到当前 config
+
+```sh
+KUBECONFIG=~/.kube/config:~/kubeconf kubectl config view --merge --flatten > ~/merged_config
+
+mv ~/merged_config ~/.kube/config
+```
+
 ### 常用 pods 命令
 
 ```sh
