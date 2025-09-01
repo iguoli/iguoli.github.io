@@ -47,6 +47,38 @@ graph LR
          targetPort: 8080
    ```
 
+- `port`
+
+  - 指的是 Service 对外暴露的端口。
+
+  - 任何访问这个 Service 的客户端（例如其他 Pod、Ingress、或 NodePort 映射出来的端口），看到的就是这个 port。
+
+  - 在上面的例子中：外部访问 `frontend-service:80`。
+
+- `targetPort`
+
+  - 指的是 Pod 内部容器实际监听的端口。
+
+  - Service 在后端找到匹配的 Pod 后，会把流量从 port 转发到容器的 targetPort。
+
+  - 在上面的例子中：Service 收到 80 端口的请求后，转发给 Pod 的 8080 端口。
+
+- `nodePort`
+
+  - 如果 Service 类型是 NodePort，那么 Kubernetes 会在每个节点的 IP 上打开一个端口（范围默认是 30000–32767）。
+
+  - 例如 `nodePort:31080`。
+
+  - 这样，外部客户端就可以通过 `NodeIP:31080` 访问这个 Service。
+
+  - 请求会再转发到 Service 的 port（80），最后落到 Pod 的 targetPort（8080）。
+
+在 Kubernetes 里，Service 的三层端口机制如下：
+
+```txt
+外部客户端 --> NodeIP:31080 --> Service:80 --> Pod:8080
+```
+
 2. **端点自动发现**：
    - Service 控制器持续监控 Pod 变化
    - 匹配标签的 Pod IP:Port 自动加入 Endpoints 对象
