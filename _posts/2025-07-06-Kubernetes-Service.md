@@ -75,13 +75,15 @@ graph LR
 
 在 Kubernetes 里，Service 的三层端口机制如下：
 
-```txt
+```sh
 外部客户端 --> NodeIP:31080 --> Service:80 --> Pod:8080
 ```
 
 2. **端点自动发现**：
+
    - Service 控制器持续监控 Pod 变化
    - 匹配标签的 Pod IP:Port 自动加入 Endpoints 对象
+
    ```bash
    kubectl get endpoints frontend-service
    # NAME                ENDPOINTS
@@ -89,6 +91,7 @@ graph LR
    ```
 
 3. **负载均衡**：
+
    - 流量通过 kube-proxy 的 iptables/IPVS 规则分发
    - 自动过滤未就绪的 Pod（需配合 readinessProbe）
 
@@ -112,6 +115,7 @@ graph TD
 #### 协作流程：
 
 1. **Deployment 创建 Pod**：
+
    ```yaml
    apiVersion: apps/v1
    kind: Deployment
@@ -132,10 +136,12 @@ graph TD
    ```
 
 2. **Service 发现 Pod**：
+
    - Deployment 创建的 Pod 带有 `app: frontend` 标签
    - Service 的 selector 匹配这些标签
 
 3. **动态更新**：
+
    - 当 Deployment 滚动更新时：
      - 新 Pod 创建（带相同标签）→ 自动加入 Service
      - 旧 Pod 终止 → 自动从 Service 移除
@@ -219,10 +225,12 @@ readinessProbe:
    ```
 
 2. **服务发现方式**：
+
    - 集群内访问：`<service-name>.<namespace>.svc.cluster.local`
    - 环境变量注入：`FRONTEND_SERVICE_HOST`
 
 3. **调试命令**：
+
    ```bash
    # 检查标签匹配
    kubectl get pods -l app=frontend
@@ -235,6 +243,7 @@ readinessProbe:
    ```
 
 4. **高级流量管理**：
+
    ```yaml
    # 金丝雀发布示例
    apiVersion: v1
