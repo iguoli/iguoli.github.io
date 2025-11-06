@@ -18,6 +18,12 @@ KUBECONFIG=~/.kube/config:~/kubeconf kubectl config view --merge --flatten > ~/m
 mv ~/merged_config ~/.kube/config
 ```
 
+提取当前 config 文件
+
+```sh
+kubectl config view --minify --context=mycluster --flatten > mycluster.kubeconfig
+```
+
 ### 常用 pods 命令
 
 ```sh
