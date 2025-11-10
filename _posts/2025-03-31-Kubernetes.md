@@ -13,7 +13,7 @@ key: Kubernetes-2025-03-31
 合并 kube config 文件到当前 config
 
 ```sh
-KUBECONFIG=~/.kube/config:~/kubeconf kubectl config view --merge --flatten > ~/merged_config
+KUBECONFIG=~/.kube/config:~/Downloads/kubeconf kubectl config view --merge --flatten > merged_config
 
 mv ~/merged_config ~/.kube/config
 ```
